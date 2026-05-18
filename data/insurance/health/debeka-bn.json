@@ -1,0 +1,16 @@
+{
+  "id": "debeka-bn",
+  "category": "health",
+  "provider": "Debeka",
+  "name": "Beihilfetarif BN",
+  "shortDescription": "Beihilfeergänzungstarif für Beamtenanwärter und Beamte mit Wahlleistungen und 2-Bett-Zimmer.",
+  "minPremium": 80,
+  "entryAge": { "min": 0, "max": 65 },
+  "features": [
+    "Beihilfekonform",
+    "Wahlleistungen Krankenhaus",
+    "Chefarztbehandlung",
+    "Zahnersatz bis 70%"
+  ],
+  "tags": ["pkv", "beamte", "beihilfe"]
+}

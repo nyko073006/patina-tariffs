@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://patina-tariffs.example/schemas/fund.schema.json",
+  "title": "Fund",
+  "description": "Investmentfonds oder ETF",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["isin", "name", "provider", "assetClass", "ter", "currency", "fundType", "distribution"],
+  "properties": {
+    "isin": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+      "description": "ISO 6166 ISIN; dient als Primärschlüssel und Dateiname"
+    },
+    "wkn": {
+      "type": "string",
+      "pattern": "^[A-Z0-9]{6}$"
+    },
+    "name": { "type": "string", "minLength": 3 },
+    "provider": { "type": "string", "minLength": 2 },
+    "fundType": { "enum": ["etf", "mutual-fund"] },
+    "assetClass": {
+      "enum": ["equity", "bond", "mixed", "commodity", "money-market", "real-estate", "crypto"]
+    },
+    "region": { "type": "string" },
+    "index": { "type": "string" },
+    "ter": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Total Expense Ratio in % p.a."
+    },
+    "replicationMethod": { "enum": ["physical-full", "physical-sampling", "synthetic"] },
+    "distribution": { "enum": ["distributing", "accumulating"] },
+    "domicile": { "type": "string", "pattern": "^[A-Z]{2}$" },
+    "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "fundSize": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Fondsvolumen in EUR"
+    },
+    "inception": { "type": "string", "format": "date" },
+    "sfdr": { "enum": ["Art. 6", "Art. 8", "Art. 9"] },
+    "documents": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "factsheet": { "type": "string", "format": "uri" },
+        "kid": { "type": "string", "format": "uri" },
+        "prospectus": { "type": "string", "format": "uri" }
+      }
+    },
+    "tags": { "type": "array", "items": { "type": "string" } }
+  }
+}

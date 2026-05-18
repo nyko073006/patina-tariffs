@@ -1,0 +1,19 @@
+{
+  "isin": "IE00BK5BQT80",
+  "wkn": "A2PKXG",
+  "name": "Vanguard FTSE All-World UCITS ETF USD Acc",
+  "provider": "Vanguard",
+  "fundType": "etf",
+  "assetClass": "equity",
+  "region": "World (Developed + Emerging)",
+  "index": "FTSE All-World",
+  "ter": 0.22,
+  "replicationMethod": "physical-sampling",
+  "distribution": "accumulating",
+  "domicile": "IE",
+  "currency": "USD",
+  "fundSize": 16000000000,
+  "inception": "2019-07-23",
+  "sfdr": "Art. 6",
+  "tags": ["core", "broad-market", "ftse-all-world"]
+}

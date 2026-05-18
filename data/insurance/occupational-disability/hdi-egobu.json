@@ -1,0 +1,18 @@
+{
+  "id": "hdi-egobu",
+  "category": "occupational-disability",
+  "provider": "HDI",
+  "name": "EGO Top BU",
+  "shortDescription": "BU mit Karrieregarantie und vereinfachter Gesundheitsprüfung für Akademiker.",
+  "minPremium": 20,
+  "entryAge": { "min": 15, "max": 50 },
+  "term": { "min": 5, "max": 52 },
+  "features": [
+    "Karrieregarantie",
+    "Vereinfachte Gesundheitsprüfung für Akademiker",
+    "Verzicht auf abstrakte Verweisung",
+    "Wiedereingliederungshilfe"
+  ],
+  "ratings": ["fb-bu-hdi-2025"],
+  "tags": ["bu", "akademiker"]
+}

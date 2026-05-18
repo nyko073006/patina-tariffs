@@ -1,0 +1,19 @@
+{
+  "isin": "IE00B5BMR087",
+  "wkn": "A0YEDG",
+  "name": "iShares Core S&P 500 UCITS ETF (Acc)",
+  "provider": "iShares (BlackRock)",
+  "fundType": "etf",
+  "assetClass": "equity",
+  "region": "USA",
+  "index": "S&P 500",
+  "ter": 0.07,
+  "replicationMethod": "physical-full",
+  "distribution": "accumulating",
+  "domicile": "IE",
+  "currency": "USD",
+  "fundSize": 95000000000,
+  "inception": "2010-05-19",
+  "sfdr": "Art. 6",
+  "tags": ["core", "usa", "low-cost"]
+}

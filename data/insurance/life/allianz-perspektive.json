@@ -1,0 +1,17 @@
+{
+  "id": "allianz-perspektive",
+  "category": "life",
+  "provider": "Allianz",
+  "name": "PrivatRente Perspektive",
+  "shortDescription": "Indexgebundene Rentenversicherung mit jährlichem Wechselrecht zwischen sicherer Verzinsung und Index-Partizipation.",
+  "minPremium": 25,
+  "entryAge": { "min": 0, "max": 80 },
+  "term": { "min": 5, "max": 67 },
+  "features": [
+    "Index-Partizipation jährlich wählbar",
+    "Sicherer Rechnungszins",
+    "Lebenslange Rente garantiert",
+    "Kapitalwahlrecht"
+  ],
+  "tags": ["rentenversicherung", "index", "altersvorsorge"]
+}

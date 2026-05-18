@@ -1,0 +1,134 @@
+---
+import Base from "../../layouts/Base.astro";
+import { funds, insurance, credit, formatPercent, formatEur, ASSET_CLASS_LABELS, INSURANCE_CATEGORY_LABELS, CREDIT_TYPE_LABELS } from "../../lib/data";
+
+const all = [
+  ...funds.map((f) => ({ id: f.isin, kind: "fund" as const, label: f.name, sub: `${f.provider} · ${f.isin}` })),
+  ...insurance.map((i) => ({ id: i.id, kind: "insurance" as const, label: i.name, sub: `${i.provider} · ${INSURANCE_CATEGORY_LABELS[i.category]}` })),
+  ...credit.map((c) => ({ id: c.id, kind: "credit" as const, label: c.name, sub: `${c.provider} · ${CREDIT_TYPE_LABELS[c.type]}` })),
+];
+---
+<Base title="Vergleich">
+  <section class="mx-auto max-w-7xl px-4 pt-8 pb-12">
+    <h1 class="text-2xl font-semibold tracking-tight">Vergleich</h1>
+    <p class="text-sm text-ink-500 mt-1">Bis zu drei Produkte gleicher Art nebeneinander.</p>
+
+    <div class="mt-6 flex flex-wrap items-end gap-3">
+      <div class="flex-1 min-w-72">
+        <label class="label" for="picker">Hinzufügen</label>
+        <select id="picker" class="input mt-1">
+          <option value="">— wählen —</option>
+          <optgroup label="Fonds">
+            {all.filter(x => x.kind === "fund").map((x) => <option value={`fund:${x.id}`}>{x.label} ({x.sub})</option>)}
+          </optgroup>
+          <optgroup label="Versicherungstarife">
+            {all.filter(x => x.kind === "insurance").map((x) => <option value={`insurance:${x.id}`}>{x.label} ({x.sub})</option>)}
+          </optgroup>
+          <optgroup label="Kredite">
+            {all.filter(x => x.kind === "credit").map((x) => <option value={`credit:${x.id}`}>{x.label} ({x.sub})</option>)}
+          </optgroup>
+        </select>
+      </div>
+      <button id="add" class="btn btn-primary" type="button">Zum Vergleich hinzufügen</button>
+      <button id="clear" class="btn" type="button">Leeren</button>
+    </div>
+
+    <div id="compare-area" class="mt-8"></div>
+    <p id="hint" class="text-ink-500 text-sm mt-8">Noch nichts ausgewählt. Wähle oben Produkte aus, oder klicke auf einer Listenseite "Zum Vergleich".</p>
+  </section>
+</Base>
+
+<script>
+  type Item = { id: string; kind: "fund" | "insurance" | "credit" };
+  const STORAGE = "compare";
+  const params = new URLSearchParams(location.search);
+  const initialAdd = params.get("add");
+
+  function read(): Item[] {
+    try { return JSON.parse(localStorage.getItem(STORAGE) || "[]"); }
+    catch { return []; }
+  }
+  function write(list: Item[]) { localStorage.setItem(STORAGE, JSON.stringify(list.slice(0, 3))); render(); }
+
+  async function loadData() {
+    return (await import("../../data/tariffs.json")).default;
+  }
+
+  function rowsForKind(kind: Item["kind"], items: any[]) {
+    if (kind === "fund") return [
+      ["Anbieter", items.map(x => x.provider)],
+      ["ISIN", items.map(x => x.isin)],
+      ["Anlageklasse", items.map(x => x.assetClass)],
+      ["Region", items.map(x => x.region ?? "—")],
+      ["Index", items.map(x => x.index ?? "—")],
+      ["TER", items.map(x => x.ter != null ? `${x.ter.toFixed(2).replace(".", ",")} %` : "—")],
+      ["Ausschüttung", items.map(x => x.distribution === "accumulating" ? "thesaurierend" : "ausschüttend")],
+      ["Replikation", items.map(x => x.replicationMethod ?? "—")],
+      ["Fondsgröße", items.map(x => x.fundSize ? new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", notation: "compact", maximumFractionDigits: 1 }).format(x.fundSize) : "—")],
+      ["Domizil", items.map(x => x.domicile ?? "—")],
+    ];
+    if (kind === "insurance") return [
+      ["Anbieter", items.map(x => x.provider)],
+      ["Sparte", items.map(x => x.category)],
+      ["Mindestbeitrag", items.map(x => x.minPremium ? `${x.minPremium} €/Mon.` : "—")],
+      ["Eintrittsalter", items.map(x => x.entryAge ? `${x.entryAge.min ?? "—"}–${x.entryAge.max ?? "—"}` : "—")],
+      ["Laufzeit", items.map(x => x.term ? `${x.term.min ?? "—"}–${x.term.max ?? "—"} J.` : "—")],
+      ["Merkmale", items.map(x => (x.features ?? []).join(" · ") || "—")],
+    ];
+    return [
+      ["Anbieter", items.map(x => x.provider)],
+      ["Art", items.map(x => x.type)],
+      ["Eff. Zins", items.map(x => x.effectiveRate ? `${x.effectiveRate.from?.toFixed(2)} – ${x.effectiveRate.to?.toFixed(2)} %` : "—")],
+      ["Summe", items.map(x => x.minAmount && x.maxAmount ? `${x.minAmount.toLocaleString("de-DE")} – ${x.maxAmount.toLocaleString("de-DE")} €` : "—")],
+      ["Laufzeit", items.map(x => x.minTermMonths && x.maxTermMonths ? `${x.minTermMonths}–${x.maxTermMonths} Mon.` : "—")],
+      ["Zinsbindung", items.map(x => (x.fixationPeriodsYears ?? []).join(", ") || "—")],
+    ];
+  }
+
+  async function render() {
+    const list = read();
+    const area = document.getElementById("compare-area")!;
+    const hint = document.getElementById("hint")!;
+    area.innerHTML = "";
+    if (list.length === 0) { hint.classList.remove("hidden"); return; }
+    hint.classList.add("hidden");
+
+    const data = await loadData();
+    const groups: Record<string, any[]> = { fund: [], insurance: [], credit: [] };
+    for (const e of list) {
+      const pool = (data as any)[e.kind === "fund" ? "funds" : e.kind] as any[];
+      const found = pool.find((x) => (e.kind === "fund" ? x.isin : x.id) === e.id);
+      if (found) groups[e.kind].push(found);
+    }
+
+    const sections: string[] = [];
+    for (const [kind, items] of Object.entries(groups)) {
+      if (!items.length) continue;
+      const rows = rowsForKind(kind as Item["kind"], items);
+      const head = `<tr><th class="text-left p-3 w-40 text-ink-500 font-normal">Merkmal</th>${items.map((it: any) => `<th class="text-left p-3 align-top"><div class="font-semibold">${it.name}</div><div class="text-xs text-ink-500 font-normal">${it.provider}</div></th>`).join("")}</tr>`;
+      const body = rows.map(([k, vals]) => `<tr class="border-t border-ink-100"><td class="p-3 text-ink-500">${k}</td>${(vals as string[]).map(v => `<td class="p-3">${v}</td>`).join("")}</tr>`).join("");
+      sections.push(`<div class="card overflow-hidden mb-6"><div class="bg-ink-50 px-4 py-2 text-xs uppercase tracking-wide text-ink-600">${kind === "fund" ? "Fonds" : kind === "insurance" ? "Versicherungstarife" : "Kredite"}</div><table class="w-full text-sm">${head}${body}</table></div>`);
+    }
+    area.innerHTML = sections.join("");
+  }
+
+  document.getElementById("add")!.addEventListener("click", () => {
+    const v = (document.getElementById("picker") as HTMLSelectElement).value;
+    if (!v) return;
+    const [kind, id] = v.split(":") as [Item["kind"], string];
+    const list = read();
+    if (list.length >= 3 || list.some(x => x.id === id)) return;
+    list.push({ kind, id });
+    write(list);
+  });
+  document.getElementById("clear")!.addEventListener("click", () => write([]));
+
+  if (initialAdd) {
+    const all = read();
+    if (!all.some(x => x.id === initialAdd)) {
+      const isFund = /^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(initialAdd);
+      all.push({ id: initialAdd, kind: isFund ? "fund" : "insurance" });
+      write(all);
+    } else render();
+  } else render();
+</script>

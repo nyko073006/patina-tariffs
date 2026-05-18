@@ -1,0 +1,19 @@
+{
+  "isin": "IE00BJ0KDQ92",
+  "wkn": "A1XB5U",
+  "name": "Xtrackers MSCI World UCITS ETF 1C",
+  "provider": "Xtrackers (DWS)",
+  "fundType": "etf",
+  "assetClass": "equity",
+  "region": "World (Developed)",
+  "index": "MSCI World",
+  "ter": 0.19,
+  "replicationMethod": "physical-sampling",
+  "distribution": "accumulating",
+  "domicile": "IE",
+  "currency": "USD",
+  "fundSize": 12000000000,
+  "inception": "2014-09-29",
+  "sfdr": "Art. 6",
+  "tags": ["core", "broad-market"]
+}

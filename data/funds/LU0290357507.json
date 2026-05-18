@@ -1,0 +1,19 @@
+{
+  "isin": "LU0290357507",
+  "wkn": "DBX1EU",
+  "name": "Xtrackers EURO STOXX 50 UCITS ETF 1D",
+  "provider": "Xtrackers (DWS)",
+  "fundType": "etf",
+  "assetClass": "equity",
+  "region": "Eurozone",
+  "index": "EURO STOXX 50",
+  "ter": 0.09,
+  "replicationMethod": "physical-full",
+  "distribution": "distributing",
+  "domicile": "LU",
+  "currency": "EUR",
+  "fundSize": 5200000000,
+  "inception": "2007-04-17",
+  "sfdr": "Art. 6",
+  "tags": ["eurozone", "blue-chip", "ausschüttend"]
+}

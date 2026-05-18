@@ -1,0 +1,122 @@
+---
+import Base from "../../layouts/Base.astro";
+import { insurance, INSURANCE_CATEGORY_LABELS, formatEur } from "../../lib/data";
+
+const categories = [...new Set(insurance.map((i) => i.category))];
+const providers = [...new Set(insurance.map((i) => i.provider))].sort();
+---
+<Base title="Versicherungstarife">
+  <section class="mx-auto max-w-7xl px-4 pt-8 pb-6">
+    <div class="flex items-end justify-between gap-4 flex-wrap">
+      <div>
+        <h1 class="text-2xl font-semibold tracking-tight">Versicherungstarife</h1>
+        <p class="text-sm text-ink-500 mt-1">
+          <span id="result-count">{insurance.length}</span> von {insurance.length} Tarifen
+        </p>
+      </div>
+      <input id="q" type="search" placeholder="Tarifname, Anbieter, Merkmal …" class="input w-80" autocomplete="off" />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-6">
+    <aside class="card p-4 h-fit lg:sticky lg:top-20">
+      <h2 class="font-semibold text-sm">Filter</h2>
+      <div class="mt-4">
+        <div class="label mb-1">Sparte</div>
+        {categories.map((c) => (
+          <label class="flex items-center gap-2 py-0.5 text-sm">
+            <input type="checkbox" class="filter" data-key="category" value={c} />
+            <span>{INSURANCE_CATEGORY_LABELS[c]}</span>
+          </label>
+        ))}
+      </div>
+      <div class="mt-4">
+        <div class="label mb-1">Anbieter</div>
+        {providers.map((p) => (
+          <label class="flex items-center gap-2 py-0.5 text-sm">
+            <input type="checkbox" class="filter" data-key="provider" value={p} />
+            <span>{p}</span>
+          </label>
+        ))}
+      </div>
+      <button id="reset" type="button" class="btn w-full mt-5">Filter zurücksetzen</button>
+    </aside>
+
+    <div>
+      <div id="rows" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {insurance.map((i) => (
+          <article
+            class="ins-card card p-4 hover:border-accent-500 transition"
+            data-name={i.name.toLowerCase()}
+            data-provider={i.provider}
+            data-category={i.category}
+            data-features={(i.features ?? []).join(" ").toLowerCase()}
+          >
+            <div class="flex items-baseline justify-between gap-2">
+              <span class="chip chip-accent">{INSURANCE_CATEGORY_LABELS[i.category]}</span>
+              {i.minPremium && <span class="text-xs text-ink-500">ab {formatEur(i.minPremium)}/Mon.</span>}
+            </div>
+            <h2 class="mt-2 font-semibold leading-tight">
+              <a href={`/tarife/${i.id}/`}>{i.name}</a>
+            </h2>
+            <p class="text-xs text-ink-500">{i.provider}</p>
+            {i.shortDescription && <p class="mt-2 text-sm text-ink-700 line-clamp-3">{i.shortDescription}</p>}
+            {i.features && i.features.length > 0 && (
+              <ul class="mt-3 space-y-1 text-xs text-ink-700">
+                {i.features.slice(0, 3).map((f) => (
+                  <li class="flex gap-1.5"><span class="text-accent-500">✓</span><span>{f}</span></li>
+                ))}
+              </ul>
+            )}
+            {i._ratings && i._ratings.length > 0 && (
+              <div class="mt-3 pt-3 border-t border-ink-100 text-xs text-ink-600">
+                {i._ratings[0].source}: <span class="font-medium">{i._ratings[0].rating}</span>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+      <p id="empty" class="hidden text-center text-ink-500 py-12">Keine Tarife passen zu deinen Filtern.</p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const cards = Array.from(document.querySelectorAll<HTMLElement>(".ins-card"));
+  const q = document.getElementById("q") as HTMLInputElement;
+  const filters = Array.from(document.querySelectorAll<HTMLInputElement>(".filter"));
+  const count = document.getElementById("result-count")!;
+  const empty = document.getElementById("empty")!;
+  const reset = document.getElementById("reset")!;
+
+  function apply() {
+    const query = q.value.trim().toLowerCase();
+    const groups: Record<string, string[]> = {};
+    for (const f of filters) if (f.checked) (groups[f.dataset.key!] ||= []).push(f.value);
+
+    let visible = 0;
+    for (const c of cards) {
+      let show = true;
+      const ds = c.dataset;
+      if (query) {
+        const hay = `${ds.name} ${ds.provider} ${ds.features}`.toLowerCase();
+        if (!hay.includes(query)) show = false;
+      }
+      if (show) for (const [k, vals] of Object.entries(groups)) {
+        if (!vals.includes(ds[k as keyof DOMStringMap] as string)) { show = false; break; }
+      }
+      c.classList.toggle("hidden", !show);
+      if (show) visible++;
+    }
+    count.textContent = String(visible);
+    empty.classList.toggle("hidden", visible !== 0);
+  }
+  q.addEventListener("input", apply);
+  filters.forEach((f) => f.addEventListener("change", apply));
+  reset.addEventListener("click", () => {
+    q.value = "";
+    filters.forEach((f) => (f.checked = false));
+    apply();
+  });
+  apply();
+</script>

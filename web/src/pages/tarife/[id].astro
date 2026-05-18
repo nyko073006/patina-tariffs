@@ -1,0 +1,91 @@
+---
+import Base from "../../layouts/Base.astro";
+import { insurance, INSURANCE_CATEGORY_LABELS, formatEur, formatDate } from "../../lib/data";
+
+export function getStaticPaths() {
+  return insurance.map((i) => ({ params: { id: i.id }, props: { tariff: i } }));
+}
+
+const { tariff } = Astro.props;
+---
+<Base title={tariff.name}>
+  <section class="mx-auto max-w-5xl px-4 pt-8 pb-12">
+    <a href="/tarife/" class="text-sm text-ink-500 no-underline hover:text-ink-700">← zurück zur Liste</a>
+    <div class="mt-2 flex items-start justify-between gap-6 flex-wrap">
+      <div>
+        <div class="flex flex-wrap gap-2 mb-2">
+          <span class="chip chip-accent">{INSURANCE_CATEGORY_LABELS[tariff.category]}</span>
+          {tariff.tags?.map((t) => <span class="chip">{t}</span>)}
+        </div>
+        <h1 class="text-2xl font-semibold tracking-tight">{tariff.name}</h1>
+        <p class="text-ink-500 text-sm mt-1">{tariff.provider} · {tariff.id}</p>
+      </div>
+      <div class="flex gap-2">
+        <a href={`/vergleich/?add=${tariff.id}`} class="btn">Zum Vergleich</a>
+        <button class="btn" type="button" onclick="window.print()">Drucken / PDF</button>
+      </div>
+    </div>
+
+    {tariff.shortDescription && (
+      <p class="mt-6 text-ink-700 max-w-2xl">{tariff.shortDescription}</p>
+    )}
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+      {tariff.minPremium !== undefined && (
+        <div class="card p-4">
+          <div class="label">Mindestbeitrag</div>
+          <div class="text-2xl font-light mt-1 tabular-nums">{formatEur(tariff.minPremium)}<span class="text-sm text-ink-500"> / Monat</span></div>
+        </div>
+      )}
+      {tariff.entryAge && (
+        <div class="card p-4">
+          <div class="label">Eintrittsalter</div>
+          <div class="text-2xl font-light mt-1 tabular-nums">{tariff.entryAge.min ?? "—"}–{tariff.entryAge.max ?? "—"} <span class="text-sm text-ink-500">Jahre</span></div>
+        </div>
+      )}
+      {tariff.term && (
+        <div class="card p-4">
+          <div class="label">Laufzeit</div>
+          <div class="text-2xl font-light mt-1 tabular-nums">{tariff.term.min ?? "—"}–{tariff.term.max ?? "—"} <span class="text-sm text-ink-500">Jahre</span></div>
+        </div>
+      )}
+    </div>
+
+    {tariff.features && tariff.features.length > 0 && (
+      <div class="card mt-6 p-5">
+        <h2 class="font-semibold">Leistungsmerkmale</h2>
+        <ul class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+          {tariff.features.map((f) => (
+            <li class="flex gap-2"><span class="text-accent-500">✓</span><span>{f}</span></li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {tariff._ratings && tariff._ratings.length > 0 && (
+      <div class="card mt-6 p-4">
+        <h2 class="font-semibold">Externe Ratings</h2>
+        <ul class="mt-3 divide-y divide-ink-100">
+          {tariff._ratings.map((r) => (
+            <li class="py-2 flex items-center justify-between text-sm">
+              <span class="text-ink-700">{r.source}</span>
+              <span class="font-medium">{r.rating}</span>
+              <span class="text-ink-500 tabular-nums">{formatDate(r.ratingDate)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {tariff.documents && Object.keys(tariff.documents).length > 0 && (
+      <div class="card mt-6 p-4">
+        <h2 class="font-semibold">Dokumente</h2>
+        <ul class="mt-3 space-y-1 text-sm">
+          {Object.entries(tariff.documents).map(([k, v]) => (
+            <li><a href={v} target="_blank" rel="noopener">{k}</a></li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </section>
+</Base>

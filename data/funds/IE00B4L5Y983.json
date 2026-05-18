@@ -1,0 +1,19 @@
+{
+  "isin": "IE00B4L5Y983",
+  "wkn": "A0RPWH",
+  "name": "iShares Core MSCI World UCITS ETF USD (Acc)",
+  "provider": "iShares (BlackRock)",
+  "fundType": "etf",
+  "assetClass": "equity",
+  "region": "World (Developed)",
+  "index": "MSCI World",
+  "ter": 0.20,
+  "replicationMethod": "physical-sampling",
+  "distribution": "accumulating",
+  "domicile": "IE",
+  "currency": "USD",
+  "fundSize": 92000000000,
+  "inception": "2009-09-25",
+  "sfdr": "Art. 6",
+  "tags": ["core", "broad-market", "thesaurierend"]
+}
