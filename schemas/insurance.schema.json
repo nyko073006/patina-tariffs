@@ -13,12 +13,12 @@
       "description": "kebab-case ID, eindeutig pro Kategorie; dient als Dateiname"
     },
     "category": {
-      "enum": ["life", "occupational-disability", "health", "property", "liability", "accident", "car", "legal"]
+      "enum": ["life", "occupational-disability", "health", "property", "liability", "accident", "car", "legal", "cyber"]
     },
     "subCategory": {
       "type": "string",
       "maxLength": 60,
-      "description": "tecis-Feinklassifikation, z. B. 'term' (Risikoleben), 'pension-private', 'pension-riester', 'pension-ruerup', 'pension-occupational', 'disability-grundfaehigkeit', 'dread-disease', 'health-full', 'health-supplement', 'health-dental', 'property-home', 'property-building', 'liability-private'."
+      "description": "tecis-Feinklassifikation, z. B. 'term' (Risikoleben), 'pension-private', 'pension-riester', 'pension-ruerup', 'pension-occupational', 'disability-classic', 'disability-grundfaehigkeit', 'dread-disease', 'health-full', 'health-supplement', 'health-dental', 'health-care' (Pflegezusatz), 'property-home', 'property-building', 'liability-private', 'accident-disability', 'auto-bundle', 'cyber-private', 'cyber-business'."
     },
     "productLines": {
       "type": "array",

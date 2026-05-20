@@ -1,0 +1,17 @@
+{
+  "id": "allianz-cyberschutz",
+  "category": "cyber",
+  "subCategory": "cyber-private",
+  "provider": "Allianz",
+  "name": "CyberSchutz",
+  "shortDescription": "Cyberversicherung für Privathaushalte und Selbstständige gegen Datendiebstahl, Online-Betrug, Identitätsmissbrauch und Cybermobbing.",
+  "minPremium": 5,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "Schutz bei Online-Banking-Betrug",
+    "Identitätsmissbrauch",
+    "Cybermobbing-Hilfe",
+    "Datenrettung privater Geräte"
+  ],
+  "tags": ["cyber", "privat", "identitätsdiebstahl"]
+}

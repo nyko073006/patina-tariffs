@@ -1,0 +1,20 @@
+{
+  "id": "swiss-life-maximo-basisrente",
+  "category": "life",
+  "subCategory": "pension-ruerup",
+  "productLines": ["ruerup", "fondsgebunden", "hybrid"],
+  "taxFavored": true,
+  "provider": "Swiss Life",
+  "name": "Maximo Basisrente",
+  "shortDescription": "Fondsgebundene Rürup-Basisrente (Tarif 722) mit wählbarer Beitragsgarantie und vollem Sonderausgabenabzug nach § 10 EStG.",
+  "minPremium": 25,
+  "entryAge": { "min": 16, "max": 70 },
+  "term": { "min": 5, "max": 50 },
+  "features": [
+    "Bis 100 % der Beiträge steuerlich absetzbar",
+    "Beitragsgarantie wählbar (Hybridmodell)",
+    "Hartz-IV- und Insolvenzschutz",
+    "Zuzahlungen jederzeit möglich"
+  ],
+  "tags": ["altersvorsorge", "ruerup", "swiss-life", "steuer"]
+}

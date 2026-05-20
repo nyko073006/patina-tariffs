@@ -1,0 +1,17 @@
+{
+  "id": "dkv-ptg",
+  "category": "health",
+  "subCategory": "health-care",
+  "provider": "DKV",
+  "name": "PflegetagegeldPlus (PTG)",
+  "shortDescription": "Pflegezusatz mit 100 % Pflegetagegeld bereits ab Pflegegrad 1 und 150 % bei Pflegegrad 5, lebenslang garantiert.",
+  "minPremium": 12,
+  "entryAge": { "min": 0, "max": 80 },
+  "features": [
+    "100 % Tagegeld ab Pflegegrad 1",
+    "150 % Tagegeld bei Pflegegrad 5",
+    "Lebenslange Leistung",
+    "Beitragsbefreiung im Pflegefall"
+  ],
+  "tags": ["pflege", "pflegezusatz", "tagegeld"]
+}
