@@ -1,0 +1,17 @@
+{
+  "assetClass": "equity",
+  "currency": "EUR",
+  "distribution": "distributing",
+  "domicile": "DE",
+  "fundType": "etf",
+  "inception": "2010-05-21",
+  "index": "STOXX Europe 600",
+  "isin": "IE00B3VVMM84",
+  "name": "iShares STOXX Europe 600 UCITS ETF (DE)",
+  "provider": "iShares (BlackRock)",
+  "region": "Europa",
+  "replicationMethod": "physical-full",
+  "sfdr": "Art. 6",
+  "ter": 0.2,
+  "wkn": "A0YEDP"
+}

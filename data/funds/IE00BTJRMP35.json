@@ -4,14 +4,14 @@
   "distribution": "accumulating",
   "domicile": "IE",
   "fundType": "etf",
-  "inception": "2014-10-22",
-  "index": "MSCI World",
-  "isin": "IE00BJ0KDQ92",
-  "name": "Xtrackers MSCI World UCITS ETF 1C",
+  "inception": "2014-12-08",
+  "index": "MSCI Emerging Markets",
+  "isin": "IE00BTJRMP35",
+  "name": "Xtrackers MSCI Emerging Markets UCITS ETF 1C",
   "provider": "Xtrackers (DWS)",
-  "region": "World (Developed)",
+  "region": "Emerging Markets",
   "replicationMethod": "physical-sampling",
   "sfdr": "Art. 6",
-  "ter": 0.19,
-  "wkn": "A1XB5U"
+  "ter": 0.18,
+  "wkn": "A12CCQ"
 }

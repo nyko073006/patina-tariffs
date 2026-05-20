@@ -1,0 +1,17 @@
+{
+  "assetClass": "equity",
+  "currency": "EUR",
+  "distribution": "accumulating",
+  "domicile": "LU",
+  "fundType": "etf",
+  "inception": "2007-01-10",
+  "index": "DAX",
+  "isin": "LU0274211480",
+  "name": "Xtrackers DAX UCITS ETF 1C",
+  "provider": "Xtrackers (DWS)",
+  "region": "Deutschland",
+  "replicationMethod": "physical-full",
+  "sfdr": "Art. 6",
+  "ter": 0.09,
+  "wkn": "DBX1DA"
+}

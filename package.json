@@ -7,6 +7,8 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "build:data": "node scripts/build.mjs",
+    "sync:funds": "node scripts/sync-funds.mjs",
+    "sync": "npm run sync:funds",
     "build": "npm run validate && npm run build:data && npm --prefix web run build",
     "dev": "npm run build:data && npm --prefix web run dev"
   },

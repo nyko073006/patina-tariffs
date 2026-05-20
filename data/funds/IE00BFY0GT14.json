@@ -1,17 +1,17 @@
 {
   "assetClass": "equity",
   "currency": "USD",
-  "distribution": "distributing",
+  "distribution": "accumulating",
   "domicile": "IE",
   "fundType": "etf",
-  "inception": "2005-10-21",
+  "inception": "2019-02-28",
   "index": "MSCI World",
-  "isin": "IE00B0M62Q58",
-  "name": "iShares MSCI World UCITS ETF USD (Dist)",
-  "provider": "iShares (BlackRock)",
+  "isin": "IE00BFY0GT14",
+  "name": "SPDR MSCI World UCITS ETF",
+  "provider": "SPDR (State Street)",
   "region": "World (Developed)",
   "replicationMethod": "physical-sampling",
   "sfdr": "Art. 6",
-  "ter": 0.5,
-  "wkn": "A0HGV0"
+  "ter": 0.12,
+  "wkn": "A2N6CW"
 }

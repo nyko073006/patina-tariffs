@@ -1,0 +1,17 @@
+{
+  "assetClass": "bond",
+  "currency": "EUR",
+  "distribution": "accumulating",
+  "domicile": "IE",
+  "fundType": "etf",
+  "inception": "2018-09-28",
+  "index": "Bloomberg MSCI Euro Corporate Sustainable SRI",
+  "isin": "IE00BGSF1X88",
+  "name": "iShares Euro Corporate Bond ESG UCITS ETF (Acc)",
+  "provider": "iShares (BlackRock)",
+  "region": "Eurozone",
+  "replicationMethod": "physical-sampling",
+  "sfdr": "Art. 8",
+  "ter": 0.15,
+  "wkn": "A2DRG5"
+}

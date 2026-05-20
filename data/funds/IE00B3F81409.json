@@ -1,0 +1,17 @@
+{
+  "assetClass": "bond",
+  "currency": "EUR",
+  "distribution": "distributing",
+  "domicile": "IE",
+  "fundType": "etf",
+  "inception": "2009-03-20",
+  "index": "Bloomberg Euro Corporate Bond",
+  "isin": "IE00B3F81409",
+  "name": "iShares Core EUR Corporate Bond UCITS ETF (Dist)",
+  "provider": "iShares (BlackRock)",
+  "region": "Eurozone",
+  "replicationMethod": "physical-sampling",
+  "sfdr": "Art. 6",
+  "ter": 0.2,
+  "wkn": "A0RGEM"
+}
