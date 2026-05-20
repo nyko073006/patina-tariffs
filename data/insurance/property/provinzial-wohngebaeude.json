@@ -1,0 +1,17 @@
+{
+  "id": "provinzial-wohngebaeude",
+  "category": "property",
+  "subCategory": "property-building",
+  "provider": "Provinzial",
+  "name": "Wohngebäude Komfort",
+  "shortDescription": "Wohngebäudeversicherung gegen Feuer, Sturm, Leitungswasser und Elementarschäden mit Marktwertersatz und Mietausfall.",
+  "minPremium": 15,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "Feuer / Sturm / Leitungswasser eingeschlossen",
+    "Elementarschäden optional",
+    "Grobe Fahrlässigkeit bis 100% Versicherungssumme",
+    "Mietausfall bis 24 Monate"
+  ],
+  "tags": ["wohngebäude", "sach", "elementar"]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "huk24-kfz",
+  "category": "car",
+  "subCategory": "auto-bundle",
+  "provider": "HUK24",
+  "name": "Kfz-Versicherung Komfort",
+  "shortDescription": "Kfz-Versicherung im Direktvertrieb mit Haftpflicht, Teil- und Vollkasko, Schutzbrief und Rabattschutz.",
+  "minPremium": 25,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "Haftpflicht 100 Mio. EUR pauschal",
+    "Teil-/Vollkasko mit Werkstattbindung wählbar",
+    "Rabattschutz nach 5 Jahren SF-Klasse",
+    "Schutzbrief inklusive"
+  ],
+  "tags": ["kfz", "direktversicherer"]
+}

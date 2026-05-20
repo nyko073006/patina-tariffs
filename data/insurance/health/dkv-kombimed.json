@@ -1,0 +1,17 @@
+{
+  "id": "dkv-kombimed",
+  "category": "health",
+  "subCategory": "health-supplement",
+  "provider": "DKV",
+  "name": "KombiMed Premium",
+  "shortDescription": "Kombinierter Krankenzusatz für stationäre und ambulante Leistungen mit Chefarztbehandlung und Heilpraktiker.",
+  "minPremium": 30,
+  "entryAge": { "min": 0, "max": 75 },
+  "features": [
+    "Chefarztbehandlung im Krankenhaus",
+    "Ein- und Zweibettzimmer",
+    "Heilpraktiker bis 1.500 EUR/Jahr",
+    "Sehhilfen alle 2 Jahre"
+  ],
+  "tags": ["krankenzusatz", "stationär", "ambulant"]
+}

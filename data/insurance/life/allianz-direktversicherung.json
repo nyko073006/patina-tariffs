@@ -1,0 +1,20 @@
+{
+  "id": "allianz-direktversicherung",
+  "category": "life",
+  "subCategory": "pension-occupational",
+  "productLines": ["bav-direktversicherung", "fondsgebunden"],
+  "taxFavored": true,
+  "provider": "Allianz",
+  "name": "Direktversicherung Invest",
+  "shortDescription": "Betriebliche Altersvorsorge per Direktversicherung mit Steuer- und Sozialabgabenersparnis im Rahmen § 3 Nr. 63 EStG.",
+  "minPremium": 25,
+  "entryAge": { "min": 16, "max": 65 },
+  "term": { "min": 5, "max": 50 },
+  "features": [
+    "Steuer- und SV-frei bis Höchstgrenze § 3 Nr. 63 EStG",
+    "Arbeitgeber-Zuschuss 15% gesetzlich",
+    "Fondsauswahl inkl. ETF-Sparpläne",
+    "Mitnahme bei Arbeitgeberwechsel"
+  ],
+  "tags": ["altersvorsorge", "bav", "direktversicherung"]
+}
