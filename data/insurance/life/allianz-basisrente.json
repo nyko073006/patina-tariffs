@@ -1,0 +1,20 @@
+{
+  "id": "allianz-basisrente",
+  "category": "life",
+  "subCategory": "pension-ruerup",
+  "productLines": ["ruerup", "klassisch"],
+  "taxFavored": true,
+  "provider": "Allianz",
+  "name": "BasisRente Klassik",
+  "shortDescription": "Klassische Rürup-Rente (Basisrente) mit lebenslanger Garantierente und steuerlich abzugsfähigen Beiträgen.",
+  "minPremium": 50,
+  "entryAge": { "min": 16, "max": 65 },
+  "term": { "min": 12, "max": 67 },
+  "features": [
+    "Sonderausgabenabzug (94% in 2026)",
+    "Lebenslange Rente garantiert",
+    "Hinterbliebenenschutz optional",
+    "BU-Zusatz möglich"
+  ],
+  "tags": ["altersvorsorge", "ruerup", "steuerlich-gefördert"]
+}

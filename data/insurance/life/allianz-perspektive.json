@@ -1,6 +1,8 @@
 {
   "id": "allianz-perspektive",
   "category": "life",
+  "subCategory": "pension-private",
+  "productLines": ["fondsgebunden", "hybrid"],
   "provider": "Allianz",
   "name": "PrivatRente Perspektive",
   "shortDescription": "Indexgebundene Rentenversicherung mit jährlichem Wechselrecht zwischen sicherer Verzinsung und Index-Partizipation.",

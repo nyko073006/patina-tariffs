@@ -1,0 +1,18 @@
+{
+  "id": "lv1871-mein-plan-bu",
+  "category": "occupational-disability",
+  "subCategory": "disability-classic",
+  "provider": "LV 1871",
+  "name": "Mein Plan BU",
+  "shortDescription": "Berufsunfähigkeitsversicherung mit Bausteinprinzip und langen Anpassungsoptionen für Berufswechsel und Einkommenssteigerung.",
+  "minPremium": 25,
+  "entryAge": { "min": 15, "max": 55 },
+  "term": { "min": 5, "max": 52 },
+  "features": [
+    "Bausteinprinzip (Grundschutz + Zusatzbausteine)",
+    "Nachversicherungsgarantie bis 10 Jahre",
+    "Beitragsdynamik wählbar",
+    "Wiedereingliederungshilfe"
+  ],
+  "tags": ["bu", "bausteine"]
+}

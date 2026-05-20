@@ -1,0 +1,20 @@
+{
+  "id": "hdi-twotrust-selekt",
+  "category": "life",
+  "subCategory": "pension-ruerup",
+  "productLines": ["ruerup", "fondsgebunden"],
+  "taxFavored": true,
+  "provider": "HDI",
+  "name": "TwoTrust Selekt",
+  "shortDescription": "Fondsgebundene Rürup-Rente mit großer Fondsauswahl, Beitragsgarantie und Ablaufmanagement.",
+  "minPremium": 25,
+  "entryAge": { "min": 16, "max": 65 },
+  "term": { "min": 12, "max": 67 },
+  "features": [
+    "Große Fondsauswahl inkl. ETFs",
+    "Beitragsgarantie zu Rentenbeginn",
+    "Automatisches Ablaufmanagement",
+    "Sonderausgabenabzug"
+  ],
+  "tags": ["altersvorsorge", "ruerup", "fondsgebunden"]
+}

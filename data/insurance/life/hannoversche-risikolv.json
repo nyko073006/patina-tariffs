@@ -1,0 +1,19 @@
+{
+  "id": "hannoversche-risikolv",
+  "category": "life",
+  "subCategory": "term",
+  "productLines": ["klassisch"],
+  "provider": "Hannoversche",
+  "name": "RisikoLV",
+  "shortDescription": "Reine Risikolebensversicherung im Direktvertrieb mit Optionsrechten bei Heirat, Geburt und Hauskauf.",
+  "minPremium": 5,
+  "entryAge": { "min": 15, "max": 75 },
+  "term": { "min": 1, "max": 50 },
+  "features": [
+    "Optionsrecht bei Heirat / Geburt / Hauskauf",
+    "Vorgezogene Todesfallleistung bei schwerer Krankheit",
+    "Verzicht auf Selbstmordklausel nach 3 Jahren",
+    "Konstante oder fallende Versicherungssumme"
+  ],
+  "tags": ["risikoleben", "todesfallschutz", "direkt"]
+}

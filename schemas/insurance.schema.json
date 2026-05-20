@@ -13,7 +13,27 @@
       "description": "kebab-case ID, eindeutig pro Kategorie; dient als Dateiname"
     },
     "category": {
-      "enum": ["life", "occupational-disability", "health", "property", "liability", "accident", "car"]
+      "enum": ["life", "occupational-disability", "health", "property", "liability", "accident", "car", "legal"]
+    },
+    "subCategory": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "tecis-Feinklassifikation, z. B. 'term' (Risikoleben), 'pension-private', 'pension-riester', 'pension-ruerup', 'pension-occupational', 'disability-grundfaehigkeit', 'dread-disease', 'health-full', 'health-supplement', 'health-dental', 'property-home', 'property-building', 'liability-private'."
+    },
+    "productLines": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Förder-/Vertragslinien: 'riester', 'ruerup', 'bav-direktversicherung', 'bav-pensionskasse', 'klassisch', 'fondsgebunden', 'hybrid'."
+    },
+    "taxFavored": {
+      "type": "boolean",
+      "description": "Staatlich gefördert (Riester, Rürup, bAV)."
+    },
+    "guaranteedInterest": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Garantierter Rechnungszins in % p. a. (LV/RV)."
     },
     "provider": { "type": "string", "minLength": 2 },
     "name": { "type": "string", "minLength": 2 },

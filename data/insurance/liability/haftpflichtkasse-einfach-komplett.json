@@ -1,6 +1,7 @@
 {
   "id": "haftpflichtkasse-einfach-komplett",
   "category": "liability",
+  "subCategory": "liability-private",
   "provider": "Haftpflichtkasse",
   "name": "Einfach Komplett",
   "shortDescription": "Privathaftpflicht mit Best-Leistungs-Garantie und 50 Mio. EUR Deckungssumme.",
