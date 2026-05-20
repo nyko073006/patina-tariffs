@@ -1,0 +1,17 @@
+{
+  "id": "adam-riese-hundehaftpflicht-xxl",
+  "category": "liability",
+  "subCategory": "liability-pet",
+  "provider": "Adam Riese",
+  "name": "Hundehaftpflicht XXL",
+  "shortDescription": "Testsieger-Hundehaftpflicht der W&W-Tochter Adam Riese; Welpen bis 18 Monate kostenlos, Deckung 50 Mio. EUR, auch ohne Leine.",
+  "minPremium": 4,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "Pauschalsumme 50 Mio. EUR",
+    "Welpen bis 18 Monate beitragsfrei mitversichert",
+    "Auch ohne Leine versichert (außer Anleinpflicht)",
+    "Mietsachschäden an Wohnung und Hotelzimmern"
+  ],
+  "tags": ["hundehaftpflicht", "tierhalter", "haftpflicht"]
+}
