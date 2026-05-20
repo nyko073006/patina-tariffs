@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, relative, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import Ajv from "ajv/dist/2020.js";
@@ -14,20 +14,30 @@ const schemas = {
   insurance: JSON.parse(readFileSync(join(ROOT, "schemas/insurance.schema.json"), "utf8")),
   credit: JSON.parse(readFileSync(join(ROOT, "schemas/credit.schema.json"), "utf8")),
   rating: JSON.parse(readFileSync(join(ROOT, "schemas/rating.schema.json"), "utf8")),
+  "fund-override": JSON.parse(readFileSync(join(ROOT, "schemas/fund-override.schema.json"), "utf8")),
+  "insurance-override": JSON.parse(readFileSync(join(ROOT, "schemas/insurance-override.schema.json"), "utf8")),
+  "credit-override": JSON.parse(readFileSync(join(ROOT, "schemas/credit-override.schema.json"), "utf8")),
 };
 
 const validators = Object.fromEntries(
   Object.entries(schemas).map(([k, s]) => [k, ajv.compile(s)])
 );
 
-const DATA_TYPE_BY_DIR = {
+const BASE_DIRS = {
   funds: "fund",
   insurance: "insurance",
   credit: "credit",
   ratings: "rating",
 };
 
+const OVERRIDE_DIRS = {
+  "overrides/funds": "fund-override",
+  "overrides/insurance": "insurance-override",
+  "overrides/credit": "credit-override",
+};
+
 function walk(dir) {
+  if (!existsSync(dir)) return [];
   const out = [];
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry);
@@ -38,10 +48,23 @@ function walk(dir) {
 }
 
 let errors = 0;
-const entitiesById = { fund: new Map(), insurance: new Map(), credit: new Map(), rating: new Map() };
+const entitiesById = {
+  fund: new Map(),
+  insurance: new Map(),
+  credit: new Map(),
+  rating: new Map(),
+  "fund-override": new Map(),
+  "insurance-override": new Map(),
+  "credit-override": new Map(),
+};
 
-for (const [dir, type] of Object.entries(DATA_TYPE_BY_DIR)) {
-  const path = join(ROOT, "data", dir);
+function keyOf(type, doc) {
+  if (type === "fund" || type === "fund-override") return doc.isin;
+  return doc.id;
+}
+
+function validateDir(dirRel, type) {
+  const path = join(ROOT, "data", dirRel);
   for (const file of walk(path)) {
     const rel = relative(ROOT, file);
     let doc;
@@ -61,7 +84,7 @@ for (const [dir, type] of Object.entries(DATA_TYPE_BY_DIR)) {
       errors++;
       continue;
     }
-    const key = type === "fund" ? doc.isin : doc.id;
+    const key = keyOf(type, doc);
     const expectedName = `${key}.json`;
     if (!file.endsWith(expectedName)) {
       console.error(`✗ ${rel}: Dateiname sollte ${expectedName} sein (Primärschlüssel = Dateiname)`);
@@ -75,6 +98,29 @@ for (const [dir, type] of Object.entries(DATA_TYPE_BY_DIR)) {
   }
 }
 
+for (const [dir, type] of Object.entries(BASE_DIRS)) {
+  validateDir(dir, type);
+}
+
+for (const [dir, type] of Object.entries(OVERRIDE_DIRS)) {
+  validateDir(dir, type);
+}
+
+const OVERRIDE_TO_BASE = {
+  "fund-override": "fund",
+  "insurance-override": "insurance",
+  "credit-override": "credit",
+};
+
+for (const [overrideType, baseType] of Object.entries(OVERRIDE_TO_BASE)) {
+  for (const [key, rel] of entitiesById[overrideType]) {
+    if (!entitiesById[baseType].has(key)) {
+      console.error(`✗ ${rel}: Override verweist auf unbekannte ${baseType}-ID "${key}"`);
+      errors++;
+    }
+  }
+}
+
 for (const [, rel] of entitiesById.rating) {
   const doc = JSON.parse(readFileSync(join(ROOT, rel), "utf8"));
   const targetMap = entitiesById[doc.targetType];
@@ -84,9 +130,17 @@ for (const [, rel] of entitiesById.rating) {
   }
 }
 
-const totals = Object.fromEntries(
-  Object.entries(entitiesById).map(([k, v]) => [k, v.size])
-);
+const totals = {
+  fund: entitiesById.fund.size,
+  insurance: entitiesById.insurance.size,
+  credit: entitiesById.credit.size,
+  rating: entitiesById.rating.size,
+  overrides: {
+    fund: entitiesById["fund-override"].size,
+    insurance: entitiesById["insurance-override"].size,
+    credit: entitiesById["credit-override"].size,
+  },
+};
 
 if (errors > 0) {
   console.error(`\nValidation fehlgeschlagen: ${errors} Fehler.`);

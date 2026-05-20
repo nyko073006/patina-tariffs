@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync, readdirSync, statSync, mkdirSync, writeFileSync } from "node:fs";
+import { readFileSync, readdirSync, statSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
@@ -9,6 +9,7 @@ const DIST = join(ROOT, "dist");
 mkdirSync(DIST, { recursive: true });
 
 function walk(dir) {
+  if (!existsSync(dir)) return [];
   const out = [];
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry);
@@ -20,14 +21,34 @@ function walk(dir) {
 
 function loadAll(subdir) {
   return walk(join(ROOT, "data", subdir))
-    .map((f) => JSON.parse(readFileSync(f, "utf8")))
-    .sort((a, b) => (a.isin ?? a.id).localeCompare(b.isin ?? b.id));
+    .map((f) => JSON.parse(readFileSync(f, "utf8")));
 }
 
-const funds = loadAll("funds");
-const insurance = loadAll("insurance");
-const credit = loadAll("credit");
-const ratings = loadAll("ratings");
+function indexBy(arr, keyFn) {
+  const m = new Map();
+  for (const x of arr) m.set(keyFn(x), x);
+  return m;
+}
+
+function mergeOverride(base, override) {
+  if (!override) return base;
+  const { isin, id, tags, ...rest } = override;
+  const mergedTags = [...new Set([...(base.tags ?? []), ...(tags ?? [])])];
+  return {
+    ...base,
+    ...rest,
+    ...(mergedTags.length ? { tags: mergedTags } : {}),
+  };
+}
+
+const funds = loadAll("funds").sort((a, b) => a.isin.localeCompare(b.isin));
+const insurance = loadAll("insurance").sort((a, b) => a.id.localeCompare(b.id));
+const credit = loadAll("credit").sort((a, b) => a.id.localeCompare(b.id));
+const ratings = loadAll("ratings").sort((a, b) => a.id.localeCompare(b.id));
+
+const fundOverrides = indexBy(loadAll("overrides/funds"), (o) => o.isin);
+const insuranceOverrides = indexBy(loadAll("overrides/insurance"), (o) => o.id);
+const creditOverrides = indexBy(loadAll("overrides/credit"), (o) => o.id);
 
 const ratingsByTarget = new Map();
 for (const r of ratings) {
@@ -42,9 +63,15 @@ function attachRatings(item, type) {
   return r ? { ...item, _ratings: r } : item;
 }
 
-const fundsOut = funds.map((f) => attachRatings(f, "fund"));
-const insuranceOut = insurance.map((i) => attachRatings(i, "insurance"));
-const creditOut = credit.map((c) => attachRatings(c, "credit"));
+const fundsOut = funds
+  .map((f) => mergeOverride(f, fundOverrides.get(f.isin)))
+  .map((f) => attachRatings(f, "fund"));
+const insuranceOut = insurance
+  .map((i) => mergeOverride(i, insuranceOverrides.get(i.id)))
+  .map((i) => attachRatings(i, "insurance"));
+const creditOut = credit
+  .map((c) => mergeOverride(c, creditOverrides.get(c.id)))
+  .map((c) => attachRatings(c, "credit"));
 
 const updatedAt = new Date().toISOString();
 
@@ -71,6 +98,11 @@ const all = {
     insurance: insuranceOut.length,
     credit: creditOut.length,
     ratings: ratings.length,
+    overrides: {
+      funds: fundOverrides.size,
+      insurance: insuranceOverrides.size,
+      credit: creditOverrides.size,
+    },
   },
   funds: fundsOut,
   insurance: insuranceOut,
@@ -95,6 +127,11 @@ const webData = join(ROOT, "web/src/data");
 mkdirSync(webData, { recursive: true });
 writeFileSync(join(webData, "tariffs.json"), JSON.stringify(all));
 
-console.log(`✓ Build OK — funds=${fundsOut.length} insurance=${insuranceOut.length} credit=${creditOut.length} ratings=${ratings.length}`);
+console.log(
+  `✓ Build OK — funds=${fundsOut.length} insurance=${insuranceOut.length} credit=${creditOut.length} ratings=${ratings.length}`
+);
+console.log(
+  `  overrides applied: funds=${fundOverrides.size} insurance=${insuranceOverrides.size} credit=${creditOverrides.size}`
+);
 console.log(`  → dist/{tariffs,funds,insurance,credit,ratings,index}.json`);
 console.log(`  → web/src/data/tariffs.json`);

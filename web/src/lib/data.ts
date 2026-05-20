@@ -11,6 +11,15 @@ export type Rating = {
   url?: string;
 };
 
+export type TecisFundFlags = {
+  vermittelbar?: boolean;
+  kernEmpfehlung?: boolean;
+  sparplanFaehig?: boolean;
+  riesterFondsAuswahl?: boolean;
+  ruerupFondsAuswahl?: boolean;
+  fondsgebundeneLvAuswahl?: boolean;
+};
+
 export type Fund = {
   isin: string;
   wkn?: string;
@@ -30,7 +39,18 @@ export type Fund = {
   sfdr?: string;
   tags?: string[];
   documents?: Record<string, string>;
+  notes?: string;
+  tecisFlags?: TecisFundFlags;
+  lastReviewedAt?: string;
+  reviewedBy?: string;
   _ratings?: Rating[];
+};
+
+export type TecisInsuranceFlags = {
+  vermittelbar?: boolean;
+  kernEmpfehlung?: boolean;
+  provisionsoptimiert?: boolean;
+  nettotarif?: boolean;
 };
 
 export type Insurance = {
@@ -46,7 +66,16 @@ export type Insurance = {
   documents?: Record<string, string>;
   ratings?: string[];
   tags?: string[];
+  notes?: string;
+  tecisFlags?: TecisInsuranceFlags;
+  lastReviewedAt?: string;
+  reviewedBy?: string;
   _ratings?: Rating[];
+};
+
+export type TecisCreditFlags = {
+  vermittelbar?: boolean;
+  kernEmpfehlung?: boolean;
 };
 
 export type Credit = {
@@ -63,13 +92,23 @@ export type Credit = {
   maxLtv?: number;
   features?: string[];
   tags?: string[];
+  notes?: string;
+  tecisFlags?: TecisCreditFlags;
+  lastReviewedAt?: string;
+  reviewedBy?: string;
   _ratings?: Rating[];
 };
 
 export type Bundle = {
   version: number;
   updatedAt: string;
-  counts: { funds: number; insurance: number; credit: number; ratings: number };
+  counts: {
+    funds: number;
+    insurance: number;
+    credit: number;
+    ratings: number;
+    overrides?: { funds: number; insurance: number; credit: number };
+  };
   funds: Fund[];
   insurance: Insurance[];
   credit: Credit[];
@@ -99,7 +138,6 @@ export const ASSET_CLASS_LABELS: Record<string, string> = {
   commodity: "Rohstoffe",
   "money-market": "Geldmarkt",
   "real-estate": "Immobilien",
-  crypto: "Krypto",
 };
 
 export const CREDIT_TYPE_LABELS: Record<Credit["type"], string> = {

@@ -20,7 +20,7 @@
     "provider": { "type": "string", "minLength": 2 },
     "fundType": { "enum": ["etf", "mutual-fund"] },
     "assetClass": {
-      "enum": ["equity", "bond", "mixed", "commodity", "money-market", "real-estate", "crypto"]
+      "enum": ["equity", "bond", "mixed", "commodity", "money-market", "real-estate"]
     },
     "region": { "type": "string" },
     "index": { "type": "string" },
