@@ -55,11 +55,30 @@ export type TecisInsuranceFlags = {
 
 export type Insurance = {
   id: string;
-  category: "life" | "occupational-disability" | "health" | "property" | "liability" | "accident" | "car" | "legal";
+  category: "life" | "occupational-disability" | "health" | "property" | "liability" | "accident" | "car" | "legal" | "cyber";
   subCategory?: string;
   productLines?: string[];
   taxFavored?: boolean;
   guaranteedInterest?: number;
+  effectiveCost?: number;
+  guaranteedAnnuityFactor?: number;
+  fundSelection?: {
+    etfCount?: number;
+    fundCount?: number;
+    sustainableAvailable?: boolean;
+  };
+  flexibility?: {
+    minAdditionalPayment?: number;
+    freeWithdrawalsPerYear?: number;
+    contributionFreezeAllowed?: boolean;
+    freeFundSwitchesPerYear?: number;
+  };
+  scenarios?: Array<{
+    id: "guaranteed" | "with-surplus" | "net-tariff";
+    label: string;
+    effectiveCost?: number;
+    guaranteedAnnuityFactor?: number;
+  }>;
   provider: string;
   name: string;
   shortDescription?: string;
@@ -134,6 +153,7 @@ export const INSURANCE_CATEGORY_LABELS: Record<Insurance["category"], string> = 
   accident: "Unfall",
   car: "Kfz",
   legal: "Rechtsschutz",
+  cyber: "Cyber",
 };
 
 export const ASSET_CLASS_LABELS: Record<string, string> = {
