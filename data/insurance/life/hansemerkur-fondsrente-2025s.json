@@ -1,0 +1,26 @@
+{
+  "id": "hansemerkur-fondsrente-2025s",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": ["fondsgebunden"],
+  "provider": "HanseMerkur",
+  "name": "FondsRente 2025 Standard",
+  "shortDescription": "Schlanke fondsgebundene Rentenversicherung mit reduzierten Kosten und übersichtlicher Fondsauswahl als günstige Einstiegsvariante.",
+  "minPremium": 25,
+  "entryAge": { "min": 0, "max": 75 },
+  "term": { "min": 5, "max": 50 },
+  "effectiveCost": 1.4,
+  "guaranteedAnnuityFactor": 19,
+  "fundSelection": { "etfCount": 15, "fundCount": 50, "sustainableAvailable": true },
+  "flexibility": { "minAdditionalPayment": 50, "freeWithdrawalsPerYear": 2, "contributionFreezeAllowed": true, "freeFundSwitchesPerYear": 12 },
+  "scenarios": [
+    { "id": "with-surplus", "label": "Hochrechnung inkl. Überschussbeteiligung", "guaranteedAnnuityFactor": 27 }
+  ],
+  "features": [
+    "Kostengünstige Standardvariante",
+    "50 Fonds inkl. 15 ETFs",
+    "Volle Fondsquote ohne Garantie",
+    "Zuzahlungen flexibel"
+  ],
+  "tags": ["altersvorsorge", "fondsgebunden", "guenstig"]
+}

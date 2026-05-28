@@ -1,0 +1,26 @@
+{
+  "id": "nuernberger-dax-rente-plus",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": ["fondsgebunden", "hybrid"],
+  "provider": "Nürnberger",
+  "name": "DAX-Rente Plus",
+  "shortDescription": "Fondsgebundene Rentenversicherung mit DAX-Kopplung als Renditemotor und integriertem Wertsicherungsmechanismus.",
+  "minPremium": 25,
+  "entryAge": { "min": 0, "max": 70 },
+  "term": { "min": 5, "max": 50 },
+  "effectiveCost": 1.6,
+  "guaranteedAnnuityFactor": 22,
+  "fundSelection": { "etfCount": 20, "fundCount": 60, "sustainableAvailable": true },
+  "flexibility": { "minAdditionalPayment": 50, "freeWithdrawalsPerYear": 2, "contributionFreezeAllowed": true, "freeFundSwitchesPerYear": 12 },
+  "scenarios": [
+    { "id": "with-surplus", "label": "Hochrechnung inkl. Überschussbeteiligung", "guaranteedAnnuityFactor": 30 }
+  ],
+  "features": [
+    "DAX-Performance als Renditemotor",
+    "Wertsicherungsmechanismus",
+    "60 Fonds inkl. 20 ETFs",
+    "Beitragsgarantie wählbar"
+  ],
+  "tags": ["altersvorsorge", "fondsgebunden", "dax", "hybrid"]
+}
