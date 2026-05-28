@@ -1,0 +1,26 @@
+{
+  "id": "wwk-premium-fondsrente",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": ["fondsgebunden", "hybrid"],
+  "provider": "WWK",
+  "name": "Premium FondsRente 2.0",
+  "shortDescription": "Fondsgebundene Rentenversicherung mit IntelliProtect-Wertsicherung und großer ETF-Auswahl; mehrfach Testsieger bei Franke und Bornberg.",
+  "minPremium": 25,
+  "entryAge": { "min": 0, "max": 75 },
+  "term": { "min": 5, "max": 50 },
+  "effectiveCost": 1.6,
+  "guaranteedAnnuityFactor": 22,
+  "fundSelection": { "etfCount": 30, "fundCount": 80, "sustainableAvailable": true },
+  "flexibility": { "minAdditionalPayment": 50, "freeWithdrawalsPerYear": 2, "contributionFreezeAllowed": true, "freeFundSwitchesPerYear": 12 },
+  "scenarios": [
+    { "id": "with-surplus", "label": "Hochrechnung inkl. Überschussbeteiligung", "guaranteedAnnuityFactor": 31 }
+  ],
+  "features": [
+    "IntelliProtect-Wertsicherungskonzept",
+    "80 Fonds inkl. 30 ETFs",
+    "Beitragsgarantie wählbar",
+    "Nachhaltigkeits-Portfolio optional"
+  ],
+  "tags": ["altersvorsorge", "fondsgebunden", "hybrid"]
+}
