@@ -35,6 +35,54 @@
       "maximum": 5,
       "description": "Garantierter Rechnungszins in % p. a. (LV/RV)."
     },
+    "effectiveCost": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "Effektivkosten p. a. nach PRIIP / MiFID II in % (Fondspolicen / fondsgeb. Rente)."
+    },
+    "guaranteedAnnuityFactor": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Garantierter Rentenfaktor: monatliche Rente in EUR je 10.000 EUR Vertragsguthaben zu Rentenbeginn."
+    },
+    "fundSelection": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Wählbare Fonds / ETFs in Fondspolicen.",
+      "properties": {
+        "etfCount": { "type": "integer", "minimum": 0 },
+        "fundCount": { "type": "integer", "minimum": 0 },
+        "sustainableAvailable": { "type": "boolean", "description": "Nachhaltige/ESG-Fonds wählbar" }
+      }
+    },
+    "flexibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Vertragsflexibilität in Fondspolicen.",
+      "properties": {
+        "minAdditionalPayment": { "type": "number", "minimum": 0, "description": "Mindest-Zuzahlung in EUR" },
+        "freeWithdrawalsPerYear": { "type": "integer", "minimum": 0 },
+        "contributionFreezeAllowed": { "type": "boolean" },
+        "freeFundSwitchesPerYear": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "description": "Berechnungsvarianten neben dem garantierten Default: 'with-surplus' (Hochrechnung mit Überschussbeteiligung), 'net-tariff' (Nettopolice ohne Abschlussprovision).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string", "enum": ["guaranteed", "with-surplus", "net-tariff"] },
+          "label": { "type": "string" },
+          "effectiveCost": { "type": "number", "minimum": 0, "maximum": 10 },
+          "guaranteedAnnuityFactor": { "type": "number", "minimum": 0, "maximum": 100 }
+        }
+      }
+    },
     "provider": { "type": "string", "minLength": 2 },
     "name": { "type": "string", "minLength": 2 },
     "shortDescription": { "type": "string", "maxLength": 400 },

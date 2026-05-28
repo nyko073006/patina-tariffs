@@ -1,0 +1,26 @@
+{
+  "id": "stuttgarter-performance-plus",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": ["fondsgebunden"],
+  "provider": "Stuttgarter",
+  "name": "performance+",
+  "shortDescription": "Fondsgebundene Rentenversicherung der Stuttgarter ohne Garantie für maximale Renditechance bei reduzierten Kosten.",
+  "minPremium": 25,
+  "entryAge": { "min": 0, "max": 75 },
+  "term": { "min": 5, "max": 50 },
+  "effectiveCost": 1.3,
+  "guaranteedAnnuityFactor": 17,
+  "fundSelection": { "etfCount": 25, "fundCount": 60, "sustainableAvailable": true },
+  "flexibility": { "minAdditionalPayment": 50, "freeWithdrawalsPerYear": 2, "contributionFreezeAllowed": true, "freeFundSwitchesPerYear": 12 },
+  "scenarios": [
+    { "id": "with-surplus", "label": "Hochrechnung inkl. Überschussbeteiligung", "guaranteedAnnuityFactor": 28 }
+  ],
+  "features": [
+    "Volle Fondsquote ohne Garantie",
+    "Nachhaltigkeitsbaustein GrüneRente verfügbar",
+    "60 Fonds inkl. 25 ETFs",
+    "Kostengünstige Renditelinie"
+  ],
+  "tags": ["altersvorsorge", "fondsgebunden", "nachhaltig"]
+}
