@@ -5,9 +5,9 @@ import { insurance, INSURANCE_CATEGORY_LABELS, formatEur } from "../../lib/data"
 const categories = [...new Set(insurance.map((i) => i.category))];
 const providers = [...new Set(insurance.map((i) => i.provider))].sort();
 
-function netTariffAvailable(i: typeof insurance[number]) {
-  return i.scenarios?.some((s) => s.id === "net-tariff") ?? false;
-}
+const isNetTariff = (i: typeof insurance[number]) =>
+  /netto|nettotarif|sondertarif p/i.test(i.name) || /-netto$|-sondertarif-p$/i.test(i.id);
+const isFondspolice = (i: typeof insurance[number]) => !!i.costStructure;
 ---
 <Base title="Versicherungstarife">
   <section class="mx-auto max-w-7xl px-4 pt-8 pb-6">
@@ -22,9 +22,10 @@ function netTariffAvailable(i: typeof insurance[number]) {
         <input id="q" type="search" placeholder="Tarifname, Anbieter, Merkmal …" class="input w-80" autocomplete="off" />
         <select id="sort" class="input">
           <option value="">Sortierung: Standard</option>
-          <option value="ec-asc">Effektivkosten ↑</option>
-          <option value="annuity-desc">Rentenfaktor ↓</option>
-          <option value="etf-desc">ETF-Anzahl ↓</option>
+          <option value="yearly-asc">Jährliche Kosten ↑</option>
+          <option value="money-asc">Verwaltungskosten ↑</option>
+          <option value="guar-desc">Rentenfaktor gar. ↓</option>
+          <option value="curr-desc">Rentenfaktor aktuell ↓</option>
           <option value="premium-asc">Mindestbeitrag ↑</option>
         </select>
       </div>
@@ -58,36 +59,39 @@ function netTariffAvailable(i: typeof insurance[number]) {
       </div>
 
       <details class="border-t border-ink-100 pt-4" open>
-        <summary class="label cursor-pointer select-none">Fondspolicen-Details</summary>
+        <summary class="label cursor-pointer select-none">Fondspolicen-Kennzahlen</summary>
         <div class="mt-3 space-y-3 text-sm">
           <div>
             <label class="text-xs flex justify-between">
-              <span>Effektivkosten max.</span>
-              <span><span id="ec-val">3,0</span> %</span>
+              <span>Jährliche Kosten max.</span>
+              <span>≤ <span id="yc-val">25</span></span>
             </label>
-            <input id="ec-range" type="range" min="0.5" max="3" step="0.1" value="3" class="w-full" />
+            <input id="yc-range" type="range" min="1" max="25" step="0.5" value="25" class="w-full" />
           </div>
           <div>
             <label class="text-xs flex justify-between">
-              <span>Rentenfaktor min.</span>
-              <span>≥ <span id="af-val">0</span></span>
+              <span>Verwaltungskosten max.</span>
+              <span>≤ <span id="mc-val">1,00</span> %</span>
             </label>
-            <input id="af-range" type="range" min="0" max="30" step="1" value="0" class="w-full" />
+            <input id="mc-range" type="range" min="0" max="1" step="0.05" value="1" class="w-full" />
           </div>
           <div>
             <label class="text-xs flex justify-between">
-              <span>ETF-Auswahl min.</span>
-              <span>≥ <span id="etf-val">0</span></span>
+              <span>Rentenfaktor garantiert min.</span>
+              <span>≥ <span id="gf-val">0</span></span>
             </label>
-            <input id="etf-range" type="range" min="0" max="70" step="5" value="0" class="w-full" />
+            <input id="gf-range" type="range" min="0" max="35" step="1" value="0" class="w-full" />
           </div>
-          <label class="flex items-center gap-2">
-            <input id="sustainable" type="checkbox" />
-            <span class="text-sm">Nachhaltige Fonds verfügbar</span>
-          </label>
+          <div>
+            <label class="text-xs flex justify-between">
+              <span>Rentenfaktor aktuell min.</span>
+              <span>≥ <span id="cf-val">0</span></span>
+            </label>
+            <input id="cf-range" type="range" min="0" max="35" step="1" value="0" class="w-full" />
+          </div>
           <label class="flex items-center gap-2">
             <input id="net-tariff" type="checkbox" />
-            <span class="text-sm">Nettopolice verfügbar</span>
+            <span class="text-sm">Nettopolice / Sondertarif P</span>
           </label>
           <p id="fp-hint" class="text-xs text-ink-500 hidden">Filter zeigt nur Fondspolicen.</p>
         </div>
@@ -105,13 +109,13 @@ function netTariffAvailable(i: typeof insurance[number]) {
             data-provider={i.provider}
             data-category={i.category}
             data-features={(i.features ?? []).join(" ").toLowerCase()}
-            data-effective-cost={i.effectiveCost ?? ""}
-            data-annuity-factor={i.guaranteedAnnuityFactor ?? ""}
-            data-etf-count={i.fundSelection?.etfCount ?? ""}
-            data-sustainable={i.fundSelection?.sustainableAvailable ? "1" : ""}
-            data-net-tariff={netTariffAvailable(i) ? "1" : ""}
+            data-yearly-cost={i.costStructure?.jaehrlicheKosten ?? ""}
+            data-money-cost={i.costStructure?.verwaltungskosten ?? ""}
+            data-guar={i.guaranteedAnnuityFactor ?? ""}
+            data-curr={i.currentAnnuityFactor ?? ""}
             data-min-premium={i.minPremium ?? ""}
-            data-is-fondspolice={i.effectiveCost !== undefined ? "1" : ""}
+            data-net-tariff={isNetTariff(i) ? "1" : ""}
+            data-is-fondspolice={isFondspolice(i) ? "1" : ""}
           >
             <div class="flex items-baseline justify-between gap-2">
               <span class="chip chip-accent">{INSURANCE_CATEGORY_LABELS[i.category]}</span>
@@ -123,28 +127,24 @@ function netTariffAvailable(i: typeof insurance[number]) {
             <p class="text-xs text-ink-500">{i.provider}</p>
             {i.shortDescription && <p class="mt-2 text-sm text-ink-700 line-clamp-3">{i.shortDescription}</p>}
 
-            {i.effectiveCost !== undefined && (
+            {isFondspolice(i) && (
               <dl class="mt-3 grid grid-cols-3 gap-2 text-xs">
                 <div>
-                  <dt class="text-ink-500">Effektivkosten</dt>
-                  <dd class="font-medium">{i.effectiveCost.toFixed(2).replace(".", ",")} %</dd>
+                  <dt class="text-ink-500">Jährl. Kosten</dt>
+                  <dd class="font-medium">{i.costStructure!.jaehrlicheKosten?.toFixed(2).replace(".", ",")}</dd>
                 </div>
-                {i.guaranteedAnnuityFactor && (
-                  <div>
-                    <dt class="text-ink-500">Rentenfaktor</dt>
-                    <dd class="font-medium">{i.guaranteedAnnuityFactor}</dd>
-                  </div>
-                )}
-                {i.fundSelection?.etfCount !== undefined && (
-                  <div>
-                    <dt class="text-ink-500">ETFs</dt>
-                    <dd class="font-medium">{i.fundSelection.etfCount}</dd>
-                  </div>
-                )}
+                <div>
+                  <dt class="text-ink-500">RF garant.</dt>
+                  <dd class="font-medium">{i.guaranteedAnnuityFactor != null ? i.guaranteedAnnuityFactor.toFixed(2).replace(".", ",") : "–"}</dd>
+                </div>
+                <div>
+                  <dt class="text-ink-500">RF aktuell</dt>
+                  <dd class="font-medium">{i.currentAnnuityFactor != null ? i.currentAnnuityFactor.toFixed(2).replace(".", ",") : "–"}</dd>
+                </div>
               </dl>
             )}
 
-            {i.features && i.features.length > 0 && i.effectiveCost === undefined && (
+            {i.features && i.features.length > 0 && !isFondspolice(i) && (
               <ul class="mt-3 space-y-1 text-xs text-ink-700">
                 {i.features.slice(0, 3).map((f) => (
                   <li class="flex gap-1.5"><span class="text-accent-500">✓</span><span>{f}</span></li>
@@ -174,35 +174,38 @@ function netTariffAvailable(i: typeof insurance[number]) {
   const empty = document.getElementById("empty")!;
   const reset = document.getElementById("reset")!;
   const sort = document.getElementById("sort") as HTMLSelectElement;
-  const ecRange = document.getElementById("ec-range") as HTMLInputElement;
-  const afRange = document.getElementById("af-range") as HTMLInputElement;
-  const etfRange = document.getElementById("etf-range") as HTMLInputElement;
-  const ecVal = document.getElementById("ec-val")!;
-  const afVal = document.getElementById("af-val")!;
-  const etfVal = document.getElementById("etf-val")!;
-  const sustainable = document.getElementById("sustainable") as HTMLInputElement;
+  const ycRange = document.getElementById("yc-range") as HTMLInputElement;
+  const mcRange = document.getElementById("mc-range") as HTMLInputElement;
+  const gfRange = document.getElementById("gf-range") as HTMLInputElement;
+  const cfRange = document.getElementById("cf-range") as HTMLInputElement;
+  const ycVal = document.getElementById("yc-val")!;
+  const mcVal = document.getElementById("mc-val")!;
+  const gfVal = document.getElementById("gf-val")!;
+  const cfVal = document.getElementById("cf-val")!;
   const netTariff = document.getElementById("net-tariff") as HTMLInputElement;
   const fpHint = document.getElementById("fp-hint")!;
 
-  function num(s: string | undefined): number | null {
+  const num = (s: string | undefined): number | null => {
     if (s === undefined || s === "") return null;
     const n = parseFloat(s);
     return Number.isFinite(n) ? n : null;
-  }
+  };
 
   function apply() {
     const query = q.value.trim().toLowerCase();
     const groups: Record<string, string[]> = {};
     for (const f of filters) if (f.checked) (groups[f.dataset.key!] ||= []).push(f.value);
 
-    const ec = parseFloat(ecRange.value);
-    const af = parseFloat(afRange.value);
-    const etf = parseFloat(etfRange.value);
-    ecVal.textContent = ec.toFixed(1).replace(".", ",");
-    afVal.textContent = String(af);
-    etfVal.textContent = String(etf);
+    const yc = parseFloat(ycRange.value);
+    const mc = parseFloat(mcRange.value);
+    const gf = parseFloat(gfRange.value);
+    const cf = parseFloat(cfRange.value);
+    ycVal.textContent = yc.toFixed(1).replace(".", ",");
+    mcVal.textContent = mc.toFixed(2).replace(".", ",");
+    gfVal.textContent = String(gf);
+    cfVal.textContent = String(cf);
 
-    const fpActive = ec < 3 || af > 0 || etf > 0 || sustainable.checked || netTariff.checked;
+    const fpActive = yc < 25 || mc < 1 || gf > 0 || cf > 0 || netTariff.checked;
     fpHint.classList.toggle("hidden", !fpActive);
 
     let visible = 0;
@@ -219,13 +222,14 @@ function netTariffAvailable(i: typeof insurance[number]) {
       if (show && fpActive) {
         if (ds.isFondspolice !== "1") show = false;
         else {
-          const cardEc = num(ds.effectiveCost);
-          const cardAf = num(ds.annuityFactor);
-          const cardEtf = num(ds.etfCount);
-          if (cardEc !== null && cardEc > ec) show = false;
-          if (show && af > 0 && (cardAf === null || cardAf < af)) show = false;
-          if (show && etf > 0 && (cardEtf === null || cardEtf < etf)) show = false;
-          if (show && sustainable.checked && ds.sustainable !== "1") show = false;
+          const cYc = num(ds.yearlyCost);
+          const cMc = num(ds.moneyCost);
+          const cG = num(ds.guar);
+          const cC = num(ds.curr);
+          if (yc < 25 && (cYc === null || cYc > yc)) show = false;
+          if (show && mc < 1 && (cMc === null || cMc > mc)) show = false;
+          if (show && gf > 0 && (cG === null || cG < gf)) show = false;
+          if (show && cf > 0 && (cC === null || cC < cf)) show = false;
           if (show && netTariff.checked && ds.netTariff !== "1") show = false;
         }
       }
@@ -236,12 +240,13 @@ function netTariffAvailable(i: typeof insurance[number]) {
     const mode = sort.value;
     if (mode) {
       const visibleCards = cards.filter((c) => !c.classList.contains("hidden"));
-      const key = mode === "ec-asc" ? "effectiveCost"
-        : mode === "annuity-desc" ? "annuityFactor"
-        : mode === "etf-desc" ? "etfCount"
+      const key = mode === "yearly-asc" ? "yearlyCost"
+        : mode === "money-asc" ? "moneyCost"
+        : mode === "guar-desc" ? "guar"
+        : mode === "curr-desc" ? "curr"
         : mode === "premium-asc" ? "minPremium"
         : null;
-      const dir = mode === "ec-asc" || mode === "premium-asc" ? 1 : -1;
+      const dir = mode.endsWith("-asc") ? 1 : -1;
       if (key) {
         visibleCards.sort((a, b) => {
           const va = num(a.dataset[key as keyof DOMStringMap] as string);
@@ -262,17 +267,16 @@ function netTariffAvailable(i: typeof insurance[number]) {
   q.addEventListener("input", apply);
   sort.addEventListener("change", apply);
   filters.forEach((f) => f.addEventListener("change", apply));
-  for (const el of [ecRange, afRange, etfRange]) el.addEventListener("input", apply);
-  sustainable.addEventListener("change", apply);
+  for (const el of [ycRange, mcRange, gfRange, cfRange]) el.addEventListener("input", apply);
   netTariff.addEventListener("change", apply);
   reset.addEventListener("click", () => {
     q.value = "";
     sort.value = "";
     filters.forEach((f) => (f.checked = false));
-    ecRange.value = "3";
-    afRange.value = "0";
-    etfRange.value = "0";
-    sustainable.checked = false;
+    ycRange.value = "25";
+    mcRange.value = "1";
+    gfRange.value = "0";
+    cfRange.value = "0";
     netTariff.checked = false;
     apply();
   });

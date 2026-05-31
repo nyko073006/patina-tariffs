@@ -62,6 +62,8 @@ export type Insurance = {
   guaranteedInterest?: number;
   effectiveCost?: number;
   guaranteedAnnuityFactor?: number;
+  currentAnnuityFactor?: number;
+  costStructure?: Record<string, number>;
   fundSelection?: {
     etfCount?: number;
     fundCount?: number;
