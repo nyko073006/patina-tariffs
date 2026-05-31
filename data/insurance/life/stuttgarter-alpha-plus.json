@@ -18,26 +18,7 @@
     "min": 5,
     "max": 50
   },
-  "effectiveCost": 1.7,
   "guaranteedAnnuityFactor": 24,
-  "fundSelection": {
-    "etfCount": 25,
-    "fundCount": 60,
-    "sustainableAvailable": true
-  },
-  "flexibility": {
-    "minAdditionalPayment": 50,
-    "freeWithdrawalsPerYear": 2,
-    "contributionFreezeAllowed": true,
-    "freeFundSwitchesPerYear": 12
-  },
-  "scenarios": [
-    {
-      "id": "with-surplus",
-      "label": "Hochrechnung inkl. Überschussbeteiligung",
-      "guaranteedAnnuityFactor": 32
-    }
-  ],
   "features": [
     "Beitragsgarantie wählbar bis 100 %",
     "Hybrid-Modell mit Sicherungsvermögen + Fonds",

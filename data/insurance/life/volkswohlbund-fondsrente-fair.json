@@ -17,26 +17,7 @@
     "min": 5,
     "max": 50
   },
-  "effectiveCost": 1.5,
   "guaranteedAnnuityFactor": 22,
-  "fundSelection": {
-    "etfCount": 25,
-    "fundCount": 70,
-    "sustainableAvailable": true
-  },
-  "flexibility": {
-    "minAdditionalPayment": 50,
-    "freeWithdrawalsPerYear": 4,
-    "contributionFreezeAllowed": true,
-    "freeFundSwitchesPerYear": 12
-  },
-  "scenarios": [
-    {
-      "id": "with-surplus",
-      "label": "Hochrechnung inkl. Überschussbeteiligung",
-      "guaranteedAnnuityFactor": 30
-    }
-  ],
   "features": [
     "FAIR-Kostenkonzept ohne Stornoabzug",
     "70 Fonds inkl. 25 ETFs",

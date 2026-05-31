@@ -17,26 +17,7 @@
     "min": 5,
     "max": 50
   },
-  "effectiveCost": 1.5,
   "guaranteedAnnuityFactor": 20.73,
-  "fundSelection": {
-    "etfCount": 30,
-    "fundCount": 130,
-    "sustainableAvailable": true
-  },
-  "flexibility": {
-    "minAdditionalPayment": 50,
-    "freeWithdrawalsPerYear": 4,
-    "contributionFreezeAllowed": true,
-    "freeFundSwitchesPerYear": 12
-  },
-  "scenarios": [
-    {
-      "id": "with-surplus",
-      "label": "Hochrechnung inkl. Überschussbeteiligung",
-      "guaranteedAnnuityFactor": 29
-    }
-  ],
   "features": [
     "Über 130 Fonds inkl. 30 ETFs",
     "MyFolio-Vermögensverwaltungsportfolios",

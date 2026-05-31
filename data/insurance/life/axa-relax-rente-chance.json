@@ -17,26 +17,7 @@
     "min": 5,
     "max": 50
   },
-  "effectiveCost": 1.5,
   "guaranteedAnnuityFactor": 20.41,
-  "fundSelection": {
-    "etfCount": 30,
-    "fundCount": 90,
-    "sustainableAvailable": true
-  },
-  "flexibility": {
-    "minAdditionalPayment": 50,
-    "freeWithdrawalsPerYear": 4,
-    "contributionFreezeAllowed": true,
-    "freeFundSwitchesPerYear": 12
-  },
-  "scenarios": [
-    {
-      "id": "with-surplus",
-      "label": "Hochrechnung inkl. Überschussbeteiligung",
-      "guaranteedAnnuityFactor": 27
-    }
-  ],
   "features": [
     "Über 90 Fonds inkl. 30 ETFs",
     "Auch in Rentenphase Entnahmen möglich",
