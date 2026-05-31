@@ -1,16 +1,15 @@
 {
-  "id": "swiss-life-maximo-basisrente",
+  "id": "wwk-basisrente",
   "category": "life",
   "subCategory": "pension-ruerup",
   "productLines": [
     "ruerup",
-    "fondsgebunden",
-    "hybrid"
+    "fondsgebunden"
   ],
   "taxFavored": true,
-  "provider": "Swiss Life",
-  "name": "Maximo Basisrente",
-  "shortDescription": "Fondsgebundene Rürup-Basisrente mit wählbarer Beitragsgarantie und vollem Sonderausgabenabzug nach § 10 EStG.",
+  "provider": "WWK",
+  "name": "Premium BasisRente",
+  "shortDescription": "Rürup-Variante der WWK Premium FondsRente mit IntelliProtect-Wertsicherung.",
   "minPremium": 50,
   "entryAge": {
     "min": 16,
@@ -20,22 +19,23 @@
     "min": 12,
     "max": 67
   },
-  "guaranteedAnnuityFactor": 26.4,
-  "currentAnnuityFactor": 26.4,
+  "guaranteedAnnuityFactor": 28.61,
+  "currentAnnuityFactor": 28.61,
   "costStructure": {
     "abschlusskosten": 2.5,
-    "jaehrlicheKosten": 12.44,
-    "verwaltungskosten": 0.45,
+    "jaehrlicheKosten": 10,
+    "verwaltungskosten": 0.55,
     "zuzahlungAbschlusskosten": 2.5,
     "vertriebswegEinmalprozent": 2.5,
-    "verrentungskosten": 0.01,
+    "verrentungskosten": 0.02,
     "abschlusskostenVerteilungsdauer": 5,
-    "zillmerdauer": 40
+    "zillmerdauer": 100,
+    "verwaltungskostenMinAbsolut": 36
   },
   "features": [
     "Sonderausgabenabzug nach § 10 EStG (94 % in 2026)",
-    "Garantierter Rentenfaktor: 26,40 EUR / 10.000 EUR",
-    "Aktueller Rentenfaktor: 26,40 EUR / 10.000 EUR",
+    "Garantierter Rentenfaktor: 28,61 EUR / 10.000 EUR",
+    "Aktueller Rentenfaktor: 28,61 EUR / 10.000 EUR",
     "Lebenslange Rente garantiert"
   ],
   "tags": [

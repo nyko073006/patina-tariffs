@@ -1,5 +1,5 @@
 {
-  "id": "hdi-twotrust-selekt",
+  "id": "stuttgarter-performance-plus-basis",
   "category": "life",
   "subCategory": "pension-ruerup",
   "productLines": [
@@ -7,9 +7,9 @@
     "fondsgebunden"
   ],
   "taxFavored": true,
-  "provider": "HDI",
-  "name": "TwoTrust Selekt",
-  "shortDescription": "Fondsgebundene Rürup-Rente mit großer Fondsauswahl, Beitragsgarantie und Ablaufmanagement.",
+  "provider": "Stuttgarter",
+  "name": "performance+ Basisrente",
+  "shortDescription": "Rürup-Basisrente der Stuttgarter mit Renditelinie ohne Garantie.",
   "minPremium": 50,
   "entryAge": {
     "min": 16,
@@ -19,23 +19,22 @@
     "min": 12,
     "max": 67
   },
-  "guaranteedAnnuityFactor": 26.03,
-  "currentAnnuityFactor": 26.03,
+  "guaranteedAnnuityFactor": 24.44,
+  "currentAnnuityFactor": 28.8,
   "costStructure": {
     "abschlusskosten": 2.5,
-    "jaehrlicheKosten": 5,
-    "verwaltungskosten": 0.16,
-    "zuzahlungAbschlusskosten": 5,
-    "vertriebswegEinmalprozent": 1,
+    "jaehrlicheKosten": 9,
+    "verwaltungskosten": 0.48,
+    "zuzahlungAbschlusskosten": 1.88,
+    "vertriebswegEinmalprozent": 2.63,
     "verrentungskosten": 0.015,
     "abschlusskostenVerteilungsdauer": 5,
-    "zillmerdauer": 100,
-    "stueckkosten": 30
+    "zillmerdauer": 100
   },
   "features": [
     "Sonderausgabenabzug nach § 10 EStG (94 % in 2026)",
-    "Garantierter Rentenfaktor: 26,03 EUR / 10.000 EUR",
-    "Aktueller Rentenfaktor: 26,03 EUR / 10.000 EUR",
+    "Garantierter Rentenfaktor: 24,44 EUR / 10.000 EUR",
+    "Aktueller Rentenfaktor: 28,80 EUR / 10.000 EUR",
     "Lebenslange Rente garantiert"
   ],
   "tags": [
