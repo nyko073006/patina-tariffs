@@ -2,20 +2,46 @@
   "id": "helvetia-clevesto-allcase",
   "category": "life",
   "subCategory": "pension-private",
-  "productLines": ["fondsgebunden", "hybrid"],
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
   "provider": "Helvetia",
   "name": "CleVesto Allcase",
   "shortDescription": "Hybride fondsgebundene Rentenversicherung mit wählbarer Beitragsgarantie und Sondertarif-Variante für Honorarberatung verfügbar.",
   "minPremium": 25,
-  "entryAge": { "min": 0, "max": 75 },
-  "term": { "min": 5, "max": 50 },
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
   "effectiveCost": 1.6,
-  "guaranteedAnnuityFactor": 22,
-  "fundSelection": { "etfCount": 20, "fundCount": 60, "sustainableAvailable": true },
-  "flexibility": { "minAdditionalPayment": 50, "freeWithdrawalsPerYear": 2, "contributionFreezeAllowed": true, "freeFundSwitchesPerYear": 12 },
+  "guaranteedAnnuityFactor": 19.75,
+  "fundSelection": {
+    "etfCount": 20,
+    "fundCount": 60,
+    "sustainableAvailable": true
+  },
+  "flexibility": {
+    "minAdditionalPayment": 50,
+    "freeWithdrawalsPerYear": 2,
+    "contributionFreezeAllowed": true,
+    "freeFundSwitchesPerYear": 12
+  },
   "scenarios": [
-    { "id": "with-surplus", "label": "Hochrechnung inkl. Überschussbeteiligung", "guaranteedAnnuityFactor": 30 },
-    { "id": "net-tariff", "label": "Sondertarif P (Nettopolice)", "effectiveCost": 0.9 }
+    {
+      "id": "with-surplus",
+      "label": "Hochrechnung inkl. Überschussbeteiligung",
+      "guaranteedAnnuityFactor": 30
+    },
+    {
+      "id": "net-tariff",
+      "label": "Sondertarif P (Nettopolice)",
+      "effectiveCost": 0.9
+    }
   ],
   "features": [
     "Beitragsgarantie wählbar",
@@ -23,5 +49,22 @@
     "Sondertarif P als Nettopolice verfügbar",
     "Nachhaltigkeitsoption"
   ],
-  "tags": ["altersvorsorge", "fondsgebunden", "hybrid", "nettopolice"]
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "hybrid",
+    "nettopolice"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 22.3,
+    "verwaltungskosten": 0.84,
+    "zuzahlungAbschlusskosten": 4,
+    "vertriebswegEinmalprozent": 3,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 40,
+    "stueckkosten": 36
+  },
+  "currentAnnuityFactor": 26.52
 }

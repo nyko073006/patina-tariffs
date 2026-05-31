@@ -2,19 +2,41 @@
   "id": "ergo-rente-chance-plus",
   "category": "life",
   "subCategory": "pension-private",
-  "productLines": ["fondsgebunden", "hybrid"],
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
   "provider": "ERGO",
   "name": "Rente Chance Plus",
   "shortDescription": "Hybride fondsgebundene Rentenversicherung der ERGO mit Wahl zwischen Garantieniveau und Renditechance sowie integrierter Vermögensverwaltung.",
   "minPremium": 25,
-  "entryAge": { "min": 0, "max": 75 },
-  "term": { "min": 5, "max": 50 },
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
   "effectiveCost": 1.6,
-  "guaranteedAnnuityFactor": 21,
-  "fundSelection": { "etfCount": 20, "fundCount": 60, "sustainableAvailable": true },
-  "flexibility": { "minAdditionalPayment": 50, "freeWithdrawalsPerYear": 2, "contributionFreezeAllowed": true, "freeFundSwitchesPerYear": 12 },
+  "guaranteedAnnuityFactor": 24.1,
+  "fundSelection": {
+    "etfCount": 20,
+    "fundCount": 60,
+    "sustainableAvailable": true
+  },
+  "flexibility": {
+    "minAdditionalPayment": 50,
+    "freeWithdrawalsPerYear": 2,
+    "contributionFreezeAllowed": true,
+    "freeFundSwitchesPerYear": 12
+  },
   "scenarios": [
-    { "id": "with-surplus", "label": "Hochrechnung inkl. Überschussbeteiligung", "guaranteedAnnuityFactor": 29 }
+    {
+      "id": "with-surplus",
+      "label": "Hochrechnung inkl. Überschussbeteiligung",
+      "guaranteedAnnuityFactor": 29
+    }
   ],
   "features": [
     "Beitragsgarantie wählbar 0–100 %",
@@ -22,5 +44,23 @@
     "Integrierte Vermögensverwaltungs-Portfolios",
     "Zuzahlungen jederzeit möglich"
   ],
-  "tags": ["altersvorsorge", "fondsgebunden", "hybrid"]
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "hybrid"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 6.2,
+    "verwaltungskosten": 0.36,
+    "zuzahlungAbschlusskosten": 4,
+    "vertriebswegEinmalprozent": 1.5,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 35,
+    "vertriebswegLaufendprozent": 0.48,
+    "verwaltungskostenMaxProzent": 1.5,
+    "beitragsfreistellungKostenAbsolut": 12
+  },
+  "currentAnnuityFactor": 28.84
 }

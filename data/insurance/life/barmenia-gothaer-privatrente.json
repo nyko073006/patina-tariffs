@@ -1,0 +1,42 @@
+{
+  "id": "barmenia-gothaer-privatrente",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "Barmenia/Gothaer",
+  "name": "Privatrente",
+  "shortDescription": "Fondsgebundene Privatrente der Barmenia/Gothaer-Gruppe mit identischem garantiertem und aktuellem Rentenfaktor (23,74).",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "fonder-vergleich"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 14.4,
+    "verwaltungskosten": 0.18,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 3.25,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100
+  },
+  "guaranteedAnnuityFactor": 23.74,
+  "currentAnnuityFactor": 23.74,
+  "features": [
+    "Garantierter Rentenfaktor: 23,74 EUR / 10.000 EUR",
+    "Lebenslange Rente garantiert",
+    "Zuzahlungen und Entnahmen flexibel"
+  ]
+}

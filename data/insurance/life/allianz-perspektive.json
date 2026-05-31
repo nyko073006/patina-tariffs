@@ -2,18 +2,44 @@
   "id": "allianz-perspektive",
   "category": "life",
   "subCategory": "pension-private",
-  "productLines": ["fondsgebunden", "hybrid"],
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
   "provider": "Allianz",
   "name": "PrivatRente Perspektive",
   "shortDescription": "Indexgebundene Rentenversicherung mit jährlichem Wechselrecht zwischen sicherer Verzinsung und Index-Partizipation.",
   "minPremium": 25,
-  "entryAge": { "min": 0, "max": 80 },
-  "term": { "min": 5, "max": 67 },
+  "entryAge": {
+    "min": 0,
+    "max": 80
+  },
+  "term": {
+    "min": 5,
+    "max": 67
+  },
   "features": [
     "Index-Partizipation jährlich wählbar",
     "Sicherer Rechnungszins",
     "Lebenslange Rente garantiert",
     "Kapitalwahlrecht"
   ],
-  "tags": ["rentenversicherung", "index", "altersvorsorge"]
+  "tags": [
+    "rentenversicherung",
+    "index",
+    "altersvorsorge"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 4.5,
+    "verwaltungskosten": 0.4,
+    "zuzahlungAbschlusskosten": 4.5,
+    "vertriebswegEinmalprozent": 0,
+    "verrentungskosten": 1.75,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100,
+    "alpha2Kosten": 1.5
+  },
+  "guaranteedAnnuityFactor": 18.45,
+  "currentAnnuityFactor": 26.38
 }

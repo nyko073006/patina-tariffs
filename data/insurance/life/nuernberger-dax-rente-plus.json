@@ -2,19 +2,41 @@
   "id": "nuernberger-dax-rente-plus",
   "category": "life",
   "subCategory": "pension-private",
-  "productLines": ["fondsgebunden", "hybrid"],
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
   "provider": "Nürnberger",
   "name": "DAX-Rente Plus",
   "shortDescription": "Fondsgebundene Rentenversicherung mit DAX-Kopplung als Renditemotor und integriertem Wertsicherungsmechanismus.",
   "minPremium": 25,
-  "entryAge": { "min": 0, "max": 70 },
-  "term": { "min": 5, "max": 50 },
+  "entryAge": {
+    "min": 0,
+    "max": 70
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
   "effectiveCost": 1.6,
-  "guaranteedAnnuityFactor": 22,
-  "fundSelection": { "etfCount": 20, "fundCount": 60, "sustainableAvailable": true },
-  "flexibility": { "minAdditionalPayment": 50, "freeWithdrawalsPerYear": 2, "contributionFreezeAllowed": true, "freeFundSwitchesPerYear": 12 },
+  "guaranteedAnnuityFactor": 22.93,
+  "fundSelection": {
+    "etfCount": 20,
+    "fundCount": 60,
+    "sustainableAvailable": true
+  },
+  "flexibility": {
+    "minAdditionalPayment": 50,
+    "freeWithdrawalsPerYear": 2,
+    "contributionFreezeAllowed": true,
+    "freeFundSwitchesPerYear": 12
+  },
   "scenarios": [
-    { "id": "with-surplus", "label": "Hochrechnung inkl. Überschussbeteiligung", "guaranteedAnnuityFactor": 30 }
+    {
+      "id": "with-surplus",
+      "label": "Hochrechnung inkl. Überschussbeteiligung",
+      "guaranteedAnnuityFactor": 30
+    }
   ],
   "features": [
     "DAX-Performance als Renditemotor",
@@ -22,5 +44,21 @@
     "60 Fonds inkl. 20 ETFs",
     "Beitragsgarantie wählbar"
   ],
-  "tags": ["altersvorsorge", "fondsgebunden", "dax", "hybrid"]
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "dax",
+    "hybrid"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 8.15,
+    "verwaltungskosten": 0.1,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 4.25,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 35
+  },
+  "currentAnnuityFactor": 27.05
 }
