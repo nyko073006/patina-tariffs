@@ -18,7 +18,6 @@
     "min": 5,
     "max": 50
   },
-  "guaranteedAnnuityFactor": 24,
   "features": [
     "Beitragsgarantie wählbar bis 100 %",
     "Hybrid-Modell mit Sicherungsvermögen + Fonds",
