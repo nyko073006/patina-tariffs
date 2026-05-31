@@ -1,0 +1,46 @@
+{
+  "id": "condor-c-quadrat",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "Condor",
+  "name": "C-Quadrat Fondsrente",
+  "shortDescription": "Fondsgebundene Privatrente der Condor; nach 10 Jahren reduzieren sich die jährlichen Kosten auf 4,25 % der Beitragssumme.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "fonder-vergleich"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 11,
+    "verwaltungskosten": 0.396,
+    "zuzahlungAbschlusskosten": 5,
+    "vertriebswegEinmalprozent": 2,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100,
+    "vertriebswegLaufendprozent": 0.5,
+    "verwaltungskostenMinAbsolut": 24,
+    "kostenreduktionNachJahren": 10,
+    "kostenreduktionAufProzent": 4.25
+  },
+  "guaranteedAnnuityFactor": 17.36,
+  "currentAnnuityFactor": 17.36,
+  "features": [
+    "Garantierter Rentenfaktor: 17,36 EUR / 10.000 EUR",
+    "Lebenslange Rente garantiert",
+    "Zuzahlungen und Entnahmen flexibel"
+  ]
+}

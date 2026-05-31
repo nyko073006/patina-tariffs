@@ -2,19 +2,40 @@
   "id": "universa-topinvest",
   "category": "life",
   "subCategory": "pension-private",
-  "productLines": ["fondsgebunden"],
+  "productLines": [
+    "fondsgebunden"
+  ],
   "provider": "Universa",
   "name": "topinvest",
   "shortDescription": "Fondsgebundene Rentenversicherung der Universa mit übersichtlicher Fondsauswahl und solider Hochrechnung in der konservativen Mittelschicht.",
   "minPremium": 25,
-  "entryAge": { "min": 0, "max": 70 },
-  "term": { "min": 5, "max": 50 },
+  "entryAge": {
+    "min": 0,
+    "max": 70
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
   "effectiveCost": 1.6,
-  "guaranteedAnnuityFactor": 21,
-  "fundSelection": { "etfCount": 15, "fundCount": 50, "sustainableAvailable": true },
-  "flexibility": { "minAdditionalPayment": 50, "freeWithdrawalsPerYear": 2, "contributionFreezeAllowed": true, "freeFundSwitchesPerYear": 12 },
+  "guaranteedAnnuityFactor": 32.64,
+  "fundSelection": {
+    "etfCount": 15,
+    "fundCount": 50,
+    "sustainableAvailable": true
+  },
+  "flexibility": {
+    "minAdditionalPayment": 50,
+    "freeWithdrawalsPerYear": 2,
+    "contributionFreezeAllowed": true,
+    "freeFundSwitchesPerYear": 12
+  },
   "scenarios": [
-    { "id": "with-surplus", "label": "Hochrechnung inkl. Überschussbeteiligung", "guaranteedAnnuityFactor": 29 }
+    {
+      "id": "with-surplus",
+      "label": "Hochrechnung inkl. Überschussbeteiligung",
+      "guaranteedAnnuityFactor": 29
+    }
   ],
   "features": [
     "50 Fonds inkl. 15 ETFs",
@@ -22,5 +43,19 @@
     "Beitragsgarantie wählbar",
     "Hinterbliebenenschutz optional"
   ],
-  "tags": ["altersvorsorge", "fondsgebunden"]
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 9.2,
+    "verwaltungskosten": 0.25,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 5.5,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100
+  },
+  "currentAnnuityFactor": 33.88
 }

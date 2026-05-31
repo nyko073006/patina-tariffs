@@ -2,19 +2,41 @@
   "id": "stuttgarter-alpha-plus",
   "category": "life",
   "subCategory": "pension-private",
-  "productLines": ["fondsgebunden", "hybrid"],
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
   "provider": "Stuttgarter",
   "name": "alpha+",
   "shortDescription": "Hybride fondsgebundene Rentenversicherung der Stuttgarter mit Garantie-Mechanismus und ausgewogenem Verhältnis aus Sicherheit und Renditechance.",
   "minPremium": 25,
-  "entryAge": { "min": 0, "max": 75 },
-  "term": { "min": 5, "max": 50 },
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
   "effectiveCost": 1.7,
   "guaranteedAnnuityFactor": 24,
-  "fundSelection": { "etfCount": 25, "fundCount": 60, "sustainableAvailable": true },
-  "flexibility": { "minAdditionalPayment": 50, "freeWithdrawalsPerYear": 2, "contributionFreezeAllowed": true, "freeFundSwitchesPerYear": 12 },
+  "fundSelection": {
+    "etfCount": 25,
+    "fundCount": 60,
+    "sustainableAvailable": true
+  },
+  "flexibility": {
+    "minAdditionalPayment": 50,
+    "freeWithdrawalsPerYear": 2,
+    "contributionFreezeAllowed": true,
+    "freeFundSwitchesPerYear": 12
+  },
   "scenarios": [
-    { "id": "with-surplus", "label": "Hochrechnung inkl. Überschussbeteiligung", "guaranteedAnnuityFactor": 32 }
+    {
+      "id": "with-surplus",
+      "label": "Hochrechnung inkl. Überschussbeteiligung",
+      "guaranteedAnnuityFactor": 32
+    }
   ],
   "features": [
     "Beitragsgarantie wählbar bis 100 %",
@@ -22,5 +44,21 @@
     "60 Fonds inkl. 25 ETFs",
     "GrüneRente als Nachhaltigkeitsoption"
   ],
-  "tags": ["altersvorsorge", "fondsgebunden", "hybrid", "garantie"]
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "hybrid",
+    "garantie"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 4,
+    "verwaltungskosten": 0.3,
+    "zuzahlungAbschlusskosten": 4,
+    "vertriebswegEinmalprozent": 1.5,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100,
+    "alpha2Kosten": 5
+  }
 }

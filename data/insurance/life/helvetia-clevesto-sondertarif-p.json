@@ -1,0 +1,47 @@
+{
+  "id": "helvetia-clevesto-sondertarif-p",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden",
+    "nettopolice"
+  ],
+  "provider": "Helvetia",
+  "name": "CleVesto Allcase Sondertarif P (Nettopolice)",
+  "shortDescription": "Provisionsfreie Nettopolice-Variante (Sondertarif P) der Helvetia CleVesto Allcase – ohne laufende Verwaltungskosten.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "nettopolice",
+    "honorarberatung",
+    "fonder-vergleich"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 22.3,
+    "verwaltungskosten": 0,
+    "zuzahlungAbschlusskosten": 4,
+    "vertriebswegEinmalprozent": 3,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 40,
+    "stueckkosten": 36
+  },
+  "guaranteedAnnuityFactor": 19.75,
+  "currentAnnuityFactor": 26.52,
+  "features": [
+    "Garantierter Rentenfaktor: 19,75 EUR / 10.000 EUR",
+    "Aktueller Rentenfaktor: 26,52 EUR / 10.000 EUR",
+    "Lebenslange Rente garantiert",
+    "Zuzahlungen und Entnahmen flexibel"
+  ]
+}

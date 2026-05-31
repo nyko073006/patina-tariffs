@@ -2,19 +2,41 @@
   "id": "hansemerkur-fondsrente-2025m",
   "category": "life",
   "subCategory": "pension-private",
-  "productLines": ["fondsgebunden", "hybrid"],
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
   "provider": "HanseMerkur",
   "name": "FondsRente 2025 Maximum",
   "shortDescription": "Hybride fondsgebundene Rentenversicherung mit erweiterter Garantieoption und breiter Fondsauswahl im Premium-Segment.",
   "minPremium": 25,
-  "entryAge": { "min": 0, "max": 75 },
-  "term": { "min": 5, "max": 50 },
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
   "effectiveCost": 1.7,
-  "guaranteedAnnuityFactor": 22,
-  "fundSelection": { "etfCount": 25, "fundCount": 70, "sustainableAvailable": true },
-  "flexibility": { "minAdditionalPayment": 50, "freeWithdrawalsPerYear": 4, "contributionFreezeAllowed": true, "freeFundSwitchesPerYear": 12 },
+  "guaranteedAnnuityFactor": 22.71,
+  "fundSelection": {
+    "etfCount": 25,
+    "fundCount": 70,
+    "sustainableAvailable": true
+  },
+  "flexibility": {
+    "minAdditionalPayment": 50,
+    "freeWithdrawalsPerYear": 4,
+    "contributionFreezeAllowed": true,
+    "freeFundSwitchesPerYear": 12
+  },
   "scenarios": [
-    { "id": "with-surplus", "label": "Hochrechnung inkl. Überschussbeteiligung", "guaranteedAnnuityFactor": 30 }
+    {
+      "id": "with-surplus",
+      "label": "Hochrechnung inkl. Überschussbeteiligung",
+      "guaranteedAnnuityFactor": 30
+    }
   ],
   "features": [
     "Beitragsgarantie bis 100 %",
@@ -22,5 +44,20 @@
     "Zuzahlungen ab 50 EUR",
     "Nachhaltige Fondsstrategien"
   ],
-  "tags": ["altersvorsorge", "fondsgebunden", "hybrid"]
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "hybrid"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 7.1,
+    "verwaltungskosten": 0.192,
+    "zuzahlungAbschlusskosten": 4.5,
+    "vertriebswegEinmalprozent": 0.5,
+    "verrentungskosten": 1,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100
+  },
+  "currentAnnuityFactor": 26.64
 }

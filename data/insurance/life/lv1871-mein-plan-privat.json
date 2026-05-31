@@ -1,0 +1,43 @@
+{
+  "id": "lv1871-mein-plan-privat",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "LV 1871",
+  "name": "Mein Plan Privat",
+  "shortDescription": "Fondsgebundene Privatrente der LV 1871 mit transparenter Kostenstruktur und Rentenfaktor 26,33 garantiert.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "fonder-vergleich"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.57,
+    "jaehrlicheKosten": 8.4,
+    "verwaltungskosten": 0.3,
+    "zuzahlungAbschlusskosten": 5,
+    "vertriebswegEinmalprozent": 0.5,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100
+  },
+  "guaranteedAnnuityFactor": 26.33,
+  "currentAnnuityFactor": 28.47,
+  "features": [
+    "Garantierter Rentenfaktor: 26,33 EUR / 10.000 EUR",
+    "Aktueller Rentenfaktor: 28,47 EUR / 10.000 EUR",
+    "Lebenslange Rente garantiert",
+    "Zuzahlungen und Entnahmen flexibel"
+  ]
+}

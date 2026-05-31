@@ -2,19 +2,41 @@
   "id": "swiss-life-maximo",
   "category": "life",
   "subCategory": "pension-private",
-  "productLines": ["fondsgebunden", "hybrid"],
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
   "provider": "Swiss Life",
   "name": "Maximo",
   "shortDescription": "Fondsgebundene private Rentenversicherung mit wählbarer Beitragsgarantie (0/50/60/70/80 %) und Zuzahlungen auch in der Rentenphase.",
   "minPremium": 25,
-  "entryAge": { "min": 0, "max": 85 },
-  "term": { "min": 5, "max": 50 },
+  "entryAge": {
+    "min": 0,
+    "max": 85
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
   "effectiveCost": 1.7,
-  "guaranteedAnnuityFactor": 23,
-  "fundSelection": { "etfCount": 25, "fundCount": 100, "sustainableAvailable": true },
-  "flexibility": { "minAdditionalPayment": 50, "freeWithdrawalsPerYear": 4, "contributionFreezeAllowed": true, "freeFundSwitchesPerYear": 12 },
+  "guaranteedAnnuityFactor": 20.86,
+  "fundSelection": {
+    "etfCount": 25,
+    "fundCount": 100,
+    "sustainableAvailable": true
+  },
+  "flexibility": {
+    "minAdditionalPayment": 50,
+    "freeWithdrawalsPerYear": 4,
+    "contributionFreezeAllowed": true,
+    "freeFundSwitchesPerYear": 12
+  },
   "scenarios": [
-    { "id": "with-surplus", "label": "Hochrechnung inkl. Überschussbeteiligung", "guaranteedAnnuityFactor": 31 }
+    {
+      "id": "with-surplus",
+      "label": "Hochrechnung inkl. Überschussbeteiligung",
+      "guaranteedAnnuityFactor": 31
+    }
   ],
   "features": [
     "Beitragsgarantie wählbar 0/50/60/70/80 %",
@@ -22,5 +44,22 @@
     "Zuzahlungen auch in der Rentenphase",
     "Nachhaltige Fondsauswahl optional"
   ],
-  "tags": ["altersvorsorge", "fondsgebunden", "garantie", "swiss-life"]
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "garantie",
+    "swiss-life"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.49,
+    "jaehrlicheKosten": 12.55,
+    "verwaltungskosten": 0.35,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 4.25,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 40,
+    "verwaltungskostenMinAbsolut": 36
+  },
+  "currentAnnuityFactor": 20.86
 }
