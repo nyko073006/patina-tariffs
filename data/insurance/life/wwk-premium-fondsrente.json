@@ -18,26 +18,7 @@
     "min": 5,
     "max": 50
   },
-  "effectiveCost": 1.6,
   "guaranteedAnnuityFactor": 25.48,
-  "fundSelection": {
-    "etfCount": 30,
-    "fundCount": 80,
-    "sustainableAvailable": true
-  },
-  "flexibility": {
-    "minAdditionalPayment": 50,
-    "freeWithdrawalsPerYear": 2,
-    "contributionFreezeAllowed": true,
-    "freeFundSwitchesPerYear": 12
-  },
-  "scenarios": [
-    {
-      "id": "with-surplus",
-      "label": "Hochrechnung inkl. Überschussbeteiligung",
-      "guaranteedAnnuityFactor": 31
-    }
-  ],
   "features": [
     "IntelliProtect-Wertsicherungskonzept",
     "80 Fonds inkl. 30 ETFs",

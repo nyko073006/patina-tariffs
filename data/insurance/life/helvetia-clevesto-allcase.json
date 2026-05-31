@@ -18,31 +18,7 @@
     "min": 5,
     "max": 50
   },
-  "effectiveCost": 1.6,
   "guaranteedAnnuityFactor": 19.75,
-  "fundSelection": {
-    "etfCount": 20,
-    "fundCount": 60,
-    "sustainableAvailable": true
-  },
-  "flexibility": {
-    "minAdditionalPayment": 50,
-    "freeWithdrawalsPerYear": 2,
-    "contributionFreezeAllowed": true,
-    "freeFundSwitchesPerYear": 12
-  },
-  "scenarios": [
-    {
-      "id": "with-surplus",
-      "label": "Hochrechnung inkl. Überschussbeteiligung",
-      "guaranteedAnnuityFactor": 30
-    },
-    {
-      "id": "net-tariff",
-      "label": "Sondertarif P (Nettopolice)",
-      "effectiveCost": 0.9
-    }
-  ],
   "features": [
     "Beitragsgarantie wählbar",
     "60 Fonds inkl. 20 ETFs",

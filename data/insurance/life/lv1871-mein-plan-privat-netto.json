@@ -17,31 +17,7 @@
     "min": 5,
     "max": 50
   },
-  "effectiveCost": 0.9,
   "guaranteedAnnuityFactor": 26.33,
-  "fundSelection": {
-    "etfCount": 30,
-    "fundCount": 80,
-    "sustainableAvailable": true
-  },
-  "flexibility": {
-    "minAdditionalPayment": 50,
-    "freeWithdrawalsPerYear": 4,
-    "contributionFreezeAllowed": true,
-    "freeFundSwitchesPerYear": 12
-  },
-  "scenarios": [
-    {
-      "id": "guaranteed",
-      "label": "Garantierter Rentenfaktor",
-      "guaranteedAnnuityFactor": 25
-    },
-    {
-      "id": "with-surplus",
-      "label": "Hochrechnung inkl. Überschussbeteiligung",
-      "guaranteedAnnuityFactor": 34
-    }
-  ],
   "features": [
     "Provisionsfreie Nettopolice",
     "Effektivkosten typisch < 1 % p. a.",

@@ -17,26 +17,7 @@
     "min": 5,
     "max": 50
   },
-  "effectiveCost": 1.4,
   "guaranteedAnnuityFactor": 19.98,
-  "fundSelection": {
-    "etfCount": 15,
-    "fundCount": 50,
-    "sustainableAvailable": true
-  },
-  "flexibility": {
-    "minAdditionalPayment": 50,
-    "freeWithdrawalsPerYear": 2,
-    "contributionFreezeAllowed": true,
-    "freeFundSwitchesPerYear": 12
-  },
-  "scenarios": [
-    {
-      "id": "with-surplus",
-      "label": "Hochrechnung inkl. Überschussbeteiligung",
-      "guaranteedAnnuityFactor": 27
-    }
-  ],
   "features": [
     "Kostengünstige Standardvariante",
     "50 Fonds inkl. 15 ETFs",
