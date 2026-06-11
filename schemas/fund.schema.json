@@ -50,6 +50,78 @@
         "prospectus": { "type": "string", "format": "uri" }
       }
     },
-    "tags": { "type": "array", "items": { "type": "string" } }
+    "tags": { "type": "array", "items": { "type": "string" } },
+
+    "latestPrice": { "type": "number", "minimum": 0 },
+    "latestPriceDate": { "type": "string", "format": "date" },
+    "latestPriceCurrency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "nav": { "type": "number", "minimum": 0 },
+    "navDate": { "type": "string", "format": "date" },
+    "performance": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Total-Return-Performance in % (basierend auf adjusted close).",
+      "properties": {
+        "m1": { "type": "number" },
+        "m3": { "type": "number" },
+        "m6": { "type": "number" },
+        "ytd": { "type": "number" },
+        "y1": { "type": "number" },
+        "y3": { "type": "number" },
+        "y5": { "type": "number" },
+        "y10": { "type": "number" }
+      }
+    },
+    "sectorAllocation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "weight"],
+        "properties": {
+          "name": { "type": "string" },
+          "weight": { "type": "number", "minimum": 0, "maximum": 100 }
+        }
+      }
+    },
+    "countryAllocation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "weight"],
+        "properties": {
+          "name": { "type": "string" },
+          "weight": { "type": "number", "minimum": 0, "maximum": 100 }
+        }
+      }
+    },
+    "topHoldings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "weight"],
+        "properties": {
+          "name": { "type": "string" },
+          "weight": { "type": "number", "minimum": 0, "maximum": 100 },
+          "isin": { "type": "string", "pattern": "^[A-Z]{2}[A-Z0-9]{9}[0-9]$" },
+          "ticker": { "type": "string" }
+        }
+      }
+    },
+    "yield": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Ausschüttungskennzahlen (für distributing Funds).",
+      "properties": {
+        "dividendYield": { "type": "number" },
+        "yield12m": { "type": "number" }
+      }
+    },
+    "_eodhdSymbol": {
+      "type": "string",
+      "description": "Gecachter EODHD-Symbol-Lookup (z. B. IE00B4L5Y983.XETRA) — vom Sync-Skript befüllt."
+    }
   }
 }

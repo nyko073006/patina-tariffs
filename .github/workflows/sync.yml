@@ -23,7 +23,9 @@ jobs:
 
       - run: npm ci
 
-      - name: Sync funds from master list
+      - name: Sync funds from master list + EODHD market data
+        env:
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
         run: npm run sync
 
       - name: Validate after sync
@@ -43,18 +45,21 @@ jobs:
           branch: data-sync/${{ steps.date.outputs.today }}
           base: main
           commit-message: |
-            chore(sync): ETF-Stammdaten aktualisiert (${{ steps.date.outputs.today }})
-          title: "chore(sync): ETF-Stammdaten ${{ steps.date.outputs.today }}"
+            chore(sync): Fonds-Stammdaten + EODHD-Marktdaten (${{ steps.date.outputs.today }})
+          title: "chore(sync): Fonds-Daten ${{ steps.date.outputs.today }}"
           body: |
             Automatischer Daily-Sync via `.github/workflows/sync.yml`.
 
-            Quelle: `scripts/sources/etf-master.json` (kuratierte Master-Liste der in DE handelbaren ETFs).
+            **Stammdaten:** `scripts/sources/etf-master.json` (kuratierte Master-Liste der in DE handelbaren ETFs).
             Krypto-ETPs werden über Provider-/Name-Blocklist gefiltert.
 
-            Manuelle Anreicherung (`data/overrides/funds/`) ist hier nicht enthalten und bleibt vom Sync unberührt.
+            **Marktdaten:** EODHD-API liefert latestPrice, NAV, performance.{m1..y10}, sectorAllocation,
+            countryAllocation, topHoldings, yield, sowie aktualisiertes TER + fundSize.
+
+            Manuelle Anreicherung (`data/overrides/funds/`) bleibt vom Sync unberührt.
 
             **Bitte prüfen vor Merge:**
-            - Diff der `data/funds/`-Dateien (TER/AUM-Veränderungen plausibel?)
+            - Diff der `data/funds/`-Dateien (Preis-/Performance-Sprünge plausibel?)
             - `npm run validate` läuft? (CI-Check unten)
             - Keine versehentlich gelöschten Manualeinträge?
           labels: |

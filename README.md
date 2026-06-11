@@ -67,6 +67,23 @@ npm --prefix web install
 npm --prefix web run dev   # Astro-Devserver auf http://localhost:4321
 ```
 
+### Marktdaten-Sync (EODHD)
+
+`npm run sync:prices` zieht Latest Price, NAV, Performance (1M–10Y), Sektor-/
+Länder-Allokation, Top-Holdings, Yield und aktualisiert TER + Fondsvolumen
+für alle `data/funds/<ISIN>.json` per [EODHD-API](https://eodhd.com).
+
+```bash
+EODHD_API_KEY=dein_key npm run sync:prices
+```
+
+Ohne API-Key überspringt das Skript still (Exit 0) — CI bricht nicht.
+In GitHub liegt der Key als Secret `EODHD_API_KEY` und wird täglich
+über `.github/workflows/sync.yml` ausgeführt.
+
+Stammdaten (assetClass, currency, provider, …) bleiben unangetastet;
+gesynced werden nur volatile Marktdaten und Allokationen.
+
 Oder alles auf einmal:
 
 ```bash
