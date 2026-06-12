@@ -34,6 +34,7 @@ interface CompareQuery {
   costsAnnual2: number;
   costsOneTime1: number;
   costsOneTime2: number;
+  minYears: number;
 }
 
 const CORS_HEADERS = {
@@ -86,7 +87,12 @@ function parseCompareQuery(url: URL): CompareQuery {
   const costsAnnual2 = parseNumber(url.searchParams.get("costsAnnual2"), 0, 0, 0.2);
   const costsOneTime1 = parseNumber(url.searchParams.get("costsOneTime1"), 0, 0, 0.2);
   const costsOneTime2 = parseNumber(url.searchParams.get("costsOneTime2"), 0, 0, 0.2);
-  return { isin1, isin2, capital, years, costsAnnual1, costsAnnual2, costsOneTime1, costsOneTime2 };
+  const minYears = parseNumber(url.searchParams.get("minYears"), 1, 0.1, 30);
+  return {
+    isin1, isin2, capital, years,
+    costsAnnual1, costsAnnual2, costsOneTime1, costsOneTime2,
+    minYears,
+  };
 }
 
 function isoDateNYearsAgo(years: number): string {
@@ -127,10 +133,17 @@ async function handleCompare(env: EodhdEnv, url: URL): Promise<Response> {
   }
 
   const histYears = yearsBetween(aligned.overlapStart, aligned.overlapEnd);
-  if (histYears < 1) {
+  if (histYears < q.minYears) {
     return clientError(
-      `Überlappung ${aligned.overlapStart}–${aligned.overlapEnd} < 1 Jahr — CAGR nicht aussagekräftig`,
+      `Überlappung ${aligned.overlapStart}–${aligned.overlapEnd} = ${histYears.toFixed(2)} Jahre < minYears=${q.minYears}`,
       422,
+    );
+  }
+
+  const warnings: string[] = [];
+  if (histYears < 1) {
+    warnings.push(
+      `Datenbasis ${histYears.toFixed(2)} Jahre — CAGR-Extrapolation auf ${q.years} Jahre statistisch nicht aussagekräftig`,
     );
   }
 
@@ -169,6 +182,7 @@ async function handleCompare(env: EodhdEnv, url: URL): Promise<Response> {
       isin1: { symbol: symbol1, start: start1, end: end1, cagr: cagr1, futureValue: fv1 },
       isin2: { symbol: symbol2, start: start2, end: end2, cagr: cagr2, futureValue: fv2 },
     },
+    warnings,
   });
 }
 
