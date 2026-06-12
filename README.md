@@ -90,6 +90,25 @@ Oder alles auf einmal:
 npm run build          # validate + data + site
 ```
 
+## Live-API-Proxy (Cloudflare Worker)
+
+Für On-Demand-Abfragen mit aktueller Historie und CAGR-Berechnung lebt unter
+`workers/proxy/` ein Cloudflare Worker. Er proxy't EODHD, cached die Antworten
+serverseitig (Workers KV) und liefert normalisierte Vergleichsdaten an die
+iOS-App.
+
+```bash
+cd workers/proxy
+npm install
+npm test           # Unit-Tests (CAGR, FutureValue, Normalisierung)
+npx wrangler kv:namespace create CACHE     # ID in wrangler.toml eintragen
+npx wrangler secret put EODHD_API_KEY
+npm run deploy
+```
+
+Routes: `/api/history`, `/api/compare`. Details und iOS-Integrations-Skizze
+in [`workers/proxy/README.md`](workers/proxy/README.md).
+
 ## Konsum durch Vermittler-Tools
 
 Nach jedem Merge in `main` liegen die Datenbundles unter:
