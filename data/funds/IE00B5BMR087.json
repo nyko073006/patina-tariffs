@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "SXR8.XETRA",
   "assetClass": "equity",
   "currency": "USD",
   "distribution": "accumulating",
@@ -7,7 +8,10 @@
   "inception": "2010-05-19",
   "index": "S&P 500",
   "isin": "IE00B5BMR087",
+  "latestPrice": 689.5,
+  "latestPriceDate": "2026-06-12",
   "name": "iShares Core S&P 500 UCITS ETF USD (Acc)",
+  "performance": {},
   "provider": "iShares (BlackRock)",
   "region": "USA",
   "replicationMethod": "physical-full",
