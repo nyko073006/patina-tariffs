@@ -1,0 +1,13 @@
+name = "patina-tariffs-proxy"
+main = "src/index.ts"
+compatibility_date = "2025-10-01"
+
+[vars]
+EODHD_BASE = "https://eodhd.com/api"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# EODHD_API_KEY ist ein Secret und wird via `wrangler secret put EODHD_API_KEY` gesetzt.
+# Niemals in dieser Datei einchecken.
