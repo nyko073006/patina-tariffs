@@ -1,0 +1,17 @@
+{
+  "id": "santander-bestcredit",
+  "type": "installment",
+  "provider": "Santander",
+  "name": "BestCredit",
+  "minAmount": 1000,
+  "maxAmount": 75000,
+  "minTermMonths": 12,
+  "maxTermMonths": 96,
+  "effectiveRate": { "from": 3.99, "to": 11.95 },
+  "features": [
+    "Bonitätsabhängiger Zinssatz",
+    "Sondertilgung jederzeit kostenfrei",
+    "Ratenpause auf Wunsch"
+  ],
+  "tags": ["ratenkredit", "konsum"]
+}

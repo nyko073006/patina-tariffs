@@ -1,0 +1,17 @@
+{
+  "id": "ergo-zahn-direkt",
+  "category": "health",
+  "subCategory": "health-dental",
+  "provider": "ERGO",
+  "name": "ZahnDirekt Premium",
+  "shortDescription": "Zahnzusatzversicherung mit 100% Erstattung für Zahnersatz inkl. Implantate und kieferorthopädische Behandlung.",
+  "minPremium": 10,
+  "entryAge": { "min": 0, "max": 75 },
+  "features": [
+    "100% Erstattung Zahnersatz nach Wartezeit",
+    "Implantate bis 4 pro Kiefer",
+    "Professionelle Zahnreinigung 2× pro Jahr",
+    "Keine Gesundheitsfragen ab Tarif Komfort"
+  ],
+  "tags": ["zahn", "krankenzusatz"]
+}

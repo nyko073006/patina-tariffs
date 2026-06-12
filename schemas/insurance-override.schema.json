@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://patina-tariffs.example/schemas/insurance-override.schema.json",
+  "title": "InsuranceOverride",
+  "description": "Manuelle Anreicherung eines Versicherungstarifs. Felder gewinnen beim Build; tags & features werden gemerged.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,}$" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "string", "maxLength": 2000 },
+    "tecisFlags": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vermittelbar": { "type": "boolean" },
+        "kernEmpfehlung": { "type": "boolean" },
+        "provisionsoptimiert": { "type": "boolean" },
+        "nettotarif": { "type": "boolean" }
+      }
+    },
+    "lastReviewedAt": { "type": "string", "format": "date" },
+    "reviewedBy": { "type": "string" }
+  }
+}

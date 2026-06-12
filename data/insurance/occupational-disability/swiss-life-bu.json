@@ -1,0 +1,18 @@
+{
+  "id": "swiss-life-bu",
+  "category": "occupational-disability",
+  "subCategory": "disability-classic",
+  "provider": "Swiss Life",
+  "name": "BU / BU plus (Tarif 120)",
+  "shortDescription": "Selbstständige Berufsunfähigkeitsversicherung mit Verzicht auf abstrakte Verweisung; in der plus-Variante mit zusätzlichen Optionen wie AU-Klausel.",
+  "minPremium": 39,
+  "entryAge": { "min": 15, "max": 60 },
+  "term": { "min": 5, "max": 52 },
+  "features": [
+    "Verzicht auf abstrakte Verweisung",
+    "Leistung ab 50 % BU-Grad",
+    "Nachversicherungsgarantie ohne erneute Gesundheitsprüfung",
+    "AU-Klausel optional (plus-Variante)"
+  ],
+  "tags": ["bu", "berufsunfähigkeit", "swiss-life"]
+}

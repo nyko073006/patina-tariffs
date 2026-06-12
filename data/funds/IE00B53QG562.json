@@ -1,0 +1,17 @@
+{
+  "assetClass": "equity",
+  "currency": "EUR",
+  "distribution": "accumulating",
+  "domicile": "IE",
+  "fundType": "etf",
+  "inception": "2009-09-25",
+  "index": "MSCI Europe",
+  "isin": "IE00B53QG562",
+  "name": "iShares Core MSCI Europe UCITS ETF EUR (Acc)",
+  "provider": "iShares (BlackRock)",
+  "region": "Europa",
+  "replicationMethod": "physical-sampling",
+  "sfdr": "Art. 6",
+  "ter": 0.12,
+  "wkn": "A0YEDL"
+}

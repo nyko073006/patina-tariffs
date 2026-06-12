@@ -1,0 +1,18 @@
+{
+  "id": "volkswohlbund-existenz",
+  "category": "occupational-disability",
+  "subCategory": "disability-grundfaehigkeit",
+  "provider": "Volkswohl Bund",
+  "name": "Existenz Grundfähigkeitsschutz",
+  "shortDescription": "Grundfähigkeitsversicherung mit Schutz bei Verlust definierter Fähigkeiten (Sehen, Hören, Heben, Gebrauch der Hände, Sitzen, Stehen, Treppensteigen).",
+  "minPremium": 15,
+  "entryAge": { "min": 15, "max": 60 },
+  "term": { "min": 5, "max": 52 },
+  "features": [
+    "Leistung bei Verlust einer von 17 Grundfähigkeiten",
+    "Auch bei Demenz / Pflegestufe",
+    "Verzicht auf abstrakte Verweisung",
+    "Beitragsdynamik wählbar"
+  ],
+  "tags": ["grundfähigkeit", "existenzschutz"]
+}

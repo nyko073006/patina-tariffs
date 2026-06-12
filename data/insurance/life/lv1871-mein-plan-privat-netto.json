@@ -1,0 +1,44 @@
+{
+  "id": "lv1871-mein-plan-privat-netto",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "LV 1871",
+  "name": "MeinPlan Privat Nettotarif",
+  "shortDescription": "Provisionsfreie Nettopolice der LV 1871 mit deutlich reduzierten Effektivkosten – konzipiert für Honorarberatung und langfristige Vermögensbildung.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "guaranteedAnnuityFactor": 26.33,
+  "features": [
+    "Provisionsfreie Nettopolice",
+    "Effektivkosten typisch < 1 % p. a.",
+    "80 Fonds inkl. 30 ETFs",
+    "Honorar oder Servicepauschale separat"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "nettopolice",
+    "honorarberatung"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.1,
+    "jaehrlicheKosten": 3.4,
+    "verwaltungskosten": 0.22,
+    "zuzahlungAbschlusskosten": 0,
+    "vertriebswegEinmalprozent": 0.5,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 1,
+    "zillmerdauer": 100
+  },
+  "currentAnnuityFactor": 28.47
+}

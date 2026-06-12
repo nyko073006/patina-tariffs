@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://patina-tariffs.example/schemas/insurance.schema.json",
+  "title": "InsuranceTariff",
+  "description": "Versicherungstarif (LV, BU, KV, Sach)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "category", "provider", "name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{2,}$",
+      "description": "kebab-case ID, eindeutig pro Kategorie; dient als Dateiname"
+    },
+    "category": {
+      "enum": ["life", "occupational-disability", "health", "property", "liability", "accident", "car", "legal", "cyber"]
+    },
+    "subCategory": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "tecis-Feinklassifikation, z. B. 'term' (Risikoleben), 'pension-private', 'pension-riester', 'pension-ruerup', 'pension-occupational', 'disability-classic', 'disability-grundfaehigkeit', 'dread-disease', 'health-full', 'health-supplement', 'health-dental', 'health-care' (Pflegezusatz), 'property-home', 'property-building', 'liability-private', 'accident-disability', 'auto-bundle', 'cyber-private', 'cyber-business'."
+    },
+    "productLines": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Förder-/Vertragslinien: 'riester', 'ruerup', 'bav-direktversicherung', 'bav-pensionskasse', 'klassisch', 'fondsgebunden', 'hybrid'."
+    },
+    "taxFavored": {
+      "type": "boolean",
+      "description": "Staatlich gefördert (Riester, Rürup, bAV)."
+    },
+    "guaranteedInterest": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Garantierter Rechnungszins in % p. a. (LV/RV)."
+    },
+    "effectiveCost": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "Effektivkosten p. a. nach PRIIP / MiFID II in % (Fondspolicen / fondsgeb. Rente)."
+    },
+    "guaranteedAnnuityFactor": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Garantierter Rentenfaktor: monatliche Rente in EUR je 10.000 EUR Vertragsguthaben zu Rentenbeginn."
+    },
+    "currentAnnuityFactor": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Aktueller Rentenfaktor inkl. Überschussbeteiligung (Hochrechnung)."
+    },
+    "fundSelection": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Wählbare Fonds / ETFs in Fondspolicen.",
+      "properties": {
+        "etfCount": { "type": "integer", "minimum": 0 },
+        "fundCount": { "type": "integer", "minimum": 0 },
+        "sustainableAvailable": { "type": "boolean", "description": "Nachhaltige/ESG-Fonds wählbar" }
+      }
+    },
+    "flexibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Vertragsflexibilität in Fondspolicen.",
+      "properties": {
+        "minAdditionalPayment": { "type": "number", "minimum": 0, "description": "Mindest-Zuzahlung in EUR" },
+        "freeWithdrawalsPerYear": { "type": "integer", "minimum": 0 },
+        "contributionFreezeAllowed": { "type": "boolean" },
+        "freeFundSwitchesPerYear": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "description": "Berechnungsvarianten neben dem garantierten Default: 'with-surplus' (Hochrechnung mit Überschussbeteiligung), 'net-tariff' (Nettopolice ohne Abschlussprovision).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string", "enum": ["guaranteed", "with-surplus", "net-tariff"] },
+          "label": { "type": "string" },
+          "effectiveCost": { "type": "number", "minimum": 0, "maximum": 10 },
+          "guaranteedAnnuityFactor": { "type": "number", "minimum": 0, "maximum": 100 }
+        }
+      }
+    },
+    "costStructure": {
+      "type": "object",
+      "description": "Roh-Kostenparameter für PRIIP-/Effektivkostenberechnung. Quelle: Fonder-Vergleichsuniversum. Generische numerische Schlüssel, da das Quell-Schema erweiterbar ist.",
+      "additionalProperties": { "type": "number" }
+    },
+    "provider": { "type": "string", "minLength": 2 },
+    "name": { "type": "string", "minLength": 2 },
+    "shortDescription": { "type": "string", "maxLength": 400 },
+    "minPremium": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Mindestbeitrag in EUR/Monat"
+    },
+    "entryAge": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "max": { "type": "integer", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "term": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Laufzeit in Jahren",
+      "properties": {
+        "min": { "type": "integer", "minimum": 0 },
+        "max": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "features": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Leistungsmerkmale, frei wählbar"
+    },
+    "documents": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "conditions": { "type": "string", "format": "uri" },
+        "productSheet": { "type": "string", "format": "uri" }
+      }
+    },
+    "ratings": {
+      "type": "array",
+      "description": "Referenzen auf rating-IDs",
+      "items": { "type": "string" }
+    },
+    "tags": { "type": "array", "items": { "type": "string" } }
+  }
+}

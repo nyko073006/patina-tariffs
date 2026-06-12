@@ -1,0 +1,19 @@
+{
+  "id": "cosmos-direkt-risikoleben-comfort",
+  "category": "life",
+  "subCategory": "term",
+  "productLines": ["klassisch"],
+  "provider": "CosmosDirekt",
+  "name": "Risikolebensversicherung Comfort",
+  "shortDescription": "Direktversicherer-Risikolebensversicherung mit Focus-Money-Bestnote; Nachversicherungsgarantie ohne Gesundheitsprüfung und Verlängerungsoption.",
+  "minPremium": 4,
+  "entryAge": { "min": 17, "max": 69 },
+  "term": { "min": 1, "max": 45 },
+  "features": [
+    "Nachversicherungsgarantie ohne erneute Gesundheitsprüfung",
+    "Verlängerungsoption am Vertragsende",
+    "Vorgezogene Todesfallleistung bei schweren Krankheiten",
+    "Direkt-Konditionen ohne Vermittlerprovision"
+  ],
+  "tags": ["risikoleben", "hinterbliebenenschutz", "direkt"]
+}

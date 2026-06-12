@@ -1,0 +1,19 @@
+{
+  "id": "europa-risikoleben",
+  "category": "life",
+  "subCategory": "term",
+  "productLines": ["klassisch"],
+  "provider": "EUROPA",
+  "name": "Risikolebensversicherung E-RL",
+  "shortDescription": "Risikolebensversicherung mit Bestnote im Franke-und-Bornberg-Rating und günstigen Direkt-Tarifen; Variante Premium mit erweitertem Leistungsumfang.",
+  "minPremium": 3,
+  "entryAge": { "min": 15, "max": 67 },
+  "term": { "min": 1, "max": 50 },
+  "features": [
+    "Bestnote Franke und Bornberg",
+    "Nachversicherungsgarantie bei Heirat, Geburt, Immobilienkauf",
+    "Optionale Berufsunfähigkeits-Vorsorge",
+    "Konstante oder fallende Versicherungssumme wählbar"
+  ],
+  "tags": ["risikoleben", "hinterbliebenenschutz"]
+}

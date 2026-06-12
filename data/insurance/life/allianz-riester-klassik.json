@@ -1,0 +1,20 @@
+{
+  "id": "allianz-riester-klassik",
+  "category": "life",
+  "subCategory": "pension-riester",
+  "productLines": ["riester", "klassisch"],
+  "taxFavored": true,
+  "provider": "Allianz",
+  "name": "RiesterRente Klassik",
+  "shortDescription": "Klassische Riester-Rente mit Beitragsgarantie zu Rentenbeginn, staatlicher Zulage und Sonderausgabenabzug.",
+  "minPremium": 5,
+  "entryAge": { "min": 16, "max": 60 },
+  "term": { "min": 12, "max": 67 },
+  "features": [
+    "100% Beitragsgarantie inkl. Zulagen zu Rentenbeginn",
+    "Zulagen + Sonderausgabenabzug",
+    "Wohn-Riester-Übertragung möglich",
+    "Kapitalentnahme bis 30% zu Rentenbeginn"
+  ],
+  "tags": ["altersvorsorge", "riester", "zulagen"]
+}

@@ -1,0 +1,17 @@
+{
+  "assetClass": "bond",
+  "currency": "EUR",
+  "distribution": "distributing",
+  "domicile": "IE",
+  "fundType": "etf",
+  "inception": "2006-11-24",
+  "index": "Bloomberg Euro Government Bond 7-10",
+  "isin": "IE00B14X4S71",
+  "name": "iShares Euro Government Bond 7-10yr UCITS ETF",
+  "provider": "iShares (BlackRock)",
+  "region": "Eurozone",
+  "replicationMethod": "physical-sampling",
+  "sfdr": "Art. 6",
+  "ter": 0.2,
+  "wkn": "A0LGQF"
+}

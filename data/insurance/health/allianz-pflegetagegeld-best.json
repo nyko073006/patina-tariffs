@@ -1,0 +1,17 @@
+{
+  "id": "allianz-pflegetagegeld-best",
+  "category": "health",
+  "subCategory": "health-care",
+  "provider": "Allianz",
+  "name": "PflegetagegeldBest",
+  "shortDescription": "Pflegetagegeld-Tarif mit IVFP-Bestnote; gestaffelte Leistung von Pflegegrad 1 bis 5 mit Dynamik-Option.",
+  "minPremium": 10,
+  "entryAge": { "min": 0, "max": 80 },
+  "features": [
+    "Gestaffelt nach Pflegegrad 1–5",
+    "Leistungsdynamik ohne erneute Gesundheitsprüfung",
+    "Assistance-Leistungen inklusive",
+    "Tagegeld auch bei ambulanter Pflege"
+  ],
+  "tags": ["pflege", "pflegezusatz", "tagegeld", "allianz"]
+}

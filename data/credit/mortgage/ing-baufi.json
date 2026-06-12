@@ -1,0 +1,19 @@
+{
+  "id": "ing-baufi",
+  "type": "mortgage",
+  "provider": "ING",
+  "name": "Baufinanzierung",
+  "minAmount": 50000,
+  "maxAmount": 1500000,
+  "minTermMonths": 60,
+  "maxTermMonths": 420,
+  "effectiveRate": { "from": 3.42, "to": 4.18 },
+  "fixationPeriodsYears": [5, 10, 15, 20],
+  "maxLtv": 80,
+  "features": [
+    "Sondertilgung bis 5% p. a. kostenfrei",
+    "Tilgungssatzwechsel 2x kostenfrei",
+    "Bereitstellungszinsfreie Zeit 6 Monate"
+  ],
+  "tags": ["baufi", "online"]
+}

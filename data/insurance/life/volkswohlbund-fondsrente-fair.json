@@ -1,0 +1,42 @@
+{
+  "id": "volkswohlbund-fondsrente-fair",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "Volkswohl Bund",
+  "name": "FondsRente FAIR",
+  "shortDescription": "Fondsgebundene Rentenversicherung der Volkswohl Bund mit fairem Kostenkonzept (kein Stornoabzug bei Beitragsfreistellung) und solider Fondsauswahl.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "features": [
+    "FAIR-Kostenkonzept ohne Stornoabzug",
+    "70 Fonds inkl. 25 ETFs",
+    "Volle Beitragsrückgewähr im Todesfall vor Rentenbeginn",
+    "Zuzahlungen und Entnahmen flexibel"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "fair"
+  ],
+  "costStructure": {
+    "abschlusskosten": 4,
+    "jaehrlicheKosten": 6.9,
+    "verwaltungskosten": 0.28,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 2,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 8,
+    "zillmerdauer": 45
+  },
+  "currentAnnuityFactor": 25.55
+}

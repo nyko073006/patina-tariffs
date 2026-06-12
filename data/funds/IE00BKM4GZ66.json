@@ -1,0 +1,17 @@
+{
+  "assetClass": "equity",
+  "currency": "USD",
+  "distribution": "accumulating",
+  "domicile": "IE",
+  "fundType": "etf",
+  "inception": "2014-05-30",
+  "index": "MSCI EM IMI",
+  "isin": "IE00BKM4GZ66",
+  "name": "iShares Core MSCI Emerging Markets IMI UCITS ETF (Acc)",
+  "provider": "iShares (BlackRock)",
+  "region": "Emerging Markets",
+  "replicationMethod": "physical-sampling",
+  "sfdr": "Art. 6",
+  "ter": 0.18,
+  "wkn": "A111X9"
+}

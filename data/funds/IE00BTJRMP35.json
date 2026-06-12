@@ -1,0 +1,17 @@
+{
+  "assetClass": "equity",
+  "currency": "USD",
+  "distribution": "accumulating",
+  "domicile": "IE",
+  "fundType": "etf",
+  "inception": "2014-12-08",
+  "index": "MSCI Emerging Markets",
+  "isin": "IE00BTJRMP35",
+  "name": "Xtrackers MSCI Emerging Markets UCITS ETF 1C",
+  "provider": "Xtrackers (DWS)",
+  "region": "Emerging Markets",
+  "replicationMethod": "physical-sampling",
+  "sfdr": "Art. 6",
+  "ter": 0.18,
+  "wkn": "A12CCQ"
+}

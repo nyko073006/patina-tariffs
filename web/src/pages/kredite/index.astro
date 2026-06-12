@@ -1,0 +1,99 @@
+---
+import Base from "../../layouts/Base.astro";
+import { credit, CREDIT_TYPE_LABELS, formatEur, formatPercent } from "../../lib/data";
+
+const types = [...new Set(credit.map((c) => c.type))];
+---
+<Base title="Kredite">
+  <section class="mx-auto max-w-7xl px-4 pt-8 pb-6">
+    <div class="flex items-end justify-between gap-4 flex-wrap">
+      <div>
+        <h1 class="text-2xl font-semibold tracking-tight">Kredite</h1>
+        <p class="text-sm text-ink-500 mt-1">
+          <span id="result-count">{credit.length}</span> von {credit.length} Kreditprodukten
+        </p>
+      </div>
+      <input id="q" type="search" placeholder="Anbieter, Produktname …" class="input w-80" autocomplete="off" />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-6">
+    <aside class="card p-4 h-fit lg:sticky lg:top-20">
+      <h2 class="font-semibold text-sm">Filter</h2>
+      <div class="mt-4">
+        <div class="label mb-1">Kreditart</div>
+        {types.map((t) => (
+          <label class="flex items-center gap-2 py-0.5 text-sm">
+            <input type="checkbox" class="filter" data-key="type" value={t} />
+            <span>{CREDIT_TYPE_LABELS[t]}</span>
+          </label>
+        ))}
+      </div>
+    </aside>
+
+    <div class="card overflow-hidden">
+      <table class="w-full text-sm">
+        <thead class="bg-ink-50 text-left text-ink-600">
+          <tr>
+            <th class="px-3 py-2">Produkt</th>
+            <th class="px-3 py-2">Anbieter</th>
+            <th class="px-3 py-2">Art</th>
+            <th class="px-3 py-2 text-right">Eff. Zins p. a.</th>
+            <th class="px-3 py-2 text-right">Summe</th>
+            <th class="px-3 py-2 text-right">Laufzeit</th>
+          </tr>
+        </thead>
+        <tbody id="rows">
+          {credit.map((c) => (
+            <tr class="credit-row border-t border-ink-100 hover:bg-ink-50"
+                data-name={c.name.toLowerCase()}
+                data-provider={c.provider.toLowerCase()}
+                data-type={c.type}>
+              <td class="px-3 py-2"><a href={`/kredite/${c.id}/`} class="font-medium">{c.name}</a></td>
+              <td class="px-3 py-2 text-ink-700">{c.provider}</td>
+              <td class="px-3 py-2"><span class="chip">{CREDIT_TYPE_LABELS[c.type]}</span></td>
+              <td class="px-3 py-2 text-right tabular-nums">
+                {c.effectiveRate ? `${formatPercent(c.effectiveRate.from ?? 0)} – ${formatPercent(c.effectiveRate.to ?? 0)}` : "—"}
+              </td>
+              <td class="px-3 py-2 text-right tabular-nums">
+                {c.minAmount !== undefined && c.maxAmount !== undefined ? `${formatEur(c.minAmount)} – ${formatEur(c.maxAmount)}` : "—"}
+              </td>
+              <td class="px-3 py-2 text-right tabular-nums">
+                {c.minTermMonths && c.maxTermMonths ? `${c.minTermMonths}–${c.maxTermMonths} Mon.` : "—"}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const rows = Array.from(document.querySelectorAll<HTMLTableRowElement>(".credit-row"));
+  const q = document.getElementById("q") as HTMLInputElement;
+  const filters = Array.from(document.querySelectorAll<HTMLInputElement>(".filter"));
+  const count = document.getElementById("result-count")!;
+  function apply() {
+    const query = q.value.trim().toLowerCase();
+    const groups: Record<string, string[]> = {};
+    for (const f of filters) if (f.checked) (groups[f.dataset.key!] ||= []).push(f.value);
+    let visible = 0;
+    for (const r of rows) {
+      let show = true;
+      if (query) {
+        const hay = `${r.dataset.name} ${r.dataset.provider}`;
+        if (!hay.includes(query)) show = false;
+      }
+      if (show) for (const [k, vals] of Object.entries(groups)) {
+        if (!vals.includes(r.dataset[k as keyof DOMStringMap] as string)) { show = false; break; }
+      }
+      r.classList.toggle("hidden", !show);
+      if (show) visible++;
+    }
+    count.textContent = String(visible);
+  }
+  q.addEventListener("input", apply);
+  filters.forEach((f) => f.addEventListener("change", apply));
+  apply();
+</script>

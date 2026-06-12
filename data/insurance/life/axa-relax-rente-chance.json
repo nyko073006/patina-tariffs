@@ -1,0 +1,42 @@
+{
+  "id": "axa-relax-rente-chance",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "AXA",
+  "name": "Relax Rente Chance",
+  "shortDescription": "Fondsgebundene Rentenversicherung der AXA ohne Garantie mit breiter ETF- und Fondsauswahl sowie flexiblen Entnahmen in der Rentenphase.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 80
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "guaranteedAnnuityFactor": 20.41,
+  "features": [
+    "Über 90 Fonds inkl. 30 ETFs",
+    "Auch in Rentenphase Entnahmen möglich",
+    "Nachhaltige Portfolio-Optionen",
+    "Hinterbliebenenschutz optional"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 9.5,
+    "verwaltungskosten": 0.2496,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 2.5,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100
+  },
+  "currentAnnuityFactor": 24.02
+}

@@ -1,0 +1,18 @@
+{
+  "id": "hiscox-cyberclear",
+  "category": "cyber",
+  "subCategory": "cyber-business",
+  "provider": "Hiscox",
+  "name": "CyberClear",
+  "shortDescription": "Cyberversicherung für KMU mit Datenwiederherstellung, Betriebsunterbrechungs- und Lösegelddeckung sowie 24/7-Krisenmanagement.",
+  "minPremium": 30,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "Datenwiederherstellung und IT-Forensik",
+    "Betriebsunterbrechungsschaden",
+    "DSGVO-Bußgeld-Deckung (soweit zulässig)",
+    "Lösegeldzahlungen bei Ransomware",
+    "24/7 Cyber-Incident-Hotline"
+  ],
+  "tags": ["cyber", "kmu", "ransomware", "dsgvo"]
+}

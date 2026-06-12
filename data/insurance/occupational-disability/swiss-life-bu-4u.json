@@ -1,0 +1,18 @@
+{
+  "id": "swiss-life-bu-4u",
+  "category": "occupational-disability",
+  "subCategory": "disability-classic",
+  "provider": "Swiss Life",
+  "name": "BU 4U / BU 4U plus (Tarif 122)",
+  "shortDescription": "BU-Spezialtarif für Schüler, Auszubildende und Studenten mit jungen Einstiegsbeiträgen und automatischer Anpassung an den späteren Beruf.",
+  "minPremium": 15,
+  "entryAge": { "min": 10, "max": 30 },
+  "term": { "min": 5, "max": 57 },
+  "features": [
+    "Eintritt bereits ab 10 Jahren (Schüler)",
+    "Günstige Schüler-/Studententarife",
+    "Berufswechsel-Garantie bis 30",
+    "Verzicht auf abstrakte Verweisung"
+  ],
+  "tags": ["bu", "schueler", "studenten", "azubi", "swiss-life"]
+}

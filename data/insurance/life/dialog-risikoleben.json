@@ -1,0 +1,19 @@
+{
+  "id": "dialog-risikoleben",
+  "category": "life",
+  "subCategory": "term",
+  "productLines": ["klassisch"],
+  "provider": "Dialog",
+  "name": "Risikolebensversicherung RISK-vario",
+  "shortDescription": "Risikolebensversicherung der Allianz-Tochter Dialog mit fallender, konstanter oder verlängerbarer Versicherungssumme und Top-Bewertungen in unabhängigen Tests.",
+  "minPremium": 4,
+  "entryAge": { "min": 15, "max": 75 },
+  "term": { "min": 1, "max": 50 },
+  "features": [
+    "Konstante / linear fallende / annuitätisch fallende Versicherungssumme",
+    "Verlängerungsoption ohne Gesundheitsprüfung",
+    "Vorzeitige Todesfallleistung bei schweren Erkrankungen",
+    "Über-Kreuz-Versicherung für Paare"
+  ],
+  "tags": ["risikoleben", "hinterbliebenenschutz", "allianz-konzern"]
+}

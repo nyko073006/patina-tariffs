@@ -1,0 +1,42 @@
+{
+  "id": "continentale-easy-rente-invest",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "Continentale",
+  "name": "EasyRente Invest (RI)",
+  "shortDescription": "Fondsgebundene Rentenversicherung der Continentale mit übersichtlicher Fondsauswahl und solidem Garantieniveau für den Mittelmarkt.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 70
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "guaranteedAnnuityFactor": 21.77,
+  "features": [
+    "50 Fonds inkl. 15 ETFs",
+    "Beitragsgarantie wählbar",
+    "Hinterbliebenenrente optional",
+    "Zuzahlungen und Entnahmen flexibel"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 15.63,
+    "verwaltungskosten": 0,
+    "zuzahlungAbschlusskosten": 4,
+    "vertriebswegEinmalprozent": 5.5,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100
+  },
+  "currentAnnuityFactor": 27.9
+}

@@ -1,0 +1,18 @@
+{
+  "id": "volkswohlbund-sbu",
+  "category": "occupational-disability",
+  "subCategory": "disability-classic",
+  "provider": "Volkswohl Bund",
+  "name": "SBU 2026",
+  "shortDescription": "Selbständige Berufsunfähigkeitsversicherung mit umfassendem Bedingungswerk und Verzicht auf abstrakte Verweisung.",
+  "minPremium": 20,
+  "entryAge": { "min": 15, "max": 55 },
+  "term": { "min": 5, "max": 52 },
+  "features": [
+    "Verzicht auf abstrakte Verweisung",
+    "6-Monats-Prognose",
+    "Beitragsdynamik bis 5%",
+    "Nachversicherungsgarantie ohne erneute Gesundheitsprüfung"
+  ],
+  "tags": ["bu", "selbstständig"]
+}

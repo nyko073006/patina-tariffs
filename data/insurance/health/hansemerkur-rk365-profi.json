@@ -1,0 +1,18 @@
+{
+  "id": "hansemerkur-rk365-profi",
+  "category": "health",
+  "subCategory": "health-travel",
+  "provider": "HanseMerkur",
+  "name": "RK 365 Profi (Auslandsreise-Krankenversicherung)",
+  "shortDescription": "Jahres-Auslandsreise-Krankenversicherung mit 100 % Erstattung ambulanter und stationärer Behandlung; Finanztest-Note 0,9 (sehr gut).",
+  "minPremium": 1,
+  "entryAge": { "min": 0, "max": 99 },
+  "features": [
+    "Reisedauer bis 65 Tage je Auslandsreise",
+    "100 % Erstattung ambulanter, stationärer und zahnärztlicher Behandlung",
+    "Krankenrücktransport medizinisch sinnvoll (nicht nur notwendig)",
+    "Keine Selbstbeteiligung",
+    "Einzel- und Familientarif"
+  ],
+  "tags": ["reise", "ausland", "krankenzusatz"]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "vkb-pflegeprivat-premium-plus",
+  "category": "health",
+  "subCategory": "health-care",
+  "provider": "Versicherungskammer Bayern",
+  "name": "PflegePRIVAT Premium Plus",
+  "shortDescription": "Pflegetagegeldversicherung mit Bestnote 1,4; volle Leistung bereits ab Pflegegrad 2 und garantierter Beitragsstabilität durch Beitragsrückerstattung.",
+  "minPremium": 15,
+  "entryAge": { "min": 0, "max": 75 },
+  "features": [
+    "Volle Leistung ab Pflegegrad 2",
+    "Beitragsrückerstattung bei Leistungsfreiheit",
+    "Garantierte Mindestleistung",
+    "Assistance-Service inkl. Pflegeberatung"
+  ],
+  "tags": ["pflege", "pflegezusatz", "tagegeld"]
+}

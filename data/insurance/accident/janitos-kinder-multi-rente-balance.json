@@ -1,0 +1,18 @@
+{
+  "id": "janitos-kinder-multi-rente-balance",
+  "category": "accident",
+  "subCategory": "accident-children",
+  "provider": "Janitos",
+  "name": "Kinder Multi Rente Balance",
+  "shortDescription": "Kombiprodukt aus Unfall-, Grundfähigkeits- und Schwere-Krankheiten-Rente speziell für Kinder mit lebenslanger Rentenleistung.",
+  "minPremium": 25,
+  "entryAge": { "min": 0, "max": 15 },
+  "term": { "min": 5, "max": 30 },
+  "features": [
+    "Unfall + Grundfähigkeit + Schwere Krankheiten kombiniert",
+    "Lebenslange Rente bei Leistungsfall",
+    "Beitragsbefreiung bei Tod der Eltern",
+    "Wechsel in BU-Vertrag im jungen Erwachsenenalter"
+  ],
+  "tags": ["kinder", "multi-rente", "vorsorge", "janitos"]
+}

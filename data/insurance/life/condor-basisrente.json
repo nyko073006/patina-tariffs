@@ -1,0 +1,45 @@
+{
+  "id": "condor-basisrente",
+  "category": "life",
+  "subCategory": "pension-ruerup",
+  "productLines": [
+    "ruerup",
+    "fondsgebunden"
+  ],
+  "taxFavored": true,
+  "provider": "Condor",
+  "name": "C-Quadrat Basisrente",
+  "shortDescription": "Rürup-Basisrente der Condor mit besonders hohem garantiertem Rentenfaktor (29,11 EUR / 10.000 EUR).",
+  "minPremium": 50,
+  "entryAge": {
+    "min": 16,
+    "max": 65
+  },
+  "term": {
+    "min": 12,
+    "max": 67
+  },
+  "guaranteedAnnuityFactor": 29.11,
+  "currentAnnuityFactor": 29.11,
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 8,
+    "verwaltungskosten": 0.4,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 3,
+    "verrentungskosten": 0.015,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100
+  },
+  "features": [
+    "Sonderausgabenabzug nach § 10 EStG (94 % in 2026)",
+    "Garantierter Rentenfaktor: 29,11 EUR / 10.000 EUR",
+    "Aktueller Rentenfaktor: 29,11 EUR / 10.000 EUR",
+    "Lebenslange Rente garantiert"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "ruerup",
+    "fonder-vergleich"
+  ]
+}

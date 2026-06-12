@@ -1,0 +1,20 @@
+{
+  "id": "dws-top-rente",
+  "category": "life",
+  "subCategory": "pension-riester",
+  "productLines": ["riester", "fondsgebunden"],
+  "taxFavored": true,
+  "provider": "DWS",
+  "name": "TopRente Dynamik",
+  "shortDescription": "Fondsgebundene Riester-Rente mit dynamischer Umschichtung zwischen Aktien- und Rentenfonds.",
+  "minPremium": 5,
+  "entryAge": { "min": 16, "max": 60 },
+  "term": { "min": 12, "max": 67 },
+  "features": [
+    "Beitragsgarantie zu Rentenbeginn",
+    "Dynamische Umschichtung Aktien ↔ Renten",
+    "Zulagen + Sonderausgabenabzug",
+    "Kapitalentnahme bis 30%"
+  ],
+  "tags": ["altersvorsorge", "riester", "fondsgebunden"]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "generali-hausrat",
+  "category": "property",
+  "subCategory": "property-home",
+  "provider": "Generali",
+  "name": "DomusClassic Hausrat",
+  "shortDescription": "Hausratversicherung inkl. Fahrraddiebstahl, grober Fahrlässigkeit und optionalem Elementarschadenschutz.",
+  "minPremium": 5,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "Elementarschadenschutz optional",
+    "Fahrraddiebstahl bis 5% der Versicherungssumme",
+    "Grobe Fahrlässigkeit bis 100% Versicherungssumme",
+    "Glasbruch optional"
+  ],
+  "tags": ["hausrat", "sach"]
+}

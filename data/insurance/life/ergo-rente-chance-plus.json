@@ -1,0 +1,47 @@
+{
+  "id": "ergo-rente-chance-plus",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
+  "provider": "ERGO",
+  "name": "Rente Chance Plus",
+  "shortDescription": "Hybride fondsgebundene Rentenversicherung der ERGO mit Wahl zwischen Garantieniveau und Renditechance sowie integrierter Vermögensverwaltung.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "guaranteedAnnuityFactor": 24.1,
+  "features": [
+    "Beitragsgarantie wählbar 0–100 %",
+    "60 Fonds inkl. 20 ETFs",
+    "Integrierte Vermögensverwaltungs-Portfolios",
+    "Zuzahlungen jederzeit möglich"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "hybrid"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 6.2,
+    "verwaltungskosten": 0.36,
+    "zuzahlungAbschlusskosten": 4,
+    "vertriebswegEinmalprozent": 1.5,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 35,
+    "vertriebswegLaufendprozent": 0.48,
+    "verwaltungskostenMaxProzent": 1.5,
+    "beitragsfreistellungKostenAbsolut": 12
+  },
+  "currentAnnuityFactor": 28.84
+}

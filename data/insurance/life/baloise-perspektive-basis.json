@@ -1,0 +1,46 @@
+{
+  "id": "baloise-perspektive-basis",
+  "category": "life",
+  "subCategory": "pension-ruerup",
+  "productLines": [
+    "ruerup",
+    "fondsgebunden"
+  ],
+  "taxFavored": true,
+  "provider": "Baloise",
+  "name": "Perspektive Basis (Rürup)",
+  "shortDescription": "Rürup-Basisrente der Baloise mit hybrider Anlage, kurzer Zillmerung (40 Jahre) und solidem garantiertem Rentenfaktor.",
+  "minPremium": 50,
+  "entryAge": {
+    "min": 16,
+    "max": 65
+  },
+  "term": {
+    "min": 12,
+    "max": 67
+  },
+  "guaranteedAnnuityFactor": 27.02,
+  "currentAnnuityFactor": 28.7,
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 9.9,
+    "verwaltungskosten": 0.3,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 2.5,
+    "verrentungskosten": 0.015,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 40,
+    "stueckkosten": 12
+  },
+  "features": [
+    "Sonderausgabenabzug nach § 10 EStG (94 % in 2026)",
+    "Garantierter Rentenfaktor: 27,02 EUR / 10.000 EUR",
+    "Aktueller Rentenfaktor: 28,70 EUR / 10.000 EUR",
+    "Lebenslange Rente garantiert"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "ruerup",
+    "fonder-vergleich"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "signal-iduna-privatrente",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "Signal Iduna",
+  "name": "FondsRente Privat",
+  "shortDescription": "Fondsgebundene Privatrente der Signal Iduna mit kurzer Zillmerung (40 Jahre) und identischem Rentenfaktor garantiert/aktuell (23,69).",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "fonder-vergleich"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 9.5,
+    "verwaltungskosten": 0.3,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 2.2,
+    "verrentungskosten": 1.25,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 40
+  },
+  "guaranteedAnnuityFactor": 23.69,
+  "currentAnnuityFactor": 23.69,
+  "features": [
+    "Garantierter Rentenfaktor: 23,69 EUR / 10.000 EUR",
+    "Lebenslange Rente garantiert",
+    "Zuzahlungen und Entnahmen flexibel"
+  ]
+}

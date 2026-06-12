@@ -1,0 +1,46 @@
+{
+  "id": "helvetia-clevesto-allcase",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
+  "provider": "Helvetia",
+  "name": "CleVesto Allcase",
+  "shortDescription": "Hybride fondsgebundene Rentenversicherung mit wählbarer Beitragsgarantie und Sondertarif-Variante für Honorarberatung verfügbar.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "guaranteedAnnuityFactor": 19.75,
+  "features": [
+    "Beitragsgarantie wählbar",
+    "60 Fonds inkl. 20 ETFs",
+    "Sondertarif P als Nettopolice verfügbar",
+    "Nachhaltigkeitsoption"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "hybrid",
+    "nettopolice"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 22.3,
+    "verwaltungskosten": 0.84,
+    "zuzahlungAbschlusskosten": 4,
+    "vertriebswegEinmalprozent": 3,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 40,
+    "stueckkosten": 36
+  },
+  "currentAnnuityFactor": 26.52
+}

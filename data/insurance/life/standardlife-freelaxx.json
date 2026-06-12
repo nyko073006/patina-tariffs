@@ -1,0 +1,43 @@
+{
+  "id": "standardlife-freelaxx",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "Standard Life",
+  "name": "FreelaxX",
+  "shortDescription": "Fondsgebundene Rentenversicherung mit Schwerpunkt Vermögensverwaltung; sehr breite Fonds- und ETF-Auswahl und MyFolio-Portfolios.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 85
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "guaranteedAnnuityFactor": 20.73,
+  "features": [
+    "Über 130 Fonds inkl. 30 ETFs",
+    "MyFolio-Vermögensverwaltungsportfolios",
+    "Zuzahlungen und Entnahmen flexibel",
+    "Internationale Anlagestrategien"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "vermoegensverwaltung"
+  ],
+  "costStructure": {
+    "abschlusskosten": 7,
+    "jaehrlicheKosten": 1,
+    "verwaltungskosten": 0.65,
+    "zuzahlungAbschlusskosten": 5,
+    "vertriebswegEinmalprozent": 0,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100
+  },
+  "currentAnnuityFactor": 24.34
+}

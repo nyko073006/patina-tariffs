@@ -1,0 +1,17 @@
+{
+  "assetClass": "equity",
+  "currency": "USD",
+  "distribution": "accumulating",
+  "domicile": "IE",
+  "fundType": "etf",
+  "inception": "2019-07-23",
+  "index": "FTSE All-World",
+  "isin": "IE00BK5BQT80",
+  "name": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+  "provider": "Vanguard",
+  "region": "World (Dev. + EM)",
+  "replicationMethod": "physical-sampling",
+  "sfdr": "Art. 6",
+  "ter": 0.22,
+  "wkn": "A2PKXG"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "huk24-hausrat",
+  "category": "property",
+  "subCategory": "property-home",
+  "provider": "HUK24",
+  "name": "Hausratversicherung Klassik",
+  "shortDescription": "Günstige Direkt-Hausratversicherung mit Neuwerterstattung, Fahrraddiebstahl- und Elementarbaustein sowie grober Fahrlässigkeit bis Versicherungssumme.",
+  "minPremium": 5,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "Neuwerterstattung für Hausrat",
+    "Fahrraddiebstahl optional bis 5 % der VS",
+    "Elementarschäden zubuchbar",
+    "Grobe Fahrlässigkeit bis 100 % Versicherungssumme",
+    "Außenversicherung weltweit 12 Monate"
+  ],
+  "tags": ["hausrat", "sach", "direkt"]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "uelzener-hundehaftpflicht",
+  "category": "liability",
+  "subCategory": "liability-pet",
+  "provider": "Uelzener",
+  "name": "Hundehaftpflicht Premium",
+  "shortDescription": "Hundehaftpflicht des Tier-Spezialversicherers Uelzener mit 15 Mio. EUR Deckung und Welpenschutz; auch für Listenhunde verfügbar.",
+  "minPremium": 7,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "Deckung bis 15 Mio. EUR",
+    "Welpen mitversichert bis 12. Monat",
+    "Listenhunde-Tarife verfügbar",
+    "Auslandsdeckung weltweit bis 5 Jahre"
+  ],
+  "tags": ["hundehaftpflicht", "tierhalter", "listenhunde"]
+}

@@ -1,0 +1,35 @@
+---
+import { bundle } from "../lib/data";
+
+const links = [
+  { href: "/", label: "Übersicht" },
+  { href: "/fonds/", label: "Fonds & ETFs" },
+  { href: "/tarife/", label: "Versicherungstarife" },
+  { href: "/kredite/", label: "Kredite" },
+  { href: "/vergleich/", label: "Vergleich" },
+];
+
+const path = Astro.url.pathname;
+---
+<header class="border-b border-ink-200 bg-white sticky top-0 z-30">
+  <div class="mx-auto max-w-7xl px-4 py-3 flex items-center gap-6">
+    <a href="/" class="flex items-center gap-2 no-underline text-ink-900 hover:no-underline">
+      <span class="inline-block h-7 w-7 rounded-md bg-accent-500"></span>
+      <span class="font-semibold tracking-tight">Patina Tariffs</span>
+      <span class="chip ml-1">Beta</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-1 text-sm">
+      {links.map((l) => {
+        const active = l.href === "/" ? path === "/" : path.startsWith(l.href);
+        return (
+          <a href={l.href} class={`px-3 py-1.5 rounded-md no-underline ${active ? "bg-ink-100 text-ink-900" : "text-ink-600 hover:text-ink-900 hover:bg-ink-50"}`}>
+            {l.label}
+          </a>
+        );
+      })}
+    </nav>
+    <div class="ml-auto text-xs text-ink-500 hidden sm:block">
+      Stand: {new Date(bundle.updatedAt).toLocaleDateString("de-DE")}
+    </div>
+  </div>
+</header>
