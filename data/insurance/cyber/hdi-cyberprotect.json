@@ -1,0 +1,17 @@
+{
+  "id": "hdi-cyberprotect",
+  "category": "cyber",
+  "subCategory": "cyber-business",
+  "provider": "HDI",
+  "name": "CyberProtect",
+  "shortDescription": "Modulare Cyberversicherung für Firmenkunden mit 24/7-Notfall-Hotline, IT-Forensik und Schadensbeseitigungs-Teams.",
+  "minPremium": 25,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "24/7 Notfall-Hotline",
+    "IT-Forensik und Sanierung",
+    "Ertragsausfallschutz",
+    "Vertrauensschadenbaustein optional"
+  ],
+  "tags": ["cyber", "firmenkunden", "it-forensik"]
+}

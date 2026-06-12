@@ -1,0 +1,44 @@
+{
+  "id": "stuttgarter-alpha-plus",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
+  "provider": "Stuttgarter",
+  "name": "alpha+",
+  "shortDescription": "Hybride fondsgebundene Rentenversicherung der Stuttgarter mit Garantie-Mechanismus und ausgewogenem Verhältnis aus Sicherheit und Renditechance.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "features": [
+    "Beitragsgarantie wählbar bis 100 %",
+    "Hybrid-Modell mit Sicherungsvermögen + Fonds",
+    "60 Fonds inkl. 25 ETFs",
+    "GrüneRente als Nachhaltigkeitsoption"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "hybrid",
+    "garantie"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 4,
+    "verwaltungskosten": 0.3,
+    "zuzahlungAbschlusskosten": 4,
+    "vertriebswegEinmalprozent": 1.5,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100,
+    "alpha2Kosten": 5
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "janitos-unfallschutz",
+  "category": "accident",
+  "subCategory": "accident-disability",
+  "provider": "Janitos",
+  "name": "Unfallschutz Premium",
+  "shortDescription": "Private Unfallversicherung mit progressiver Invaliditätsstaffel und erweitertem Unfallbegriff (Eigenbewegung, Vergiftungen).",
+  "minPremium": 8,
+  "entryAge": { "min": 0, "max": 75 },
+  "features": [
+    "Progressive Invaliditätsstaffel 500%",
+    "Erweiterter Unfallbegriff (Eigenbewegung, Vergiftung)",
+    "Bergungskosten bis 50.000 EUR",
+    "Reha-Beihilfe und Krankenhaustagegeld"
+  ],
+  "tags": ["unfall", "invalidität"]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "lv1871-basisrente-netto",
+  "category": "life",
+  "subCategory": "pension-ruerup",
+  "productLines": [
+    "ruerup",
+    "fondsgebunden"
+  ],
+  "taxFavored": true,
+  "provider": "LV 1871",
+  "name": "Mein Plan Basis (Nettotarif)",
+  "shortDescription": "Provisionsfreie Nettopolice der LV 1871 mit deutlich reduzierten Effektivkosten – konzipiert für Honorarberatung.",
+  "minPremium": 50,
+  "entryAge": {
+    "min": 16,
+    "max": 65
+  },
+  "term": {
+    "min": 12,
+    "max": 67
+  },
+  "guaranteedAnnuityFactor": 26.33,
+  "currentAnnuityFactor": 28.47,
+  "costStructure": {
+    "abschlusskosten": 2.1,
+    "jaehrlicheKosten": 3.4,
+    "verwaltungskosten": 0.22,
+    "zuzahlungAbschlusskosten": 0,
+    "vertriebswegEinmalprozent": 0.5,
+    "verrentungskosten": 0.015,
+    "abschlusskostenVerteilungsdauer": 1,
+    "zillmerdauer": 100,
+    "verwaltungskostenMinAbsolut": 30
+  },
+  "features": [
+    "Sonderausgabenabzug nach § 10 EStG (94 % in 2026)",
+    "Garantierter Rentenfaktor: 26,33 EUR / 10.000 EUR",
+    "Aktueller Rentenfaktor: 28,47 EUR / 10.000 EUR",
+    "Lebenslange Rente garantiert"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "ruerup",
+    "nettopolice",
+    "honorarberatung",
+    "fonder-vergleich"
+  ]
+}

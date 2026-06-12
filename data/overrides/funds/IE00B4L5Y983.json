@@ -1,0 +1,13 @@
+{
+  "isin": "IE00B4L5Y983",
+  "tags": ["empfehlung", "kern-position", "world"],
+  "notes": "Standard-Kernposition für Welt-Exposure, thesaurierend.",
+  "tecisFlags": {
+    "vermittelbar": true,
+    "kernEmpfehlung": true,
+    "sparplanFaehig": true,
+    "fondsgebundeneLvAuswahl": true
+  },
+  "lastReviewedAt": "2026-05-20",
+  "reviewedBy": "niklas"
+}

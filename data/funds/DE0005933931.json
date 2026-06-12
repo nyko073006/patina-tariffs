@@ -1,0 +1,17 @@
+{
+  "assetClass": "equity",
+  "currency": "EUR",
+  "distribution": "distributing",
+  "domicile": "DE",
+  "fundType": "etf",
+  "inception": "2001-01-03",
+  "index": "DAX",
+  "isin": "DE0005933931",
+  "name": "iShares Core DAX UCITS ETF (DE)",
+  "provider": "iShares (BlackRock)",
+  "region": "Deutschland",
+  "replicationMethod": "physical-full",
+  "sfdr": "Art. 6",
+  "ter": 0.16,
+  "wkn": "593393"
+}

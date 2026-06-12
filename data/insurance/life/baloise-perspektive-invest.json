@@ -1,0 +1,44 @@
+{
+  "id": "baloise-perspektive-invest",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
+  "provider": "Baloise",
+  "name": "Perspektive Invest",
+  "shortDescription": "Hybride fondsgebundene Rentenversicherung der Baloise mit wählbarem Garantieniveau und ESG-Fokus in der Fondsauswahl.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "features": [
+    "Beitragsgarantie wählbar 0–100 %",
+    "60 Fonds inkl. 20 ETFs",
+    "Starker ESG-Fokus",
+    "Zuzahlungen und Entnahmen flexibel"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "hybrid",
+    "esg"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 9.5,
+    "verwaltungskosten": 0.3,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 2.5,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 40,
+    "verwaltungskostenMaxProzent": 1.5
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "universa-topinvest",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "Universa",
+  "name": "topinvest",
+  "shortDescription": "Fondsgebundene Rentenversicherung der Universa mit übersichtlicher Fondsauswahl und solider Hochrechnung in der konservativen Mittelschicht.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 70
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "guaranteedAnnuityFactor": 32.64,
+  "features": [
+    "50 Fonds inkl. 15 ETFs",
+    "Solide Universa-Hochrechnung",
+    "Beitragsgarantie wählbar",
+    "Hinterbliebenenschutz optional"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 9.2,
+    "verwaltungskosten": 0.25,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 5.5,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100
+  },
+  "currentAnnuityFactor": 33.88
+}

@@ -1,0 +1,17 @@
+{
+  "id": "huk-coburg-privathaftpflicht",
+  "category": "liability",
+  "subCategory": "liability-private",
+  "provider": "HUK-COBURG",
+  "name": "Privathaftpflicht Klassik",
+  "shortDescription": "Privathaftpflichtversicherung mit Forderungsausfall, Schlüsselverlust und Schäden zwischen Familienmitgliedern.",
+  "minPremium": 4,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "Deckungssumme 15 Mio. EUR pauschal",
+    "Forderungsausfalldeckung",
+    "Schäden zwischen Familienmitgliedern mitversichert",
+    "Schlüsselverlust bis 100.000 EUR"
+  ],
+  "tags": ["haftpflicht", "privat"]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "arag-aktiv-rechtsschutz",
+  "category": "legal",
+  "subCategory": "legal-combined",
+  "provider": "ARAG",
+  "name": "Aktiv-Rechtsschutz",
+  "shortDescription": "Kombinierter Rechtsschutz für Privat, Beruf, Verkehr und Wohnen mit Online-Anwaltsservice und Mediation.",
+  "minPremium": 20,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "Privat, Beruf, Verkehr und Wohnen kombiniert",
+    "Online-Anwaltsservice inklusive",
+    "Mediation als Alternative zum Prozess",
+    "Versicherungssumme unbegrenzt"
+  ],
+  "tags": ["rechtsschutz", "kombi"]
+}

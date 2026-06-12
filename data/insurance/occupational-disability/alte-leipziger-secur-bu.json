@@ -1,0 +1,19 @@
+{
+  "id": "alte-leipziger-secur-bu",
+  "category": "occupational-disability",
+  "subCategory": "disability-classic",
+  "provider": "Alte Leipziger",
+  "name": "SecurAL BU",
+  "shortDescription": "Selbständige Berufsunfähigkeitsversicherung mit Verzicht auf abstrakte Verweisung und 6-Monats-Prognose.",
+  "minPremium": 25,
+  "entryAge": { "min": 15, "max": 55 },
+  "term": { "min": 5, "max": 52 },
+  "features": [
+    "Verzicht auf abstrakte Verweisung",
+    "6-Monats-Prognose",
+    "Beitragsdynamik optional",
+    "Nachversicherungsgarantie"
+  ],
+  "ratings": ["fb-bu-alte-leipziger-2025"],
+  "tags": ["bu", "selbstständig", "akademiker"]
+}

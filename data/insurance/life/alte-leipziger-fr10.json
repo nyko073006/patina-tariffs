@@ -1,0 +1,44 @@
+{
+  "id": "alte-leipziger-fr10",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "Alte Leipziger",
+  "name": "FondsRente FR10",
+  "shortDescription": "Reine fondsgebundene Rentenversicherung ohne Beitragsgarantie für maximale Renditechance mit großer Fondsauswahl.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "guaranteedAnnuityFactor": 25.46,
+  "features": [
+    "Keine Beitragsgarantie – volle Fondsquote",
+    "Über 80 Fonds inkl. 25 ETFs",
+    "Zuzahlungen ab 50 EUR",
+    "12 freie Fondswechsel p. a."
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.495,
+    "jaehrlicheKosten": 6.3,
+    "verwaltungskosten": 0.24,
+    "zuzahlungAbschlusskosten": 4,
+    "vertriebswegEinmalprozent": 1,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 45,
+    "alpha2Kosten": 2,
+    "stueckkosten": 24
+  },
+  "currentAnnuityFactor": 26.8
+}

@@ -1,0 +1,18 @@
+{
+  "id": "haftpflichtkasse-einfach-komplett",
+  "category": "liability",
+  "subCategory": "liability-private",
+  "provider": "Haftpflichtkasse",
+  "name": "Einfach Komplett",
+  "shortDescription": "Privathaftpflicht mit Best-Leistungs-Garantie und 50 Mio. EUR Deckungssumme.",
+  "minPremium": 6,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "50 Mio. EUR Deckungssumme",
+    "Best-Leistungs-Garantie",
+    "Schlüsselverlust bis 500.000 EUR",
+    "Forderungsausfalldeckung",
+    "Gefälligkeitsschäden bis 50.000 EUR"
+  ],
+  "tags": ["haftpflicht", "privat", "best-leistung"]
+}

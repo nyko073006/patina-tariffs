@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://patina-tariffs.example/schemas/fund-override.schema.json",
+  "title": "FundOverride",
+  "description": "Manuelle Anreicherung eines synchronisierten Fonds. Felder gewinnen beim Build gegenüber den Sync-Daten; tags werden mit Sync-Tags gemerged.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["isin"],
+  "properties": {
+    "isin": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}[A-Z0-9]{9}[0-9]$"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "notes": { "type": "string", "maxLength": 2000 },
+    "tecisFlags": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vermittelbar": { "type": "boolean", "description": "Wird über tecis aktiv vermittelt" },
+        "kernEmpfehlung": { "type": "boolean", "description": "Teil der tecis-Kernempfehlungsliste" },
+        "sparplanFaehig": { "type": "boolean" },
+        "riesterFondsAuswahl": { "type": "boolean", "description": "Teil eines tecis-Riester-Produkts" },
+        "ruerupFondsAuswahl": { "type": "boolean" },
+        "fondsgebundeneLvAuswahl": { "type": "boolean", "description": "Auswählbar in fondsgebundener LV / Rente" }
+      }
+    },
+    "lastReviewedAt": { "type": "string", "format": "date" },
+    "reviewedBy": { "type": "string" }
+  }
+}

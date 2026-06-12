@@ -1,0 +1,70 @@
+name: Daily data sync
+
+on:
+  schedule:
+    # täglich 04:30 UTC = 05:30/06:30 Europe/Berlin (Winter/Sommer)
+    - cron: "30 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Sync funds from master list + EODHD market data
+        env:
+          EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+        run: npm run sync
+
+      - name: Validate after sync
+        run: npm run validate
+
+      - name: Smoke-build data bundle
+        run: npm run build:data
+
+      - name: Determine date
+        id: date
+        run: echo "today=$(date -u +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+
+      - name: Create pull request on data changes
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: data-sync/${{ steps.date.outputs.today }}
+          base: main
+          commit-message: |
+            chore(sync): Fonds-Stammdaten + EODHD-Marktdaten (${{ steps.date.outputs.today }})
+          title: "chore(sync): Fonds-Daten ${{ steps.date.outputs.today }}"
+          body: |
+            Automatischer Daily-Sync via `.github/workflows/sync.yml`.
+
+            **Stammdaten:** `scripts/sources/etf-master.json` (kuratierte Master-Liste der in DE handelbaren ETFs).
+            Krypto-ETPs werden über Provider-/Name-Blocklist gefiltert.
+
+            **Marktdaten:** EODHD-API liefert latestPrice, NAV, performance.{m1..y10}, sectorAllocation,
+            countryAllocation, topHoldings, yield, sowie aktualisiertes TER + fundSize.
+
+            Manuelle Anreicherung (`data/overrides/funds/`) bleibt vom Sync unberührt.
+
+            **Bitte prüfen vor Merge:**
+            - Diff der `data/funds/`-Dateien (Preis-/Performance-Sprünge plausibel?)
+            - `npm run validate` läuft? (CI-Check unten)
+            - Keine versehentlich gelöschten Manualeinträge?
+          labels: |
+            data-sync
+            automated
+          delete-branch: true
+          add-paths: |
+            data/funds/**

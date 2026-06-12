@@ -1,0 +1,284 @@
+---
+import Base from "../../layouts/Base.astro";
+import { insurance, INSURANCE_CATEGORY_LABELS, formatEur } from "../../lib/data";
+
+const categories = [...new Set(insurance.map((i) => i.category))];
+const providers = [...new Set(insurance.map((i) => i.provider))].sort();
+
+const isNetTariff = (i: typeof insurance[number]) =>
+  /netto|nettotarif|sondertarif p/i.test(i.name) || /-netto$|-sondertarif-p$/i.test(i.id);
+const isFondspolice = (i: typeof insurance[number]) => !!i.costStructure;
+---
+<Base title="Versicherungstarife">
+  <section class="mx-auto max-w-7xl px-4 pt-8 pb-6">
+    <div class="flex items-end justify-between gap-4 flex-wrap">
+      <div>
+        <h1 class="text-2xl font-semibold tracking-tight">Versicherungstarife</h1>
+        <p class="text-sm text-ink-500 mt-1">
+          <span id="result-count">{insurance.length}</span> von {insurance.length} Tarifen
+        </p>
+      </div>
+      <div class="flex gap-2 flex-wrap">
+        <input id="q" type="search" placeholder="Tarifname, Anbieter, Merkmal …" class="input w-80" autocomplete="off" />
+        <select id="sort" class="input">
+          <option value="">Sortierung: Standard</option>
+          <option value="yearly-asc">Jährliche Kosten ↑</option>
+          <option value="money-asc">Verwaltungskosten ↑</option>
+          <option value="guar-desc">Rentenfaktor gar. ↓</option>
+          <option value="curr-desc">Rentenfaktor aktuell ↓</option>
+          <option value="premium-asc">Mindestbeitrag ↑</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-6">
+    <aside class="card p-4 h-fit lg:sticky lg:top-20 space-y-5">
+      <div>
+        <h2 class="font-semibold text-sm">Filter</h2>
+      </div>
+      <div>
+        <div class="label mb-1">Sparte</div>
+        {categories.map((c) => (
+          <label class="flex items-center gap-2 py-0.5 text-sm">
+            <input type="checkbox" class="filter" data-key="category" value={c} />
+            <span>{INSURANCE_CATEGORY_LABELS[c]}</span>
+          </label>
+        ))}
+      </div>
+      <div>
+        <div class="label mb-1">Anbieter</div>
+        <div class="max-h-48 overflow-y-auto pr-1">
+          {providers.map((p) => (
+            <label class="flex items-center gap-2 py-0.5 text-sm">
+              <input type="checkbox" class="filter" data-key="provider" value={p} />
+              <span>{p}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <details class="border-t border-ink-100 pt-4" open>
+        <summary class="label cursor-pointer select-none">Fondspolicen-Kennzahlen</summary>
+        <div class="mt-3 space-y-3 text-sm">
+          <div>
+            <label class="text-xs flex justify-between">
+              <span>Jährliche Kosten max.</span>
+              <span>≤ <span id="yc-val">25</span></span>
+            </label>
+            <input id="yc-range" type="range" min="1" max="25" step="0.5" value="25" class="w-full" />
+          </div>
+          <div>
+            <label class="text-xs flex justify-between">
+              <span>Verwaltungskosten max.</span>
+              <span>≤ <span id="mc-val">1,00</span> %</span>
+            </label>
+            <input id="mc-range" type="range" min="0" max="1" step="0.05" value="1" class="w-full" />
+          </div>
+          <div>
+            <label class="text-xs flex justify-between">
+              <span>Rentenfaktor garantiert min.</span>
+              <span>≥ <span id="gf-val">0</span></span>
+            </label>
+            <input id="gf-range" type="range" min="0" max="35" step="1" value="0" class="w-full" />
+          </div>
+          <div>
+            <label class="text-xs flex justify-between">
+              <span>Rentenfaktor aktuell min.</span>
+              <span>≥ <span id="cf-val">0</span></span>
+            </label>
+            <input id="cf-range" type="range" min="0" max="35" step="1" value="0" class="w-full" />
+          </div>
+          <label class="flex items-center gap-2">
+            <input id="net-tariff" type="checkbox" />
+            <span class="text-sm">Nettopolice / Sondertarif P</span>
+          </label>
+          <p id="fp-hint" class="text-xs text-ink-500 hidden">Filter zeigt nur Fondspolicen.</p>
+        </div>
+      </details>
+
+      <button id="reset" type="button" class="btn w-full">Filter zurücksetzen</button>
+    </aside>
+
+    <div>
+      <div id="rows" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {insurance.map((i) => (
+          <article
+            class="ins-card card p-4 hover:border-accent-500 transition"
+            data-name={i.name.toLowerCase()}
+            data-provider={i.provider}
+            data-category={i.category}
+            data-features={(i.features ?? []).join(" ").toLowerCase()}
+            data-yearly-cost={i.costStructure?.jaehrlicheKosten ?? ""}
+            data-money-cost={i.costStructure?.verwaltungskosten ?? ""}
+            data-guar={i.guaranteedAnnuityFactor ?? ""}
+            data-curr={i.currentAnnuityFactor ?? ""}
+            data-min-premium={i.minPremium ?? ""}
+            data-net-tariff={isNetTariff(i) ? "1" : ""}
+            data-is-fondspolice={isFondspolice(i) ? "1" : ""}
+          >
+            <div class="flex items-baseline justify-between gap-2">
+              <span class="chip chip-accent">{INSURANCE_CATEGORY_LABELS[i.category]}</span>
+              {i.minPremium && <span class="text-xs text-ink-500">ab {formatEur(i.minPremium)}/Mon.</span>}
+            </div>
+            <h2 class="mt-2 font-semibold leading-tight">
+              <a href={`/tarife/${i.id}/`}>{i.name}</a>
+            </h2>
+            <p class="text-xs text-ink-500">{i.provider}</p>
+            {i.shortDescription && <p class="mt-2 text-sm text-ink-700 line-clamp-3">{i.shortDescription}</p>}
+
+            {isFondspolice(i) && (
+              <dl class="mt-3 grid grid-cols-3 gap-2 text-xs">
+                <div>
+                  <dt class="text-ink-500">Jährl. Kosten</dt>
+                  <dd class="font-medium">{i.costStructure!.jaehrlicheKosten?.toFixed(2).replace(".", ",")}</dd>
+                </div>
+                <div>
+                  <dt class="text-ink-500">RF garant.</dt>
+                  <dd class="font-medium">{i.guaranteedAnnuityFactor != null ? i.guaranteedAnnuityFactor.toFixed(2).replace(".", ",") : "–"}</dd>
+                </div>
+                <div>
+                  <dt class="text-ink-500">RF aktuell</dt>
+                  <dd class="font-medium">{i.currentAnnuityFactor != null ? i.currentAnnuityFactor.toFixed(2).replace(".", ",") : "–"}</dd>
+                </div>
+              </dl>
+            )}
+
+            {i.features && i.features.length > 0 && !isFondspolice(i) && (
+              <ul class="mt-3 space-y-1 text-xs text-ink-700">
+                {i.features.slice(0, 3).map((f) => (
+                  <li class="flex gap-1.5"><span class="text-accent-500">✓</span><span>{f}</span></li>
+                ))}
+              </ul>
+            )}
+
+            {i._ratings && i._ratings.length > 0 && (
+              <div class="mt-3 pt-3 border-t border-ink-100 text-xs text-ink-600">
+                {i._ratings[0].source}: <span class="font-medium">{i._ratings[0].rating}</span>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+      <p id="empty" class="hidden text-center text-ink-500 py-12">Keine Tarife passen zu deinen Filtern.</p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const grid = document.getElementById("rows")!;
+  const cards = Array.from(document.querySelectorAll<HTMLElement>(".ins-card"));
+  const q = document.getElementById("q") as HTMLInputElement;
+  const filters = Array.from(document.querySelectorAll<HTMLInputElement>(".filter"));
+  const count = document.getElementById("result-count")!;
+  const empty = document.getElementById("empty")!;
+  const reset = document.getElementById("reset")!;
+  const sort = document.getElementById("sort") as HTMLSelectElement;
+  const ycRange = document.getElementById("yc-range") as HTMLInputElement;
+  const mcRange = document.getElementById("mc-range") as HTMLInputElement;
+  const gfRange = document.getElementById("gf-range") as HTMLInputElement;
+  const cfRange = document.getElementById("cf-range") as HTMLInputElement;
+  const ycVal = document.getElementById("yc-val")!;
+  const mcVal = document.getElementById("mc-val")!;
+  const gfVal = document.getElementById("gf-val")!;
+  const cfVal = document.getElementById("cf-val")!;
+  const netTariff = document.getElementById("net-tariff") as HTMLInputElement;
+  const fpHint = document.getElementById("fp-hint")!;
+
+  const num = (s: string | undefined): number | null => {
+    if (s === undefined || s === "") return null;
+    const n = parseFloat(s);
+    return Number.isFinite(n) ? n : null;
+  };
+
+  function apply() {
+    const query = q.value.trim().toLowerCase();
+    const groups: Record<string, string[]> = {};
+    for (const f of filters) if (f.checked) (groups[f.dataset.key!] ||= []).push(f.value);
+
+    const yc = parseFloat(ycRange.value);
+    const mc = parseFloat(mcRange.value);
+    const gf = parseFloat(gfRange.value);
+    const cf = parseFloat(cfRange.value);
+    ycVal.textContent = yc.toFixed(1).replace(".", ",");
+    mcVal.textContent = mc.toFixed(2).replace(".", ",");
+    gfVal.textContent = String(gf);
+    cfVal.textContent = String(cf);
+
+    const fpActive = yc < 25 || mc < 1 || gf > 0 || cf > 0 || netTariff.checked;
+    fpHint.classList.toggle("hidden", !fpActive);
+
+    let visible = 0;
+    for (const c of cards) {
+      let show = true;
+      const ds = c.dataset;
+      if (query) {
+        const hay = `${ds.name} ${ds.provider} ${ds.features}`.toLowerCase();
+        if (!hay.includes(query)) show = false;
+      }
+      if (show) for (const [k, vals] of Object.entries(groups)) {
+        if (!vals.includes(ds[k as keyof DOMStringMap] as string)) { show = false; break; }
+      }
+      if (show && fpActive) {
+        if (ds.isFondspolice !== "1") show = false;
+        else {
+          const cYc = num(ds.yearlyCost);
+          const cMc = num(ds.moneyCost);
+          const cG = num(ds.guar);
+          const cC = num(ds.curr);
+          if (yc < 25 && (cYc === null || cYc > yc)) show = false;
+          if (show && mc < 1 && (cMc === null || cMc > mc)) show = false;
+          if (show && gf > 0 && (cG === null || cG < gf)) show = false;
+          if (show && cf > 0 && (cC === null || cC < cf)) show = false;
+          if (show && netTariff.checked && ds.netTariff !== "1") show = false;
+        }
+      }
+      c.classList.toggle("hidden", !show);
+      if (show) visible++;
+    }
+
+    const mode = sort.value;
+    if (mode) {
+      const visibleCards = cards.filter((c) => !c.classList.contains("hidden"));
+      const key = mode === "yearly-asc" ? "yearlyCost"
+        : mode === "money-asc" ? "moneyCost"
+        : mode === "guar-desc" ? "guar"
+        : mode === "curr-desc" ? "curr"
+        : mode === "premium-asc" ? "minPremium"
+        : null;
+      const dir = mode.endsWith("-asc") ? 1 : -1;
+      if (key) {
+        visibleCards.sort((a, b) => {
+          const va = num(a.dataset[key as keyof DOMStringMap] as string);
+          const vb = num(b.dataset[key as keyof DOMStringMap] as string);
+          if (va === null && vb === null) return 0;
+          if (va === null) return 1;
+          if (vb === null) return -1;
+          return (va - vb) * dir;
+        });
+        for (const c of visibleCards) grid.appendChild(c);
+      }
+    }
+
+    count.textContent = String(visible);
+    empty.classList.toggle("hidden", visible !== 0);
+  }
+
+  q.addEventListener("input", apply);
+  sort.addEventListener("change", apply);
+  filters.forEach((f) => f.addEventListener("change", apply));
+  for (const el of [ycRange, mcRange, gfRange, cfRange]) el.addEventListener("input", apply);
+  netTariff.addEventListener("change", apply);
+  reset.addEventListener("click", () => {
+    q.value = "";
+    sort.value = "";
+    filters.forEach((f) => (f.checked = false));
+    ycRange.value = "25";
+    mcRange.value = "1";
+    gfRange.value = "0";
+    cfRange.value = "0";
+    netTariff.checked = false;
+    apply();
+  });
+  apply();
+</script>

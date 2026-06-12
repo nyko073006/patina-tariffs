@@ -1,0 +1,18 @@
+{
+  "id": "barmenia-kinder-invaliditaet",
+  "category": "accident",
+  "subCategory": "accident-children",
+  "provider": "Barmenia",
+  "name": "KinderInvaliditätsversicherung",
+  "shortDescription": "Echte Kinder-Invaliditätsversicherung – leistet sowohl bei Unfall- als auch bei krankheitsbedingter Invalidität; Testsieger Stiftung Warentest.",
+  "minPremium": 20,
+  "entryAge": { "min": 0, "max": 15 },
+  "term": { "min": 5, "max": 25 },
+  "features": [
+    "Leistung bei Invalidität durch Unfall ODER Krankheit",
+    "Monatliche Rente lebenslang",
+    "Einmalzahlung optional",
+    "Beitragsbefreiung bei Tod der Eltern"
+  ],
+  "tags": ["kinder", "invalidität", "vorsorge"]
+}

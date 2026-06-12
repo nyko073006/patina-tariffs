@@ -1,0 +1,31 @@
+{
+  "id": "swiss-life-investo",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "Swiss Life",
+  "name": "Investo",
+  "shortDescription": "Reine fondsgebundene Rentenversicherung ohne Garantie für maximale Renditechance; Investo Aktiv auch als Netto-Police verfügbar.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 85
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "features": [
+    "Keine Beitragsgarantie – volle Aktien-/Fondsquote möglich",
+    "Über 100 Fonds zur Auswahl",
+    "Netto-Variante Investo Aktiv verfügbar",
+    "Flexible Zuzahlungen und Entnahmen"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "swiss-life"
+  ]
+}

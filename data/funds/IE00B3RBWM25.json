@@ -1,0 +1,17 @@
+{
+  "assetClass": "equity",
+  "currency": "USD",
+  "distribution": "distributing",
+  "domicile": "IE",
+  "fundType": "etf",
+  "inception": "2012-05-22",
+  "index": "FTSE All-World",
+  "isin": "IE00B3RBWM25",
+  "name": "Vanguard FTSE All-World UCITS ETF (USD) Distributing",
+  "provider": "Vanguard",
+  "region": "World (Dev. + EM)",
+  "replicationMethod": "physical-sampling",
+  "sfdr": "Art. 6",
+  "ter": 0.22,
+  "wkn": "A1JX52"
+}

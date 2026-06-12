@@ -1,0 +1,46 @@
+{
+  "id": "alte-leipziger-ar25",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
+  "provider": "Alte Leipziger",
+  "name": "AktivRente AR25",
+  "shortDescription": "Hybride fondsgebundene Rentenversicherung mit dynamischem Wertsicherungskonzept (iCPPI) und großer ETF-Auswahl.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "guaranteedAnnuityFactor": 25.46,
+  "features": [
+    "iCPPI-Wertsicherungskonzept",
+    "Beitragsgarantie wählbar 50–100 %",
+    "Über 80 Fonds inkl. 25 ETFs",
+    "Zuzahlungen ab 50 EUR"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "hybrid"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.495,
+    "jaehrlicheKosten": 6.8,
+    "verwaltungskosten": 0.24,
+    "zuzahlungAbschlusskosten": 4,
+    "vertriebswegEinmalprozent": 1,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 45,
+    "alpha2Kosten": 2,
+    "stueckkosten": 24
+  },
+  "currentAnnuityFactor": 26.8
+}

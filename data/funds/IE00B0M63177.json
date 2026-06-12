@@ -1,0 +1,17 @@
+{
+  "assetClass": "equity",
+  "currency": "USD",
+  "distribution": "distributing",
+  "domicile": "IE",
+  "fundType": "etf",
+  "inception": "2005-10-21",
+  "index": "MSCI Emerging Markets",
+  "isin": "IE00B0M63177",
+  "name": "iShares MSCI Emerging Markets UCITS ETF (Dist)",
+  "provider": "iShares (BlackRock)",
+  "region": "Emerging Markets",
+  "replicationMethod": "physical-sampling",
+  "sfdr": "Art. 6",
+  "ter": 0.18,
+  "wkn": "A0HGWC"
+}

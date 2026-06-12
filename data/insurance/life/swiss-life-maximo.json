@@ -1,0 +1,46 @@
+{
+  "id": "swiss-life-maximo",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden",
+    "hybrid"
+  ],
+  "provider": "Swiss Life",
+  "name": "Maximo",
+  "shortDescription": "Fondsgebundene private Rentenversicherung mit wählbarer Beitragsgarantie (0/50/60/70/80 %) und Zuzahlungen auch in der Rentenphase.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 85
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "guaranteedAnnuityFactor": 20.86,
+  "features": [
+    "Beitragsgarantie wählbar 0/50/60/70/80 %",
+    "i-CPPI-Wertsicherungsmechanismus",
+    "Zuzahlungen auch in der Rentenphase",
+    "Nachhaltige Fondsauswahl optional"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "garantie",
+    "swiss-life"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.49,
+    "jaehrlicheKosten": 12.55,
+    "verwaltungskosten": 0.35,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 4.25,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 40,
+    "verwaltungskostenMinAbsolut": 36
+  },
+  "currentAnnuityFactor": 20.86
+}

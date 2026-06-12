@@ -1,0 +1,19 @@
+{
+  "id": "canada-life-generations",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": ["fondsgebunden", "hybrid"],
+  "provider": "Canada Life",
+  "name": "GENERATION private",
+  "shortDescription": "Fondsgebundene Rentenversicherung mit i-CPPI-Garantie und lebenslanger Rentengarantie zum Rentenbeginn.",
+  "minPremium": 50,
+  "entryAge": { "min": 0, "max": 80 },
+  "term": { "min": 12, "max": 50 },
+  "features": [
+    "i-CPPI-Garantiemodell (75% / 100% wählbar)",
+    "Lebenslange Rentengarantie",
+    "Fondsauswahl in Index-Tracker-Logik",
+    "Hinterbliebenenleistung optional"
+  ],
+  "tags": ["altersvorsorge", "fondsgebunden", "garantie"]
+}

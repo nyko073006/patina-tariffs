@@ -1,0 +1,17 @@
+{
+  "assetClass": "bond",
+  "currency": "EUR",
+  "distribution": "accumulating",
+  "domicile": "LU",
+  "fundType": "etf",
+  "inception": "2007-06-05",
+  "index": "iBoxx EUR Sovereigns Eurozone",
+  "isin": "LU0290357507",
+  "name": "Xtrackers II Eurozone Government Bond UCITS ETF 1C",
+  "provider": "Xtrackers (DWS)",
+  "region": "Eurozone",
+  "replicationMethod": "physical-sampling",
+  "sfdr": "Art. 6",
+  "ter": 0.15,
+  "wkn": "DBX0AC"
+}

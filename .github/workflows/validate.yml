@@ -1,0 +1,21 @@
+name: Validate data
+
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - name: Schema validation
+        run: npm run validate
+      - name: Build data bundle (smoke test)
+        run: npm run build:data

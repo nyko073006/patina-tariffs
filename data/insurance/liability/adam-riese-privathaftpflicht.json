@@ -1,0 +1,18 @@
+{
+  "id": "adam-riese-privathaftpflicht",
+  "category": "liability",
+  "subCategory": "liability-private",
+  "provider": "Adam Riese",
+  "name": "Privathaftpflicht Premium",
+  "shortDescription": "Direkt-Privathaftpflicht der W&W-Tochter mit Best-Leistungs-Garantie und Deckung 50 Mio. EUR pauschal, inklusive Forderungsausfall und grober Fahrlässigkeit.",
+  "minPremium": 3,
+  "entryAge": { "min": 18, "max": 99 },
+  "features": [
+    "Pauschalsumme 50 Mio. EUR",
+    "Best-Leistungs-Garantie (deckt Verbesserungen am Markt mit)",
+    "Forderungsausfalldeckung inklusive",
+    "Grobe Fahrlässigkeit voll abgesichert",
+    "Schlüsselverlust privat + dienstlich"
+  ],
+  "tags": ["privathaftpflicht", "haftpflicht", "direkt"]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "bayerische-pegasus",
+  "category": "life",
+  "subCategory": "pension-private",
+  "productLines": [
+    "fondsgebunden"
+  ],
+  "provider": "die Bayerische",
+  "name": "Pegasus",
+  "shortDescription": "Fondsgebundene Rentenversicherung mit besonders breiter ETF-Auswahl (über 70 ETFs); volle Fondsquote ohne Garantie.",
+  "minPremium": 25,
+  "entryAge": {
+    "min": 0,
+    "max": 75
+  },
+  "term": {
+    "min": 5,
+    "max": 50
+  },
+  "features": [
+    "Über 70 ETFs zur Auswahl",
+    "Über 100 Fonds insgesamt",
+    "24 freie Fondswechsel p. a.",
+    "Nachhaltige ETF-Strategien verfügbar"
+  ],
+  "tags": [
+    "altersvorsorge",
+    "fondsgebunden",
+    "etf-stark",
+    "nachhaltig"
+  ],
+  "costStructure": {
+    "abschlusskosten": 2.5,
+    "jaehrlicheKosten": 9.55,
+    "verwaltungskosten": 0.3,
+    "zuzahlungAbschlusskosten": 2.5,
+    "vertriebswegEinmalprozent": 2,
+    "verrentungskosten": 1.5,
+    "abschlusskostenVerteilungsdauer": 5,
+    "zillmerdauer": 100,
+    "kostenreduktionNachJahren": 10
+  }
+}

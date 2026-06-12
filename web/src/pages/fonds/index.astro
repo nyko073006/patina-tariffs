@@ -1,0 +1,253 @@
+---
+import Base from "../../layouts/Base.astro";
+import { funds, ASSET_CLASS_LABELS, formatPercent } from "../../lib/data";
+
+const assetClasses = [...new Set(funds.map((f) => f.assetClass))].sort();
+const regions = [...new Set(funds.map((f) => f.region).filter(Boolean))].sort() as string[];
+const providers = [...new Set(funds.map((f) => f.provider))].sort();
+---
+<Base title="Fonds &amp; ETFs">
+  <section class="mx-auto max-w-7xl px-4 pt-8 pb-6">
+    <div class="flex items-end justify-between gap-4 flex-wrap">
+      <div>
+        <h1 class="text-2xl font-semibold tracking-tight">Fonds &amp; ETFs</h1>
+        <p class="text-sm text-ink-500 mt-1">
+          <span id="result-count">{funds.length}</span> von {funds.length} Fonds
+        </p>
+      </div>
+      <div class="flex items-center gap-2">
+        <input id="q" type="search" placeholder="Name, ISIN, WKN, Index …" class="input w-72" autocomplete="off" />
+        <select id="sort" class="input w-44">
+          <option value="name">Name (A→Z)</option>
+          <option value="ter-asc">TER aufsteigend</option>
+          <option value="ter-desc">TER absteigend</option>
+          <option value="size-desc">Fondsgröße ↓</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-6">
+    <aside class="card p-4 h-fit lg:sticky lg:top-20">
+      <h2 class="font-semibold text-sm">Filter</h2>
+
+      <div class="mt-4">
+        <div class="label mb-1">Anlageklasse</div>
+        {assetClasses.map((c) => (
+          <label class="flex items-center gap-2 py-0.5 text-sm">
+            <input type="checkbox" class="filter" data-key="assetClass" value={c} />
+            <span>{ASSET_CLASS_LABELS[c] ?? c}</span>
+          </label>
+        ))}
+      </div>
+
+      <div class="mt-4">
+        <div class="label mb-1">Region</div>
+        {regions.map((r) => (
+          <label class="flex items-center gap-2 py-0.5 text-sm">
+            <input type="checkbox" class="filter" data-key="region" value={r} />
+            <span>{r}</span>
+          </label>
+        ))}
+      </div>
+
+      <div class="mt-4">
+        <div class="label mb-1">Ausschüttung</div>
+        <label class="flex items-center gap-2 py-0.5 text-sm">
+          <input type="checkbox" class="filter" data-key="distribution" value="accumulating" />
+          <span>Thesaurierend</span>
+        </label>
+        <label class="flex items-center gap-2 py-0.5 text-sm">
+          <input type="checkbox" class="filter" data-key="distribution" value="distributing" />
+          <span>Ausschüttend</span>
+        </label>
+      </div>
+
+      <div class="mt-4">
+        <div class="label mb-1">Replikation</div>
+        <label class="flex items-center gap-2 py-0.5 text-sm">
+          <input type="checkbox" class="filter" data-key="replicationMethod" value="physical-full" />
+          <span>Physisch vollständig</span>
+        </label>
+        <label class="flex items-center gap-2 py-0.5 text-sm">
+          <input type="checkbox" class="filter" data-key="replicationMethod" value="physical-sampling" />
+          <span>Physisch Sampling</span>
+        </label>
+        <label class="flex items-center gap-2 py-0.5 text-sm">
+          <input type="checkbox" class="filter" data-key="replicationMethod" value="synthetic" />
+          <span>Synthetisch</span>
+        </label>
+      </div>
+
+      <div class="mt-4">
+        <div class="label mb-1">Anbieter</div>
+        {providers.map((p) => (
+          <label class="flex items-center gap-2 py-0.5 text-sm">
+            <input type="checkbox" class="filter" data-key="provider" value={p} />
+            <span>{p}</span>
+          </label>
+        ))}
+      </div>
+
+      <div class="mt-4">
+        <div class="label mb-1">TER max. (% p. a.)</div>
+        <div class="flex items-center gap-2">
+          <input id="ter-max" type="range" min="0" max="2" step="0.01" value="2" class="flex-1" />
+          <output id="ter-max-out" class="text-sm text-ink-700 w-12 text-right">2,00</output>
+        </div>
+      </div>
+
+      <button id="reset" type="button" class="btn w-full mt-5">Filter zurücksetzen</button>
+    </aside>
+
+    <div>
+      <div class="card overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-ink-50 text-left text-ink-600">
+            <tr>
+              <th class="px-3 py-2 w-10"></th>
+              <th class="px-3 py-2">Name</th>
+              <th class="px-3 py-2">Anbieter</th>
+              <th class="px-3 py-2">Index</th>
+              <th class="px-3 py-2 text-right">TER</th>
+              <th class="px-3 py-2">Aussch.</th>
+              <th class="px-3 py-2">Replik.</th>
+              <th class="px-3 py-2">Region</th>
+            </tr>
+          </thead>
+          <tbody id="rows">
+            {funds.map((f) => (
+              <tr
+                class="fund-row border-t border-ink-100 hover:bg-ink-50"
+                data-name={f.name.toLowerCase()}
+                data-isin={f.isin.toLowerCase()}
+                data-wkn={(f.wkn ?? "").toLowerCase()}
+                data-index={(f.index ?? "").toLowerCase()}
+                data-asset-class={f.assetClass}
+                data-region={f.region ?? ""}
+                data-distribution={f.distribution}
+                data-replication-method={f.replicationMethod ?? ""}
+                data-provider={f.provider}
+                data-ter={f.ter}
+                data-size={f.fundSize ?? 0}
+              >
+                <td class="px-3 py-2">
+                  <input type="checkbox" class="compare" data-id={f.isin} data-kind="fund" />
+                </td>
+                <td class="px-3 py-2">
+                  <a href={`/fonds/${f.isin}/`} class="font-medium">{f.name}</a>
+                  <div class="text-xs text-ink-500">{f.isin}{f.wkn ? ` · ${f.wkn}` : ""}</div>
+                </td>
+                <td class="px-3 py-2 text-ink-700">{f.provider}</td>
+                <td class="px-3 py-2 text-ink-700">{f.index ?? "—"}</td>
+                <td class="px-3 py-2 text-right tabular-nums">{formatPercent(f.ter)}</td>
+                <td class="px-3 py-2">
+                  <span class="chip">{f.distribution === "accumulating" ? "Thes." : "Aussch."}</span>
+                </td>
+                <td class="px-3 py-2 text-ink-700">
+                  {f.replicationMethod === "physical-full" ? "physisch" :
+                   f.replicationMethod === "physical-sampling" ? "Sampling" :
+                   f.replicationMethod === "synthetic" ? "synthetisch" : "—"}
+                </td>
+                <td class="px-3 py-2 text-ink-700">{f.region ?? "—"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p id="empty" class="hidden text-center text-ink-500 py-12">Keine Fonds passen zu deinen Filtern.</p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  type Row = HTMLTableRowElement;
+  const rows = Array.from(document.querySelectorAll<Row>(".fund-row"));
+  const q = document.getElementById("q") as HTMLInputElement;
+  const sort = document.getElementById("sort") as HTMLSelectElement;
+  const terMax = document.getElementById("ter-max") as HTMLInputElement;
+  const terMaxOut = document.getElementById("ter-max-out") as HTMLOutputElement;
+  const filters = Array.from(document.querySelectorAll<HTMLInputElement>(".filter"));
+  const count = document.getElementById("result-count")!;
+  const empty = document.getElementById("empty")!;
+  const tbody = document.getElementById("rows")!;
+  const reset = document.getElementById("reset")!;
+
+  function activeFilters() {
+    const groups: Record<string, string[]> = {};
+    for (const f of filters) if (f.checked) {
+      const k = f.dataset.key!;
+      (groups[k] ||= []).push(f.value);
+    }
+    return groups;
+  }
+
+  function apply() {
+    const query = q.value.trim().toLowerCase();
+    const groups = activeFilters();
+    const ter = parseFloat(terMax.value);
+    terMaxOut.textContent = ter.toFixed(2).replace(".", ",");
+
+    let visible = 0;
+    for (const row of rows) {
+      const ds = row.dataset;
+      let show = true;
+      if (query) {
+        const hay = `${ds.name} ${ds.isin} ${ds.wkn} ${ds.index}`;
+        if (!hay.includes(query)) show = false;
+      }
+      if (show && parseFloat(ds.ter || "0") > ter) show = false;
+      if (show) for (const [k, vals] of Object.entries(groups)) {
+        const v = (ds as Record<string, string | undefined>)[k] ?? "";
+        if (!vals.includes(v)) { show = false; break; }
+      }
+      row.classList.toggle("hidden", !show);
+      if (show) visible++;
+    }
+    count.textContent = String(visible);
+    empty.classList.toggle("hidden", visible !== 0);
+  }
+
+  function sortRows() {
+    const mode = sort.value;
+    const sorted = [...rows].sort((a, b) => {
+      if (mode === "ter-asc") return parseFloat(a.dataset.ter!) - parseFloat(b.dataset.ter!);
+      if (mode === "ter-desc") return parseFloat(b.dataset.ter!) - parseFloat(a.dataset.ter!);
+      if (mode === "size-desc") return parseFloat(b.dataset.size!) - parseFloat(a.dataset.size!);
+      return (a.dataset.name || "").localeCompare(b.dataset.name || "");
+    });
+    for (const r of sorted) tbody.appendChild(r);
+  }
+
+  [q, terMax].forEach((el) => el.addEventListener("input", apply));
+  filters.forEach((el) => el.addEventListener("change", apply));
+  sort.addEventListener("change", () => { sortRows(); apply(); });
+  reset.addEventListener("click", () => {
+    q.value = "";
+    terMax.value = "2";
+    filters.forEach((f) => (f.checked = false));
+    sort.value = "name";
+    sortRows();
+    apply();
+  });
+
+  document.addEventListener("change", (e) => {
+    const t = e.target as HTMLInputElement;
+    if (!t.classList.contains("compare")) return;
+    const list = JSON.parse(localStorage.getItem("compare") || "[]");
+    const entry = { id: t.dataset.id, kind: t.dataset.kind };
+    const idx = list.findIndex((x: any) => x.id === entry.id);
+    if (t.checked && idx === -1) list.push(entry);
+    if (!t.checked && idx !== -1) list.splice(idx, 1);
+    localStorage.setItem("compare", JSON.stringify(list.slice(0, 3)));
+  });
+
+  const saved = JSON.parse(localStorage.getItem("compare") || "[]");
+  for (const e of saved) {
+    const cb = document.querySelector<HTMLInputElement>(`.compare[data-id="${e.id}"]`);
+    if (cb) cb.checked = true;
+  }
+
+  apply();
+</script>

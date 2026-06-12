@@ -1,0 +1,17 @@
+{
+  "assetClass": "equity",
+  "currency": "USD",
+  "distribution": "accumulating",
+  "domicile": "IE",
+  "fundType": "etf",
+  "inception": "2019-02-28",
+  "index": "MSCI World",
+  "isin": "IE00BFY0GT14",
+  "name": "SPDR MSCI World UCITS ETF",
+  "provider": "SPDR (State Street)",
+  "region": "World (Developed)",
+  "replicationMethod": "physical-sampling",
+  "sfdr": "Art. 6",
+  "ter": 0.12,
+  "wkn": "A2N6CW"
+}
