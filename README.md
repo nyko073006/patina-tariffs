@@ -69,9 +69,12 @@ npm --prefix web run dev   # Astro-Devserver auf http://localhost:4321
 
 ### Marktdaten-Sync (EODHD)
 
-`npm run sync:prices` zieht Latest Price, NAV, Performance (1M–10Y), Sektor-/
-Länder-Allokation, Top-Holdings, Yield und aktualisiert TER + Fondsvolumen
-für alle `data/funds/<ISIN>.json` per [EODHD-API](https://eodhd.com).
+`npm run sync:prices` zieht für jeden `data/funds/<ISIN>.json` per
+[EODHD-API](https://eodhd.com):
+
+- `latestPrice`, `latestPriceDate` (aus `/real-time`)
+- `performance.{m1, m3, m6, ytd, y1, y3, y5, y10}` (berechnet aus `/eod`)
+- `_eodhdSymbol` (gecachter ISIN → Symbol-Lookup)
 
 ```bash
 EODHD_API_KEY=dein_key npm run sync:prices
@@ -80,6 +83,21 @@ EODHD_API_KEY=dein_key npm run sync:prices
 Ohne API-Key überspringt das Skript still (Exit 0) — CI bricht nicht.
 In GitHub liegt der Key als Secret `EODHD_API_KEY` und wird täglich
 über `.github/workflows/sync.yml` ausgeführt.
+
+**Optional — Fundamentals (NAV, Allokationen, Holdings, Yield):**
+
+EODHD lizenziert Non-US-Fundamentals als separates Add-on. Mit reinem EOD-Plan
+liefern XETRA-/EUFUND-ISINs auf `/fundamentals` ein `403`. Daher ist der
+Fundamentals-Pull standardmäßig **deaktiviert**. Wenn dein Plan das Add-on
+abdeckt, aktiviere ihn explizit:
+
+```bash
+EODHD_API_KEY=dein_key EODHD_FUNDAMENTALS=1 npm run sync:prices
+```
+
+Die Schema-Felder (`nav`, `sectorAllocation`, `countryAllocation`,
+`topHoldings`, `yield`) bleiben im Schema und können manuell über den
+Override-Layer befüllt werden, auch wenn der Sync sie nicht setzt.
 
 Stammdaten (assetClass, currency, provider, …) bleiben unangetastet;
 gesynced werden nur volatile Marktdaten und Allokationen.
