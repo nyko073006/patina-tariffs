@@ -53,8 +53,10 @@ jobs:
             **Stammdaten:** `scripts/sources/etf-master.json` (kuratierte Master-Liste der in DE handelbaren ETFs).
             Krypto-ETPs werden über Provider-/Name-Blocklist gefiltert.
 
-            **Marktdaten:** EODHD-API liefert latestPrice, NAV, performance.{m1..y10}, sectorAllocation,
-            countryAllocation, topHoldings, yield, sowie aktualisiertes TER + fundSize.
+            **Marktdaten:** EODHD-API liefert latestPrice, latestPriceDate und performance.{m1..y10}
+            (berechnet aus EOD-Reihe). Fundamentals (NAV, Allokationen, Holdings, Yield) sind
+            standardmäßig deaktiviert — Plan-Add-on nötig, sonst 403. Aktivierbar via
+            `EODHD_FUNDAMENTALS=1` als zusätzliche Env-Variable.
 
             Manuelle Anreicherung (`data/overrides/funds/`) bleibt vom Sync unberührt.
 
