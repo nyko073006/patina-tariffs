@@ -124,22 +124,27 @@ statt 100 — egal wie oft die App refresht wird.
 ## iOS-Integration (Skizze)
 
 ```swift
-struct CompareInput {
+struct CompareInput: Codable {
   let isin1: String
   let isin2: String
-  let capital: Double = 10_000
-  let years: Int = 10
-  let costsAnnual1: Double = 0.015   // 1,5 % TER aktiver Fonds
-  let costsAnnual2: Double = 0.0022  // 0,22 % TER ETF
-  let costsOneTime1: Double = 0.05   // 5 % AA aktiver Fonds
-  let costsOneTime2: Double = 0
+  var capital: Double = 10_000
+  var years: Double = 10                // Double — Spec erlaubt 0.1 … 50
+  var costsAnnual1: Double = 0.015      // 1,5 % TER aktiver Fonds
+  var costsAnnual2: Double = 0.0022     // 0,22 % TER ETF
+  var costsOneTime1: Double = 0.05      // 5 % AA aktiver Fonds
+  var costsOneTime2: Double = 0
+  var minYears: Double? = nil           // optional — Server-Default ist 1
 }
 
 struct CompareResponse: Decodable {
-  let inputs: CompareInput
+  let inputs: CompareInput              // Codable ⇒ Decodable, kein Crash
   let overlap: Overlap
   let series: SeriesPair
-  struct Overlap: Decodable { let from: String; let to: String; let years: Double; let tradingDays: Int }
+  let warnings: [String]                // bei Datenbasis < 1 Jahr befüllt
+  struct Overlap: Decodable {
+    let from: String; let to: String
+    let years: Double; let tradingDays: Int
+  }
   struct SeriesPair: Decodable { let isin1: SeriesResult; let isin2: SeriesResult }
   struct SeriesResult: Decodable {
     let symbol: String; let start: Double; let end: Double
@@ -147,9 +152,31 @@ struct CompareResponse: Decodable {
   }
 }
 
+enum APIError: LocalizedError {
+  case server(status: Int, message: String)
+  case network(URLError)
+  case decoding(Error)
+
+  var errorDescription: String? {
+    switch self {
+    case .server(_, let message): return message               // endnutzertauglich vom Worker
+    case .network(let e): return "Netzwerkfehler: \(e.localizedDescription)"
+    case .decoding: return "Antwort vom Server konnte nicht gelesen werden."
+    }
+  }
+
+  static func fromResponse(data: Data, response: URLResponse) -> APIError {
+    let status = (response as? HTTPURLResponse)?.statusCode ?? -1
+    struct ServerError: Decodable { let error: String }
+    let message = (try? JSONDecoder().decode(ServerError.self, from: data))?.error
+      ?? "Unbekannter Fehler (HTTP \(status))"
+    return .server(status: status, message: message)
+  }
+}
+
 func compare(_ input: CompareInput) async throws -> CompareResponse {
-  var c = URLComponents(string: "https://patina-tariffs-proxy.<you>.workers.dev/api/compare")!
-  c.queryItems = [
+  var c = URLComponents(string: "https://patina-tariffs.<sub>.workers.dev/api/compare")!
+  var items: [URLQueryItem] = [
     .init(name: "isin1", value: input.isin1),
     .init(name: "isin2", value: input.isin2),
     .init(name: "capital", value: String(input.capital)),
@@ -159,17 +186,30 @@ func compare(_ input: CompareInput) async throws -> CompareResponse {
     .init(name: "costsOneTime1", value: String(input.costsOneTime1)),
     .init(name: "costsOneTime2", value: String(input.costsOneTime2)),
   ]
-  let (data, response) = try await URLSession.shared.data(from: c.url!)
-  guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-    throw APIError.fromResponse(data: data, response: response)
+  if let m = input.minYears { items.append(.init(name: "minYears", value: String(m))) }
+  c.queryItems = items
+
+  do {
+    let (data, response) = try await URLSession.shared.data(from: c.url!)
+    guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+      throw APIError.fromResponse(data: data, response: response)
+    }
+    do {
+      return try JSONDecoder().decode(CompareResponse.self, from: data)
+    } catch {
+      throw APIError.decoding(error)
+    }
+  } catch let e as URLError {
+    throw APIError.network(e)
   }
-  return try JSONDecoder().decode(CompareResponse.self, from: data)
 }
 ```
 
 Error-Handling-Hinweis: Bei 404 (ISIN nicht gefunden) oder 422 (Historie zu
-kurz) den Server-`error`-String direkt in die UI bringen — die Texte sind
-endnutzertauglich formuliert.
+kurz) den `APIError.server.message` direkt in die UI bringen — die Worker-
+Texte sind endnutzertauglich formuliert (z. B. *„Datenbasis 0,42 Jahre <
+minYears=0,5"*). Die `warnings`-Liste in der Erfolgs-Response gehört unter
+das Chart als nicht-blockierender Hinweis.
 
 ## Tests
 

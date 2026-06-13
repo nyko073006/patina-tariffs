@@ -2,14 +2,16 @@
 /**
  * EODHD-Sync für Fonds-/ETF-Marktdaten.
  *
- * Liest jeden data/funds/<ISIN>.json ein, ergänzt:
- *   latestPrice, latestPriceDate, latestPriceCurrency
- *   nav, navDate
- *   performance.{m1,m3,m6,ytd,y1,y3,y5,y10}
- *   sectorAllocation, countryAllocation, topHoldings
- *   yield.{dividendYield,yield12m}
- *   ter, fundSize (überschreibt — User-Wunsch: "alles syncen")
- *   _eodhdSymbol (gecachter Symbol-Lookup)
+ * Standard-Sync (jeder Plan mit EOD-Zugang, inkl. der 19,99 USD/Mo Tarif):
+ *   _eodhdSymbol                                     — gecachter Symbol-Lookup
+ *   latestPrice, latestPriceDate                     — aus /real-time
+ *   performance.{m1,m3,m6,ytd,y1,y3,y5,y10}          — berechnet aus /eod
+ *
+ * Optional, nur bei EODHD-Plan mit Non-US-Fundamentals-Add-on:
+ *   Setze EODHD_FUNDAMENTALS=1, dann zieht der Sync zusätzlich:
+ *     nav, navDate, sectorAllocation, countryAllocation,
+ *     topHoldings, yield, ter, fundSize
+ *   Für reine EOD-Pläne ist das ein 403 pro ISIN — Default daher AUS.
  *
  * Stammdaten (assetClass, currency, provider, name, …) bleiben unangetastet.
  * Override-Layer (data/overrides/funds/<ISIN>.json) wird nicht berührt.
@@ -29,6 +31,7 @@ const FUNDS_DIR = join(ROOT, "data/funds");
 const API_BASE = "https://eodhd.com/api";
 const API_KEY = process.env.EODHD_API_KEY;
 const RATE_LIMIT_MS = Number(process.env.EODHD_RATE_LIMIT_MS ?? 250);
+const FUNDAMENTALS_ENABLED = process.env.EODHD_FUNDAMENTALS === "1";
 const EXCHANGE_PREFERENCE = ["XETRA", "F", "LSE", "MI", "PA", "AS", "BR", "MC", "SW", "US"];
 
 if (!API_KEY) {
@@ -162,37 +165,33 @@ function extractHoldings(holdings) {
   return arr.length > 0 ? arr : null;
 }
 
+// Feldnamen stammen aus der echten EODHD-Fundamentals-Antwort (VTI.US-Probe,
+// 2026-06-13). Achtung: NAV existiert für ETFs nicht in ETF_Data, daher kein
+// NAV-Pull. Länder-Allokation heißt World_Regions (nicht Country_Weights).
 function pickFromFundamentals(f) {
   const out = {};
   if (!f || typeof f !== "object") return out;
-  const general = f.General || {};
   const etfData = f.ETF_Data || f.MutualFund_Data || {};
-  const techIndicators = f.Technicals || {};
-  const tradeable = etfData.NetAssets || etfData.TotalAssets;
-  if (Number.isFinite(Number(tradeable)) && Number(tradeable) > 0) {
-    out.fundSize = Number(tradeable);
+
+  const totalAssets = etfData.TotalAssets;
+  if (Number.isFinite(Number(totalAssets)) && Number(totalAssets) > 0) {
+    out.fundSize = Number(totalAssets);
   }
-  const ter = etfData.NetExpenseRatio ?? etfData.TotalExpenseRatio;
-  if (Number.isFinite(Number(ter)) && Number(ter) > 0) {
-    out.ter = Math.round(Number(ter) * 100) / 100;
+  const ter = etfData.NetExpenseRatio ?? etfData.Ongoing_Charge;
+  const terNum = Number(ter);
+  if (Number.isFinite(terNum) && terNum > 0) {
+    out.ter = Math.round(terNum * 10000) / 10000;
   }
-  const nav = etfData.NAV ?? etfData.Nav ?? techIndicators.NAV;
-  if (Number.isFinite(Number(nav)) && Number(nav) > 0) {
-    out.nav = Math.round(Number(nav) * 10000) / 10000;
-    const navDate = etfData.NAV_Date || etfData.Asof_Date || general.UpdatedAt;
-    if (typeof navDate === "string" && /^\d{4}-\d{2}-\d{2}/.test(navDate)) {
-      out.navDate = navDate.slice(0, 10);
-    }
+  const yld = etfData.Yield;
+  const yldNum = Number(yld);
+  if (Number.isFinite(yldNum) && yldNum > 0) {
+    out.yield = { yield12m: Math.round(yldNum * 100) / 100 };
   }
-  const yld = etfData.Yield ?? etfData.Yield_12M;
-  if (Number.isFinite(Number(yld))) {
-    out.yield = { yield12m: Math.round(Number(yld) * 100) / 100 };
-  }
-  const sector = extractAllocation(etfData.Sector_Weights || etfData.SectorWeights);
+  const sector = extractAllocation(etfData.Sector_Weights);
   if (sector) out.sectorAllocation = sector;
-  const country = extractAllocation(etfData.Country_Weights || etfData.CountryWeights);
+  const country = extractAllocation(etfData.World_Regions);
   if (country) out.countryAllocation = country;
-  const holdings = extractHoldings(etfData.Top_10_Holdings || etfData.Holdings);
+  const holdings = extractHoldings(etfData.Top_10_Holdings);
   if (holdings) out.topHoldings = holdings;
   return out;
 }
@@ -219,11 +218,16 @@ async function syncOne(isin) {
   }
 
   const fromDate = isoDate(new Date(Date.now() - 11 * 365 * 24 * 3600 * 1000));
-  const [realtime, history, fundamentals] = await Promise.all([
+  const calls = [
     fetchRealtime(symbol).catch((e) => { console.warn(`  ⚠ ${isin} realtime: ${e.message}`); return null; }),
     fetchEodHistory(symbol, fromDate).catch((e) => { console.warn(`  ⚠ ${isin} eod: ${e.message}`); return null; }),
-    fetchFundamentals(symbol).catch((e) => { console.warn(`  ⚠ ${isin} fundamentals: ${e.message}`); return null; }),
-  ]);
+  ];
+  if (FUNDAMENTALS_ENABLED) {
+    calls.push(
+      fetchFundamentals(symbol).catch((e) => { console.warn(`  ⚠ ${isin} fundamentals: ${e.message}`); return null; }),
+    );
+  }
+  const [realtime, history, fundamentals] = await Promise.all(calls);
 
   const patch = { _eodhdSymbol: symbol };
 
@@ -237,7 +241,9 @@ async function syncOne(isin) {
   const perf = computePerformance(history);
   if (perf) patch.performance = perf;
 
-  Object.assign(patch, pickFromFundamentals(fundamentals));
+  if (FUNDAMENTALS_ENABLED) {
+    Object.assign(patch, pickFromFundamentals(fundamentals));
+  }
 
   const next = { ...data, ...patch };
   const before = stableStringify(data);
@@ -255,6 +261,8 @@ async function main() {
   const files = readdirSync(FUNDS_DIR).filter((f) => f.endsWith(".json"));
   const isins = files.map((f) => f.replace(/\.json$/, ""));
   console.log(`EODHD-Sync für ${isins.length} Fonds startet …`);
+  console.log(`  Preise + Performance: aktiv`);
+  console.log(`  Fundamentals (NAV/Allokationen/Holdings/Yield): ${FUNDAMENTALS_ENABLED ? "aktiv (EODHD_FUNDAMENTALS=1)" : "deaktiviert — Plan-Add-on nötig, sonst 403 pro ISIN"}`);
   const stats = { total: isins.length, updated: 0, unchanged: 0, "no-symbol": 0, failed: 0 };
   for (const isin of isins) {
     try {
