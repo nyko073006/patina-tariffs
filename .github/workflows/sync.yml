@@ -26,6 +26,7 @@ jobs:
       - name: Sync funds from master list + EODHD market data
         env:
           EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
+           EODHD_FUNDAMENTALS: "1"  
         run: npm run sync
 
       - name: Validate after sync
