@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "EUNL.XETRA",
   "assetClass": "equity",
   "currency": "USD",
   "distribution": "accumulating",
@@ -8,7 +9,10 @@
   "inception": "2009-09-25",
   "index": "MSCI World",
   "isin": "IE00B4L5Y983",
+  "latestPrice": 123.84,
+  "latestPriceDate": "2026-06-15",
   "name": "iShares Core MSCI World UCITS ETF USD (Acc)",
+  "performance": {},
   "provider": "iShares (BlackRock)",
   "region": "World (Developed)",
   "replicationMethod": "physical-sampling",
