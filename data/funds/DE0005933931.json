@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "EXS1.XETRA",
   "assetClass": "equity",
   "currency": "EUR",
   "distribution": "distributing",
@@ -7,7 +8,10 @@
   "inception": "2001-01-03",
   "index": "DAX",
   "isin": "DE0005933931",
+  "latestPrice": 207.1,
+  "latestPriceDate": "2026-06-19",
   "name": "iShares Core DAX UCITS ETF (DE)",
+  "performance": {},
   "provider": "iShares (BlackRock)",
   "region": "Deutschland",
   "replicationMethod": "physical-full",
