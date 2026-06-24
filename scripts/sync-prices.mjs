@@ -201,8 +201,18 @@ function loadFund(isin) {
   return { path, data: JSON.parse(readFileSync(path, "utf8")) };
 }
 
+function sortKeys(value) {
+  if (Array.isArray(value)) return value.map(sortKeys);
+  if (value && typeof value === "object") {
+    const out = {};
+    for (const k of Object.keys(value).sort()) out[k] = sortKeys(value[k]);
+    return out;
+  }
+  return value;
+}
+
 function stableStringify(obj) {
-  return JSON.stringify(obj, Object.keys(obj).sort(), 2) + "\n";
+  return JSON.stringify(sortKeys(obj), null, 2) + "\n";
 }
 
 async function syncOne(isin) {
