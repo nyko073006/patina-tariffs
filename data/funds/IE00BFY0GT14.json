@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "SPPW.XETRA",
   "assetClass": "equity",
   "currency": "USD",
   "distribution": "accumulating",
@@ -7,7 +8,10 @@
   "inception": "2019-02-28",
   "index": "MSCI World",
   "isin": "IE00BFY0GT14",
+  "latestPrice": 45.71,
+  "latestPriceDate": "2026-07-01",
   "name": "SPDR MSCI World UCITS ETF",
+  "performance": {},
   "provider": "SPDR (State Street)",
   "region": "World (Developed)",
   "replicationMethod": "physical-sampling",
