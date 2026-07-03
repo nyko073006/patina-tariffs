@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "SXR7.XETRA",
   "assetClass": "equity",
   "currency": "EUR",
   "distribution": "accumulating",
@@ -7,7 +8,10 @@
   "inception": "2009-09-25",
   "index": "MSCI Europe",
   "isin": "IE00B53QG562",
+  "latestPrice": 248.5,
+  "latestPriceDate": "2026-07-03",
   "name": "iShares Core MSCI Europe UCITS ETF EUR (Acc)",
+  "performance": {},
   "provider": "iShares (BlackRock)",
   "region": "Europa",
   "replicationMethod": "physical-sampling",
