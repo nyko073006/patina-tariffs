@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "IQQE.XETRA",
   "assetClass": "equity",
   "currency": "USD",
   "distribution": "distributing",
@@ -7,7 +8,10 @@
   "inception": "2005-10-21",
   "index": "MSCI Emerging Markets",
   "isin": "IE00B0M63177",
+  "latestPrice": 58.986,
+  "latestPriceDate": "2026-07-03",
   "name": "iShares MSCI Emerging Markets UCITS ETF (Dist)",
+  "performance": {},
   "provider": "iShares (BlackRock)",
   "region": "Emerging Markets",
   "replicationMethod": "physical-sampling",
