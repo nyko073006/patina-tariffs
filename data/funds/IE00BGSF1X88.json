@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "IB01.LSE",
   "assetClass": "bond",
   "currency": "EUR",
   "distribution": "accumulating",
@@ -7,7 +8,10 @@
   "inception": "2018-09-28",
   "index": "Bloomberg MSCI Euro Corporate Sustainable SRI",
   "isin": "IE00BGSF1X88",
+  "latestPrice": 120.94,
+  "latestPriceDate": "2026-07-03",
   "name": "iShares Euro Corporate Bond ESG UCITS ETF (Acc)",
+  "performance": {},
   "provider": "iShares (BlackRock)",
   "region": "Eurozone",
   "replicationMethod": "physical-sampling",
