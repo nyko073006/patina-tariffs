@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "VWCE.XETRA",
   "assetClass": "equity",
   "currency": "USD",
   "distribution": "accumulating",
@@ -7,7 +8,10 @@
   "inception": "2019-07-23",
   "index": "FTSE All-World",
   "isin": "IE00BK5BQT80",
+  "latestPrice": 166.38,
+  "latestPriceDate": "2026-07-06",
   "name": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+  "performance": {},
   "provider": "Vanguard",
   "region": "World (Dev. + EM)",
   "replicationMethod": "physical-sampling",
