@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "DBXD.XETRA",
   "assetClass": "equity",
   "currency": "EUR",
   "distribution": "accumulating",
@@ -7,7 +8,10 @@
   "inception": "2007-01-10",
   "index": "DAX",
   "isin": "LU0274211480",
+  "latestPrice": 235.05,
+  "latestPriceDate": "2026-07-10",
   "name": "Xtrackers DAX UCITS ETF 1C",
+  "performance": {},
   "provider": "Xtrackers (DWS)",
   "region": "Deutschland",
   "replicationMethod": "physical-full",
