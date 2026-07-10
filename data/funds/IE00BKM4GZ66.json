@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "IS3N.XETRA",
   "assetClass": "equity",
   "currency": "USD",
   "distribution": "accumulating",
@@ -7,7 +8,10 @@
   "inception": "2014-05-30",
   "index": "MSCI EM IMI",
   "isin": "IE00BKM4GZ66",
+  "latestPrice": 47.69,
+  "latestPriceDate": "2026-07-10",
   "name": "iShares Core MSCI Emerging Markets IMI UCITS ETF (Acc)",
+  "performance": {},
   "provider": "iShares (BlackRock)",
   "region": "Emerging Markets",
   "replicationMethod": "physical-sampling",
