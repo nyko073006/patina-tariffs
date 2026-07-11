@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "VGWL.XETRA",
   "assetClass": "equity",
   "currency": "USD",
   "distribution": "distributing",
@@ -7,7 +8,10 @@
   "inception": "2012-05-22",
   "index": "FTSE All-World",
   "isin": "IE00B3RBWM25",
+  "latestPrice": 160.98,
+  "latestPriceDate": "2026-07-10",
   "name": "Vanguard FTSE All-World UCITS ETF (USD) Distributing",
+  "performance": {},
   "provider": "Vanguard",
   "region": "World (Dev. + EM)",
   "replicationMethod": "physical-sampling",

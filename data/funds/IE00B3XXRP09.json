@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "VUSA.XETRA",
   "assetClass": "equity",
   "currency": "USD",
   "distribution": "distributing",
@@ -7,7 +8,10 @@
   "inception": "2012-05-22",
   "index": "S&P 500",
   "isin": "IE00B3XXRP09",
+  "latestPrice": 125.175,
+  "latestPriceDate": "2026-07-10",
   "name": "Vanguard S&P 500 UCITS ETF (USD) Distributing",
+  "performance": {},
   "provider": "Vanguard",
   "region": "USA",
   "replicationMethod": "physical-full",

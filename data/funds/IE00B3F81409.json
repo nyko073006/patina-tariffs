@@ -1,4 +1,5 @@
 {
+  "_eodhdSymbol": "EUNU.XETRA",
   "assetClass": "bond",
   "currency": "EUR",
   "distribution": "distributing",
@@ -7,7 +8,10 @@
   "inception": "2009-03-20",
   "index": "Bloomberg Euro Corporate Bond",
   "isin": "IE00B3F81409",
+  "latestPrice": 3.8225,
+  "latestPriceDate": "2026-07-10",
   "name": "iShares Core EUR Corporate Bond UCITS ETF (Dist)",
+  "performance": {},
   "provider": "iShares (BlackRock)",
   "region": "Eurozone",
   "replicationMethod": "physical-sampling",
