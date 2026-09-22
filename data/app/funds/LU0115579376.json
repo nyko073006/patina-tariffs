@@ -1,11 +1,12 @@
 {
   "anbieter": "Sauren",
   "beschreibung": "Dachfonds-Konzept — Eckart Sauren wählt aktive Manager.",
-  "historischeBruttorendite": 0.075,
-  "historischePeriode": "20 Jahre",
+  "historischeBruttorendite": 0.0991,
+  "historischePeriode": "10 Jahre (2014–2023)",
   "isin": "LU0115579376",
   "kategorie": "Multi-Asset",
   "name": "Sauren Global Growth Plus A",
+  "renditeQuelle": "Factsheet",
   "ter": 0.024,
   "wkn": "930926"
 }
