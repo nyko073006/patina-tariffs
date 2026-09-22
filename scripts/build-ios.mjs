@@ -38,6 +38,13 @@ const TARIF_KATEGORIEN = new Set([
   "Strukturvertrieb", "Klassische Versicherer", "Index-Police",
   "Sektor- & Top-Fonds", "Nettotarife (Honorarberatung)",
 ]);
+// Herkunft der Rendite. Ein unbekannter Wert darf nicht durchrutschen:
+// die App wuerde ihn auf "Schätzwert" zurueckfallen lassen, und eine
+// belegte Zahl saehe dann ungesichert aus (oder umgekehrt, je nach
+// Tippfehler).
+const RENDITE_QUELLEN = new Set([
+  "Factsheet", "Marktdaten", "Schätzwert", "Manuell",
+]);
 const VEHIKEL_TYPEN = new Set([
   "Schicht 1 — Rürup", "Schicht 2 — Riester",
   "Schicht 3 — Privatrente", "Altersvorsorge-Depot (ab 2027)",
@@ -122,6 +129,13 @@ for (const f of fonds) {
   // TER und Rendite sind Anteile, keine Prozentwerte.
   imBereich(f, "ter", 0, 0.05, quelle);
   imBereich(f, "historischeBruttorendite", -0.5, 0.25, quelle);
+
+  if (f.renditeQuelle !== undefined && !RENDITE_QUELLEN.has(f.renditeQuelle)) {
+    fehler.push(`${quelle}: renditeQuelle "${f.renditeQuelle}" kennt die App nicht — erlaubt: ${[...RENDITE_QUELLEN].join(", ")}`);
+  }
+  if (f.renditeQuelle === undefined) {
+    warnungen.push(`${quelle}: keine renditeQuelle — gilt in der App als Schätzwert`);
+  }
 
   if (f.historischeBruttorendite > 0.12) {
     warnungen.push(`${quelle}: ${(f.historischeBruttorendite * 100).toFixed(2)} % p.a. — als Projektionsrendite ueber lange Laufzeiten kritisch, Quelle pruefen`);

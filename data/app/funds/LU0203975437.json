@@ -1,11 +1,12 @@
 {
   "anbieter": "Robeco",
   "beschreibung": "Value-Stil, Boston Partners — disziplinierte Bewertungsfilter.",
-  "historischeBruttorendite": 0.08,
-  "historischePeriode": "20 Jahre",
+  "historischeBruttorendite": 0.1032,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "LU0203975437",
   "kategorie": "Aktiv Welt",
   "name": "Robeco BP Global Premium Equities D EUR",
+  "renditeQuelle": "Factsheet",
   "ter": 0.0124,
   "wkn": "A0CATL"
 }

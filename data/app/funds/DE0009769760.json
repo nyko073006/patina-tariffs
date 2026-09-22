@@ -1,11 +1,12 @@
 {
   "anbieter": "DWS",
   "beschreibung": "Pazifik-Aktien (Japan, Australien, Singapur).",
-  "historischeBruttorendite": 0.07,
-  "historischePeriode": "20 Jahre",
+  "historischeBruttorendite": 0.0881,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "DE0009769760",
   "kategorie": "Sektor-Fonds (aktiv)",
   "name": "DWS Top Asia LD",
+  "renditeQuelle": "Factsheet",
   "ter": 0.0165,
   "wkn": "976976"
 }
