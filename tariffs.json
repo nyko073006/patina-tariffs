@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-22T17:28:01Z",
+  "updatedAt": "2026-09-22T19:06:29Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -1004,7 +1004,7 @@
       "isin": "DE000DK0V570",
       "kategorie": "Aktiv Welt",
       "name": "WIN — WeltINvest Aktien ESG",
-      "renditeQuelle": "Marktdaten",
+      "renditeQuelle": "Schätzwert",
       "ter": 0.018,
       "wkn": "DK0V57"
     },
@@ -1124,6 +1124,7 @@
       "isin": "IE00B4L5Y983",
       "kategorie": "Welt-ETF",
       "name": "iShares Core MSCI World UCITS ETF (Acc)",
+      "renditeQuelle": "Schätzwert",
       "ter": 0.002,
       "wkn": "A0RPWH"
     },
@@ -1555,7 +1556,7 @@
       "isin": "LU0284394235",
       "kategorie": "Multi-Asset",
       "name": "DNCA Invest Eurose A EUR",
-      "renditeQuelle": "Schätzwert",
+      "renditeQuelle": "Marktdaten",
       "ter": 0.0141,
       "wkn": "A0J4J5"
     },
