@@ -1,11 +1,12 @@
 {
   "anbieter": "DWS",
   "beschreibung": "Welt-Aktienfonds, einer der ältesten Publikumsfonds Deutschlands.",
-  "historischeBruttorendite": 0.075,
-  "historischePeriode": "20 Jahre",
+  "historischeBruttorendite": 0.1144,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "DE0008474024",
   "kategorie": "Aktiv Welt",
   "name": "DWS Akkumula LD",
+  "renditeQuelle": "Factsheet",
   "ter": 0.0145,
   "wkn": "847402"
 }
