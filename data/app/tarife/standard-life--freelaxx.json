@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Standard Life",
+  "betaRate": 0,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.017,
+  "gammaAnnualRate": 0.0065,
+  "id": "11111111-0000-0000-0000-000000000010",
+  "jahrgang": "2025",
+  "kappaMonthly": 0.0833,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002435,
+  "tarifName": "Freelaxx",
+  "typischeBruttorendite": 0.07,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

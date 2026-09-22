@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Signal Iduna",
+  "betaRate": 0.022,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.018,
+  "gammaAnnualRate": 0.003,
+  "id": "11111111-0000-0000-0000-000000000017",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.7917,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002369,
+  "tarifName": "SI Wachstum",
+  "typischeBruttorendite": 0.055,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

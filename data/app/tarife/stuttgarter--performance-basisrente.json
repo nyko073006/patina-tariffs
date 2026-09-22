@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Stuttgarter",
+  "betaRate": 0.0263,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.012,
+  "gammaAnnualRate": 0.0048,
+  "id": "22222222-0000-0000-0000-000000000014",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.75,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.00288,
+  "tarifName": "performance+ BasisRente",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 1 — Rürup"
+}

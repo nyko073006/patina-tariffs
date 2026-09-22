@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Nürnberger",
+  "betaRate": 0.07,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.014,
+  "gammaAnnualRate": 0.003,
+  "id": "22222222-0000-0000-0000-000000000012",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.5833,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002413,
+  "tarifName": "BasisRente Invest",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 1 — Rürup"
+}

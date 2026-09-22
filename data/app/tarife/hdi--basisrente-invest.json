@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "HDI",
+  "betaRate": 0.01,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.016,
+  "gammaAnnualRate": 0.0016,
+  "id": "22222222-0000-0000-0000-000000000008",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.4167,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002603,
+  "tarifName": "BasisRente Invest",
+  "typischeBruttorendite": 0.055,
+  "vehikelTyp": "Schicht 1 — Rürup"
+}

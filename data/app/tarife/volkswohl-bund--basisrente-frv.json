@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.04,
+  "anbieter": "Volkswohl Bund",
+  "betaRate": 0.02,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.016,
+  "gammaAnnualRate": 0.0028,
+  "id": "22222222-0000-0000-0000-000000000017",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.575,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002881,
+  "tarifName": "BasisRente FRV",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 1 — Rürup"
+}

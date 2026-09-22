@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "WWK",
+  "betaRate": 0.025,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.0195,
+  "gammaAnnualRate": 0.0055,
+  "id": "22222222-0000-0000-0000-000000000018",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.8333,
+  "kategorie": "Strukturvertrieb",
+  "rentenfaktor": 0.002861,
+  "tarifName": "BasisRente FondsRente",
+  "typischeBruttorendite": 0.055,
+  "vehikelTyp": "Schicht 1 — Rürup"
+}

@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Württembergische",
+  "betaRate": 0.04,
+  "effectiveCostRIY": 0.018,
+  "fundTER": 0.017,
+  "gammaAnnualRate": 0.003,
+  "id": "11111111-0000-0000-0000-000000000018",
+  "jahrgang": "2026",
+  "kappaMonthly": 2,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.0028,
+  "tarifName": "Genius FlexRente",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

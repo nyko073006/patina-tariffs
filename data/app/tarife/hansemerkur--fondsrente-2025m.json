@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "HanseMerkur",
+  "betaRate": 0.005,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.015,
+  "gammaAnnualRate": 0.00192,
+  "id": "11111111-0000-0000-0000-000000000035",
+  "jahrgang": "2025",
+  "kappaMonthly": 0.5917,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002663,
+  "tarifName": "FondsRente 2025M",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}
