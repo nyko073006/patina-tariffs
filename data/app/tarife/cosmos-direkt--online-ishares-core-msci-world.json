@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.018,
+  "anbieter": "Cosmos Direkt",
+  "betaRate": 0.012,
+  "effectiveCostRIY": 0.005,
+  "fundTER": 0.002,
+  "gammaAnnualRate": 0.0025,
+  "id": "11111111-0000-0000-0000-000000000030",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.5,
+  "kategorie": "Sektor- & Top-Fonds",
+  "rentenfaktor": 0.0032,
+  "tarifName": "Online + iShares Core MSCI World",
+  "typischeBruttorendite": 0.07,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.02495,
+  "anbieter": "Alte Leipziger",
+  "betaRate": 0.01,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.0185,
+  "gammaAnnualRate": 0.0024,
+  "id": "11111111-0000-0000-0000-000000000009",
+  "jahrgang": "2026",
+  "kappaMonthly": 2,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002681,
+  "tarifName": "AR25 Standard",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

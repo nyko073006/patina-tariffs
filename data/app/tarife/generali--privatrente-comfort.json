@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Generali",
+  "betaRate": 0.04,
+  "effectiveCostRIY": 0.0195,
+  "fundTER": 0.0185,
+  "gammaAnnualRate": 0.0035,
+  "id": "11111111-0000-0000-0000-000000000019",
+  "jahrgang": "2026",
+  "kappaMonthly": 2,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.0027,
+  "tarifName": "Privatrente Comfort",
+  "typischeBruttorendite": 0.055,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

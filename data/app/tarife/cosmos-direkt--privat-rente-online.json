@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.018,
+  "anbieter": "Cosmos Direkt",
+  "betaRate": 0.012,
+  "effectiveCostRIY": 0.007,
+  "fundTER": 0.004,
+  "gammaAnnualRate": 0.0025,
+  "id": "11111111-0000-0000-0000-000000000024",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.5,
+  "kategorie": "Nettotarife (Honorarberatung)",
+  "rentenfaktor": 0.0032,
+  "tarifName": "Privat-Rente Online",
+  "typischeBruttorendite": 0.07,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

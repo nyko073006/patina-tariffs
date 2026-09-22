@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Stuttgarter",
+  "betaRate": 0.015,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.012,
+  "gammaAnnualRate": 0.003,
+  "id": "11111111-0000-0000-0000-000000000037",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.3333,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.0029,
+  "tarifName": "alpha+ FlexRente",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Condor",
+  "betaRate": 0.025,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.015,
+  "gammaAnnualRate": 0.00396,
+  "id": "11111111-0000-0000-0000-000000000034",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.9167,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.001736,
+  "tarifName": "Condor FondsRente",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

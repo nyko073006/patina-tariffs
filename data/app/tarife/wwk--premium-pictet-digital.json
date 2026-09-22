@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "WWK",
+  "betaRate": 0.025,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.022,
+  "gammaAnnualRate": 0.0055,
+  "id": "11111111-0000-0000-0000-000000000029",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.8333,
+  "kategorie": "Sektor- & Top-Fonds",
+  "rentenfaktor": 0.002548,
+  "tarifName": "Premium + Pictet Digital",
+  "typischeBruttorendite": 0.11,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

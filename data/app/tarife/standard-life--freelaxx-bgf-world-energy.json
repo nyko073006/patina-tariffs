@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Standard Life",
+  "betaRate": 0,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.0205,
+  "gammaAnnualRate": 0.0065,
+  "id": "11111111-0000-0000-0000-000000000025",
+  "jahrgang": "2025",
+  "kappaMonthly": 0.0833,
+  "kategorie": "Sektor- & Top-Fonds",
+  "rentenfaktor": 0.002435,
+  "tarifName": "Freelaxx + BGF World Energy",
+  "typischeBruttorendite": 0.125,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

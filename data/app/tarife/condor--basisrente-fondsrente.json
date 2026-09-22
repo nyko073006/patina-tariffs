@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Condor",
+  "betaRate": 0.03,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.015,
+  "gammaAnnualRate": 0.004,
+  "id": "22222222-0000-0000-0000-000000000006",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.6667,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.00291,
+  "tarifName": "BasisRente FondsRente",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 1 — Rürup"
+}

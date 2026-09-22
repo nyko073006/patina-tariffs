@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Nürnberger",
+  "betaRate": 0.0425,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.014,
+  "gammaAnnualRate": 0.001,
+  "id": "11111111-0000-0000-0000-000000000015",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.6792,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002705,
+  "tarifName": "FondsRente",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}
