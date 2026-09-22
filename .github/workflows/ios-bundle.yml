@@ -1,0 +1,62 @@
+name: iOS-Bundle
+
+# Baut `tariffs.json` im Repo-Root — das ist die Datei, die die
+# PatinaCharts-App per GitHub-Raw abruft. Sie muss committet sein, sonst
+# liefert Raw einen 404 (und die App faellt still auf ihren Bundle-Stand
+# zurueck).
+#
+# Bei einem PR wird nur geprueft, ob die Datei zum Stand von `data/app/`
+# passt. Auf `main` wird sie regeneriert und committet.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/app/**"
+      - "scripts/build-ios.mjs"
+  pull_request:
+    paths:
+      - "data/app/**"
+      - "scripts/build-ios.mjs"
+      - "tariffs.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+
+      # build-ios.mjs nutzt ausschliesslich Node-Builtins — kein npm ci noetig.
+      - name: Bundle bauen
+        run: node scripts/build-ios.mjs
+
+      - name: PR — pruefen ob tariffs.json aktuell ist
+        if: github.event_name == 'pull_request'
+        run: |
+          if ! git diff --quiet -- tariffs.json; then
+            echo "::error::tariffs.json passt nicht zu data/app/. Lokal 'npm run build:ios' laufen lassen und das Ergebnis mitcommitten."
+            git diff --stat -- tariffs.json
+            exit 1
+          fi
+          echo "tariffs.json ist aktuell."
+
+      - name: main — Aenderung committen
+        if: github.event_name != 'pull_request'
+        run: |
+          if git diff --quiet -- tariffs.json; then
+            echo "Keine Aenderung an tariffs.json."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tariffs.json
+          git commit -m "chore(ios): tariffs.json neu gebaut aus data/app/"
+          git push

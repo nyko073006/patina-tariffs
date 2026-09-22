@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.0249,
+  "anbieter": "Swiss Life",
+  "betaRate": 0.0425,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.0185,
+  "gammaAnnualRate": 0.0035,
+  "id": "11111111-0000-0000-0000-000000000006",
+  "jahrgang": "2025",
+  "kappaMonthly": 1.0458,
+  "kategorie": "Strukturvertrieb",
+  "rentenfaktor": 0.002087,
+  "tarifName": "Maximo 710/714",
+  "typischeBruttorendite": 0.065,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "AXA",
+  "betaRate": 0.025,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.011,
+  "gammaAnnualRate": 0.002496,
+  "id": "11111111-0000-0000-0000-000000000023",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.7917,
+  "kategorie": "Index-Police",
+  "rentenfaktor": 0.002402,
+  "tarifName": "Relax Rente FlexInvest",
+  "typischeBruttorendite": 0.035,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

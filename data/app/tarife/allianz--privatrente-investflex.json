@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Allianz",
+  "betaRate": 0,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.015,
+  "gammaAnnualRate": 0.004,
+  "id": "11111111-0000-0000-0000-000000000002",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.375,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002638,
+  "tarifName": "PrivatRente InvestFlex",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

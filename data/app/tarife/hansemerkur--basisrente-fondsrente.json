@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "HanseMerkur",
+  "betaRate": 0.02,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.015,
+  "gammaAnnualRate": 0.00192,
+  "id": "22222222-0000-0000-0000-000000000009",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.6383,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.003024,
+  "tarifName": "BasisRente FondsRente",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 1 — Rürup"
+}
