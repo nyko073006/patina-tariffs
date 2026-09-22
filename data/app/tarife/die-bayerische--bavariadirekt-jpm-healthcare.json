@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "die Bayerische",
+  "betaRate": 0.02,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.018,
+  "gammaAnnualRate": 0.003,
+  "id": "11111111-0000-0000-0000-000000000027",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.7958,
+  "kategorie": "Sektor- & Top-Fonds",
+  "rentenfaktor": 0.0032,
+  "tarifName": "BavariaDIREKT + JPM Healthcare",
+  "typischeBruttorendite": 0.095,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

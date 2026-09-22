@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Continentale",
+  "betaRate": 0.055,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.006,
+  "gammaAnnualRate": 0,
+  "id": "11111111-0000-0000-0000-000000000001",
+  "jahrgang": "2026",
+  "kappaMonthly": 1.3,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.00279,
+  "tarifName": "EasyRente Invest RI",
+  "typischeBruttorendite": 0.065,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

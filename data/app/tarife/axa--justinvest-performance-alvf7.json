@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "AXA",
+  "betaRate": 0.025,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.014,
+  "gammaAnnualRate": 0.002496,
+  "id": "11111111-0000-0000-0000-000000000003",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.7917,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002402,
+  "tarifName": "JustInvest Performance ALVF7",
+  "typischeBruttorendite": 0.055,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

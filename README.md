@@ -127,6 +127,63 @@ npm run deploy
 Routes: `/api/history`, `/api/compare`. Details und iOS-Integrations-Skizze
 in [`workers/proxy/README.md`](workers/proxy/README.md).
 
+## PatinaCharts iOS-App
+
+Die iOS-App holt sich **eine** Datei, direkt über GitHub-Raw:
+
+```
+https://raw.githubusercontent.com/nyko073006/patina-tariffs/main/tariffs.json
+```
+
+Damit das funktioniert, muss dieses Repo **öffentlich** sein. Solange es
+privat ist, liefert Raw einen 404 und die App bleibt still auf ihrem
+einkompilierten Stand — ohne sichtbaren Fehler.
+
+### Wo die Daten liegen
+
+| Pfad | Zweck |
+|---|---|
+| `data/app/funds/<ISIN>.json` | Fonds im App-Schema, ein Datensatz pro Datei |
+| `data/app/tarife/<slug>.json` | Versicherungstarife im App-Schema |
+| `tariffs.json` (Root) | generiert, committet — **das ist der Endpoint** |
+
+`data/app/` ist bewusst getrennt von `data/funds/`: letzteres gehört dem
+EODHD-Sync und hat ein anderes Schema (TER in Prozent statt als Anteil,
+keine Renditen, keine Kategorien). Der Sync fasst `data/app/` nicht an.
+
+`dist/tariffs.json` aus `npm run build:data` ist etwas anderes — das
+Bundle fürs Web-Frontend. Nicht verwechseln.
+
+### Quartals-Update einer Fondsrendite
+
+1. Factsheet oder PRIIPs-KID der KVG ziehen (Wertentwicklung nach
+   BVI-Methode — das ist die Quelle, auf die ein Berater im Protokoll
+   verweisen kann; ein API-Kurs ist das nicht).
+2. In `data/app/funds/<ISIN>.json` zwei Felder setzen:
+   ```json
+   "historischeBruttorendite": 0.0751,
+   "historischePeriode": "15 Jahre (2011–2026)"
+   ```
+   `historischeBruttorendite` ist ein **Anteil**, nicht Prozent: 7,51 % = `0.0751`.
+3. `npm run build:ios` — schreibt `tariffs.json` neu.
+4. Committen und pushen. Die Berater haben den Wert binnen 24 Stunden
+   (Cache-TTL in der App), ohne App-Update.
+
+Auf `main` übernimmt das der Workflow `ios-bundle.yml` automatisch; in
+einem PR prüft er nur, ob `tariffs.json` zum Stand von `data/app/` passt.
+
+### Was der Build abfängt
+
+`scripts/build-ios.mjs` bricht ab bei: unbekannten Kategorien (die App
+würde solche Einträge über `compactMap` **still** verwerfen), kaputten
+UUIDs oder ISINs, doppelten Schlüsseln, Prozent-statt-Anteil-Verwechslung
+und wenn das Bundle schrumpfen würde (`--force` übergeht das). Warnungen
+gibt es bei Renditen über 12 % p.a. und fehlenden WKNs.
+
+Zusätzlich mergt die App einen Payload gegen ihren Bundle-Stand, statt
+ihn zu ersetzen: der Endpoint kann ergänzen und aktualisieren, aber nie
+löschen.
+
 ## Konsum durch Vermittler-Tools
 
 Nach jedem Merge in `main` liegen die Datenbundles unter:

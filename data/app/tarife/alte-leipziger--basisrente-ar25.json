@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Alte Leipziger",
+  "betaRate": 0.02,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.015,
+  "gammaAnnualRate": 0.003,
+  "id": "22222222-0000-0000-0000-000000000003",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.5833,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002864,
+  "tarifName": "BasisRente AR25",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 1 — Rürup"
+}

@@ -1,9 +1,12 @@
-name: Daily data sync
+name: Quarterly data sync
 
 on:
   schedule:
-    # täglich 04:30 UTC = 05:30/06:30 Europe/Berlin (Winter/Sommer)
-    - cron: "30 4 * * *"
+    # Quartalsweise: 1. Januar / April / Juli / Oktober, 04:30 UTC.
+    # Die App braucht pro Fonds eine Jahresrendite, keine Tageskurse —
+    # ein täglicher Lauf war Aufwand ohne Gegenwert. Zwischendurch
+    # jederzeit manuell über "Run workflow" auslösbar.
+    - cron: "30 4 1 1,4,7,10 *"
   workflow_dispatch:
 
 permissions:
@@ -26,7 +29,13 @@ jobs:
       - name: Sync funds from master list + EODHD market data
         env:
           EODHD_API_KEY: ${{ secrets.EODHD_API_KEY }}
-        run: npm run sync
+        run: |
+          if [ -z "${EODHD_API_KEY}" ]; then
+            echo "::notice::Kein EODHD_API_KEY hinterlegt — Marktdaten-Sync wird übersprungen."
+            echo "Die kuratierten App-Daten unter data/app/ sind davon unabhängig."
+            exit 0
+          fi
+          npm run sync
 
       - name: Validate after sync
         run: npm run validate
@@ -45,7 +54,7 @@ jobs:
           branch: data-sync/${{ steps.date.outputs.today }}
           base: main
           commit-message: |
-            chore(sync): Fonds-Stammdaten + EODHD-Marktdaten (${{ steps.date.outputs.today }})
+            chore(sync): Fonds-Stammdaten + EODHD-Marktdaten (quartalsweise) (${{ steps.date.outputs.today }})
           title: "chore(sync): Fonds-Daten ${{ steps.date.outputs.today }}"
           body: |
             Automatischer Daily-Sync via `.github/workflows/sync.yml`.

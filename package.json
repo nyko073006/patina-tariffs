@@ -7,10 +7,11 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "build:data": "node scripts/build.mjs",
+    "build:ios": "node scripts/build-ios.mjs",
     "sync:funds": "node scripts/sync-funds.mjs",
     "sync:prices": "node scripts/sync-prices.mjs",
     "sync": "npm run sync:funds && npm run sync:prices",
-    "build": "npm run validate && npm run build:data && npm --prefix web run build",
+    "build": "npm run validate && npm run build:data && npm run build:ios && npm --prefix web run build",
     "dev": "npm run build:data && npm --prefix web run dev"
   },
   "devDependencies": {

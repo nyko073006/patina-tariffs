@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "ERGO",
+  "betaRate": 0.0198,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.019,
+  "gammaAnnualRate": 0.0036,
+  "id": "11111111-0000-0000-0000-000000000013",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.5167,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002884,
+  "tarifName": "Rente Garantie",
+  "typischeBruttorendite": 0.05,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

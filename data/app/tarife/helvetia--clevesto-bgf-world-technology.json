@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Helvetia",
+  "betaRate": 0.03,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.021,
+  "gammaAnnualRate": 0.0084,
+  "id": "11111111-0000-0000-0000-000000000026",
+  "jahrgang": "2026",
+  "kappaMonthly": 3,
+  "kategorie": "Sektor- & Top-Fonds",
+  "rentenfaktor": 0.002652,
+  "tarifName": "CleVesto + BGF World Technology",
+  "typischeBruttorendite": 0.13,
+  "vehikelTyp": "Schicht 3 — Privatrente"
+}

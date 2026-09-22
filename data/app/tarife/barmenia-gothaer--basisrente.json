@@ -1,0 +1,16 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Barmenia/Gothaer",
+  "betaRate": 0.025,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.015,
+  "gammaAnnualRate": 0,
+  "id": "22222222-0000-0000-0000-000000000005",
+  "jahrgang": "2026",
+  "kappaMonthly": 2.5,
+  "kategorie": "Klassische Versicherer",
+  "rentenfaktor": 0.002538,
+  "tarifName": "BasisRente",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 1 — Rürup"
+}
