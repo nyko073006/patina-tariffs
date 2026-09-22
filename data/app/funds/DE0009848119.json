@@ -1,11 +1,12 @@
 {
   "anbieter": "DWS",
   "beschreibung": "Hochdividenden-Aktien weltweit — Klassiker für konservative Mandate.",
-  "historischeBruttorendite": 0.06,
-  "historischePeriode": "20 Jahre",
+  "historischeBruttorendite": 0.0691,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "DE0009848119",
   "kategorie": "Aktiv Welt",
   "name": "DWS Top Dividende LD",
+  "renditeQuelle": "Factsheet",
   "ter": 0.0145,
   "wkn": "984811"
 }

@@ -6,6 +6,7 @@
   "isin": "DE0009770206",
   "kategorie": "Multi-Asset",
   "name": "ODDO BHF Money Market CR-EUR",
+  "renditeQuelle": "Marktdaten",
   "ter": 0.005,
   "wkn": ""
 }

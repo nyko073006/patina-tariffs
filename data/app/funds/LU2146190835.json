@@ -1,11 +1,12 @@
 {
   "anbieter": "Robeco",
   "beschreibung": "Globale Wasser-Wertschöpfungskette — Versorger, Aufbereitung, Infrastruktur.",
-  "historischeBruttorendite": 0.0957,
-  "historischePeriode": "15 Jahre (2011–2026)",
+  "historischeBruttorendite": 0.0981,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "LU2146190835",
   "kategorie": "Sektor-Fonds (aktiv)",
   "name": "Robeco Sustainable Water Equities D EUR",
+  "renditeQuelle": "Factsheet",
   "ter": 0.0153,
   "wkn": "A2N6XQ"
 }
