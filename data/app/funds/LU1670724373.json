@@ -1,12 +1,12 @@
 {
   "anbieter": "M&G",
   "beschreibung": "Anleihen-fokussierter Multi-Asset, defensiv mit Equity-Quote bis 20 %.",
-  "historischeBruttorendite": 0.045,
-  "historischePeriode": "15 Jahre",
-  "isin": "GB00B1VMCY93",
+  "historischeBruttorendite": 0.0306,
+  "historischePeriode": "10 Jahre (2016–2025)",
+  "isin": "LU1670724373",
   "kategorie": "Multi-Asset",
   "name": "M&G (Lux) Optimal Income A EUR Acc",
-  "renditeQuelle": "Schätzwert",
-  "ter": 0.014,
-  "wkn": "A0NA6Z"
+  "renditeQuelle": "Factsheet",
+  "ter": 0.0135,
+  "wkn": ""
 }

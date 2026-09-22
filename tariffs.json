@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-22T19:06:29Z",
+  "updatedAt": "2026-09-22T19:23:42Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -901,6 +901,18 @@
   ],
   "fonds": [
     {
+      "anbieter": "DWS",
+      "beschreibung": "Industrie-4.0-Themen: Automatisierung, IoT, 3D-Druck.",
+      "historischeBruttorendite": 0.125,
+      "historischePeriode": "10 Jahre (2016–2025)",
+      "isin": "DE0005152482",
+      "kategorie": "Sektor-Fonds (aktiv)",
+      "name": "DWS Smart Industrial Technologies LD",
+      "renditeQuelle": "Factsheet",
+      "ter": 0.0146,
+      "wkn": "515248"
+    },
+    {
       "anbieter": "Deka",
       "beschreibung": "Aktiver Tech-Sektorfonds der Deka — globaler Tech-Schwerpunkt, profitierte massiv vom 15-J-Tech-Boom.",
       "historischeBruttorendite": 0.1823,
@@ -927,13 +939,13 @@
     {
       "anbieter": "Deka",
       "beschreibung": "DAX-fokussierter Aktienfonds — Sparkassen-Klassiker.",
-      "historischeBruttorendite": 0.055,
-      "historischePeriode": "20 Jahre",
+      "historischeBruttorendite": 0.07,
+      "historischePeriode": "10 Jahre (2016–2025)",
       "isin": "DE0008474503",
       "kategorie": "Aktiv Welt",
       "name": "DekaFonds CF",
-      "renditeQuelle": "Schätzwert",
-      "ter": 0.0125,
+      "renditeQuelle": "Factsheet",
+      "ter": 0.014,
       "wkn": "847450"
     },
     {
@@ -1033,18 +1045,6 @@
       "wkn": "A0DPW1"
     },
     {
-      "anbieter": "M&G",
-      "beschreibung": "Anleihen-fokussierter Multi-Asset, defensiv mit Equity-Quote bis 20 %.",
-      "historischeBruttorendite": 0.045,
-      "historischePeriode": "15 Jahre",
-      "isin": "GB00B1VMCY93",
-      "kategorie": "Multi-Asset",
-      "name": "M&G (Lux) Optimal Income A EUR Acc",
-      "renditeQuelle": "Schätzwert",
-      "ter": 0.014,
-      "wkn": "A0NA6Z"
-    },
-    {
       "anbieter": "Comgest",
       "beschreibung": "Quality-Growth-Stil, ~30 Hochkonzentration, Morningstar-Premium.",
       "historischeBruttorendite": 0.09,
@@ -1103,18 +1103,6 @@
       "renditeQuelle": "Marktdaten",
       "ter": 0.0017,
       "wkn": "A1JJTC"
-    },
-    {
-      "anbieter": "Polar Capital",
-      "beschreibung": "Biotech-Spezialist, hohe Konzentration, US-bias.",
-      "historischeBruttorendite": 0.095,
-      "historischePeriode": "12 Jahre",
-      "isin": "IE00B428BX72",
-      "kategorie": "Sektor-Fonds (aktiv)",
-      "name": "Polar Capital Biotechnology I USD",
-      "renditeQuelle": "Schätzwert",
-      "ter": 0.014,
-      "wkn": "A1JX7Z"
     },
     {
       "anbieter": "iShares",
@@ -1574,6 +1562,18 @@
     },
     {
       "anbieter": "Flossbach von Storch",
+      "beschreibung": "Konservatives Multi-Asset, max. 35 % Aktienquote.",
+      "historischeBruttorendite": 0.0407,
+      "historischePeriode": "10 Jahre (2016–2025)",
+      "isin": "LU0323577923",
+      "kategorie": "Multi-Asset",
+      "name": "Flossbach v. Storch – Multi Asset Defensive R",
+      "renditeQuelle": "Factsheet",
+      "ter": 0.0162,
+      "wkn": "A0M43U"
+    },
+    {
+      "anbieter": "Flossbach von Storch",
       "beschreibung": "Sachwert-fokussiert: Aktien, Gold, Anleihen — sehr defensiv.",
       "historischeBruttorendite": 0.07,
       "historischePeriode": "10 Jahre (2015–2024)",
@@ -1595,18 +1595,6 @@
       "renditeQuelle": "Factsheet",
       "ter": 0.002,
       "wkn": "DBX1A7"
-    },
-    {
-      "anbieter": "Flossbach von Storch",
-      "beschreibung": "Konservatives Multi-Asset, max. 35 % Aktienquote.",
-      "historischeBruttorendite": 0.04,
-      "historischePeriode": "15 Jahre",
-      "isin": "LU0339400966",
-      "kategorie": "Multi-Asset",
-      "name": "Flossbach v. Storch – Multi Asset Defensive R",
-      "renditeQuelle": "Schätzwert",
-      "ter": 0.0149,
-      "wkn": "A0M0HG"
     },
     {
       "anbieter": "Pictet",
@@ -1659,13 +1647,13 @@
     {
       "anbieter": "Fundsmith",
       "beschreibung": "Terry Smith — konzentrierter Quality-Stil, hoher US-Anteil.",
-      "historischeBruttorendite": 0.11,
-      "historischePeriode": "seit 2010 (14 J.)",
+      "historischeBruttorendite": 0.1067,
+      "historischePeriode": "10 Jahre (2016–2025)",
       "isin": "LU0690375182",
       "kategorie": "Aktiv Welt",
-      "name": "Fundsmith Equity I EUR Acc",
-      "renditeQuelle": "Schätzwert",
-      "ter": 0.0102,
+      "name": "Fundsmith Equity T EUR Acc",
+      "renditeQuelle": "Factsheet",
+      "ter": 0.0108,
       "wkn": "A1JZSB"
     },
     {
@@ -1717,16 +1705,16 @@
       "wkn": "A2DKAY"
     },
     {
-      "anbieter": "DWS",
-      "beschreibung": "Industrie-4.0-Themen: Automatisierung, IoT, 3D-Druck.",
-      "historischeBruttorendite": 0.09,
-      "historischePeriode": "seit 2017 (7 J.)",
-      "isin": "LU1689945831",
-      "kategorie": "Sektor-Fonds (aktiv)",
-      "name": "DWS SmartIndustrial Technologies LD",
-      "renditeQuelle": "Schätzwert",
-      "ter": 0.0163,
-      "wkn": "DWS2QC"
+      "anbieter": "M&G",
+      "beschreibung": "Anleihen-fokussierter Multi-Asset, defensiv mit Equity-Quote bis 20 %.",
+      "historischeBruttorendite": 0.0306,
+      "historischePeriode": "10 Jahre (2016–2025)",
+      "isin": "LU1670724373",
+      "kategorie": "Multi-Asset",
+      "name": "M&G (Lux) Optimal Income A EUR Acc",
+      "renditeQuelle": "Factsheet",
+      "ter": 0.0135,
+      "wkn": ""
     },
     {
       "anbieter": "Robeco",
