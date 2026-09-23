@@ -1,12 +1,12 @@
 {
   "anbieter": "AllianceBernstein",
   "beschreibung": "Globale Gesundheitsaktien — Pharma, Biotech, MedTech. USD-Klasse, demografischer Wachstumstreiber.",
-  "historischeBruttorendite": 0.0938,
-  "historischePeriode": "15 Jahre (2011–2026)",
+  "historischeBruttorendite": 0.1051,
+  "historischePeriode": "10 Jahre (2016–2025, USD)",
   "isin": "LU0058720904",
   "kategorie": "Sektor-Fonds (aktiv)",
-  "name": "AB SICAV I International Health Care CR-A USD",
-  "renditeQuelle": "Marktdaten",
-  "ter": 0.0195,
+  "name": "AB SICAV I International Health Care A USD",
+  "renditeQuelle": "Factsheet",
+  "ter": 0.0194,
   "wkn": ""
 }

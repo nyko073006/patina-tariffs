@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-22T19:23:42Z",
+  "updatedAt": "2026-09-23T03:22:00Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -915,13 +915,13 @@
     {
       "anbieter": "Deka",
       "beschreibung": "Aktiver Tech-Sektorfonds der Deka — globaler Tech-Schwerpunkt, profitierte massiv vom 15-J-Tech-Boom.",
-      "historischeBruttorendite": 0.1823,
-      "historischePeriode": "15 Jahre (2011–2026)",
+      "historischeBruttorendite": 0.1861,
+      "historischePeriode": "10 Jahre (2016–2025)",
       "isin": "DE0005152623",
       "kategorie": "Sektor-Fonds (aktiv)",
       "name": "Deka-Technologie CF",
-      "renditeQuelle": "Marktdaten",
-      "ter": 0.0145,
+      "renditeQuelle": "Factsheet",
+      "ter": 0.014,
       "wkn": "515262"
     },
     {
@@ -975,13 +975,13 @@
     {
       "anbieter": "ODDO BHF",
       "beschreibung": "Euro-Geldmarktfonds (kurzlaufende Anleihen) — Cash-Substitut, kaum Rendite in Niedrigzinsphase.",
-      "historischeBruttorendite": 0.0041,
-      "historischePeriode": "15 Jahre (2011–2026)",
+      "historischeBruttorendite": 0.0085,
+      "historischePeriode": "9 Jahre (2017–2025)",
       "isin": "DE0009770206",
       "kategorie": "Multi-Asset",
       "name": "ODDO BHF Money Market CR-EUR",
-      "renditeQuelle": "Marktdaten",
-      "ter": 0.005,
+      "renditeQuelle": "Factsheet",
+      "ter": 0.0025,
       "wkn": ""
     },
     {
@@ -999,13 +999,13 @@
     {
       "anbieter": "Deka",
       "beschreibung": "Aktiv gemanagter globaler Aktienfonds mit Markenführer-Auswahl. Notiz im Vertrieb: MSCI World ist nach Kosten überlegen.",
-      "historischeBruttorendite": 0.1113,
-      "historischePeriode": "15 Jahre (2011–2026)",
+      "historischeBruttorendite": 0.1361,
+      "historischePeriode": "10 Jahre (2016–2025)",
       "isin": "DE000DK0ECU8",
       "kategorie": "Aktiv Welt",
       "name": "Deka-GlobalChampions CF",
-      "renditeQuelle": "Marktdaten",
-      "ter": 0.0145,
+      "renditeQuelle": "Factsheet",
+      "ter": 0.014,
       "wkn": "DK0ECU"
     },
     {
@@ -1083,24 +1083,24 @@
     {
       "anbieter": "Vanguard",
       "beschreibung": "Welt-ETF mit Schwellenländern: ~3.700 Aktien aus 47 Ländern.",
-      "historischeBruttorendite": 0.073,
-      "historischePeriode": "seit 2012 (12 J.)",
+      "historischeBruttorendite": 0.1191,
+      "historischePeriode": "10 Jahre (2016–2025, USD)",
       "isin": "IE00B3RBWM25",
       "kategorie": "Welt-ETF",
       "name": "Vanguard FTSE All-World UCITS ETF (Dist)",
-      "renditeQuelle": "Marktdaten",
+      "renditeQuelle": "Factsheet",
       "ter": 0.0022,
       "wkn": "A1JX52"
     },
     {
       "anbieter": "SPDR",
       "beschreibung": "ACWI inkl. Small-Caps — breitester Welt-ETF (~9.000 Aktien).",
-      "historischeBruttorendite": 0.072,
-      "historischePeriode": "seit 2011 (13 J.)",
+      "historischeBruttorendite": 0.1158,
+      "historischePeriode": "10 Jahre (2016–2025, USD)",
       "isin": "IE00B3YLTY66",
       "kategorie": "Welt-ETF",
       "name": "SPDR MSCI ACWI IMI UCITS ETF",
-      "renditeQuelle": "Marktdaten",
+      "renditeQuelle": "Factsheet",
       "ter": 0.0017,
       "wkn": "A1JJTC"
     },
@@ -1143,12 +1143,12 @@
     {
       "anbieter": "Invesco",
       "beschreibung": "Synthetische Replikation — leicht günstiger als physische ETFs.",
-      "historischeBruttorendite": 0.073,
-      "historischePeriode": "seit 2009 (15 J.)",
+      "historischeBruttorendite": 0.1247,
+      "historischePeriode": "10 Jahre (2016–2025, USD)",
       "isin": "IE00B60SX394",
       "kategorie": "Welt-ETF",
       "name": "Invesco MSCI World UCITS ETF",
-      "renditeQuelle": "Marktdaten",
+      "renditeQuelle": "Factsheet",
       "ter": 0.0019,
       "wkn": "A1JKS0"
     },
@@ -1167,12 +1167,12 @@
     {
       "anbieter": "iShares",
       "beschreibung": "ESG-Screening light — Waffen, Tabak, Kohle ausgeschlossen.",
-      "historischeBruttorendite": 0.073,
-      "historischePeriode": "seit 2018 (6 J.)",
+      "historischeBruttorendite": 0.1557,
+      "historischePeriode": "7 Jahre (2019–2025, USD)",
       "isin": "IE00BFNM3J75",
       "kategorie": "Welt-ETF",
       "name": "iShares MSCI World ESG Screened UCITS ETF",
-      "renditeQuelle": "Marktdaten",
+      "renditeQuelle": "Factsheet",
       "ter": 0.002,
       "wkn": "A2N6TC"
     },
@@ -1203,12 +1203,12 @@
     {
       "anbieter": "iShares",
       "beschreibung": "Acc-Klasse des breitesten Schwellenländer-ETFs — IMI inkl. Small-Caps.",
-      "historischeBruttorendite": 0.1027,
-      "historischePeriode": "10 Jahre (2016–2026)",
+      "historischeBruttorendite": 0.0857,
+      "historischePeriode": "10 Jahre (2016–2025, USD)",
       "isin": "IE00BKM4GZ66",
       "kategorie": "Welt-ETF",
       "name": "iShares Core MSCI EM IMI UCITS ETF (Acc)",
-      "renditeQuelle": "Marktdaten",
+      "renditeQuelle": "Factsheet",
       "ter": 0.0018,
       "wkn": "A111X9"
     },
@@ -1238,14 +1238,14 @@
     },
     {
       "anbieter": "Brown Advisory",
-      "beschreibung": "US-Wachstumsaktien mit ESG-Screen. Kürzere Historie der EUR-Klasse — Vorsicht bei Hochrechnung.",
-      "historischeBruttorendite": 0.0494,
-      "historischePeriode": "5 Jahre (2021–2026, kürzeste verfügbar)",
+      "beschreibung": "Konzentrierter Welt-Aktienfonds (Global Leaders), Qualitätsstil. Anteilklasse erst seit 2019.",
+      "historischeBruttorendite": 0.1152,
+      "historischePeriode": "6 Jahre (2020–2025, USD)",
       "isin": "IE00BVVHP456",
       "kategorie": "Aktiv Welt",
-      "name": "Brown Advisory US Sustainable Growth Dollar B Acc",
-      "renditeQuelle": "Marktdaten",
-      "ter": 0.0083,
+      "name": "Brown Advisory Global Leaders Dollar A (Acc)",
+      "renditeQuelle": "Factsheet",
+      "ter": 0.0159,
       "wkn": "A12HK1"
     },
     {
@@ -1299,13 +1299,13 @@
     {
       "anbieter": "AllianceBernstein",
       "beschreibung": "Globale Gesundheitsaktien — Pharma, Biotech, MedTech. USD-Klasse, demografischer Wachstumstreiber.",
-      "historischeBruttorendite": 0.0938,
-      "historischePeriode": "15 Jahre (2011–2026)",
+      "historischeBruttorendite": 0.1051,
+      "historischePeriode": "10 Jahre (2016–2025, USD)",
       "isin": "LU0058720904",
       "kategorie": "Sektor-Fonds (aktiv)",
-      "name": "AB SICAV I International Health Care CR-A USD",
-      "renditeQuelle": "Marktdaten",
-      "ter": 0.0195,
+      "name": "AB SICAV I International Health Care A USD",
+      "renditeQuelle": "Factsheet",
+      "ter": 0.0194,
       "wkn": ""
     },
     {
@@ -1322,14 +1322,14 @@
     },
     {
       "anbieter": "Fidelity",
-      "beschreibung": "Aktiv gemanagter globaler Tech-Fonds, US-Übergewicht. Sehr starke Performance über 15 J.",
-      "historischeBruttorendite": 0.1994,
-      "historischePeriode": "15 Jahre (2011–2026)",
+      "beschreibung": "Aktiv gemanagter globaler Tech-Fonds, US-Übergewicht. Ausschüttende Euro-Klasse.",
+      "historischeBruttorendite": 0.2089,
+      "historischePeriode": "10 Jahre (2016–2025)",
       "isin": "LU0099574567",
       "kategorie": "Sektor-Fonds (aktiv)",
-      "name": "Fidelity Funds Technology Fund A-USD",
-      "renditeQuelle": "Marktdaten",
-      "ter": 0.0191,
+      "name": "Fidelity Funds Global Technology A-EUR (Dist)",
+      "renditeQuelle": "Factsheet",
+      "ter": 0.019,
       "wkn": "921800"
     },
     {
@@ -1455,13 +1455,13 @@
     {
       "anbieter": "BlackRock",
       "beschreibung": "Globaler Minen- und Rohstoff-Aktienfonds. Niedrige Long-Term-Rendite, hohe Schwankungen.",
-      "historischeBruttorendite": 0.0365,
-      "historischePeriode": "15 Jahre (2011–2026)",
+      "historischeBruttorendite": 0.1788,
+      "historischePeriode": "10 Jahre (2016–2025)",
       "isin": "LU0172157280",
       "kategorie": "Sektor-Fonds (aktiv)",
-      "name": "BGF World Mining A2 USD",
-      "renditeQuelle": "Marktdaten",
-      "ter": 0.0205,
+      "name": "BGF World Mining A2 EUR",
+      "renditeQuelle": "Factsheet",
+      "ter": 0.0207,
       "wkn": "974091"
     },
     {
@@ -1503,13 +1503,13 @@
     {
       "anbieter": "J.P. Morgan",
       "beschreibung": "Asien-/Pazifik-Aktienfonds, EUR-Klasse, thesaurierend. Beimischung für regionale Diversifikation.",
-      "historischeBruttorendite": 0.0994,
-      "historischePeriode": "15 Jahre (2011–2026)",
+      "historischeBruttorendite": 0.0944,
+      "historischePeriode": "10 Jahre (2016–2025)",
       "isin": "LU0217390573",
       "kategorie": "Sektor-Fonds (aktiv)",
       "name": "JPM Pacific Equity A (acc) EUR",
-      "renditeQuelle": "Marktdaten",
-      "ter": 0.018,
+      "renditeQuelle": "Factsheet",
+      "ter": 0.0173,
       "wkn": ""
     },
     {
@@ -1539,13 +1539,13 @@
     {
       "anbieter": "DNCA",
       "beschreibung": "Defensiver Mischfonds europäischer Schwerpunkt — laut Vertriebsliste „Mischfonds defensiv“.",
-      "historischeBruttorendite": 0.0351,
-      "historischePeriode": "15 Jahre (2011–2026)",
+      "historischeBruttorendite": 0.041,
+      "historischePeriode": "10 Jahre (2016–2025)",
       "isin": "LU0284394235",
       "kategorie": "Multi-Asset",
       "name": "DNCA Invest Eurose A EUR",
-      "renditeQuelle": "Marktdaten",
-      "ter": 0.0141,
+      "renditeQuelle": "Factsheet",
+      "ter": 0.0149,
       "wkn": "A0J4J5"
     },
     {
@@ -1598,14 +1598,14 @@
     },
     {
       "anbieter": "Pictet",
-      "beschreibung": "Dachfonds aus Pictet-Themen (Robotik, Wasser, Health …). Multi-Megatrend-Mix.",
-      "historischeBruttorendite": 0.0921,
-      "historischePeriode": "15 Jahre (2011–2026)",
+      "beschreibung": "Dachfonds aus Pictet-Themen (Robotik, Wasser, Health …). Multi-Megatrend-Mix, ausschüttend.",
+      "historischeBruttorendite": 0.0903,
+      "historischePeriode": "10 Jahre (2016–2025)",
       "isin": "LU0386885296",
       "kategorie": "Aktiv Welt",
-      "name": "Pictet – Global Megatrend Selection R EUR",
-      "renditeQuelle": "Marktdaten",
-      "ter": 0.022,
+      "name": "Pictet – Global Megatrend Selection P dy EUR",
+      "renditeQuelle": "Factsheet",
+      "ter": 0.02,
       "wkn": "A0RLJD"
     },
     {
@@ -1683,13 +1683,13 @@
     {
       "anbieter": "T. Rowe Price",
       "beschreibung": "Konzentrierter globaler Growth-Aktienfonds — High-Conviction, US-Übergewicht.",
-      "historischeBruttorendite": 0.1561,
-      "historischePeriode": "10 Jahre (2016–2026)",
+      "historischeBruttorendite": 0.1462,
+      "historischePeriode": "9 Jahre (2017–2025)",
       "isin": "LU1438969351",
       "kategorie": "Aktiv Welt",
       "name": "T. Rowe Price Funds SICAV — Global Focused Growth Equity Fund A EUR",
-      "renditeQuelle": "Marktdaten",
-      "ter": 0.0165,
+      "renditeQuelle": "Factsheet",
+      "ter": 0.0169,
       "wkn": ""
     },
     {

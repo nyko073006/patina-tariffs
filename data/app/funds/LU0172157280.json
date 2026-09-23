@@ -1,12 +1,12 @@
 {
   "anbieter": "BlackRock",
   "beschreibung": "Globaler Minen- und Rohstoff-Aktienfonds. Niedrige Long-Term-Rendite, hohe Schwankungen.",
-  "historischeBruttorendite": 0.0365,
-  "historischePeriode": "15 Jahre (2011–2026)",
+  "historischeBruttorendite": 0.1788,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "LU0172157280",
   "kategorie": "Sektor-Fonds (aktiv)",
-  "name": "BGF World Mining A2 USD",
-  "renditeQuelle": "Marktdaten",
-  "ter": 0.0205,
+  "name": "BGF World Mining A2 EUR",
+  "renditeQuelle": "Factsheet",
+  "ter": 0.0207,
   "wkn": "974091"
 }

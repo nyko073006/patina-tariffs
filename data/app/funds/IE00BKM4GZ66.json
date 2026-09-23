@@ -1,12 +1,12 @@
 {
   "anbieter": "iShares",
   "beschreibung": "Acc-Klasse des breitesten Schwellenländer-ETFs — IMI inkl. Small-Caps.",
-  "historischeBruttorendite": 0.1027,
-  "historischePeriode": "10 Jahre (2016–2026)",
+  "historischeBruttorendite": 0.0857,
+  "historischePeriode": "10 Jahre (2016–2025, USD)",
   "isin": "IE00BKM4GZ66",
   "kategorie": "Welt-ETF",
   "name": "iShares Core MSCI EM IMI UCITS ETF (Acc)",
-  "renditeQuelle": "Marktdaten",
+  "renditeQuelle": "Factsheet",
   "ter": 0.0018,
   "wkn": "A111X9"
 }
