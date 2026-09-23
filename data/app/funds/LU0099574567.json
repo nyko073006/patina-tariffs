@@ -1,12 +1,12 @@
 {
   "anbieter": "Fidelity",
-  "beschreibung": "Aktiv gemanagter globaler Tech-Fonds, US-Übergewicht. Sehr starke Performance über 15 J.",
-  "historischeBruttorendite": 0.1994,
-  "historischePeriode": "15 Jahre (2011–2026)",
+  "beschreibung": "Aktiv gemanagter globaler Tech-Fonds, US-Übergewicht. Ausschüttende Euro-Klasse.",
+  "historischeBruttorendite": 0.2089,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "LU0099574567",
   "kategorie": "Sektor-Fonds (aktiv)",
-  "name": "Fidelity Funds Technology Fund A-USD",
-  "renditeQuelle": "Marktdaten",
-  "ter": 0.0191,
+  "name": "Fidelity Funds Global Technology A-EUR (Dist)",
+  "renditeQuelle": "Factsheet",
+  "ter": 0.019,
   "wkn": "921800"
 }

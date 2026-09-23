@@ -1,12 +1,12 @@
 {
   "anbieter": "Vanguard",
   "beschreibung": "Welt-ETF mit Schwellenländern: ~3.700 Aktien aus 47 Ländern.",
-  "historischeBruttorendite": 0.073,
-  "historischePeriode": "seit 2012 (12 J.)",
+  "historischeBruttorendite": 0.1191,
+  "historischePeriode": "10 Jahre (2016–2025, USD)",
   "isin": "IE00B3RBWM25",
   "kategorie": "Welt-ETF",
   "name": "Vanguard FTSE All-World UCITS ETF (Dist)",
-  "renditeQuelle": "Marktdaten",
+  "renditeQuelle": "Factsheet",
   "ter": 0.0022,
   "wkn": "A1JX52"
 }

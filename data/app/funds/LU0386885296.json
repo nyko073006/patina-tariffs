@@ -1,12 +1,12 @@
 {
   "anbieter": "Pictet",
-  "beschreibung": "Dachfonds aus Pictet-Themen (Robotik, Wasser, Health …). Multi-Megatrend-Mix.",
-  "historischeBruttorendite": 0.0921,
-  "historischePeriode": "15 Jahre (2011–2026)",
+  "beschreibung": "Dachfonds aus Pictet-Themen (Robotik, Wasser, Health …). Multi-Megatrend-Mix, ausschüttend.",
+  "historischeBruttorendite": 0.0903,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "LU0386885296",
   "kategorie": "Aktiv Welt",
-  "name": "Pictet – Global Megatrend Selection R EUR",
-  "renditeQuelle": "Marktdaten",
-  "ter": 0.022,
+  "name": "Pictet – Global Megatrend Selection P dy EUR",
+  "renditeQuelle": "Factsheet",
+  "ter": 0.02,
   "wkn": "A0RLJD"
 }
