@@ -1,12 +1,12 @@
 {
   "anbieter": "T. Rowe Price",
   "beschreibung": "Konzentrierter globaler Growth-Aktienfonds — High-Conviction, US-Übergewicht.",
-  "historischeBruttorendite": 0.1561,
-  "historischePeriode": "10 Jahre (2016–2026)",
+  "historischeBruttorendite": 0.1462,
+  "historischePeriode": "9 Jahre (2017–2025)",
   "isin": "LU1438969351",
   "kategorie": "Aktiv Welt",
   "name": "T. Rowe Price Funds SICAV — Global Focused Growth Equity Fund A EUR",
-  "renditeQuelle": "Marktdaten",
-  "ter": 0.0165,
+  "renditeQuelle": "Factsheet",
+  "ter": 0.0169,
   "wkn": ""
 }

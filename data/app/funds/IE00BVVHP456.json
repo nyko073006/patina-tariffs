@@ -1,12 +1,12 @@
 {
   "anbieter": "Brown Advisory",
-  "beschreibung": "US-Wachstumsaktien mit ESG-Screen. Kürzere Historie der EUR-Klasse — Vorsicht bei Hochrechnung.",
-  "historischeBruttorendite": 0.0494,
-  "historischePeriode": "5 Jahre (2021–2026, kürzeste verfügbar)",
+  "beschreibung": "Konzentrierter Welt-Aktienfonds (Global Leaders), Qualitätsstil. Anteilklasse erst seit 2019.",
+  "historischeBruttorendite": 0.1152,
+  "historischePeriode": "6 Jahre (2020–2025, USD)",
   "isin": "IE00BVVHP456",
   "kategorie": "Aktiv Welt",
-  "name": "Brown Advisory US Sustainable Growth Dollar B Acc",
-  "renditeQuelle": "Marktdaten",
-  "ter": 0.0083,
+  "name": "Brown Advisory Global Leaders Dollar A (Acc)",
+  "renditeQuelle": "Factsheet",
+  "ter": 0.0159,
   "wkn": "A12HK1"
 }

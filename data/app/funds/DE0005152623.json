@@ -1,12 +1,12 @@
 {
   "anbieter": "Deka",
   "beschreibung": "Aktiver Tech-Sektorfonds der Deka — globaler Tech-Schwerpunkt, profitierte massiv vom 15-J-Tech-Boom.",
-  "historischeBruttorendite": 0.1823,
-  "historischePeriode": "15 Jahre (2011–2026)",
+  "historischeBruttorendite": 0.1861,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "DE0005152623",
   "kategorie": "Sektor-Fonds (aktiv)",
   "name": "Deka-Technologie CF",
-  "renditeQuelle": "Marktdaten",
-  "ter": 0.0145,
+  "renditeQuelle": "Factsheet",
+  "ter": 0.014,
   "wkn": "515262"
 }

@@ -1,12 +1,12 @@
 {
   "anbieter": "J.P. Morgan",
   "beschreibung": "Asien-/Pazifik-Aktienfonds, EUR-Klasse, thesaurierend. Beimischung für regionale Diversifikation.",
-  "historischeBruttorendite": 0.0994,
-  "historischePeriode": "15 Jahre (2011–2026)",
+  "historischeBruttorendite": 0.0944,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "LU0217390573",
   "kategorie": "Sektor-Fonds (aktiv)",
   "name": "JPM Pacific Equity A (acc) EUR",
-  "renditeQuelle": "Marktdaten",
-  "ter": 0.018,
+  "renditeQuelle": "Factsheet",
+  "ter": 0.0173,
   "wkn": ""
 }
