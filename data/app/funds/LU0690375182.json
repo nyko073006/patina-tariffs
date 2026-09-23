@@ -1,12 +1,12 @@
 {
   "anbieter": "Fundsmith",
   "beschreibung": "Terry Smith — konzentrierter Quality-Stil, hoher US-Anteil.",
-  "historischeBruttorendite": 0.11,
-  "historischePeriode": "seit 2010 (14 J.)",
+  "historischeBruttorendite": 0.1067,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "LU0690375182",
   "kategorie": "Aktiv Welt",
-  "name": "Fundsmith Equity I EUR Acc",
-  "renditeQuelle": "Schätzwert",
-  "ter": 0.0102,
+  "name": "Fundsmith Equity T EUR Acc",
+  "renditeQuelle": "Factsheet",
+  "ter": 0.0108,
   "wkn": "A1JZSB"
 }

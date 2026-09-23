@@ -1,12 +1,12 @@
 {
   "anbieter": "Flossbach von Storch",
   "beschreibung": "Konservatives Multi-Asset, max. 35 % Aktienquote.",
-  "historischeBruttorendite": 0.04,
-  "historischePeriode": "15 Jahre",
-  "isin": "LU0339400966",
+  "historischeBruttorendite": 0.0407,
+  "historischePeriode": "10 Jahre (2016–2025)",
+  "isin": "LU0323577923",
   "kategorie": "Multi-Asset",
   "name": "Flossbach v. Storch – Multi Asset Defensive R",
-  "renditeQuelle": "Schätzwert",
-  "ter": 0.0149,
-  "wkn": "A0M0HG"
+  "renditeQuelle": "Factsheet",
+  "ter": 0.0162,
+  "wkn": "A0M43U"
 }
