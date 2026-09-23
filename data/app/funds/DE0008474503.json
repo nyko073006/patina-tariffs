@@ -1,12 +1,12 @@
 {
   "anbieter": "Deka",
   "beschreibung": "DAX-fokussierter Aktienfonds — Sparkassen-Klassiker.",
-  "historischeBruttorendite": 0.055,
-  "historischePeriode": "20 Jahre",
+  "historischeBruttorendite": 0.07,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "DE0008474503",
   "kategorie": "Aktiv Welt",
   "name": "DekaFonds CF",
-  "renditeQuelle": "Schätzwert",
-  "ter": 0.0125,
+  "renditeQuelle": "Factsheet",
+  "ter": 0.014,
   "wkn": "847450"
 }
