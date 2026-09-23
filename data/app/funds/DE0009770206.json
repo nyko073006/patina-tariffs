@@ -1,12 +1,12 @@
 {
   "anbieter": "ODDO BHF",
   "beschreibung": "Euro-Geldmarktfonds (kurzlaufende Anleihen) — Cash-Substitut, kaum Rendite in Niedrigzinsphase.",
-  "historischeBruttorendite": 0.0041,
-  "historischePeriode": "15 Jahre (2011–2026)",
+  "historischeBruttorendite": 0.0085,
+  "historischePeriode": "9 Jahre (2017–2025)",
   "isin": "DE0009770206",
   "kategorie": "Multi-Asset",
   "name": "ODDO BHF Money Market CR-EUR",
-  "renditeQuelle": "Marktdaten",
-  "ter": 0.005,
+  "renditeQuelle": "Factsheet",
+  "ter": 0.0025,
   "wkn": ""
 }

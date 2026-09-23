@@ -1,12 +1,12 @@
 {
   "anbieter": "DNCA",
   "beschreibung": "Defensiver Mischfonds europäischer Schwerpunkt — laut Vertriebsliste „Mischfonds defensiv“.",
-  "historischeBruttorendite": 0.0351,
-  "historischePeriode": "15 Jahre (2011–2026)",
+  "historischeBruttorendite": 0.041,
+  "historischePeriode": "10 Jahre (2016–2025)",
   "isin": "LU0284394235",
   "kategorie": "Multi-Asset",
   "name": "DNCA Invest Eurose A EUR",
-  "renditeQuelle": "Marktdaten",
-  "ter": 0.0141,
+  "renditeQuelle": "Factsheet",
+  "ter": 0.0149,
   "wkn": "A0J4J5"
 }
