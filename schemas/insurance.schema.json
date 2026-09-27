@@ -91,7 +91,7 @@
     },
     "costStructure": {
       "type": "object",
-      "description": "Roh-Kostenparameter für PRIIP-/Effektivkostenberechnung. Quelle: Fonder-Vergleichsuniversum. Generische numerische Schlüssel, da das Quell-Schema erweiterbar ist.",
+      "description": "Roh-Kostenparameter für PRIIP-/Effektivkostenberechnung. Quelle: externe Vergleichsdatenbank W. Generische numerische Schlüssel, da das Quell-Schema erweiterbar ist.",
       "additionalProperties": { "type": "number" }
     },
     "provider": { "type": "string", "minLength": 2 },
