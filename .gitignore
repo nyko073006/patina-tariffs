@@ -1,8 +1,5 @@
 node_modules/
 dist/
-web/dist/
-web/.astro/
-web/src/data/tariffs.json
 .DS_Store
 *.log
 .env

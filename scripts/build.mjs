@@ -123,10 +123,6 @@ const index = {
 };
 writeFileSync(join(DIST, "index.json"), JSON.stringify(index, null, 2));
 
-const webData = join(ROOT, "web/src/data");
-mkdirSync(webData, { recursive: true });
-writeFileSync(join(webData, "tariffs.json"), JSON.stringify(all));
-
 console.log(
   `✓ Build OK — funds=${fundsOut.length} insurance=${insuranceOut.length} credit=${creditOut.length} ratings=${ratings.length}`
 );
@@ -134,4 +130,3 @@ console.log(
   `  overrides applied: funds=${fundOverrides.size} insurance=${insuranceOverrides.size} credit=${creditOverrides.size}`
 );
 console.log(`  → dist/{tariffs,funds,insurance,credit,ratings,index}.json`);
-console.log(`  → web/src/data/tariffs.json`);
