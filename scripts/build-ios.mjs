@@ -176,6 +176,21 @@ for (const t of tarife) {
   imBereich(t, "typischeBruttorendite", 0, 0.15, quelle);
   // Rentenfaktor: EUR Monatsrente je 10.000 EUR Kapital
   imBereich(t, "rentenfaktor", 0, 0.01, quelle);
+
+  // Optionale Felder (Oktober 2026): fehlen sie, gilt in der App das alte
+  // Verhalten. Sind sie da, muessen sie dem App-Typ entsprechen.
+  for (const feld of ["gammaBeitragsfrei", "gammaRentenphase"]) {
+    if (t[feld] === undefined) continue;
+    if (typeof t[feld] !== "number") fehler.push(`${quelle}: "${feld}" muss number sein`);
+    else imBereich(t, feld, 0, 0.05, quelle);
+  }
+  if (t.zillmerdauerMonate !== undefined) {
+    if (!Number.isInteger(t.zillmerdauerMonate)) fehler.push(`${quelle}: "zillmerdauerMonate" muss ganze Zahl (Monate) sein`);
+    else imBereich(t, "zillmerdauerMonate", 1, 120, quelle);
+  }
+  if (t.quelle !== undefined && (typeof t.quelle !== "string" || t.quelle.trim() === "")) {
+    fehler.push(`${quelle}: "quelle" muss nicht-leerer String sein`);
+  }
 }
 
 // ───── Nie schrumpfen ─────

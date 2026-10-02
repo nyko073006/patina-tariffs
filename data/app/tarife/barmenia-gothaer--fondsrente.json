@@ -5,12 +5,15 @@
   "effectiveCostRIY": 0,
   "fundTER": 0.015,
   "gammaAnnualRate": 0.0018,
+  "gammaBeitragsfrei": 0.0018,
   "id": "11111111-0000-0000-0000-000000000033",
   "jahrgang": "2026",
   "kappaMonthly": 1.2,
   "kategorie": "Klassische Versicherer",
+  "quelle": "externe Quelle",
   "rentenfaktor": 0.002374,
   "tarifName": "FondsRente",
   "typischeBruttorendite": 0.06,
-  "vehikelTyp": "Schicht 3 — Privatrente"
+  "vehikelTyp": "Schicht 3 — Privatrente",
+  "zillmerdauerMonate": 60
 }
