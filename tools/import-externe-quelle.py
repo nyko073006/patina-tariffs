@@ -39,6 +39,7 @@ import argparse
 import csv
 import io
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -78,6 +79,35 @@ def neue_werte(z: dict[str, str], mit_effektiv: bool, nullwerte: bool) -> dict:
     return w
 
 
+def slug(text: str) -> str:
+    t = text.lower().replace("ü", "u").replace("ö", "o").replace("ä", "a").replace("ß", "ss")
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+
+
+def neuer_tarif(cfg: dict, z: dict[str, str], nullwerte: bool) -> tuple[Path, dict]:
+    """Grundgerüst für einen Tarif, den es im Datenbestand noch nicht gibt.
+
+    Kosten kommen aus der Quelle (über neue_werte, danach). Alles andere sind
+    Schätzwerte (Median der Kategorie, siehe Zuordnungsdatei) und stehen im
+    Feld quelle, damit die Lücke im Datensatz sichtbar bleibt.
+    """
+    basis = {
+        "id": cfg["id"], "anbieter": cfg["anbieter"], "tarifName": cfg["tarifName"],
+        "jahrgang": cfg["jahrgang"], "kategorie": cfg["kategorie"], "vehikelTyp": cfg["vehikelTyp"],
+        "effectiveCostRIY": cfg["effectiveCostRIY"],
+    }
+    basis.update(cfg["schaetzwerte"])
+    geschaetzt = ["fundTER", "betaRate", "rentenfaktor", "typischeBruttorendite"]
+    if zahl(z["Beta_Stk"]) > 0 or nullwerte:
+        basis.pop("kappaMonthly", None)  # kommt aus der Quelle
+    else:
+        geschaetzt.append("kappaMonthly")
+    geschaetzt += ["kategorie", "jahrgang"]
+    basis["quelle"] = f"{QUELLE}; Schätzwert (Kategorie-Median): " + ", ".join(geschaetzt)
+    datei = TARIFE / f"{slug(cfg['anbieter'])}--{slug(cfg['tarifName'])}.json"
+    return datei, basis
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("csv", nargs="?", default=STANDARD_CSV)
@@ -98,7 +128,10 @@ def main() -> int:
         pass
 
     zeilen = lies_csv(pfad)
-    karte = json.loads(ZUORDNUNG.read_text(encoding="utf-8"))["zuordnung"]
+    konfig = json.loads(ZUORDNUNG.read_text(encoding="utf-8"))
+    karte = konfig["zuordnung"]
+    neue_tarife = {k: v for k, v in konfig.get("neue_tarife", {}).items() if not k.startswith("_")}
+    neu_angelegt: list[str] = []
     dateien = {}
     for f in sorted(TARIFE.glob("*.json")):
         d = json.loads(f.read_text(encoding="utf-8"))
@@ -118,13 +151,19 @@ def main() -> int:
         if tid is None:
             nicht_zugeordnet.append(name)
             continue
-        if tid.lower() not in dateien:
+        if tid.lower() not in dateien and name in neue_tarife:
+            datei, alt = neuer_tarif(neue_tarife[name], z, a.nullwerte_uebernehmen)
+            neu_angelegt.append(name)
+        elif tid.lower() not in dateien:
             fehler.append(f"'{name}': ID {tid} existiert nicht in data/app/tarife")
             continue
+        else:
+            datei, alt = dateien[tid.lower()]
         zugeordnet.append(name)
-        datei, alt = dateien[tid.lower()]
         neu = dict(alt)
         for k, v in neue_werte(z, a.mit_effektivkosten, a.nullwerte_uebernehmen).items():
+            if k == "quelle" and name in neu_angelegt:
+                continue  # nennt schon die geschätzten Felder
             if alt.get(k) != v:
                 neu[k] = v
         diffs = [(k, alt.get(k), neu[k]) for k in neu if alt.get(k) != neu[k]]
@@ -144,6 +183,7 @@ def main() -> int:
 
     ohne = [d["tarifName"] for tid, (f, d) in dateien.items() if not any((v or "").lower() == tid for v in karte.values())]
     print()
+    print(f"Neu angelegt: {len(neu_angelegt)}  {'; '.join(neu_angelegt)}")
     print(f"Zeilen: {len(zeilen)}  zugeordnet: {len(zugeordnet)}  nicht zugeordnet: {len(nicht_zugeordnet)}  geändert: {geaendert}")
     print("Nicht zugeordnet:", "; ".join(nicht_zugeordnet))
     print(f"App-Tarife ohne Quelle (unverändert): {len(ohne)} von {len(dateien)}")

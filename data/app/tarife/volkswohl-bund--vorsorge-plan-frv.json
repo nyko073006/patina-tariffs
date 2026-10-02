@@ -5,12 +5,15 @@
   "effectiveCostRIY": 0,
   "fundTER": 0.016,
   "gammaAnnualRate": 0.0028,
+  "gammaBeitragsfrei": 0.0038,
   "id": "11111111-0000-0000-0000-000000000012",
   "jahrgang": "2026",
   "kappaMonthly": 0.575,
   "kategorie": "Klassische Versicherer",
+  "quelle": "externe Quelle",
   "rentenfaktor": 0.002556,
   "tarifName": "Vorsorge Plan FRV",
   "typischeBruttorendite": 0.06,
-  "vehikelTyp": "Schicht 3 — Privatrente"
+  "vehikelTyp": "Schicht 3 — Privatrente",
+  "zillmerdauerMonate": 96
 }
