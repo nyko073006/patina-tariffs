@@ -67,65 +67,11 @@ npm --prefix web install
 npm --prefix web run dev   # Astro-Devserver auf http://localhost:4321
 ```
 
-### Marktdaten-Sync (EODHD)
-
-`npm run sync:prices` zieht für jeden `data/funds/<ISIN>.json` per
-[EODHD-API](https://eodhd.com):
-
-- `latestPrice`, `latestPriceDate` (aus `/real-time`)
-- `performance.{m1, m3, m6, ytd, y1, y3, y5, y10}` (berechnet aus `/eod`)
-- `_eodhdSymbol` (gecachter ISIN → Symbol-Lookup)
-
-```bash
-EODHD_API_KEY=dein_key npm run sync:prices
-```
-
-Ohne API-Key überspringt das Skript still (Exit 0) — CI bricht nicht.
-In GitHub liegt der Key als Secret `EODHD_API_KEY` und wird täglich
-über `.github/workflows/sync.yml` ausgeführt.
-
-**Optional — Fundamentals (NAV, Allokationen, Holdings, Yield):**
-
-EODHD lizenziert Non-US-Fundamentals als separates Add-on. Mit reinem EOD-Plan
-liefern XETRA-/EUFUND-ISINs auf `/fundamentals` ein `403`. Daher ist der
-Fundamentals-Pull standardmäßig **deaktiviert**. Wenn dein Plan das Add-on
-abdeckt, aktiviere ihn explizit:
-
-```bash
-EODHD_API_KEY=dein_key EODHD_FUNDAMENTALS=1 npm run sync:prices
-```
-
-Die Schema-Felder (`nav`, `sectorAllocation`, `countryAllocation`,
-`topHoldings`, `yield`) bleiben im Schema und können manuell über den
-Override-Layer befüllt werden, auch wenn der Sync sie nicht setzt.
-
-Stammdaten (assetClass, currency, provider, …) bleiben unangetastet;
-gesynced werden nur volatile Marktdaten und Allokationen.
-
 Oder alles auf einmal:
 
 ```bash
 npm run build          # validate + data + site
 ```
-
-## Live-API-Proxy (Cloudflare Worker)
-
-Für On-Demand-Abfragen mit aktueller Historie und CAGR-Berechnung lebt unter
-`workers/proxy/` ein Cloudflare Worker. Er proxy't EODHD, cached die Antworten
-serverseitig (Workers KV) und liefert normalisierte Vergleichsdaten an die
-iOS-App.
-
-```bash
-cd workers/proxy
-npm install
-npm test           # Unit-Tests (CAGR, FutureValue, Normalisierung)
-npx wrangler kv:namespace create CACHE     # ID in wrangler.toml eintragen
-npx wrangler secret put EODHD_API_KEY
-npm run deploy
-```
-
-Routes: `/api/history`, `/api/compare`. Details und iOS-Integrations-Skizze
-in [`workers/proxy/README.md`](workers/proxy/README.md).
 
 ## PatinaCharts iOS-App
 
@@ -147,9 +93,9 @@ einkompilierten Stand — ohne sichtbaren Fehler.
 | `data/app/tarife/<slug>.json` | Versicherungstarife im App-Schema |
 | `tariffs.json` (Root) | generiert, committet — **das ist der Endpoint** |
 
-`data/app/` ist bewusst getrennt von `data/funds/`: letzteres gehört dem
-EODHD-Sync und hat ein anderes Schema (TER in Prozent statt als Anteil,
-keine Renditen, keine Kategorien). Der Sync fasst `data/app/` nicht an.
+`data/app/` ist bewusst getrennt von `data/funds/`: letzteres wird aus der
+Master-Liste erzeugt und hat ein anderes Schema (TER in Prozent statt als
+Anteil, keine Renditen, keine Kategorien). Der Sync fasst `data/app/` nicht an.
 
 `dist/tariffs.json` aus `npm run build:data` ist etwas anderes — das
 Bundle fürs Web-Frontend. Nicht verwechseln.
