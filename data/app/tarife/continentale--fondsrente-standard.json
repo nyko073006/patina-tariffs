@@ -1,0 +1,19 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Continentale",
+  "betaRate": 0.022,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.015,
+  "gammaAnnualRate": 0.0,
+  "gammaBeitragsfrei": 0.0108,
+  "id": "33333333-0000-0000-0000-000000000001",
+  "jahrgang": "2026",
+  "kappaMonthly": 0.7917,
+  "kategorie": "Klassische Versicherer",
+  "quelle": "externe Quelle; Schätzwert (Kategorie-Median): fundTER, betaRate, rentenfaktor, typischeBruttorendite, kappaMonthly, kategorie, jahrgang",
+  "rentenfaktor": 0.0027,
+  "tarifName": "Fondsrente Standard",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 3 — Privatrente",
+  "zillmerdauerMonate": 60
+}
