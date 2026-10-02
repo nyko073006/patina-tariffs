@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-23T03:22:00Z",
+  "updatedAt": "2026-10-02T10:53:12Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -57,14 +57,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.015,
       "gammaAnnualRate": 0.004,
+      "gammaBeitragsfrei": 0.004,
       "id": "11111111-0000-0000-0000-000000000002",
       "jahrgang": "2026",
       "kappaMonthly": 0.375,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002638,
       "tarifName": "PrivatRente InvestFlex",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.02495,
@@ -73,14 +76,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.0185,
       "gammaAnnualRate": 0.0024,
+      "gammaBeitragsfrei": 0.0024,
       "id": "11111111-0000-0000-0000-000000000009",
       "jahrgang": "2026",
       "kappaMonthly": 2,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002681,
       "tarifName": "AR25 Standard",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -105,14 +111,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.003,
       "gammaAnnualRate": 0.0024,
+      "gammaBeitragsfrei": 0.0024,
       "id": "11111111-0000-0000-0000-000000000008",
       "jahrgang": "2026",
       "kappaMonthly": 2,
       "kategorie": "Nettotarife (Honorarberatung)",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002681,
       "tarifName": "FR10 Netto",
       "typischeBruttorendite": 0.075,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -153,14 +162,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.014,
       "gammaAnnualRate": 0.002496,
+      "gammaBeitragsfrei": 0.002004,
       "id": "11111111-0000-0000-0000-000000000003",
       "jahrgang": "2026",
       "kappaMonthly": 0.7917,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002402,
       "tarifName": "JustInvest Performance ALVF7",
       "typischeBruttorendite": 0.055,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -201,14 +213,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.015,
       "gammaAnnualRate": 0.003,
+      "gammaBeitragsfrei": 0.003,
       "id": "11111111-0000-0000-0000-000000000032",
       "jahrgang": "2026",
       "kappaMonthly": 0.7917,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.00275,
       "tarifName": "Invest FondsRente",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -233,14 +248,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.015,
       "gammaAnnualRate": 0.0018,
+      "gammaBeitragsfrei": 0.0018,
       "id": "11111111-0000-0000-0000-000000000033",
       "jahrgang": "2026",
       "kappaMonthly": 1.2,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002374,
       "tarifName": "FondsRente",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -265,14 +283,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.015,
       "gammaAnnualRate": 0.00396,
+      "gammaBeitragsfrei": 0.00396,
       "id": "11111111-0000-0000-0000-000000000034",
       "jahrgang": "2026",
       "kappaMonthly": 0.9167,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.001736,
       "tarifName": "Condor FondsRente",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -281,14 +302,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.006,
       "gammaAnnualRate": 0,
+      "gammaBeitragsfrei": 0.0108,
       "id": "11111111-0000-0000-0000-000000000001",
       "jahrgang": "2026",
       "kappaMonthly": 1.3,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.00279,
       "tarifName": "EasyRente Invest RI",
       "typischeBruttorendite": 0.065,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.018,
@@ -323,20 +347,23 @@
       "vehikelTyp": "Schicht 3 — Privatrente"
     },
     {
-      "alphaRate": 0.025,
+      "alphaRate": 0.02871,
       "anbieter": "die Bayerische",
       "betaRate": 0.02,
       "effectiveCostRIY": 0,
       "fundTER": 0.004,
-      "gammaAnnualRate": 0.003,
+      "gammaAnnualRate": 0.0024,
+      "gammaBeitragsfrei": 0.0024,
       "id": "11111111-0000-0000-0000-000000000011",
       "jahrgang": "2026",
       "kappaMonthly": 0.7958,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.0032,
       "tarifName": "BavariaDIREKT",
       "typischeBruttorendite": 0.065,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -377,14 +404,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.019,
       "gammaAnnualRate": 0.0036,
+      "gammaBeitragsfrei": 0.0084,
       "id": "11111111-0000-0000-0000-000000000013",
       "jahrgang": "2026",
       "kappaMonthly": 0.5167,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002884,
       "tarifName": "Rente Garantie",
       "typischeBruttorendite": 0.05,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -425,14 +455,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.015,
       "gammaAnnualRate": 0.00192,
+      "gammaBeitragsfrei": 0.00192,
       "id": "11111111-0000-0000-0000-000000000035",
       "jahrgang": "2025",
       "kappaMonthly": 0.5917,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002663,
       "tarifName": "FondsRente 2025M",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -457,14 +490,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.016,
       "gammaAnnualRate": 0.0024,
+      "gammaBeitragsfrei": 0.0048,
       "id": "11111111-0000-0000-0000-000000000005",
       "jahrgang": "2026",
       "kappaMonthly": 0.4,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002342,
       "tarifName": "CleverInvest",
       "typischeBruttorendite": 0.055,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -489,14 +525,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.015,
       "gammaAnnualRate": 0.0084,
+      "gammaBeitragsfrei": 0.0084,
       "id": "11111111-0000-0000-0000-000000000014",
       "jahrgang": "2026",
       "kappaMonthly": 3,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002652,
       "tarifName": "CleVesto Allcase",
       "typischeBruttorendite": 0.07,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.0257,
@@ -537,30 +576,36 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.003,
       "gammaAnnualRate": 0.0022,
+      "gammaBeitragsfrei": 0.0022,
       "id": "11111111-0000-0000-0000-000000000031",
       "jahrgang": "2026",
       "kappaMonthly": 0.2833,
       "kategorie": "Nettotarife (Honorarberatung)",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002847,
       "tarifName": "MeinPlan Nettotarif",
       "typischeBruttorendite": 0.07,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 12
     },
     {
-      "alphaRate": 0.0257,
+      "alphaRate": 0.0245,
       "anbieter": "LV 1871",
       "betaRate": 0.005,
       "effectiveCostRIY": 0,
       "fundTER": 0.017,
       "gammaAnnualRate": 0.003,
+      "gammaBeitragsfrei": 0.003,
       "id": "11111111-0000-0000-0000-000000000016",
       "jahrgang": "2025",
       "kappaMonthly": 0.7,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002847,
       "tarifName": "RentaProtect",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -585,14 +630,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.014,
       "gammaAnnualRate": 0.001,
+      "gammaBeitragsfrei": 0.004,
       "id": "11111111-0000-0000-0000-000000000015",
       "jahrgang": "2026",
       "kappaMonthly": 0.6792,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002705,
       "tarifName": "FondsRente",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -617,14 +665,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.018,
       "gammaAnnualRate": 0.003,
+      "gammaBeitragsfrei": 0.003,
       "id": "11111111-0000-0000-0000-000000000017",
       "jahrgang": "2026",
       "kappaMonthly": 0.7917,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002369,
       "tarifName": "SI Wachstum",
       "typischeBruttorendite": 0.055,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -681,14 +732,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.012,
       "gammaAnnualRate": 0.003,
+      "gammaBeitragsfrei": 0.003,
       "id": "11111111-0000-0000-0000-000000000037",
       "jahrgang": "2026",
       "kappaMonthly": 0.3333,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.0029,
       "tarifName": "alpha+ FlexRente",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -713,14 +767,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.012,
       "gammaAnnualRate": 0.0048,
+      "gammaBeitragsfrei": 0.0048,
       "id": "11111111-0000-0000-0000-000000000004",
       "jahrgang": "2026",
       "kappaMonthly": 0.3333,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.0029,
       "tarifName": "performance+ FlexRente 73oG",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -745,14 +802,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.0185,
       "gammaAnnualRate": 0.0035,
+      "gammaBeitragsfrei": 0.0035,
       "id": "11111111-0000-0000-0000-000000000006",
       "jahrgang": "2025",
       "kappaMonthly": 1.0458,
       "kategorie": "Strukturvertrieb",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002087,
       "tarifName": "Maximo 710/714",
       "typischeBruttorendite": 0.065,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -777,14 +837,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.015,
       "gammaAnnualRate": 0.0025,
+      "gammaBeitragsfrei": 0.0025,
       "id": "11111111-0000-0000-0000-000000000036",
       "jahrgang": "2026",
       "kappaMonthly": 0.7667,
       "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.003388,
       "tarifName": "uni-FondsRente",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -889,14 +952,17 @@
       "effectiveCostRIY": 0,
       "fundTER": 0.0195,
       "gammaAnnualRate": 0.0055,
+      "gammaBeitragsfrei": 0.0055,
       "id": "11111111-0000-0000-0000-000000000007",
       "jahrgang": "2026",
       "kappaMonthly": 0.8333,
       "kategorie": "Strukturvertrieb",
+      "quelle": "externe Quelle",
       "rentenfaktor": 0.002548,
       "tarifName": "Premium FondsRente 2.0 FV25",
       "typischeBruttorendite": 0.055,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
     }
   ],
   "fonds": [

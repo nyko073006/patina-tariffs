@@ -1,16 +1,19 @@
 {
-  "alphaRate": 0.0257,
+  "alphaRate": 0.0245,
   "anbieter": "LV 1871",
   "betaRate": 0.005,
   "effectiveCostRIY": 0,
   "fundTER": 0.017,
   "gammaAnnualRate": 0.003,
+  "gammaBeitragsfrei": 0.003,
   "id": "11111111-0000-0000-0000-000000000016",
   "jahrgang": "2025",
   "kappaMonthly": 0.7,
   "kategorie": "Klassische Versicherer",
+  "quelle": "externe Quelle",
   "rentenfaktor": 0.002847,
   "tarifName": "RentaProtect",
   "typischeBruttorendite": 0.06,
-  "vehikelTyp": "Schicht 3 — Privatrente"
+  "vehikelTyp": "Schicht 3 — Privatrente",
+  "zillmerdauerMonate": 60
 }

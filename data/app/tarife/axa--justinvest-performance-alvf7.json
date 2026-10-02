@@ -5,12 +5,15 @@
   "effectiveCostRIY": 0,
   "fundTER": 0.014,
   "gammaAnnualRate": 0.002496,
+  "gammaBeitragsfrei": 0.002004,
   "id": "11111111-0000-0000-0000-000000000003",
   "jahrgang": "2026",
   "kappaMonthly": 0.7917,
   "kategorie": "Klassische Versicherer",
+  "quelle": "externe Quelle",
   "rentenfaktor": 0.002402,
   "tarifName": "JustInvest Performance ALVF7",
   "typischeBruttorendite": 0.055,
-  "vehikelTyp": "Schicht 3 — Privatrente"
+  "vehikelTyp": "Schicht 3 — Privatrente",
+  "zillmerdauerMonate": 60
 }
