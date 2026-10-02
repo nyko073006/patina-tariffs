@@ -86,11 +86,11 @@
     "die Bayerische Nettotarif (inkl. Überschüsse)": "Variante inkl. Überschüsse; die App führt je Tarif nur eine Variante."
   },
   "neue_tarife": {
-    "_kommentar": "Neue, aktuelle Tarife der Quelle ohne Gegenstueck in data/app/tarife. Kostenwerte (alpha, gamma, Zillmerdauer, gamma beitragsfrei, kappa wenn Beta_Stk > 0) kommen aus der Quelle; schaetzwerte sind Mediane der vorhandenen Schicht-3-Tarife der Kategorie (Stand 02.10.2026, Klassische n=23, Netto n=3) und werden im Feld quelle genannt.",
+    "_kommentar": "Neue, aktuelle Tarife der Quelle ohne Gegenstueck in data/app/tarife. Kostenwerte (alpha, gamma, Zillmerdauer, gamma beitragsfrei, kappa wenn Beta_Stk > 0) kommen aus der Quelle; schaetzwerte sind Mediane der vorhandenen Schicht-3-Tarife der Kategorie (Stand 02.10.2026, Klassische n=23, Netto n=3) und werden im Feld quelle genannt. Tarifnamen nur aus der Quelle (beleg_tarifname), keine erfundenen Produktnamen.",
     "Continentale": {
       "id": "33333333-0000-0000-0000-000000000001",
       "anbieter": "Continentale",
-      "tarifName": "Fondsrente Standard",
+      "tarifName": "Fondsrente (Tarifname offen)",
       "kategorie": "Klassische Versicherer",
       "vehikelTyp": "Schicht 3 — Privatrente",
       "jahrgang": "2026",
@@ -101,12 +101,13 @@
         "rentenfaktor": 0.0027,
         "typischeBruttorendite": 0.06,
         "kappaMonthly": 0.7917
-      }
+      },
+      "beleg_tarifname": "Name offen: die Quelle nennt nur \"Continentale\" ohne Tarifbezeichnung; Platzhalter, vor Kundeneinsatz klaeren."
     },
     "HanseMerkur 2025S": {
       "id": "33333333-0000-0000-0000-000000000002",
       "anbieter": "HanseMerkur",
-      "tarifName": "FondsRente 2025S",
+      "tarifName": "2025S",
       "kategorie": "Klassische Versicherer",
       "vehikelTyp": "Schicht 3 — Privatrente",
       "jahrgang": "2026",
@@ -117,7 +118,8 @@
         "rentenfaktor": 0.0027,
         "typischeBruttorendite": 0.06,
         "kappaMonthly": 0.7917
-      }
+      },
+      "beleg_tarifname": "Quellzeile \"HanseMerkur 2025S\"; \"FondsRente\" ist fuer 2025S nicht belegt (nur beim vorhandenen Eintrag 2025M)."
     },
     "Volkswohl Bund FITTERY": {
       "id": "33333333-0000-0000-0000-000000000003",
@@ -133,12 +135,13 @@
         "rentenfaktor": 0.0027,
         "typischeBruttorendite": 0.06,
         "kappaMonthly": 0.7917
-      }
+      },
+      "beleg_tarifname": "Quellzeile \"Volkswohl Bund FITTERY\"."
     },
     "Helvetia Sondertarif P": {
       "id": "33333333-0000-0000-0000-000000000004",
       "anbieter": "Helvetia",
-      "tarifName": "CleVesto Sondertarif P",
+      "tarifName": "Sondertarif P",
       "kategorie": "Klassische Versicherer",
       "vehikelTyp": "Schicht 3 — Privatrente",
       "jahrgang": "2026",
@@ -149,12 +152,13 @@
         "rentenfaktor": 0.0027,
         "typischeBruttorendite": 0.06,
         "kappaMonthly": 0.7917
-      }
+      },
+      "beleg_tarifname": "Quellzeile \"Helvetia Sondertarif P\"; dass es der Tarif CleVesto ist, belegt weder Quelle noch Bestand."
     },
     "die Bayerische Nettotarif": {
       "id": "33333333-0000-0000-0000-000000000005",
       "anbieter": "die Bayerische",
-      "tarifName": "BavariaDIREKT Nettotarif",
+      "tarifName": "Nettotarif",
       "kategorie": "Nettotarife (Honorarberatung)",
       "vehikelTyp": "Schicht 3 — Privatrente",
       "jahrgang": "2026",
@@ -165,7 +169,8 @@
         "rentenfaktor": 0.002847,
         "typischeBruttorendite": 0.07,
         "kappaMonthly": 0.5
-      }
+      },
+      "beleg_tarifname": "Quellzeile \"die Bayerische Nettotarif\"; \"BavariaDIREKT\" ist fuer diese Variante nicht belegt."
     }
   }
 }
