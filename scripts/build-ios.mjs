@@ -8,7 +8,7 @@
  * Nicht zu verwechseln mit `dist/tariffs.json` aus `build.mjs`: das ist
  * das Bundle fuer das Web-Frontend mit einem voellig anderen Schema
  * (andere Felder, TER in Prozent statt als Anteil). Die App-Daten liegen
- * bewusst getrennt unter `data/app/`, damit der EODHD-Sync sie nicht
+ * bewusst getrennt unter `data/app/`, damit der Fonds-Sync sie nicht
  * anfasst.
  *
  * Quelle:  data/app/funds/<ISIN>.json
