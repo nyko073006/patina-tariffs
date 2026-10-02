@@ -1,0 +1,19 @@
+{
+  "alphaRate": 0.025,
+  "anbieter": "Helvetia",
+  "betaRate": 0.022,
+  "effectiveCostRIY": 0,
+  "fundTER": 0.015,
+  "gammaAnnualRate": 0.0,
+  "gammaBeitragsfrei": 0.0,
+  "id": "33333333-0000-0000-0000-000000000004",
+  "jahrgang": "2026",
+  "kappaMonthly": 3.0,
+  "kategorie": "Klassische Versicherer",
+  "quelle": "externe Quelle; Schätzwert (Kategorie-Median): fundTER, betaRate, rentenfaktor, typischeBruttorendite, kategorie, jahrgang",
+  "rentenfaktor": 0.0027,
+  "tarifName": "Sondertarif P",
+  "typischeBruttorendite": 0.06,
+  "vehikelTyp": "Schicht 3 — Privatrente",
+  "zillmerdauerMonate": 60
+}
