@@ -12,7 +12,7 @@
   "kategorie": "Klassische Versicherer",
   "quelle": "externe Quelle; Schätzwert (Kategorie-Median): fundTER, betaRate, rentenfaktor, typischeBruttorendite, kappaMonthly, kategorie, jahrgang",
   "rentenfaktor": 0.0027,
-  "tarifName": "Fondsrente Standard",
+  "tarifName": "Fondsrente (Tarifname offen)",
   "typischeBruttorendite": 0.06,
   "vehikelTyp": "Schicht 3 — Privatrente",
   "zillmerdauerMonate": 60

@@ -12,7 +12,7 @@
   "kategorie": "Nettotarife (Honorarberatung)",
   "quelle": "externe Quelle; Schätzwert (Kategorie-Median): fundTER, betaRate, rentenfaktor, typischeBruttorendite, kappaMonthly, kategorie, jahrgang",
   "rentenfaktor": 0.002847,
-  "tarifName": "BavariaDIREKT Nettotarif",
+  "tarifName": "Nettotarif",
   "typischeBruttorendite": 0.07,
   "vehikelTyp": "Schicht 3 — Privatrente",
   "zillmerdauerMonate": 12

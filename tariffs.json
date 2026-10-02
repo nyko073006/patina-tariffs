@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-02T11:01:36Z",
+  "updatedAt": "2026-10-02T11:03:28Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -328,7 +328,7 @@
       "kategorie": "Klassische Versicherer",
       "quelle": "externe Quelle; Schätzwert (Kategorie-Median): fundTER, betaRate, rentenfaktor, typischeBruttorendite, kappaMonthly, kategorie, jahrgang",
       "rentenfaktor": 0.0027,
-      "tarifName": "Fondsrente Standard",
+      "tarifName": "Fondsrente (Tarifname offen)",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 3 — Privatrente",
       "zillmerdauerMonate": 60
@@ -414,7 +414,7 @@
       "kategorie": "Nettotarife (Honorarberatung)",
       "quelle": "externe Quelle; Schätzwert (Kategorie-Median): fundTER, betaRate, rentenfaktor, typischeBruttorendite, kappaMonthly, kategorie, jahrgang",
       "rentenfaktor": 0.002847,
-      "tarifName": "BavariaDIREKT Nettotarif",
+      "tarifName": "Nettotarif",
       "typischeBruttorendite": 0.07,
       "vehikelTyp": "Schicht 3 — Privatrente",
       "zillmerdauerMonate": 12
@@ -473,6 +473,25 @@
     {
       "alphaRate": 0.025,
       "anbieter": "HanseMerkur",
+      "betaRate": 0.022,
+      "effectiveCostRIY": 0,
+      "fundTER": 0.015,
+      "gammaAnnualRate": 0.00144,
+      "gammaBeitragsfrei": 0.00144,
+      "id": "33333333-0000-0000-0000-000000000002",
+      "jahrgang": "2026",
+      "kappaMonthly": 0.7917,
+      "kategorie": "Klassische Versicherer",
+      "quelle": "externe Quelle; Schätzwert (Kategorie-Median): fundTER, betaRate, rentenfaktor, typischeBruttorendite, kappaMonthly, kategorie, jahrgang",
+      "rentenfaktor": 0.0027,
+      "tarifName": "2025S",
+      "typischeBruttorendite": 0.06,
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "zillmerdauerMonate": 60
+    },
+    {
+      "alphaRate": 0.025,
+      "anbieter": "HanseMerkur",
       "betaRate": 0.02,
       "effectiveCostRIY": 0,
       "fundTER": 0.015,
@@ -501,25 +520,6 @@
       "quelle": "externe Quelle",
       "rentenfaktor": 0.002663,
       "tarifName": "FondsRente 2025M",
-      "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 60
-    },
-    {
-      "alphaRate": 0.025,
-      "anbieter": "HanseMerkur",
-      "betaRate": 0.022,
-      "effectiveCostRIY": 0,
-      "fundTER": 0.015,
-      "gammaAnnualRate": 0.00144,
-      "gammaBeitragsfrei": 0.00144,
-      "id": "33333333-0000-0000-0000-000000000002",
-      "jahrgang": "2026",
-      "kappaMonthly": 0.7917,
-      "kategorie": "Klassische Versicherer",
-      "quelle": "externe Quelle; Schätzwert (Kategorie-Median): fundTER, betaRate, rentenfaktor, typischeBruttorendite, kappaMonthly, kategorie, jahrgang",
-      "rentenfaktor": 0.0027,
-      "tarifName": "FondsRente 2025S",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 3 — Privatrente",
       "zillmerdauerMonate": 60
@@ -608,7 +608,7 @@
       "kategorie": "Klassische Versicherer",
       "quelle": "externe Quelle; Schätzwert (Kategorie-Median): fundTER, betaRate, rentenfaktor, typischeBruttorendite, kategorie, jahrgang",
       "rentenfaktor": 0.0027,
-      "tarifName": "CleVesto Sondertarif P",
+      "tarifName": "Sondertarif P",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 3 — Privatrente",
       "zillmerdauerMonate": 60
