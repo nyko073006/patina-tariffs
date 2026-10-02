@@ -1,9 +1,8 @@
 # patina-tariffs
 
 Tarif-, Fonds-, Kredit- und Ratingdatenbank für tecis-Vermittler.
-Git-versionierte JSON-Quelldaten, automatische Schema-Validierung,
-statisch gebautes Web-Frontend im Stil eines Informers (Filter, Suche,
-Detailseiten, Vergleich).
+Git-versionierte JSON-Quelldaten, automatische Schema-Validierung.
+Die iOS-App liest die generierte `tariffs.json` aus dem Root dieses Repos.
 
 ```
 ┌── Redaktion (PR im Repo)
@@ -12,8 +11,7 @@ Detailseiten, Vergleich).
 │   GitHub Actions: validate (schema + cross-refs) → build
 │        │
 │        ▼
-│   dist/tariffs.json + funds.json + insurance.json + …  ──► Konsumenten (API/Download)
-│   web/dist/                                            ──► GitHub Pages (Informer-UI)
+│   tariffs.json (Root, aus data/app/)                   ──► PatinaCharts iOS-App
 ```
 
 ## Datenstruktur
@@ -52,19 +50,17 @@ erst ins Schema. Das verhindert stille Datendrift.
 
 ## Einen neuen Eintrag pflegen
 
-1. Datei anlegen, z. B. `data/funds/IE00B4L5Y983.json`.
+1. Datei anlegen, z. B. `data/insurance/<id>.json`.
 2. Lokal validieren: `npm run validate`.
 3. Pull Request öffnen — CI prüft das Schema und Cross-Refs (Rating → Tarif).
-4. Nach Merge baut die Action `dist/` und deployt die Site automatisch.
+4. Nach Merge aktualisiert `ios-bundle.yml` die `tariffs.json`, wenn sich `data/app/` geändert hat.
 
 ## Lokal entwickeln
 
 ```bash
 npm install            # Validierungsdeps
 npm run validate       # Schema-Check
-npm run build:data     # baut dist/ + web/src/data/tariffs.json
-npm --prefix web install
-npm --prefix web run dev   # Astro-Devserver auf http://localhost:4321
+npm run build:data     # baut dist/ (Smoke-Test, wird nicht veröffentlicht)
 ```
 
 Oder alles auf einmal:
@@ -93,9 +89,10 @@ einkompilierten Stand — ohne sichtbaren Fehler.
 | `data/app/tarife/<slug>.json` | Versicherungstarife im App-Schema |
 | `tariffs.json` (Root) | generiert, committet — **das ist der Endpoint** |
 
-`data/app/` ist bewusst getrennt von `data/funds/`: letzteres wird aus der
-Master-Liste erzeugt und hat ein anderes Schema (TER in Prozent statt als
-Anteil, keine Renditen, keine Kategorien). Der Sync fasst `data/app/` nicht an.
+`data/app/` ist bewusst getrennt von `data/funds/`: letzteres hat ein anderes
+Schema (TER in Prozent statt als Anteil, keine Renditen, keine Kategorien) und
+enthält nur noch den Fonds, auf den ein Override und ein Rating verweisen. Die
+App liest ausschließlich `data/app/`.
 
 `dist/tariffs.json` aus `npm run build:data` ist etwas anderes — das
 Bundle fürs Web-Frontend. Nicht verwechseln.
@@ -130,19 +127,6 @@ Zusätzlich mergt die App einen Payload gegen ihren Bundle-Stand, statt
 ihn zu ersetzen: der Endpoint kann ergänzen und aktualisieren, aber nie
 löschen.
 
-## Konsum durch Vermittler-Tools
-
-Nach jedem Merge in `main` liegen die Datenbundles unter:
-
-- `https://<pages-domain>/api/tariffs.json` — alles gebündelt
-- `https://<pages-domain>/api/funds.json` — nur Fonds
-- `https://<pages-domain>/api/insurance.json` — nur Versicherung
-- `https://<pages-domain>/api/credit.json` — nur Kredit
-- `https://<pages-domain>/api/index.json` — Manifest mit Hashes (für ETag-Caching)
-
-Empfohlenes Konsum-Muster: `GET /api/index.json` 1×/Tag, bei
-Hash-Änderung das relevante Bundle nachladen.
-
 ## Mitwirken
 
 - PRs willkommen — ein Tarif pro PR macht Reviews einfach.
@@ -152,5 +136,4 @@ Hash-Änderung das relevante Bundle nachladen.
 ## Stack
 
 - **Daten:** JSON-in-Git, JSON Schema 2020-12, ajv-Validierung
-- **Frontend:** Astro 5 (SSG), Tailwind CSS, Inter, Vanilla TS für Filter
-- **Hosting:** GitHub Pages (Static), CDN-fronted
+- **Auslieferung:** `tariffs.json` im Repo-Root, abgerufen über GitHub-Raw
