@@ -118,10 +118,6 @@
         "dividendYield": { "type": "number" },
         "yield12m": { "type": "number" }
       }
-    },
-    "_eodhdSymbol": {
-      "type": "string",
-      "description": "Gecachter EODHD-Symbol-Lookup (z. B. IE00B4L5Y983.XETRA) — vom Sync-Skript befüllt."
     }
   }
 }
