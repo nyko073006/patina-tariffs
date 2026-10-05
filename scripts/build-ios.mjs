@@ -184,6 +184,13 @@ for (const t of tarife) {
     if (typeof t[feld] !== "number") fehler.push(`${quelle}: "${feld}" muss number sein`);
     else imBereich(t, feld, 0, 0.05, quelle);
   }
+  // Beitragskosten nach Art (Oktober 2026): Einmalbeitrag/Zuzahlung und Anteil p. a.
+  // auf die noch ausstehende Beitragssumme.
+  for (const [feld, max] of [["betaEinmalRate", 0.15], ["restbeitragRate", 0.02]]) {
+    if (t[feld] === undefined) continue;
+    if (typeof t[feld] !== "number") fehler.push(`${quelle}: "${feld}" muss number sein`);
+    else imBereich(t, feld, 0, max, quelle);
+  }
   if (t.zillmerdauerMonate !== undefined) {
     if (!Number.isInteger(t.zillmerdauerMonate)) fehler.push(`${quelle}: "zillmerdauerMonate" muss ganze Zahl (Monate) sein`);
     else imBereich(t, "zillmerdauerMonate", 1, 120, quelle);
