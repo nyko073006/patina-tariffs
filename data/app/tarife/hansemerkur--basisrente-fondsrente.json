@@ -1,7 +1,8 @@
 {
   "alphaRate": 0.025,
   "anbieter": "HanseMerkur",
-  "betaRate": 0.02,
+  "betaEinmalRate": 0.02,
+  "betaRate": 0,
   "effectiveCostRIY": 0,
   "fundTER": 0.015,
   "gammaAnnualRate": 0.00192,
@@ -9,6 +10,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.6383,
   "kategorie": "Klassische Versicherer",
+  "quelle": "β getrennt nach Beitragsart, 07.10.2026",
   "rentenfaktor": 0.003024,
   "tarifName": "BasisRente FondsRente",
   "typischeBruttorendite": 0.06,

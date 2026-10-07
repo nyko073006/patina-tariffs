@@ -1,7 +1,8 @@
 {
   "alphaRate": 0.02495,
   "anbieter": "Alte Leipziger",
-  "betaRate": 0.01,
+  "betaEinmalRate": 0.01,
+  "betaRate": 0,
   "effectiveCostRIY": 0,
   "fundTER": 0.003,
   "gammaAnnualRate": 0.0024,
@@ -10,7 +11,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 2,
   "kategorie": "Nettotarife (Honorarberatung)",
-  "quelle": "externe Quelle",
+  "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
   "rentenfaktor": 0.002681,
   "tarifName": "FR10 Netto",
   "typischeBruttorendite": 0.075,

@@ -1,7 +1,8 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Barmenia/Gothaer",
-  "betaRate": 0.025,
+  "betaEinmalRate": 0.025,
+  "betaRate": 0,
   "effectiveCostRIY": 0,
   "fundTER": 0.015,
   "gammaAnnualRate": 0,
@@ -9,6 +10,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 2.5,
   "kategorie": "Klassische Versicherer",
+  "quelle": "β getrennt nach Beitragsart, 07.10.2026",
   "rentenfaktor": 0.002538,
   "tarifName": "BasisRente",
   "typischeBruttorendite": 0.06,

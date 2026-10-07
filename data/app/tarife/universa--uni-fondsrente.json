@@ -1,7 +1,8 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Universa",
-  "betaRate": 0.055,
+  "betaEinmalRate": 0.055,
+  "betaRate": 0,
   "effectiveCostRIY": 0,
   "fundTER": 0.015,
   "gammaAnnualRate": 0.0025,
@@ -10,7 +11,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.7667,
   "kategorie": "Klassische Versicherer",
-  "quelle": "externe Quelle",
+  "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
   "rentenfaktor": 0.003388,
   "tarifName": "uni-FondsRente",
   "typischeBruttorendite": 0.06,
