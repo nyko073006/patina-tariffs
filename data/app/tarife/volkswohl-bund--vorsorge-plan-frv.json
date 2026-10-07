@@ -1,7 +1,8 @@
 {
   "alphaRate": 0.04,
   "anbieter": "Volkswohl Bund",
-  "betaRate": 0.02,
+  "betaEinmalRate": 0.02,
+  "betaRate": 0,
   "effectiveCostRIY": 0,
   "fundTER": 0.016,
   "gammaAnnualRate": 0.0028,
@@ -10,7 +11,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.575,
   "kategorie": "Klassische Versicherer",
-  "quelle": "externe Quelle",
+  "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
   "rentenfaktor": 0.002556,
   "tarifName": "Vorsorge Plan FRV",
   "typischeBruttorendite": 0.06,

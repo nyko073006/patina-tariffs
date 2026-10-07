@@ -1,7 +1,8 @@
 {
   "alphaRate": 0.025,
   "anbieter": "AXA",
-  "betaRate": 0.025,
+  "betaEinmalRate": 0.025,
+  "betaRate": 0,
   "effectiveCostRIY": 0,
   "fundTER": 0.011,
   "gammaAnnualRate": 0.002496,
@@ -9,6 +10,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.7917,
   "kategorie": "Index-Police",
+  "quelle": "β getrennt nach Beitragsart, 07.10.2026",
   "rentenfaktor": 0.002402,
   "tarifName": "Relax Rente FlexInvest",
   "typischeBruttorendite": 0.035,

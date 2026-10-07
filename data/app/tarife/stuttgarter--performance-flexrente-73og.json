@@ -1,7 +1,8 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Stuttgarter",
-  "betaRate": 0.015,
+  "betaEinmalRate": 0.015,
+  "betaRate": 0,
   "effectiveCostRIY": 0,
   "fundTER": 0.012,
   "gammaAnnualRate": 0.0048,
@@ -10,7 +11,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.3333,
   "kategorie": "Klassische Versicherer",
-  "quelle": "externe Quelle",
+  "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
   "rentenfaktor": 0.0029,
   "tarifName": "performance+ FlexRente 73oG",
   "typischeBruttorendite": 0.06,

@@ -1,7 +1,8 @@
 {
   "alphaRate": 0.021,
   "anbieter": "LV 1871",
-  "betaRate": 0.005,
+  "betaEinmalRate": 0.005,
+  "betaRate": 0,
   "effectiveCostRIY": 0,
   "fundTER": 0.003,
   "gammaAnnualRate": 0.0022,
@@ -10,7 +11,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.2833,
   "kategorie": "Nettotarife (Honorarberatung)",
-  "quelle": "externe Quelle",
+  "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
   "rentenfaktor": 0.002847,
   "tarifName": "MeinPlan Nettotarif",
   "typischeBruttorendite": 0.07,

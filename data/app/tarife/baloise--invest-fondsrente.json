@@ -1,7 +1,8 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Baloise",
-  "betaRate": 0.025,
+  "betaEinmalRate": 0.025,
+  "betaRate": 0,
   "effectiveCostRIY": 0,
   "fundTER": 0.015,
   "gammaAnnualRate": 0.003,
@@ -10,7 +11,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.7917,
   "kategorie": "Klassische Versicherer",
-  "quelle": "externe Quelle",
+  "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
   "rentenfaktor": 0.00275,
   "tarifName": "Invest FondsRente",
   "typischeBruttorendite": 0.06,
