@@ -1,7 +1,8 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Condor",
-  "betaRate": 0.025,
+  "betaEinmalRate": 0.02,
+  "betaRate": 0.005,
   "effectiveCostRIY": 0,
   "fundTER": 0.015,
   "gammaAnnualRate": 0.00396,
@@ -10,7 +11,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.9167,
   "kategorie": "Klassische Versicherer",
-  "quelle": "externe Quelle",
+  "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
   "rentenfaktor": 0.001736,
   "tarifName": "Condor FondsRente",
   "typischeBruttorendite": 0.06,
