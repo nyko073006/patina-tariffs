@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T03:32:23Z",
+  "updatedAt": "2026-10-07T12:52:14Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -576,10 +576,10 @@
       "vehikelTyp": "Schicht 1 — Rürup"
     },
     {
-      "alphaRate": 0.0331,
+      "alphaRate": 0.025,
       "anbieter": "HDI",
       "betaEinmalRate": 0.01,
-      "betaRate": 0,
+      "betaRate": 0.0081,
       "effectiveCostRIY": 0,
       "fundTER": 0.016,
       "gammaAnnualRate": 0.0024,
@@ -588,7 +588,7 @@
       "jahrgang": "2026",
       "kappaMonthly": 0.4,
       "kategorie": "Klassische Versicherer",
-      "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+      "quelle": "AVB HARF26 Stand 09/2026 § 16 Abs. 2: einmalige Abschlusskosten höchstens 2,5 % der Beitragssumme über 5 Jahre, Rest laufend je Beitrag; Summe 3,31 % aus externer Quelle; 07.10.2026",
       "rentenfaktor": 0.002342,
       "tarifName": "CleverInvest",
       "typischeBruttorendite": 0.055,
