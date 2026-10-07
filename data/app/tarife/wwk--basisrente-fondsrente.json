@@ -1,7 +1,44 @@
 {
   "alphaRate": 0.025,
   "anbieter": "WWK",
-  "betaEinmalRate": 0.025,
+  "beleg": {
+    "dokumente": [
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "muster-pib",
+        "sha256": "8848881a22d13905da046d59623306bb271e1c51e7a381ade1c3176347214dab",
+        "stand": "Stand: 16.02.2026",
+        "titel": "WWK BasisRente invest 2.0 (FV25 Basis) - Muster-Produktinformationsblatt (AltvPIBV), Zertifizierungsnummer 006550",
+        "url": "https://www.wwk.de/medien/dokumente/produktinformationsblaetter/basisrente-invest-20/20-jahre-laufzeit-einmalbeitrag.pdf"
+      }
+    ],
+    "felder": {
+      "betaEinmalRate": {
+        "dokument": 0,
+        "hinweis": "Summe 2,50 % + 2,50 %",
+        "seite": 2,
+        "wortlaut": "Abschlusskosten 2,50 % … Verwaltungskosten: Prozentsatz des gezahlten Beitrags, einmalig 2,50 %"
+      }
+    },
+    "pruefung": [
+      {
+        "annahmen": {
+          "fundTER": 0,
+          "gammaAnnualRate": 0.0252
+        },
+        "beitrag": 24000,
+        "blatt": {
+          "riy": 0.0287
+        },
+        "dokument": 0,
+        "einmal": true,
+        "hinweis": "Muster-PIB Einmalbeitrag; aktuelle Kapitalkosten 2,52 % einschließlich Fonds",
+        "jahre": 20,
+        "rendite": 0.05
+      }
+    ]
+  },
+  "betaEinmalRate": 0.05,
   "betaRate": 0,
   "effectiveCostRIY": 0,
   "fundTER": 0.0195,
@@ -10,7 +47,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.8333,
   "kategorie": "Strukturvertrieb",
-  "quelle": "β getrennt nach Beitragsart, 07.10.2026",
+  "quelle": "Muster-Produktinformationsblatt WWK BasisRente invest 2.0 (FV25 Basis) Einmalbeitrag, Stand 16.02.2026 (β Einmal); laufendes β gestaffelt (Grundphase 10 %, Verfügungsphase 5,5 %), daher unverändert; übrige Werte externe Quelle",
   "rentenfaktor": 0.002861,
   "tarifName": "BasisRente FondsRente",
   "typischeBruttorendite": 0.055,

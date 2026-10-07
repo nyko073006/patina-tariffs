@@ -1,7 +1,80 @@
 {
   "alphaRate": 0.04,
   "anbieter": "Volkswohl Bund",
-  "betaRate": 0.022,
+  "beleg": {
+    "dokumente": [
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "bib-laufend",
+        "sha256": "2460742b33921822c54269382719eeee047a6d7564882ab92d60f7b0896ebb9d",
+        "stand": "25.03.2026",
+        "titel": "Fondsgebundene Rentenversicherung mit gemanagten Portfolios (VOLKSWOHL BUND Lebensversicherung a.G.)",
+        "url": "https://druckstuecke.volkswohl-bund.de/api/products/2634/documents/Basisinformationsblatt_FondsFittery_laufend_20_Jahre.pdf"
+      },
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "bib-einmal",
+        "sha256": "82b812ccdd25374a6e1549fa13cb6b424638314b8e7da878b1d34cf294ef2c78",
+        "stand": "25.03.2026",
+        "titel": "Fondsgebundene Rentenversicherung mit gemanagten Portfolios (VOLKSWOHL BUND Lebensversicherung a.G.)",
+        "url": "https://druckstuecke.volkswohl-bund.de/api/products/2638/documents/Basisinformationsblatt_FondsFittery_Einmalbeitrag_20_Jahre.pdf"
+      }
+    ],
+    "felder": {
+      "alphaRate": {
+        "dokument": 0,
+        "seite": 2,
+        "wortlaut": "Einstiegskosten 4,00 % der kumulierten Anlage"
+      },
+      "betaEinmalRate": {
+        "dokument": 1,
+        "hinweis": "Summe 2,50 % + 3,50 %",
+        "seite": 2,
+        "wortlaut": "Einstiegskosten 2,50 % der Anlage … 3,50 % der eingezahlten Anlage"
+      },
+      "betaRate": {
+        "dokument": 0,
+        "seite": 2,
+        "wortlaut": "7,90 % der eingezahlten Anlage"
+      }
+    },
+    "pruefung": [
+      {
+        "annahmen": {
+          "fundTER": 0,
+          "gammaAnnualRate": 0.0066
+        },
+        "beitrag": 1000,
+        "blatt": {
+          "kostenEuro": 3774,
+          "riy": 0.0194
+        },
+        "dokument": 0,
+        "einmal": false,
+        "hinweis": "Unterkante; Blatt nennt Betriebskosten und Portfoliokosten nur zusammen (0,66 %)",
+        "jahre": 20,
+        "rendite": 0.0204
+      },
+      {
+        "annahmen": {
+          "fundTER": 0,
+          "gammaAnnualRate": 0.0067
+        },
+        "beitrag": 10000,
+        "blatt": {
+          "kostenEuro": 2045,
+          "riy": 0.0099
+        },
+        "dokument": 1,
+        "einmal": true,
+        "hinweis": "Unterkante Einmalbeitrag",
+        "jahre": 20,
+        "rendite": 0.0204
+      }
+    ]
+  },
+  "betaEinmalRate": 0.06,
+  "betaRate": 0.079,
   "effectiveCostRIY": 0,
   "fundTER": 0.015,
   "gammaAnnualRate": 0.0055,
@@ -10,7 +83,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.7917,
   "kategorie": "Klassische Versicherer",
-  "quelle": "externe Quelle; Schätzwert (Kategorie-Median): fundTER, betaRate, rentenfaktor, typischeBruttorendite, kappaMonthly, kategorie, jahrgang",
+  "quelle": "Basisinformationsblätter VOLKSWOHL BUND Fondsgebundene Rentenversicherung mit gemanagten Portfolios, Stand 25.03.2026 (α, β, β Einmal); übrige Werte externe Quelle bzw. Schätzwert (Kategorie-Median); Fundstellen im Feld beleg",
   "rentenfaktor": 0.0027,
   "tarifName": "FITTERY",
   "typischeBruttorendite": 0.06,

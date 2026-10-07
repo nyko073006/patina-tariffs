@@ -97,6 +97,24 @@ App liest ausschließlich `data/app/`.
 `dist/tariffs.json` aus `npm run build:data` ist etwas anderes — das
 Bundle fürs Web-Frontend. Nicht verwechseln.
 
+### Beleg je Tarif
+
+Tarife, deren Kosten aus dem Basisinformationsblatt (bzw. Muster-PIB bei
+Basisrenten) stammen, tragen ein Feld `beleg`:
+
+- `dokumente`: Blatt mit Art, Stand, Adresse, Abrufdatum und SHA-256. Das PDF
+  selbst liegt nicht im Repo.
+- `felder`: je belegtem Wert Dokument, Seite und Wortlaut der Kostenzeile.
+- `pruefung`: der Musterfall des Blatts (Beitrag, Haltedauer, Rendite) mit den
+  Vergleichswerten „Kosten insgesamt“ und jährliche Auswirkung.
+
+`python3 scripts/blatt/nachrechnung.py` rechnet jeden Musterfall mit den
+Tarifwerten nach und bricht ab, wenn das Ergebnis über die Toleranz vom Blatt
+abweicht (Euro 15 %, RIY 0,15 Prozentpunkte). Die CI führt es bei jeder
+Änderung unter `data/app/` aus. `build-ios.mjs` prüft die Form des Felds und
+lässt es aus `tariffs.json` heraus; die App liest es nicht. Ein Wert kommt nur
+mit bestandener Nachrechnung in den Tarif.
+
 ### Quartals-Update einer Fondsrendite
 
 1. Factsheet oder PRIIPs-KID der KVG ziehen (Wertentwicklung nach

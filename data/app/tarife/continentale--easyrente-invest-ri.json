@@ -1,7 +1,99 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Continentale",
-  "betaEinmalRate": 0.055,
+  "beleg": {
+    "dokumente": [
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "bib-laufend",
+        "sha256": "e6083e8e6c4f244e9db1d2f5afae46e7b07512104bde798c57ab651360ca1396",
+        "stand": "01.12.2025",
+        "titel": "Continentale Rente Invest (Tarif RI), Basisinformationsblatt",
+        "url": "https://www.continentale.de/documents/39054/30976517/RI-2026_01_RI_20.pdf/e96b707e-fe70-4ce1-a839-28abcd37a306?version=4.0&t=1767361688851&download=true"
+      },
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "bib-einmal",
+        "sha256": "cd45c5070fec2d12c88ac8efde046d48db13a99d83c62830811c5ada41a9a1cd",
+        "stand": "01.12.2025",
+        "titel": "Continentale Rente Invest (Tarif RI), Basisinformationsblatt",
+        "url": "https://www.continentale.de/documents/39054/30976517/RI-2026_01_RI_20_EB.pdf/bd5721ee-6372-6350-6b74-6242de596f67?version=4.0&t=1767361739235&download=true"
+      },
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "fondsuebersicht",
+        "sha256": "1d9487056bacfb790bb025ceb03403b56a6b39dee1e30883200af5bb05864ef8",
+        "stand": "kein Stand ausgewiesen; im Text mehrfach 11.09.2026",
+        "titel": "Continentale Rente Invest (Tarif RI), Basisinformationsblatt",
+        "url": "https://www.continentale.de/fonds-3377 (leitet auf PDF um)"
+      }
+    ],
+    "felder": {
+      "alphaRate": {
+        "dokument": 0,
+        "seite": 3,
+        "wortlaut": "Einstiegskosten 2,5 % der kumulierten Anlage"
+      },
+      "betaEinmalRate": {
+        "dokument": 1,
+        "hinweis": "Summe 4,0 % + 1,4 %: die App belastet den Einmalbeitrag nur mit betaEinmalRate",
+        "seite": 3,
+        "wortlaut": "Einstiegskosten 4,0 % der kumulierten Anlage … 1,4 % der eingezahlten Anlage"
+      },
+      "betaRate": {
+        "dokument": 0,
+        "seite": 3,
+        "wortlaut": "4,4 % der eingezahlten Anlage"
+      },
+      "fundTER": {
+        "dokument": 2,
+        "seite": 8,
+        "wortlaut": "F21 iShares Core MSCI World UCITS ETF USD (Acc) EUR IE00B4L5Y983 … 0,20%"
+      },
+      "kappaMonthly": {
+        "dokument": 0,
+        "seite": 3,
+        "wortlaut": "12,00 EUR pro Jahr"
+      },
+      "restbeitragRate": {
+        "dokument": 0,
+        "seite": 3,
+        "wortlaut": "0,3 % der noch ausstehenden Anlage"
+      }
+    },
+    "pruefung": [
+      {
+        "annahmen": {
+          "fundTER": 0.0007
+        },
+        "beitrag": 1000,
+        "blatt": {
+          "kostenEuro": 2296,
+          "riy": 0.012
+        },
+        "dokument": 0,
+        "einmal": false,
+        "hinweis": "Unterkante des Blatts = günstigste Anlageoption (Fondskosten 0,07 %)",
+        "jahre": 20,
+        "rendite": 0.04
+      },
+      {
+        "annahmen": {
+          "fundTER": 0.0025
+        },
+        "beitrag": 10000,
+        "blatt": {
+          "kostenEuro": 1326
+        },
+        "dokument": 1,
+        "einmal": true,
+        "hinweis": "Unterkante des Einmalbeitrag-Blatts",
+        "jahre": 20,
+        "rendite": 0.03
+      }
+    ]
+  },
+  "betaEinmalRate": 0.054,
   "betaRate": 0.044,
   "effectiveCostRIY": 0,
   "fundTER": 0.002,
@@ -11,7 +103,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 1.0,
   "kategorie": "Klassische Versicherer",
-  "quelle": "Basisinformationsblatt Continentale Rente Invest (Tarif RI), Stand 01.12.2025; Einmal 5,5 % laut W (Bildschirm 05.10.2026); Fonds-TER 0,20 % iShares Core MSCI World (IE00B4L5Y983) laut Fondsübersicht Continentale, abgerufen 05.10.2026",
+  "quelle": "Basisinformationsblätter Continentale Rente Invest (Tarif RI) laufend und Einmalbetrag, Stand 01.12.2025; Fonds-TER 0,20 % iShares Core MSCI World (IE00B4L5Y983) laut Fondsübersicht Continentale; Fundstellen im Feld beleg",
   "rentenfaktor": 0.00279,
   "restbeitragRate": 0.003,
   "tarifName": "EasyRente Invest RI",

@@ -50,7 +50,13 @@ const VEHIKEL_TYPEN = new Set([
   "Schicht 3 — Privatrente", "Altersvorsorge-Depot (ab 2027)",
 ]);
 
-const UUID_RE = /^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$/;
+const BELEG_ARTEN = new Set(["bib-laufend", "bib-einmal", "muster-pib", "fondsuebersicht"]);
+const BELEGBARE_FELDER = new Set([
+  "alphaRate", "zillmerdauerMonate", "betaRate", "betaEinmalRate", "gammaAnnualRate",
+  "gammaBeitragsfrei", "gammaRentenphase", "kappaMonthly", "restbeitragRate", "fundTER",
+  "effectiveCostRIY", "rentenfaktor",
+]);
+const UUID_RE =/^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$/;
 const ISIN_RE = /^[A-Z]{2}[A-Z0-9]{9}[0-9]$/;
 
 const fehler = [];
@@ -198,6 +204,62 @@ for (const t of tarife) {
   if (t.quelle !== undefined && (typeof t.quelle !== "string" || t.quelle.trim() === "")) {
     fehler.push(`${quelle}: "quelle" muss nicht-leerer String sein`);
   }
+  if (t.beleg !== undefined) pruefeBeleg(t, quelle);
+}
+
+// Beleg (Oktober 2026, Plan Blatt-Auslese Etappe B): Fundstelle je Wert im
+// Basisinformationsblatt bzw. Muster-PIB und der Musterfall, mit dem
+// `scripts/blatt/nachrechnung.py` die Werte gegen das Blatt prueft. Die App
+// liest das Feld nicht; es bleibt aus tariffs.json heraus.
+function pruefeBeleg(t, quelle) {
+  const b = t.beleg;
+  if (typeof b !== "object" || b === null || Array.isArray(b)) {
+    fehler.push(`${quelle}: "beleg" muss ein Objekt sein`);
+    return;
+  }
+  const docs = Array.isArray(b.dokumente) ? b.dokumente : [];
+  if (docs.length === 0) fehler.push(`${quelle}: beleg.dokumente fehlt oder ist leer`);
+  docs.forEach((d, i) => {
+    const wo = `${quelle}: beleg.dokumente[${i}]`;
+    if (!BELEG_ARTEN.has(d?.art)) fehler.push(`${wo}.art "${d?.art}" unbekannt — erlaubt: ${[...BELEG_ARTEN].join(", ")}`);
+    if (typeof d?.url !== "string" || !d.url.startsWith("https://")) fehler.push(`${wo}.url muss mit https:// beginnen`);
+    if (typeof d?.stand !== "string" || d.stand.trim() === "") fehler.push(`${wo}.stand fehlt`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(d?.abrufdatum ?? "")) fehler.push(`${wo}.abrufdatum muss JJJJ-MM-TT sein`);
+    if (!/^[0-9a-f]{64}$/.test(d?.sha256 ?? "")) fehler.push(`${wo}.sha256 muss 64 Hex-Zeichen haben`);
+  });
+  const dokIndex = (wert, wo) => {
+    if (!Number.isInteger(wert) || wert < 0 || wert >= docs.length) {
+      fehler.push(`${wo}.dokument = ${wert} verweist auf kein Dokument (0 bis ${docs.length - 1})`);
+    }
+  };
+
+  const felder = b.felder;
+  if (typeof felder !== "object" || felder === null || Object.keys(felder).length === 0) {
+    fehler.push(`${quelle}: beleg.felder fehlt oder ist leer`);
+  } else {
+    for (const [feld, f] of Object.entries(felder)) {
+      const wo = `${quelle}: beleg.felder.${feld}`;
+      if (!BELEGBARE_FELDER.has(feld)) fehler.push(`${wo}: Feld ist nicht belegbar — erlaubt: ${[...BELEGBARE_FELDER].join(", ")}`);
+      else if (typeof t[feld] !== "number") fehler.push(`${wo}: belegt, aber im Tarif nicht gesetzt`);
+      dokIndex(f?.dokument, wo);
+      if (!Number.isInteger(f?.seite) || f.seite < 1) fehler.push(`${wo}.seite muss eine Seitenzahl sein`);
+      if (typeof f?.wortlaut !== "string" || f.wortlaut.trim() === "") fehler.push(`${wo}.wortlaut fehlt`);
+    }
+  }
+
+  const pruefung = Array.isArray(b.pruefung) ? b.pruefung : [];
+  if (pruefung.length === 0) fehler.push(`${quelle}: beleg.pruefung fehlt — ohne Musterfall keine Selbstpruefung`);
+  pruefung.forEach((p, i) => {
+    const wo = `${quelle}: beleg.pruefung[${i}]`;
+    dokIndex(p?.dokument, wo);
+    if (!(p?.beitrag > 0)) fehler.push(`${wo}.beitrag muss > 0 sein`);
+    if (!Number.isInteger(p?.jahre) || p.jahre < 1) fehler.push(`${wo}.jahre muss ganze Zahl >= 1 sein`);
+    if (typeof p?.einmal !== "boolean") fehler.push(`${wo}.einmal muss true/false sein`);
+    if (typeof p?.rendite !== "number") fehler.push(`${wo}.rendite fehlt`);
+    if (typeof p?.blatt?.kostenEuro !== "number" && typeof p?.blatt?.riy !== "number") {
+      fehler.push(`${wo}.blatt braucht kostenEuro oder riy zum Vergleich`);
+    }
+  });
 }
 
 // ───── Nie schrumpfen ─────
@@ -237,9 +299,9 @@ if (fehler.length) {
 }
 
 const sortierteFonds = [...fonds].sort((a, b) => a.isin.localeCompare(b.isin));
-const sortierteTarife = [...tarife].sort(
-  (a, b) => a.anbieter.localeCompare(b.anbieter) || a.tarifName.localeCompare(b.tarifName)
-);
+const sortierteTarife = tarife
+  .map(({ beleg, ...tarif }) => tarif)
+  .sort((a, b) => a.anbieter.localeCompare(b.anbieter) || a.tarifName.localeCompare(b.tarifName));
 
 function ohneZeitstempel(p) {
   return JSON.stringify({ version: p?.version, tarife: p?.tarife, fonds: p?.fonds });
