@@ -1,18 +1,85 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Universa",
+  "beleg": {
+    "dokumente": [
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "muster-pib",
+        "sha256": "e5edf74b5ea6551b583a70c12dbf77148af015e671f2a48372c3b68b9d544c7b",
+        "stand": "01.01.2025, Version 11.0.0 (Bonusrente)",
+        "titel": "uniVersa AufbauRENTE topinvest Alter (Basisrente), Muster-Produktinformationsblatt, Aufschubzeit 20 Jahre, Zertifizierungsnummer 006094",
+        "url": "https://www.universa.de/site/assets/files/113393/muster-produktinformationsblatt_basisrente_aufschubzeit_20_jahre_bonusrente.pdf"
+      },
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "fondsuebersicht",
+        "sha256": "3120d8bdfcc6e97800c24e41cd95714f05e663190f32e6f4847eb0040784e761",
+        "stand": "Fonds iShares Core MSCI World: Stand 10.04.2025 (S. 302; Datei aus Tarif universa--uni-fondsrente, gleiche Fondsliste)",
+        "titel": "uniVersa AufbauRENTE topinvest Alter (Basisrente), Muster-Produktinformationsblatt, Aufschubzeit 20 Jahre, Zertifizierungsnummer 006094",
+        "url": "https://www.universa.de/site/assets/files/113310/spezifische_fondsinformationen_bei_laufendem_beitrag.pdf"
+      }
+    ],
+    "felder": {
+      "alphaRate": {
+        "dokument": 0,
+        "hinweis": "10 % der Beiträge aus 5 von 20 Jahren = 2,5 % der Beitragssumme; bei anderer Laufzeit anders",
+        "seite": 2,
+        "wortlaut": "Prozentsatz jedes gezahlten Beitrags: Beitraege der ersten 5 Jahre 10,00 %"
+      },
+      "betaRate": {
+        "dokument": 0,
+        "seite": 2,
+        "wortlaut": "Prozentsatz jedes gezahlten Beitrages 7,50 %"
+      },
+      "fundTER": {
+        "dokument": 1,
+        "hinweis": "Fondsliste der uni-FondsRente; gleiche Fondspalette",
+        "seite": 306,
+        "wortlaut": "0,20 % des Kapitals (iShares Core MSCI World UCITS ETF)"
+      },
+      "kappaMonthly": {
+        "dokument": 0,
+        "seite": 2,
+        "wortlaut": "monatlich anfallende Kosten in Euro 2,00 Euro"
+      },
+      "zillmerdauerMonate": {
+        "dokument": 0,
+        "seite": 2,
+        "wortlaut": "Beitraege der ersten 5 Jahre"
+      }
+    },
+    "pruefung": [
+      {
+        "annahmen": {
+          "fundTER": 0.0259,
+          "gammaAnnualRate": 0
+        },
+        "beitrag": 1200,
+        "blatt": {
+          "riy": 0.0386
+        },
+        "dokument": 0,
+        "einmal": false,
+        "hinweis": "Muster-PIB nennt nur Effektivkosten; aktuelle Kostenbelastung 2,59 % einschließlich Fonds",
+        "jahre": 20,
+        "rendite": 0.06
+      }
+    ]
+  },
   "betaEinmalRate": 0.055,
-  "betaRate": 0,
+  "betaRate": 0.075,
   "effectiveCostRIY": 0,
-  "fundTER": 0.015,
+  "fundTER": 0.002,
   "gammaAnnualRate": 0,
   "id": "22222222-0000-0000-0000-000000000016",
   "jahrgang": "2026",
-  "kappaMonthly": 0.625,
+  "kappaMonthly": 2.0,
   "kategorie": "Klassische Versicherer",
-  "quelle": "β getrennt nach Beitragsart, 07.10.2026",
+  "quelle": "Muster-Produktinformationsblatt uniVersa AufbauRENTE topinvest Alter (Basisrente), Stand 01.01.2025 (α, Zillmerdauer, β, κ); Fonds-TER 0,20 % iShares Core MSCI World laut Fondsinformation uniVersa; β Einmal unbelegt; Fundstellen im Feld beleg",
   "rentenfaktor": 0.002556,
   "tarifName": "BasisRente Invest",
   "typischeBruttorendite": 0.06,
-  "vehikelTyp": "Schicht 1 — Rürup"
+  "vehikelTyp": "Schicht 1 — Rürup",
+  "zillmerdauerMonate": 60
 }

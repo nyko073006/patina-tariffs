@@ -1,14 +1,63 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Württembergische",
-  "betaRate": 0.04,
+  "beleg": {
+    "dokumente": [
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "bib-laufend",
+        "sha256": "10f6b6c6cca55636b3e3919c9d3852619553c0a954bc0a4555c012f9cf01eef7",
+        "stand": "10.06.2026 (Garantiestufe 0-49 %, ARH)",
+        "titel": "PrivatRente Genius, Tarif ARH (laufender Beitrag) / ARHE (Einmalbeitrag), Anlageoption in Fonds; Garantievariante 'Beitragsgarantie 0-49 %' (Mindestanlage Sicherungsguthaben 0)",
+        "url": "https://www.wuerttembergische.de/media/produktinformationsblaetter/basis/PRIIP_LPRI018_ARH_Laufzeit13-20_Beitragsgarantie_MindestanlageSG_0.pdf"
+      }
+    ],
+    "felder": {
+      "alphaRate": {
+        "dokument": 0,
+        "seite": 3,
+        "wortlaut": "Einstiegskosten 2,50 % der kumulierten Anlage"
+      },
+      "betaRate": {
+        "dokument": 0,
+        "seite": 3,
+        "wortlaut": "4,62 % der eingezahlten Anlage"
+      },
+      "kappaMonthly": {
+        "dokument": 0,
+        "hinweis": "Einmalbeitrag-Blatt: 0 EUR pro Jahr",
+        "seite": 3,
+        "wortlaut": "12 EUR pro Jahr"
+      }
+    },
+    "pruefung": [
+      {
+        "annahmen": {
+          "fundTER": 0.0022,
+          "gammaAnnualRate": 0
+        },
+        "beitrag": 1000,
+        "blatt": {
+          "kostenEuro": 2388,
+          "riy": 0.012
+        },
+        "dokument": 0,
+        "einmal": false,
+        "hinweis": "Unterkante; laufende Kosten 0,22 % einschließlich Fonds",
+        "jahre": 20,
+        "rendite": 0.0203
+      }
+    ]
+  },
+  "betaRate": 0.0462,
   "effectiveCostRIY": 0.018,
   "fundTER": 0.017,
   "gammaAnnualRate": 0.003,
   "id": "11111111-0000-0000-0000-000000000018",
   "jahrgang": "2026",
-  "kappaMonthly": 2,
+  "kappaMonthly": 1.0,
   "kategorie": "Klassische Versicherer",
+  "quelle": "Basisinformationsblätter Württembergische PrivatRente Genius ARH/ARHE, Garantiestufe 0–49 %, Stand 10.06.2026 (α, β, κ); β Einmal: Nachrechnung des Einmalbeitrag-Blatts nicht bestanden, daher nicht gesetzt; übrige Werte ohne Quelle; Fundstellen im Feld beleg",
   "rentenfaktor": 0.0028,
   "tarifName": "Genius FlexRente",
   "typischeBruttorendite": 0.06,
