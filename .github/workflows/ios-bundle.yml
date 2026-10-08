@@ -18,6 +18,7 @@ on:
     paths:
       - "data/app/**"
       - "scripts/build-ios.mjs"
+      - "scripts/blatt/**"
       - "tariffs.json"
   workflow_dispatch:
 
@@ -37,6 +38,13 @@ jobs:
       # build-ios.mjs nutzt ausschliesslich Node-Builtins — kein npm ci noetig.
       - name: Bundle bauen
         run: node scripts/build-ios.mjs
+
+      # Belegte Tarife: Musterfall des Blatts mit den Tarifwerten nachrechnen
+      # (Plan Blatt-Auslese, Etappe B). python3 ist auf dem Runner vorhanden.
+      - name: Selbstpruefung belegter Tarife
+        run: |
+          python3 -m unittest discover -s scripts/blatt
+          python3 scripts/blatt/nachrechnung.py
 
       - name: PR — pruefen ob tariffs.json aktuell ist
         if: github.event_name == 'pull_request'

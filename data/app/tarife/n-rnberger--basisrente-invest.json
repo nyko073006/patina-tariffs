@@ -1,16 +1,62 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Nürnberger",
+  "beleg": {
+    "dokumente": [
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "muster-pib",
+        "sha256": "29fab91f75b18eeb09a8d51fc02751ce8438585ccd348c418f9eb7bb9021c3c4",
+        "stand": "Stand 01.01.2025 (Musterkunde-Vertragsbeginn 01.01.2025); Garantiestufe laut Linktext niedrig, Blatttitel 'Fondsgebundene Basisrente', garantiertes Kapital 0,00 Euro",
+        "titel": "NÜRNBERGER Fondsgebundene Basisrente (Muster-Produktinformationsblatt, Zertifizierungsnummer 006590)",
+        "url": "https://www.nuernberger.de/medien/4allportal/lv042_020_p.pdf"
+      }
+    ],
+    "felder": {
+      "alphaRate": {
+        "dokument": 0,
+        "seite": 2,
+        "wortlaut": "Abschluss- und Vertriebskosten: Prozentsatz der vereinbarten Beiträge 2,50 %"
+      },
+      "betaRate": {
+        "dokument": 0,
+        "seite": 2,
+        "wortlaut": "Verwaltungskosten: Prozentsatz der eingezahlten Beiträge 7,00 %"
+      },
+      "kappaMonthly": {
+        "dokument": 0,
+        "seite": 2,
+        "wortlaut": "jährlich anfallende Kosten in Euro 0,00 Euro"
+      }
+    },
+    "pruefung": [
+      {
+        "annahmen": {
+          "fundTER": 0,
+          "gammaAnnualRate": 0.011
+        },
+        "beitrag": 1200,
+        "blatt": {
+          "riy": 0.0216
+        },
+        "dokument": 0,
+        "einmal": false,
+        "hinweis": "Muster-PIB nennt nur Effektivkosten; aktuelle Kapitalkosten 1,10 % einschließlich Fonds",
+        "jahre": 20,
+        "rendite": 0.06
+      }
+    ]
+  },
   "betaEinmalRate": 0.07,
-  "betaRate": 0,
+  "betaRate": 0.07,
   "effectiveCostRIY": 0,
   "fundTER": 0.014,
   "gammaAnnualRate": 0.003,
   "id": "22222222-0000-0000-0000-000000000012",
   "jahrgang": "2026",
-  "kappaMonthly": 0.5833,
+  "kappaMonthly": 0.0,
   "kategorie": "Klassische Versicherer",
-  "quelle": "β getrennt nach Beitragsart, 07.10.2026",
+  "quelle": "Muster-Produktinformationsblatt NÜRNBERGER Fondsgebundene Basisrente, Stand 01.01.2025 (α, β, κ); β Einmal und übrige Werte unbelegt; Fundstellen im Feld beleg",
   "rentenfaktor": 0.002413,
   "tarifName": "BasisRente Invest",
   "typischeBruttorendite": 0.06,

@@ -1,18 +1,71 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Baloise",
+  "beleg": {
+    "dokumente": [
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "muster-pib",
+        "sha256": "b8eb4f45fc15b064f67fdc6108dac285d352879263fc08a768b757551799a4af",
+        "stand": "29.01.2026 (BAL 8444 01.25)",
+        "titel": "Baloise Best Invest Basis, Rentenversicherung (Basisrente), Muster-Produktinformationsblatt, Stand 29.01.2026",
+        "url": "https://www.helvetia.de/dam/helvetia-de/privatkunden/de/documents/Muster-Produktinfomationsblaetter/LZ30/Baloise-Invest-Basis-LZ30-Fondsanteil-100-PIB.pdf"
+      }
+    ],
+    "felder": {
+      "alphaRate": {
+        "dokument": 0,
+        "seite": 2,
+        "wortlaut": "Abschluss- und Vertriebskosten: Prozentsatz der vereinbarten Beitragssumme der laufenden Beiträge 2,50 %"
+      },
+      "betaRate": {
+        "dokument": 0,
+        "hinweis": "Musterkunde 30 Jahre",
+        "seite": 2,
+        "wortlaut": "Verwaltungskosten: Prozentsatz der vereinbarten Beiträge 7,80 %"
+      },
+      "kappaMonthly": {
+        "dokument": 0,
+        "seite": 2,
+        "wortlaut": "Anfallende Kosten in Euro, monatlich ab 01.03.2026: 1,00 EUR"
+      },
+      "zillmerdauerMonate": {
+        "dokument": 0,
+        "seite": 2,
+        "wortlaut": "verteilt auf die ersten 60 Monate"
+      }
+    },
+    "pruefung": [
+      {
+        "annahmen": {
+          "fundTER": 0,
+          "gammaAnnualRate": 0.0236
+        },
+        "beitrag": 1200,
+        "blatt": {
+          "riy": 0.0316
+        },
+        "dokument": 0,
+        "einmal": false,
+        "hinweis": "Muster-PIB nennt nur Effektivkosten; aktuelle Kapitalkosten 2,36 % einschließlich Fonds",
+        "jahre": 30,
+        "rendite": 0.06
+      }
+    ]
+  },
   "betaEinmalRate": 0.025,
-  "betaRate": 0,
+  "betaRate": 0.078,
   "effectiveCostRIY": 0,
   "fundTER": 0.015,
   "gammaAnnualRate": 0.003,
   "id": "22222222-0000-0000-0000-000000000004",
   "jahrgang": "2026",
-  "kappaMonthly": 0.825,
+  "kappaMonthly": 1.0,
   "kategorie": "Klassische Versicherer",
-  "quelle": "β getrennt nach Beitragsart, 07.10.2026",
+  "quelle": "Muster-Produktinformationsblatt Baloise Best Invest Basis (Basisrente), Stand 29.01.2026 (α, Zillmerdauer, β, κ); β Einmal und übrige Werte unbelegt; Fundstellen im Feld beleg",
   "rentenfaktor": 0.00287,
   "tarifName": "BasisRente Invest",
   "typischeBruttorendite": 0.06,
-  "vehikelTyp": "Schicht 1 — Rürup"
+  "vehikelTyp": "Schicht 1 — Rürup",
+  "zillmerdauerMonate": 60
 }

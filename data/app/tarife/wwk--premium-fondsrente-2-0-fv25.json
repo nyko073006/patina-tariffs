@@ -1,8 +1,81 @@
 {
   "alphaRate": 0.025,
   "anbieter": "WWK",
-  "betaEinmalRate": 0.025,
-  "betaRate": 0,
+  "beleg": {
+    "dokumente": [
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "bib-laufend",
+        "sha256": "7ac17d212b5aede04d2a16f4333d15d8397b2e7d0b9c2e1fa93dba3ddb170a72",
+        "stand": "Stand Basisinformationsblatt: 17.08.2026 (BIB_FV25_LB_20_V20260817)",
+        "titel": "WWK Premium FondsRente 2.0 (FV25)",
+        "url": "https://www.wwk.de/medien/dokumente/bib_priip/bib_ab_17.08.2026/wwk-premium-fondsrente-2.0-laufender-beitrag-20-jahre.pdf"
+      },
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "bib-einmal",
+        "sha256": "93a872c3f6ebe0b220263d15b0a110b9958cdb7ed664da69d51b2b9d1f9c400b",
+        "stand": "Stand Basisinformationsblatt: 17.08.2026 (BIB_FV25_EB_20_V20260817)",
+        "titel": "WWK Premium FondsRente 2.0 (FV25)",
+        "url": "https://www.wwk.de/medien/dokumente/bib_priip/bib_ab_17.08.2026/wwk-premium-fondsrente-2.0-einmalbeitrag-20-jahre.pdf"
+      }
+    ],
+    "felder": {
+      "alphaRate": {
+        "dokument": 0,
+        "seite": 3,
+        "wortlaut": "Einstiegskosten 2,50 % der kumulierten Anlage"
+      },
+      "betaEinmalRate": {
+        "dokument": 1,
+        "hinweis": "Summe 2,50 % + 2,50 %",
+        "seite": 3,
+        "wortlaut": "Einstiegskosten 2,50 % der Anlage … 2,50 % der eingezahlten Anlage"
+      },
+      "betaRate": {
+        "dokument": 0,
+        "hinweis": "Zeile unter Verwaltungsgebühren; „der eingezahlten Anlage“ = Anteil jedes Beitrags",
+        "seite": 3,
+        "wortlaut": "8,50 % der eingezahlten Anlage"
+      }
+    },
+    "pruefung": [
+      {
+        "annahmen": {
+          "fundTER": 0,
+          "gammaAnnualRate": 0.0028
+        },
+        "beitrag": 1000,
+        "blatt": {
+          "kostenEuro": 3059,
+          "riy": 0.015
+        },
+        "dokument": 0,
+        "einmal": false,
+        "hinweis": "Unterkante; Blatt nennt Verwaltung und Fondskosten nur zusammen (0,28 %)",
+        "jahre": 20,
+        "rendite": 0.045
+      },
+      {
+        "annahmen": {
+          "fundTER": 0,
+          "gammaAnnualRate": 0.0048
+        },
+        "beitrag": 10000,
+        "blatt": {
+          "kostenEuro": 1879,
+          "riy": 0.008
+        },
+        "dokument": 1,
+        "einmal": true,
+        "hinweis": "Unterkante Einmalbeitrag (0,48 %)",
+        "jahre": 20,
+        "rendite": 0.04
+      }
+    ]
+  },
+  "betaEinmalRate": 0.05,
+  "betaRate": 0.085,
   "effectiveCostRIY": 0,
   "fundTER": 0.0195,
   "gammaAnnualRate": 0.0055,
@@ -11,7 +84,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.8333,
   "kategorie": "Strukturvertrieb",
-  "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+  "quelle": "Basisinformationsblätter WWK Premium FondsRente 2.0 (FV25) laufend und Einmalbeitrag, Stand 17.08.2026 (α, β, β Einmal); übrige Werte externe Quelle; Fundstellen im Feld beleg",
   "rentenfaktor": 0.002548,
   "tarifName": "Premium FondsRente 2.0 FV25",
   "typischeBruttorendite": 0.055,
