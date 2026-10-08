@@ -12,7 +12,9 @@ Rechenweg wie die Blaetter: "Kosten insgesamt" ist die nominale Summe aller
 Abzuege, die Auswirkung pro Jahr (RIY) ist r minus interner Zins der
 Nettowerte. Jaehrliche Schritte, Beitrag zu Jahresbeginn. Wie in der App
 wirkt alpha nur auf laufende Beitraege; ein Einmalbeitrag traegt allein
-betaEinmalRate (fehlt sie: betaRate).
+betaEinmalRate (fehlt sie: betaRate). Eine `betaStaffel` ([{abJahr, rate}],
+wie in build-ios.mjs geprueft) staffelt beta der laufenden Beitraege nach
+Vertragsjahr; sie gilt nie fuer den Einmalbeitrag.
 
 `annahmen` ersetzt Tarifwerte fuer den Musterfall, wenn das Blatt mit anderen
 Werten rechnet (etwa Fondskosten des guenstigsten Fonds statt des Depot-ETF).
@@ -43,10 +45,12 @@ def kostensaetze(tarif, annahmen):
     w = dict(tarif)
     w.update(annahmen or {})
     beta = w.get("betaRate", 0.0)
+    staffel = sorted((x["abJahr"], x["rate"]) for x in (w.get("betaStaffel") or []))
     return {
         "alpha": w.get("alphaRate", 0.0),
         "zillmer_jahre": (w.get("zillmerdauerMonate") or 60) / 12,
         "beta": beta,
+        "staffel": staffel,
         "beta_einmal": w["betaEinmalRate"] if w.get("betaEinmalRate") is not None else beta,
         "gamma": w.get("gammaAnnualRate", 0.0),
         "ter": w.get("fundTER", 0.0),
@@ -54,6 +58,15 @@ def kostensaetze(tarif, annahmen):
         "rest": w.get("restbeitragRate", 0.0),
         "kum": w.get("kumRate", 0.0),
     }
+
+
+def beta_jahr(k, t):
+    """beta im (t+1)-ten Vertragsjahr: Satz der letzten Stufe mit abJahr <= Vertragsjahr, ohne Staffel flach."""
+    satz = k["beta"]
+    for ab, rate in k["staffel"]:
+        if ab <= t + 1:
+            satz = rate
+    return satz
 
 
 def lauf(fall, k, mit_kosten):
@@ -70,7 +83,7 @@ def lauf(fall, k, mit_kosten):
             if einmal:
                 kosten = k["beta_einmal"] * einzahlung
             else:
-                kosten = k["beta"] * einzahlung + k["rest"] * beitrag * (n - t - 1)
+                kosten = beta_jahr(k, t) * einzahlung + k["rest"] * beitrag * (n - t - 1)
                 if t < zill:
                     kosten += k["alpha"] * summe / zill
             kosten += k["kappa_jahr"] + k["kum"] * eingezahlt
