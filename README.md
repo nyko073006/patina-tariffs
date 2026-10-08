@@ -112,8 +112,40 @@ Basisrenten) stammen, tragen ein Feld `beleg`:
 Tarifwerten nach und bricht ab, wenn das Ergebnis über die Toleranz vom Blatt
 abweicht (Euro 15 %, RIY 0,15 Prozentpunkte). Die CI führt es bei jeder
 Änderung unter `data/app/` aus. `build-ios.mjs` prüft die Form des Felds und
-lässt es aus `tariffs.json` heraus; die App liest es nicht. Ein Wert kommt nur
-mit bestandener Nachrechnung in den Tarif.
+lässt es aus `tariffs.json` heraus; die App liest stattdessen `belegteFelder`
+und `belegStand` (unten). Ein Wert kommt nur mit bestandener Nachrechnung in
+den Tarif.
+
+`beleg.vereinfachungen` (optional) hält bewusste Vereinfachungen fest, etwa
+Mittelwert statt Staffel oder Spanne statt Einzelwert: eine nicht leere Liste
+nicht leerer Texte, nur für Prüfer. Sie bleibt wie der übrige Beleg aus
+`tariffs.json` heraus.
+
+**Gestaffelte Beiträge.** `betaStaffel` ist eine Liste `{abJahr, rate}`. Die
+erste Stufe beginnt bei Jahr 1, `abJahr` steigt streng, `rate` ist ein Anteil
+zwischen 0 und 0,25. Im Vertragsjahr j gilt der Satz der letzten Stufe mit
+`abJahr` ≤ j, und zwar nur für laufende Beiträge; ein Einmalbeitrag trägt
+weiter `betaEinmalRate`. `betaRate` bleibt Pflicht und ist der
+Mittelwert-Fallback für ältere App-Stände, die die Staffel ignorieren. Der
+Build bricht ab, wenn `betaRate` außerhalb von kleinstem und größtem
+Stufensatz liegt. Die Nachrechnung nutzt die Staffel ebenso.
+
+**Was die App aus dem Beleg erhält.** Zwei Schlüssel setzt der Build selbst;
+in einer Quelldatei unter `data/app/` sind sie verboten:
+
+- `belegteFelder`: je belegtem Feld die Herkunft. Art `bib-laufend` und
+  `bib-einmal` ergeben `bib`, `muster-pib` bleibt `muster-pib`,
+  `fondsuebersicht` bleibt `fondsuebersicht`. Maßgeblich ist das Dokument,
+  auf das `beleg.felder.<feld>.dokument` zeigt.
+- `belegStand`: das jüngste Datum (TT.MM.JJJJ) unter den Blatt-Dokumenten
+  `bib-laufend`, `bib-einmal` und `muster-pib`. Gezählt wird ein Datum am
+  Textanfang von `stand` oder direkt hinter „Stand“ (auch „Stand:“ und „Stand
+  Basisinformationsblatt:“); andere Daten im Text und ungültige Kalenderdaten
+  zählen nicht, die Fondsübersicht auch nicht. Findet sich keins, warnt der
+  Build und `belegStand` entfällt.
+
+Tests: `node --test "scripts/*.test.mjs"` (Bundle-Skript) und
+`python3 -I -m unittest discover -s scripts/blatt` (Nachrechnung).
 
 ### Quartals-Update einer Fondsrendite
 
