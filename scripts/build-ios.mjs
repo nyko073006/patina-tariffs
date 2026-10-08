@@ -51,6 +51,9 @@ const VEHIKEL_TYPEN = new Set([
 ]);
 
 const BELEG_ARTEN = new Set(["bib-laufend", "bib-einmal", "muster-pib", "fondsuebersicht"]);
+// Arten, deren `stand` den Stand des Blatts nennt (siehe `juengstesStand`).
+const BLATT_ARTEN = new Set(["bib-laufend", "bib-einmal", "muster-pib"]);
+const STAND_RE = /(?:^\s*|\bStand(?:\s+Basisinformationsblatt)?\s*:?\s*)(\d{2})\.(\d{2})\.(\d{4})(?!\d)/g;
 const BELEGBARE_FELDER = new Set([
   "alphaRate", "zillmerdauerMonate", "betaRate", "betaEinmalRate", "gammaAnnualRate",
   "gammaBeitragsfrei", "gammaRentenphase", "kappaMonthly", "restbeitragRate", "fundTER",
@@ -297,7 +300,7 @@ function pruefeBeleg(t, quelle) {
     if (!/^[0-9a-f]{64}$/.test(d?.sha256 ?? "")) fehler.push(`${wo}.sha256 muss 64 Hex-Zeichen haben`);
   });
   if (docs.length > 0 && !juengstesStand(docs)) {
-    warnungen.push(`${quelle}: kein Datum TT.MM.JJJJ in beleg.dokumente[].stand — belegStand entfaellt`);
+    warnungen.push(`${quelle}: kein Blatt-Stand TT.MM.JJJJ (Textanfang oder hinter Stand) in beleg.dokumente[].stand — belegStand entfaellt`);
   }
   const dokIndex = (wert, wo) => {
     if (!Number.isInteger(wert) || wert < 0 || wert >= docs.length) {
@@ -346,8 +349,7 @@ function pruefeBeleg(t, quelle) {
 }
 
 // Ausgabe des Belegs fuer die App: Feld → Herkunft (`bib` | `muster-pib` |
-// `fondsuebersicht`, aus `art` des Dokuments) und Stand des juengsten
-// Dokuments (TT.MM.JJJJ). Laeuft erst nach erfolgreicher Validierung, die
+// `fondsuebersicht`, aus `art` des Dokuments) und Stand des Blatts (TT.MM.JJJJ, siehe juengstesStand). Laeuft erst nach erfolgreicher Validierung, die
 // Dokument-Verweise und Arten sichert.
 function belegAusgabe(t) {
   const docs = t.beleg.dokumente;
@@ -358,11 +360,22 @@ function belegAusgabe(t) {
   return juengstes ? { belegteFelder, belegStand: juengstes } : { belegteFelder };
 }
 
-// `stand` ist Freitext ("Stand: 16.02.2026", "... (BIB_FV25...)"); gezaehlt
-// werden die Datumsangaben TT.MM.JJJJ darin. Liefert das juengste oder null.
+// Stand des Blatts: `stand` ist Freitext. Pro Dokument zaehlt nur ein Datum
+// TT.MM.JJJJ am Textanfang oder direkt hinter "Stand" / "Stand:" /
+// "Stand Basisinformationsblatt:" (andere Datumsangaben im Text sind
+// Vertragsbeginn, Fondsstichtag u. Ae.). Nur Blatt-Dokumente zaehlen; die
+// Fondsuebersicht hat einen eigenen Stichtag und ist kein Blatt-Stand.
+// Ungueltige Kalenderdaten (99.13.2026, 31.02.2026) zaehlen nicht.
+// Liefert das juengste Datum als TT.MM.JJJJ oder null.
 function juengstesStand(docs) {
-  const daten = docs.flatMap((d) => [...String(d?.stand ?? "").matchAll(/\b(\d{2})\.(\d{2})\.(\d{4})\b/g)])
-    .map(([text, tag, monat, jahr]) => ({ text, schluessel: `${jahr}${monat}${tag}` }))
+  const daten = docs
+    .filter((d) => BLATT_ARTEN.has(d?.art))
+    .flatMap((d) => [...String(d?.stand ?? "").matchAll(STAND_RE)])
+    .filter(([, tag, monat, jahr]) => {
+      const d = new Date(Date.UTC(+jahr, +monat - 1, +tag));
+      return d.getUTCFullYear() === +jahr && d.getUTCMonth() === +monat - 1 && d.getUTCDate() === +tag;
+    })
+    .map(([, tag, monat, jahr]) => ({ text: `${tag}.${monat}.${jahr}`, schluessel: `${jahr}${monat}${tag}` }))
     .sort((a, b) => b.schluessel.localeCompare(a.schluessel));
   return daten.length ? daten[0].text : null;
 }

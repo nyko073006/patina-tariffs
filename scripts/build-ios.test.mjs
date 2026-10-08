@@ -162,17 +162,64 @@ test("Beleg-Art wird auf bib | muster-pib | fondsuebersicht abgebildet", () => {
   assert.deepEqual(r.ausgabe.tarife[0].belegteFelder, {
     betaEinmalRate: "bib", alphaRate: "bib", betaRate: "muster-pib", fundTER: "fondsuebersicht",
   });
-  assert.equal(r.ausgabe.tarife[0].belegStand, "04.03.2026");
+  // Die Fondsuebersicht (04.03.) zaehlt nicht: belegStand ist der Stand des Blatts.
+  assert.equal(r.ausgabe.tarife[0].belegStand, "03.03.2026");
 });
 
-test("belegStand ist das juengste Datum, nicht das zuletzt genannte", () => {
+test("belegStand ist das juengste Datum der Blatt-Dokumente, nicht das zuletzt genannte", () => {
   const dokumente = [
     { ...DOKUMENT, stand: "Stand Basisinformationsblatt: 17.08.2026 (BIB_FV25)" },
-    { ...DOKUMENT, stand: "01.12.2025" },
+    { ...DOKUMENT, art: "bib-einmal", stand: "01.12.2025" },
   ];
   const r = lauf((t) => mitBeleg(t, ["betaEinmalRate"], dokumente));
   assert.equal(r.code, 0, r.stdout + r.stderr);
   assert.equal(r.ausgabe.tarife[0].belegStand, "17.08.2026");
+});
+
+test("belegStand: Fondsuebersicht mit spaeterem Datum zaehlt nicht (Continentale)", () => {
+  const dokumente = [
+    { ...DOKUMENT, art: "bib-laufend", stand: "01.12.2025" },
+    { ...DOKUMENT, art: "fondsuebersicht", stand: "kein Stand ausgewiesen; im Text mehrfach 11.09.2026" },
+    { ...DOKUMENT, art: "fondsuebersicht", stand: "Stand 11.09.2026" },
+  ];
+  const r = lauf((t) => mitBeleg(t, ["betaEinmalRate"], dokumente));
+  assert.equal(r.code, 0, r.stdout + r.stderr);
+  assert.equal(r.ausgabe.tarife[0].belegStand, "01.12.2025");
+});
+
+test("belegStand: Muster-PIB-Stand schlaegt die Fondsuebersicht (Universa)", () => {
+  const dokumente = [
+    { ...DOKUMENT, art: "muster-pib", stand: "Stand 01.01.2025, Version 11.0.0" },
+    { ...DOKUMENT, art: "fondsuebersicht", stand: "Fonds iShares Core MSCI World: Stand 10.04.2025 (S. 302)" },
+  ];
+  const r = lauf((t) => mitBeleg(t, ["betaEinmalRate"], dokumente));
+  assert.equal(r.code, 0, r.stdout + r.stderr);
+  assert.equal(r.ausgabe.tarife[0].belegStand, "01.01.2025");
+});
+
+test("belegStand: nur ein Datum am Anfang oder direkt hinter Stand zaehlt", () => {
+  const faelle = {
+    "Stand Basisinformationsblatt: 17.08.2026 (BIB_V20260817)": "17.08.2026",
+    "Stand: 16.02.2026": "16.02.2026",
+    "Stand 01.01.2025 (Musterkunde-Vertragsbeginn 05.05.2025)": "01.01.2025",
+    "29.01.2026 (BAL 8444 01.25)": "29.01.2026",
+    "Garantiestufe 0-49 %, geaendert am 10.06.2026": null,
+    "im Text mehrfach 11.09.2026": null,
+    "Stand 99.13.2026": null,
+    "Stand 31.02.2026": null,
+  };
+  for (const [stand, erwartet] of Object.entries(faelle)) {
+    const r = lauf((t) => mitBeleg(t, ["betaEinmalRate"], [{ ...DOKUMENT, stand }]));
+    assert.equal(r.code, 0, `${stand}: ${r.stdout}${r.stderr}`);
+    assert.equal(r.ausgabe.tarife[0].belegStand ?? null, erwartet, stand);
+  }
+});
+
+test("belegStand entfaellt (mit Warnung), wenn nur die Fondsuebersicht ein Datum hat", () => {
+  const r = lauf((t) => mitBeleg(t, ["betaEinmalRate"], [{ ...DOKUMENT, art: "fondsuebersicht", stand: "Stand 04.03.2026" }]));
+  assert.equal(r.code, 0, r.stdout + r.stderr);
+  assert.match(r.stderr, /belegStand/);
+  assert.equal("belegStand" in r.ausgabe.tarife[0], false);
 });
 
 test("Dokument-Stand ohne Datum: Build laeuft mit Warnung, belegStand entfaellt", () => {
