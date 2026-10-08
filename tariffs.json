@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-08T15:15:26Z",
+  "updatedAt": "2026-10-08T15:29:23Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -271,16 +271,26 @@
       "alphaRate": 0.025,
       "anbieter": "Barmenia/Gothaer",
       "betaEinmalRate": 0.0862,
-      "betaRate": 0,
+      "betaRate": 0.0387,
+      "betaStaffel": [
+        {
+          "abJahr": 1,
+          "rate": 0.0516
+        },
+        {
+          "abJahr": 11,
+          "rate": 0.0335
+        }
+      ],
       "effectiveCostRIY": 0,
       "fundTER": 0.015,
       "gammaAnnualRate": 0.0014,
       "gammaBeitragsfrei": 0.0018,
       "id": "11111111-0000-0000-0000-000000000033",
       "jahrgang": "2026",
-      "kappaMonthly": 1.2,
+      "kappaMonthly": 1.443,
       "kategorie": "Klassische Versicherer",
-      "quelle": "Basisinformationsblätter BarmeniaGothaer Fondsrente (FR25-31, FR25-31E), Stand 14.09.2026 (β Einmal, γ); laufendes β und κ gestaffelt (Jahr 1–10 / ab 11), im App-Modell nicht abbildbar, daher unverändert; übrige Werte externe Quelle; Fundstellen im Feld beleg",
+      "quelle": "Basisinformationsblätter BarmeniaGothaer Fondsrente (FR25-31, FR25-31E), Stand 14.09.2026 (β-Staffel, β Einmal, γ); κ als Zwischenwert der Blattwerte 1,925/1,25 € pro Monat; übrige Werte externe Quelle; Fundstellen im Feld beleg",
       "rentenfaktor": 0.002374,
       "tarifName": "FondsRente",
       "typischeBruttorendite": 0.06,
@@ -288,6 +298,7 @@
       "zillmerdauerMonate": 60,
       "belegteFelder": {
         "betaEinmalRate": "bib",
+        "betaStaffel": "bib",
         "gammaAnnualRate": "bib"
       },
       "belegStand": "14.09.2026"
@@ -638,8 +649,18 @@
     {
       "alphaRate": 0.025,
       "anbieter": "Helvetia",
-      "betaEinmalRate": 0.03,
-      "betaRate": 0,
+      "betaEinmalRate": 0.07,
+      "betaRate": 0.128,
+      "betaStaffel": [
+        {
+          "abJahr": 1,
+          "rate": 0.194
+        },
+        {
+          "abJahr": 10,
+          "rate": 0.105
+        }
+      ],
       "effectiveCostRIY": 0,
       "fundTER": 0.015,
       "gammaAnnualRate": 0.0084,
@@ -648,12 +669,19 @@
       "jahrgang": "2026",
       "kappaMonthly": 3,
       "kategorie": "Klassische Versicherer",
-      "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+      "quelle": "Basisinformationsblätter Helvetia CleVesto Allcase (Tarif FWL/P) laufend (20 und 30 Jahre) und Einmalbeitrag (30 Jahre), Stand 01.09.2026 (α, β-Staffel, β Einmal, κ); γ und Fondskosten nicht belegt; Fundstellen im Feld beleg",
       "rentenfaktor": 0.002652,
       "tarifName": "CleVesto Allcase",
       "typischeBruttorendite": 0.07,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 60
+      "zillmerdauerMonate": 60,
+      "belegteFelder": {
+        "alphaRate": "bib",
+        "betaEinmalRate": "bib",
+        "betaStaffel": "bib",
+        "kappaMonthly": "bib"
+      },
+      "belegStand": "01.09.2026"
     },
     {
       "alphaRate": 0.025,

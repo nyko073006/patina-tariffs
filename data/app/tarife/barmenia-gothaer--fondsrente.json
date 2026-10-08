@@ -26,6 +26,14 @@
         "stand": "14.09.2026",
         "titel": "Fondsrente (FR25-31) / Fondsrente gegen Einmalbeitrag (FR25-31E), BarmeniaGothaer Lebensversicherung AG",
         "url": "https://www.gothaer.de/StreamingServlet/app/dvz/DocumentDownload/217013?scope=gothaer_scope"
+      },
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "bib-laufend",
+        "sha256": "64971216b6c531b23c0dd2fc875f7917c8af317029f6b0af9415762949cdb605",
+        "stand": "14.09.2026",
+        "titel": "Fondsrente (FR25-31) / Fondsrente gegen Einmalbeitrag (FR25-31E), BarmeniaGothaer Lebensversicherung AG",
+        "url": "https://www.gothaer.de/StreamingServlet/app/dvz/DocumentDownload/217009?scope=gothaer_scope"
       }
     ],
     "felder": {
@@ -34,6 +42,12 @@
         "hinweis": "Summe 4,00 % + 4,62 %",
         "seite": 3,
         "wortlaut": "Einstiegskosten 4,00 % der Anlage … 4,62 % der Anlage (nur im Jahr der Beitragszahlung)"
+      },
+      "betaStaffel": {
+        "dokument": 0,
+        "hinweis": "Staffel im 30-Jahre- und im 20-Jahre-Blatt gleich",
+        "seite": 3,
+        "wortlaut": "5,16 % der Anlage in den ersten 10 Jahren … bzw. 3,35 % der Anlage ab dem 11. Jahr"
       },
       "gammaAnnualRate": {
         "dokument": 0,
@@ -73,20 +87,65 @@
         "hinweis": "Einmalbeitrag 20 J.",
         "jahre": 20,
         "rendite": 0.034
+      },
+      {
+        "annahmen": {
+          "fundTER": 0.0007,
+          "kumRate": 0.0014
+        },
+        "beitrag": 1000,
+        "blatt": {
+          "kostenEuro": 4844
+        },
+        "dokument": 0,
+        "einmal": false,
+        "hinweis": "Unterkante der Blatt-Spanne, günstigste Anlageoption; nur Kosten in Euro geprüft (das Modell liegt bei der jährlichen Auswirkung 0,18 Pp unter dem Blatt)",
+        "jahre": 30,
+        "rendite": 0.043
+      },
+      {
+        "annahmen": {
+          "fundTER": 0.0007,
+          "kumRate": 0.0014
+        },
+        "beitrag": 1000,
+        "blatt": {
+          "kostenEuro": 2745
+        },
+        "dokument": 3,
+        "einmal": false,
+        "hinweis": "Unterkante der Blatt-Spanne, günstigste Anlageoption; nur Kosten in Euro geprüft",
+        "jahre": 20,
+        "rendite": 0.036
       }
+    ],
+    "vereinfachungen": [
+      "κ 1,443 € pro Monat ist ein Zwischenwert: das Blatt nennt 23,10 € pro Jahr (1,925 € pro Monat) in den Jahren 1–10 und 15,00 € pro Jahr (1,25 € pro Monat) ab dem 11. Jahr; die App kennt keine Staffel für κ",
+      "Das Blatt nennt zusätzlich 0,14 % (Jahre 1–10) bzw. 0,09 % (ab dem 11. Jahr) der kumulierten Anlage p. a.; dafür hat die App kein Feld, die Prüfung rechnet es als Annahme kumRate 0,14 % (Einmalbeitrag 0,06 %)",
+      "betaRate 3,87 % ist nur der Mittelwert-Fallback für App-Stände ohne Staffel und nicht belegt"
     ]
   },
   "betaEinmalRate": 0.0862,
-  "betaRate": 0,
+  "betaRate": 0.0387,
+  "betaStaffel": [
+    {
+      "abJahr": 1,
+      "rate": 0.0516
+    },
+    {
+      "abJahr": 11,
+      "rate": 0.0335
+    }
+  ],
   "effectiveCostRIY": 0,
   "fundTER": 0.015,
   "gammaAnnualRate": 0.0014,
   "gammaBeitragsfrei": 0.0018,
   "id": "11111111-0000-0000-0000-000000000033",
   "jahrgang": "2026",
-  "kappaMonthly": 1.2,
+  "kappaMonthly": 1.443,
   "kategorie": "Klassische Versicherer",
-  "quelle": "Basisinformationsblätter BarmeniaGothaer Fondsrente (FR25-31, FR25-31E), Stand 14.09.2026 (β Einmal, γ); laufendes β und κ gestaffelt (Jahr 1–10 / ab 11), im App-Modell nicht abbildbar, daher unverändert; übrige Werte externe Quelle; Fundstellen im Feld beleg",
+  "quelle": "Basisinformationsblätter BarmeniaGothaer Fondsrente (FR25-31, FR25-31E), Stand 14.09.2026 (β-Staffel, β Einmal, γ); κ als Zwischenwert der Blattwerte 1,925/1,25 € pro Monat; übrige Werte externe Quelle; Fundstellen im Feld beleg",
   "rentenfaktor": 0.002374,
   "tarifName": "FondsRente",
   "typischeBruttorendite": 0.06,
