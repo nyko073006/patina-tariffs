@@ -51,11 +51,32 @@ const VEHIKEL_TYPEN = new Set([
 ]);
 
 const BELEG_ARTEN = new Set(["bib-laufend", "bib-einmal", "muster-pib", "fondsuebersicht"]);
+// Arten, deren `stand` den Stand des Blatts nennt (siehe `juengstesStand`).
+const BLATT_ARTEN = new Set(["bib-laufend", "bib-einmal", "muster-pib"]);
+const STAND_RE = /(?:^\s*|\bStand(?:\s+Basisinformationsblatt)?\s*:?\s*)(\d{2})\.(\d{2})\.(\d{4})(?!\d)/g;
 const BELEGBARE_FELDER = new Set([
   "alphaRate", "zillmerdauerMonate", "betaRate", "betaEinmalRate", "gammaAnnualRate",
   "gammaBeitragsfrei", "gammaRentenphase", "kappaMonthly", "restbeitragRate", "fundTER",
-  "effectiveCostRIY", "rentenfaktor",
+  "effectiveCostRIY", "rentenfaktor", "betaStaffel",
 ]);
+// Kuerzel, unter denen die App die Herkunft eines belegten Werts kennt
+// (`belegteFelder` in der Ausgabe). Muss zu BELEG_ARTEN passen: eine Art
+// ohne Kuerzel wuerde sonst still aus der Ausgabe fallen.
+const BELEG_KUERZEL = {
+  "bib-laufend": "bib", "bib-einmal": "bib",
+  "muster-pib": "muster-pib", "fondsuebersicht": "fondsuebersicht",
+};
+// Kompatibilitaetswaechter: Schluessel, die ein Tarif in `data/app/tarife/`
+// tragen darf. Alles andere ist ein Tippfehler oder ein Feld, das die App
+// nicht kennt — beides soll auffallen, bevor es im Bundle landet.
+const TARIF_SCHLUESSEL = new Set([
+  "id", "anbieter", "tarifName", "jahrgang", "kategorie", "vehikelTyp", "quelle", "beleg",
+  "alphaRate", "betaRate", "gammaAnnualRate", "kappaMonthly", "fundTER", "rentenfaktor",
+  "effectiveCostRIY", "typischeBruttorendite", "gammaBeitragsfrei", "gammaRentenphase",
+  "betaEinmalRate", "restbeitragRate", "zillmerdauerMonate", "betaStaffel",
+]);
+// Schluessel, die der Build selbst ergaenzt (nie in den Quelldateien).
+const AUSGABE_SCHLUESSEL = new Set(["belegteFelder", "belegStand"]);
 const UUID_RE =/^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$/;
 const ISIN_RE = /^[A-Z]{2}[A-Z0-9]{9}[0-9]$/;
 
@@ -163,6 +184,14 @@ for (const t of tarife) {
     .forEach((feld) => pflichtfeld(t, feld, "number", quelle));
   if (!ok) continue;
 
+  for (const schluessel of Object.keys(t)) {
+    if (AUSGABE_SCHLUESSEL.has(schluessel)) {
+      fehler.push(`${quelle}: "${schluessel}" setzt der Build selbst, nicht in data/app/ eintragen`);
+    } else if (!TARIF_SCHLUESSEL.has(schluessel)) {
+      fehler.push(`${quelle}: unbekannter Schluessel "${schluessel}" — Tippfehler oder Feld, das die App nicht kennt (erlaubt: ${[...TARIF_SCHLUESSEL].join(", ")})`);
+    }
+  }
+
   if (!UUID_RE.test(t.id)) fehler.push(`${quelle}: id "${t.id}" ist keine UUID`);
   if (gesehenID.has(t.id)) fehler.push(`${quelle}: id doppelt vergeben`);
   gesehenID.add(t.id);
@@ -201,16 +230,59 @@ for (const t of tarife) {
     if (!Number.isInteger(t.zillmerdauerMonate)) fehler.push(`${quelle}: "zillmerdauerMonate" muss ganze Zahl (Monate) sein`);
     else imBereich(t, "zillmerdauerMonate", 1, 120, quelle);
   }
+  if (t.betaStaffel !== undefined) pruefeBetaStaffel(t, quelle);
   if (t.quelle !== undefined && (typeof t.quelle !== "string" || t.quelle.trim() === "")) {
     fehler.push(`${quelle}: "quelle" muss nicht-leerer String sein`);
   }
   if (t.beleg !== undefined) pruefeBeleg(t, quelle);
 }
 
+// Gestaffelte laufende Beitragskosten (Build 33): `betaRate` bleibt als
+// Mittelwert-Fallback fuer aeltere App-Staende, die Staffel gilt je
+// Vertragsjahr. Liegt `betaRate` ausserhalb der Stufensaetze, wurde der
+// Fallback vergessen oder aus einer anderen Quelle uebernommen.
+function pruefeBetaStaffel(t, quelle) {
+  const s = t.betaStaffel;
+  if (!Array.isArray(s) || s.length === 0) {
+    fehler.push(`${quelle}: "betaStaffel" muss eine nicht leere Liste von {abJahr, rate} sein`);
+    return;
+  }
+  let ok = true;
+  let letztesJahr = 0;
+  s.forEach((stufe, i) => {
+    const wo = `${quelle}: betaStaffel[${i}]`;
+    if (!Number.isInteger(stufe?.abJahr)) {
+      fehler.push(`${wo}.abJahr muss eine ganze Zahl sein`);
+      ok = false;
+    } else {
+      if (i === 0 && stufe.abJahr !== 1) {
+        fehler.push(`${wo}.abJahr: die erste Stufe muss bei Jahr 1 beginnen, ist ${stufe.abJahr}`);
+        ok = false;
+      }
+      if (stufe.abJahr <= letztesJahr) {
+        fehler.push(`${wo}.abJahr = ${stufe.abJahr} steigt nicht streng (vorher ${letztesJahr})`);
+        ok = false;
+      }
+      letztesJahr = stufe.abJahr;
+    }
+    if (typeof stufe?.rate !== "number" || Number.isNaN(stufe.rate) || stufe.rate < 0 || stufe.rate > 0.25) {
+      fehler.push(`${wo}.rate muss eine Zahl in [0, 0.25] sein (Anteil, nicht Prozent), ist ${stufe?.rate}`);
+      ok = false;
+    }
+  });
+  if (!ok || typeof t.betaRate !== "number") return;
+  const saetze = s.map((x) => x.rate);
+  const [min, max] = [Math.min(...saetze), Math.max(...saetze)];
+  if (t.betaRate < min || t.betaRate > max) {
+    fehler.push(`${quelle}: betaRate = ${t.betaRate} liegt ausserhalb der betaStaffel-Saetze [${min}, ${max}] — Fallback vergessen?`);
+  }
+}
+
 // Beleg (Oktober 2026, Plan Blatt-Auslese Etappe B): Fundstelle je Wert im
 // Basisinformationsblatt bzw. Muster-PIB und der Musterfall, mit dem
-// `scripts/blatt/nachrechnung.py` die Werte gegen das Blatt prueft. Die App
-// liest das Feld nicht; es bleibt aus tariffs.json heraus.
+// `scripts/blatt/nachrechnung.py` die Werte gegen das Blatt prueft. Der Beleg
+// selbst bleibt aus tariffs.json heraus; die App erhaelt nur `belegteFelder`
+// und `belegStand` (siehe `belegAusgabe`).
 function pruefeBeleg(t, quelle) {
   const b = t.beleg;
   if (typeof b !== "object" || b === null || Array.isArray(b)) {
@@ -227,6 +299,9 @@ function pruefeBeleg(t, quelle) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(d?.abrufdatum ?? "")) fehler.push(`${wo}.abrufdatum muss JJJJ-MM-TT sein`);
     if (!/^[0-9a-f]{64}$/.test(d?.sha256 ?? "")) fehler.push(`${wo}.sha256 muss 64 Hex-Zeichen haben`);
   });
+  if (docs.length > 0 && !juengstesStand(docs)) {
+    warnungen.push(`${quelle}: kein Blatt-Stand TT.MM.JJJJ (Textanfang oder hinter Stand) in beleg.dokumente[].stand — belegStand entfaellt`);
+  }
   const dokIndex = (wert, wo) => {
     if (!Number.isInteger(wert) || wert < 0 || wert >= docs.length) {
       fehler.push(`${wo}.dokument = ${wert} verweist auf kein Dokument (0 bis ${docs.length - 1})`);
@@ -240,10 +315,21 @@ function pruefeBeleg(t, quelle) {
     for (const [feld, f] of Object.entries(felder)) {
       const wo = `${quelle}: beleg.felder.${feld}`;
       if (!BELEGBARE_FELDER.has(feld)) fehler.push(`${wo}: Feld ist nicht belegbar — erlaubt: ${[...BELEGBARE_FELDER].join(", ")}`);
-      else if (typeof t[feld] !== "number") fehler.push(`${wo}: belegt, aber im Tarif nicht gesetzt`);
+      else if (feld === "betaStaffel" ? !Array.isArray(t[feld]) : typeof t[feld] !== "number") {
+        fehler.push(`${wo}: belegt, aber im Tarif nicht gesetzt`);
+      }
       dokIndex(f?.dokument, wo);
       if (!Number.isInteger(f?.seite) || f.seite < 1) fehler.push(`${wo}.seite muss eine Seitenzahl sein`);
       if (typeof f?.wortlaut !== "string" || f.wortlaut.trim() === "") fehler.push(`${wo}.wortlaut fehlt`);
+    }
+  }
+
+  // Bewusste Vereinfachungen (z. B. Spanne statt Einzelwert, Mittelwert statt
+  // Staffel): Klartext fuer Pruefer, nicht fuer die App.
+  if (b.vereinfachungen !== undefined) {
+    const v = b.vereinfachungen;
+    if (!Array.isArray(v) || v.length === 0 || v.some((x) => typeof x !== "string" || x.trim() === "")) {
+      fehler.push(`${quelle}: beleg.vereinfachungen muss eine nicht leere Liste nicht leerer Texte sein`);
     }
   }
 
@@ -260,6 +346,38 @@ function pruefeBeleg(t, quelle) {
       fehler.push(`${wo}.blatt braucht kostenEuro oder riy zum Vergleich`);
     }
   });
+}
+
+// Ausgabe des Belegs fuer die App: Feld → Herkunft (`bib` | `muster-pib` |
+// `fondsuebersicht`, aus `art` des Dokuments) und Stand des Blatts (TT.MM.JJJJ, siehe juengstesStand). Laeuft erst nach erfolgreicher Validierung, die
+// Dokument-Verweise und Arten sichert.
+function belegAusgabe(t) {
+  const docs = t.beleg.dokumente;
+  const belegteFelder = Object.fromEntries(
+    Object.entries(t.beleg.felder).map(([feld, f]) => [feld, BELEG_KUERZEL[docs[f.dokument].art]]),
+  );
+  const juengstes = juengstesStand(docs);
+  return juengstes ? { belegteFelder, belegStand: juengstes } : { belegteFelder };
+}
+
+// Stand des Blatts: `stand` ist Freitext. Pro Dokument zaehlt nur ein Datum
+// TT.MM.JJJJ am Textanfang oder direkt hinter "Stand" / "Stand:" /
+// "Stand Basisinformationsblatt:" (andere Datumsangaben im Text sind
+// Vertragsbeginn, Fondsstichtag u. Ae.). Nur Blatt-Dokumente zaehlen; die
+// Fondsuebersicht hat einen eigenen Stichtag und ist kein Blatt-Stand.
+// Ungueltige Kalenderdaten (99.13.2026, 31.02.2026) zaehlen nicht.
+// Liefert das juengste Datum als TT.MM.JJJJ oder null.
+function juengstesStand(docs) {
+  const daten = docs
+    .filter((d) => BLATT_ARTEN.has(d?.art))
+    .flatMap((d) => [...String(d?.stand ?? "").matchAll(STAND_RE)])
+    .filter(([, tag, monat, jahr]) => {
+      const d = new Date(Date.UTC(+jahr, +monat - 1, +tag));
+      return d.getUTCFullYear() === +jahr && d.getUTCMonth() === +monat - 1 && d.getUTCDate() === +tag;
+    })
+    .map(([, tag, monat, jahr]) => ({ text: `${tag}.${monat}.${jahr}`, schluessel: `${jahr}${monat}${tag}` }))
+    .sort((a, b) => b.schluessel.localeCompare(a.schluessel));
+  return daten.length ? daten[0].text : null;
 }
 
 // ───── Nie schrumpfen ─────
@@ -300,7 +418,10 @@ if (fehler.length) {
 
 const sortierteFonds = [...fonds].sort((a, b) => a.isin.localeCompare(b.isin));
 const sortierteTarife = tarife
-  .map(({ beleg, ...tarif }) => tarif)
+  .map((t) => {
+    const { beleg, ...tarif } = t;
+    return beleg ? { ...tarif, ...belegAusgabe(t) } : tarif;
+  })
   .sort((a, b) => a.anbieter.localeCompare(b.anbieter) || a.tarifName.localeCompare(b.tarifName));
 
 function ohneZeitstempel(p) {

@@ -13,12 +13,11 @@ on:
     branches: [main]
     paths:
       - "data/app/**"
-      - "scripts/build-ios.mjs"
+      - "scripts/**"
   pull_request:
     paths:
       - "data/app/**"
-      - "scripts/build-ios.mjs"
-      - "scripts/blatt/**"
+      - "scripts/**"
       - "tariffs.json"
   workflow_dispatch:
 
@@ -38,6 +37,11 @@ jobs:
       # build-ios.mjs nutzt ausschliesslich Node-Builtins — kein npm ci noetig.
       - name: Bundle bauen
         run: node scripts/build-ios.mjs
+
+      # Schema, Validierung und Ausgabe von build-ios.mjs (Fixture-Wurzeln in
+      # Temp-Ordnern, Node-Builtins genuegen).
+      - name: Tests des Bundle-Skripts
+        run: node --test "scripts/*.test.mjs"
 
       # Belegte Tarife: Musterfall des Blatts mit den Tarifwerten nachrechnen
       # (Plan Blatt-Auslese, Etappe B). python3 ist auf dem Runner vorhanden.

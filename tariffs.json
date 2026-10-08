@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T21:08:34Z",
+  "updatedAt": "2026-10-08T15:15:26Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -220,7 +220,14 @@
       "tarifName": "BasisRente Invest",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 1 — Rürup",
-      "zillmerdauerMonate": 60
+      "zillmerdauerMonate": 60,
+      "belegteFelder": {
+        "alphaRate": "muster-pib",
+        "betaRate": "muster-pib",
+        "kappaMonthly": "muster-pib",
+        "zillmerdauerMonate": "muster-pib"
+      },
+      "belegStand": "29.01.2026"
     },
     {
       "alphaRate": 0.025,
@@ -278,7 +285,12 @@
       "tarifName": "FondsRente",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 60
+      "zillmerdauerMonate": 60,
+      "belegteFelder": {
+        "betaEinmalRate": "bib",
+        "gammaAnnualRate": "bib"
+      },
+      "belegStand": "14.09.2026"
     },
     {
       "alphaRate": 0.025,
@@ -337,7 +349,16 @@
       "tarifName": "EasyRente Invest RI",
       "typischeBruttorendite": 0.065,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 60
+      "zillmerdauerMonate": 60,
+      "belegteFelder": {
+        "alphaRate": "bib",
+        "betaEinmalRate": "bib",
+        "betaRate": "bib",
+        "fundTER": "fondsuebersicht",
+        "kappaMonthly": "bib",
+        "restbeitragRate": "bib"
+      },
+      "belegStand": "01.12.2025"
     },
     {
       "alphaRate": 0.025,
@@ -745,7 +766,13 @@
       "rentenfaktor": 0.002413,
       "tarifName": "BasisRente Invest",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 1 — Rürup"
+      "vehikelTyp": "Schicht 1 — Rürup",
+      "belegteFelder": {
+        "alphaRate": "muster-pib",
+        "betaRate": "muster-pib",
+        "kappaMonthly": "muster-pib"
+      },
+      "belegStand": "01.01.2025"
     },
     {
       "alphaRate": 0.025,
@@ -966,7 +993,15 @@
       "tarifName": "BasisRente Invest",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 1 — Rürup",
-      "zillmerdauerMonate": 60
+      "zillmerdauerMonate": 60,
+      "belegteFelder": {
+        "alphaRate": "muster-pib",
+        "betaRate": "muster-pib",
+        "fundTER": "fondsuebersicht",
+        "kappaMonthly": "muster-pib",
+        "zillmerdauerMonate": "muster-pib"
+      },
+      "belegStand": "01.01.2025"
     },
     {
       "alphaRate": 0.025,
@@ -1040,7 +1075,13 @@
       "tarifName": "FITTERY",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 96
+      "zillmerdauerMonate": 96,
+      "belegteFelder": {
+        "alphaRate": "bib",
+        "betaEinmalRate": "bib",
+        "betaRate": "bib"
+      },
+      "belegStand": "25.03.2026"
     },
     {
       "alphaRate": 0.04,
@@ -1077,7 +1118,13 @@
       "rentenfaktor": 0.0028,
       "tarifName": "Genius FlexRente",
       "typischeBruttorendite": 0.06,
-      "vehikelTyp": "Schicht 3 — Privatrente"
+      "vehikelTyp": "Schicht 3 — Privatrente",
+      "belegteFelder": {
+        "alphaRate": "bib",
+        "betaRate": "bib",
+        "kappaMonthly": "bib"
+      },
+      "belegStand": "10.06.2026"
     },
     {
       "alphaRate": 0.025,
@@ -1095,7 +1142,11 @@
       "rentenfaktor": 0.002861,
       "tarifName": "BasisRente FondsRente",
       "typischeBruttorendite": 0.055,
-      "vehikelTyp": "Schicht 1 — Rürup"
+      "vehikelTyp": "Schicht 1 — Rürup",
+      "belegteFelder": {
+        "betaEinmalRate": "muster-pib"
+      },
+      "belegStand": "16.02.2026"
     },
     {
       "alphaRate": 0.025,
@@ -1133,7 +1184,13 @@
       "tarifName": "Premium FondsRente 2.0 FV25",
       "typischeBruttorendite": 0.055,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 60
+      "zillmerdauerMonate": 60,
+      "belegteFelder": {
+        "alphaRate": "bib",
+        "betaEinmalRate": "bib",
+        "betaRate": "bib"
+      },
+      "belegStand": "17.08.2026"
     }
   ],
   "fonds": [
