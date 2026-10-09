@@ -1,17 +1,145 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Helvetia",
-  "betaEinmalRate": 0.03,
-  "betaRate": 0,
+  "beleg": {
+    "dokumente": [
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "bib-laufend",
+        "sha256": "9e46ebec66b7bf763ecc9b41de9bded8206427ea37efe8f9aab432a9b910bbb9",
+        "stand": "01.09.2026",
+        "titel": "Helvetia CleVesto Allcase (Tarif FWL/P)",
+        "url": "https://basisinformation.helvetia.de/priip/1L2HSG.pdf"
+      },
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "bib-laufend",
+        "sha256": "48fdf82ee9c6d900ca2843c9b8b6fce59a14a95af37a34f6d0c84d5ff79b4615",
+        "stand": "01.09.2026",
+        "titel": "Helvetia CleVesto Allcase (Tarif FWL/P)",
+        "url": "https://basisinformation.helvetia.de/priip/2PGN9S.pdf"
+      },
+      {
+        "abrufdatum": "2026-10-07",
+        "art": "bib-einmal",
+        "sha256": "f8c36c4d477a5f826768c9539d9c7354a76796a45e6f16567fa3b3d0a6553374",
+        "stand": "01.09.2026",
+        "titel": "Helvetia CleVesto Allcase (Tarif FWL/P)",
+        "url": "https://basisinformation.helvetia.de/priip/1TJYMW.pdf"
+      }
+    ],
+    "felder": {
+      "alphaRate": {
+        "dokument": 0,
+        "seite": 3,
+        "wortlaut": "2,5% der kumulierten Anlage"
+      },
+      "betaEinmalRate": {
+        "dokument": 2,
+        "hinweis": "Summe 4,0 % Einstieg + 3,0 % Verwaltung",
+        "seite": 3,
+        "wortlaut": "4,0% der Anlage … 3,0% der Anlage sowie"
+      },
+      "betaStaffel": {
+        "dokument": 0,
+        "hinweis": "Staffel des 30-Jahre-Blatts (19,4 % in den Jahren 1–9, danach 10,5 %); das 20-Jahre-Blatt nennt 15,2 % in den Jahren 1–8, danach 10,5 % (Dokument 1, S. 3)",
+        "seite": 3,
+        "wortlaut": "1. bis 9. Jahr: 19,4%, danach 10,5% der gezahlten Beiträge"
+      },
+      "kappaMonthly": {
+        "dokument": 0,
+        "hinweis": "36 € p. a. = 3 € pro Monat",
+        "seite": 3,
+        "wortlaut": "zuzüglich 36€ p.a."
+      }
+    },
+    "pruefung": [
+      {
+        "annahmen": {
+          "fundTER": 0.001,
+          "gammaAnnualRate": 0.0
+        },
+        "beitrag": 1000,
+        "blatt": {
+          "kostenEuro": 6411,
+          "riy": 0.015
+        },
+        "dokument": 0,
+        "einmal": false,
+        "hinweis": "Unterkante der Blatt-Spanne (günstigste Anlageoption); Verwaltung und Fondskosten zusammen 0,1 % angesetzt",
+        "jahre": 30,
+        "rendite": 0.046
+      },
+      {
+        "annahmen": {
+          "betaStaffel": [
+            {
+              "abJahr": 1,
+              "rate": 0.152
+            },
+            {
+              "abJahr": 9,
+              "rate": 0.105
+            }
+          ],
+          "fundTER": 0.001,
+          "gammaAnnualRate": 0.0
+        },
+        "beitrag": 1000,
+        "blatt": {
+          "kostenEuro": 3957,
+          "riy": 0.021
+        },
+        "dokument": 1,
+        "einmal": false,
+        "hinweis": "Unterkante der Blatt-Spanne; Staffel dieses Blatts: 15,2 % in den Jahren 1–8, danach 10,5 %",
+        "jahre": 20,
+        "rendite": 0.046
+      },
+      {
+        "annahmen": {
+          "fundTER": 0.001,
+          "gammaAnnualRate": 0.0
+        },
+        "beitrag": 10000,
+        "blatt": {
+          "riy": 0.006
+        },
+        "dokument": 2,
+        "einmal": true,
+        "hinweis": "Unterkante; nur die jährliche Auswirkung geprüft: „Kosten insgesamt“ 3.378 € laut Blatt, das Modell kommt auf rund 2.296 € (32 % darunter), Ursache offen",
+        "jahre": 30,
+        "rendite": 0.041
+      }
+    ],
+    "vereinfachungen": [
+      "γ nicht belegt: das Blatt nennt nur die Spanne 0,1 % bis 2,1 % des Guthabens je nach Anlageoption; gammaAnnualRate 0,84 % bleibt der bisherige Wert",
+      "Staffel gilt für die Laufzeit 30 Jahre (19,4 % in den Jahren 1–9); das 20-Jahre-Blatt staffelt anders (15,2 % in den Jahren 1–8)",
+      "Fondskosten (Mantel-TER) nicht belegt: fundTER 1,5 % bleibt der bisherige Wert",
+      "betaRate 12,8 % ist nur der Mittelwert-Fallback für App-Stände ohne Staffel und nicht belegt"
+    ]
+  },
+  "betaEinmalRate": 0.07,
+  "betaRate": 0.128,
+  "betaStaffel": [
+    {
+      "abJahr": 1,
+      "rate": 0.194
+    },
+    {
+      "abJahr": 10,
+      "rate": 0.105
+    }
+  ],
   "effectiveCostRIY": 0,
   "fundTER": 0.015,
   "gammaAnnualRate": 0.0084,
   "gammaBeitragsfrei": 0.0084,
   "id": "11111111-0000-0000-0000-000000000014",
   "jahrgang": "2026",
-  "kappaMonthly": 3,
+  "kappaMonthly": 3.0,
   "kategorie": "Klassische Versicherer",
-  "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+  "quelle": "Basisinformationsblätter Helvetia CleVesto Allcase (Tarif FWL/P) laufend (20 und 30 Jahre) und Einmalbeitrag (30 Jahre), Stand 01.09.2026 (α, β-Staffel, β Einmal, κ); γ und Fondskosten nicht belegt; Fundstellen im Feld beleg",
   "rentenfaktor": 0.002652,
   "tarifName": "CleVesto Allcase",
   "typischeBruttorendite": 0.07,
