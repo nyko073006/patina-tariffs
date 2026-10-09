@@ -247,7 +247,13 @@ function pruefeBetaStaffel(t, quelle) {
     fehler.push(`${quelle}: "betaStaffel" muss eine nicht leere Liste von {abJahr, rate} sein`);
     return;
   }
+  // Mehr Stufen passen nicht auf Seite 3 des Protokolls (A4); alle echten Staffeln haben 2.
+  const MAX_STAFFEL_STUFEN = 2;
   let ok = true;
+  if (s.length > MAX_STAFFEL_STUFEN) {
+    fehler.push(`${quelle}: betaStaffel hat ${s.length} Stufen, erlaubt sind max. ${MAX_STAFFEL_STUFEN} Stufen (Beratungsprotokoll Seite 3 passt sonst nicht mehr auf A4)`);
+    ok = false;
+  }
   let letztesJahr = 0;
   s.forEach((stufe, i) => {
     const wo = `${quelle}: betaStaffel[${i}]`;
