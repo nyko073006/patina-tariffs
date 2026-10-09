@@ -103,6 +103,20 @@ test("betaRate innerhalb des Bereichs, aber unter dem kleinsten Stufensatz, meld
   assert.match(r.stderr, /betaStaffel/);
 });
 
+test("Staffel mit 3 Stufen bricht den Build ab (Protokoll Seite 3 fasst max. 2 Stufen)", () => {
+  const r = lauf((t) => { t.betaStaffel = [{ abJahr: 1, rate: 0.194 }, { abJahr: 5, rate: 0.15 }, { abJahr: 10, rate: 0.105 }]; });
+  assert.equal(r.code, 1, r.stdout + r.stderr);
+  assert.match(r.stderr, /betaStaffel hat 3 Stufen/);
+  assert.match(r.stderr, /max\. 2 Stufen/);
+  assert.match(r.stderr, /Seite 3/);
+  assert.equal(r.ausgabe, null);
+});
+
+test("Staffel mit 2 Stufen ist erlaubt", () => {
+  const r = lauf((t) => { t.betaStaffel = STAFFEL; });
+  assert.equal(r.code, 0, r.stdout + r.stderr);
+});
+
 test("betaRate genau auf einem Stufensatz ist erlaubt", () => {
   const r = lauf((t) => { t.betaRate = 0.105; t.betaStaffel = STAFFEL; });
   assert.equal(r.code, 0, r.stdout + r.stderr);
