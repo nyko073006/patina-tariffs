@@ -36,7 +36,7 @@
       },
       "betaEinmalRate": {
         "dokument": 2,
-        "hinweis": "Summe 4,0 % Einstieg + 3,0 % Verwaltung",
+        "hinweis": "Summe 4,0 % Einstieg + 3,0 % Verwaltung; dass die 3,0 % nur einmal anfallen, ist aus dem Aufbau des Blatts angenommen, nicht belegt",
         "seite": 3,
         "wortlaut": "4,0% der Anlage … 3,0% der Anlage sowie"
       },
@@ -116,7 +116,8 @@
       "γ nicht belegt: das Blatt nennt nur die Spanne 0,1 % bis 2,1 % des Guthabens je nach Anlageoption; gammaAnnualRate 0,84 % bleibt der bisherige Wert",
       "Staffel gilt für die Laufzeit 30 Jahre (19,4 % in den Jahren 1–9); das 20-Jahre-Blatt staffelt anders (15,2 % in den Jahren 1–8)",
       "Fondskosten (Mantel-TER) nicht belegt: fundTER 1,5 % bleibt der bisherige Wert",
-      "betaRate 12,8 % ist nur der Mittelwert-Fallback für App-Stände ohne Staffel und nicht belegt"
+      "betaRate 12,8 % ist nur der Mittelwert-Fallback für App-Stände ohne Staffel und nicht belegt",
+      "betaEinmalRate 7,0 % ist die Summe aus 4,0 % Einstieg und 3,0 % Verwaltung; die 3,0 % sind als einmalig angenommen, nicht belegt. Die Euro-Gegenprobe weicht ab (Modell rund 2.296 € gegen 3.378 € laut Blatt, Ursache offen)"
     ]
   },
   "betaEinmalRate": 0.07,
