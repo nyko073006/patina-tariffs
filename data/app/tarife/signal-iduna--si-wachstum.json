@@ -1,8 +1,63 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Signal Iduna",
+  "beleg": {
+    "dokumente": [
+      {
+        "abrufdatum": "2026-10-25",
+        "art": "bib-laufend",
+        "sha256": "f49a6ccdaef49af26c1fe5bbdaa2378525b1005c79ab81ac02e89468ee71f831",
+        "stand": "30.09.2025 (Fußzeile 2304003 Jan26)",
+        "titel": "SIGNAL IDUNA Pur Invest, Basisinformationsblatt, fondsgebundene Rentenversicherung, laufender Beitrag, 20 Jahre",
+        "url": "https://signal-iduna.de/content/dam/si-documents/2/23/23040xx.pdf.coredownload.inline.pdf"
+      }
+    ],
+    "felder": {
+      "alphaRate": {
+        "dokument": 0,
+        "seite": 3,
+        "wortlaut": "Einstiegskosten 2,5 % der kumulierten Anlage."
+      },
+      "betaStaffel": {
+        "dokument": 0,
+        "hinweis": "Lesart nach Blatt: Prozent der jährlich eingezahlten Anlage ist β der laufenden Beiträge. Stufen: 7,5 % in den Jahren 1 bis 10, 6,5 % ab dem 11. Jahr. betaRate 0,07 ist nur der Mittelwert-Fallback für die 20-Jahre-Haltedauer (10 Jahre 7,5 %, 10 Jahre 6,5 %) und nicht selbst belegt.",
+        "seite": 3,
+        "wortlaut": "Verwaltungsgebühren 7,5 % der jährlich eingezahlten Anlage in den ersten 10 Jahren. 6,5 % der jährlich eingezahlten Anlagen ab dem 11. Jahr."
+      }
+    },
+    "hinweis": "Blatttitel: SIGNAL IDUNA Pur Invest, Basisinformationsblatt Stand 30.09.2025 (Fußzeile 2304003 Jan26), fondsgebundene Rentenversicherung, SIGNAL IDUNA Lebensversicherung AG. Zuordnungsgrund: Anbieter Signal Iduna, Schicht 3 (fondsgebundene Rentenversicherung), regelmäßiger Beitrag, einziges Fondsprodukt des Anbieters in dieser Schicht; der App-Name SI Wachstum steht nicht im Blatt. Zuordnung bestätigt von Nyko am 25.10.2026. Nicht belegt: betaEinmalRate (Einmal-Blatt nicht geladen), kappaMonthly (das Blatt nennt keine Fixkosten je Monat; die Nachrechnung rechnet ohne), gammaAnnualRate (Blatt: Spanne 0,29 - 2,00 % des Werts je nach Anlageoption, Fondskosten darin; als Annahme der Nachrechnung angesetzt, Live-Wert bleibt), fundTER, zillmerdauerMonate (Blatt: Einstiegskosten gleichmäßig über die ersten 5 Versicherungsjahre, entspricht dem Live-Wert 60, nicht als Feld belegt), rentenfaktor. Spannen ohne Laufzeit-Zuordnung (Regel Nyko 25.10.2026): Kosten insgesamt 2.522,60 - 13.057,48 EUR und Auswirkung 1,17 - 4,58 % nach 20 Jahren; Musterfall nutzt die Untergrenze. Nutzungstext signal-iduna.de (Impressum, abgerufen 25.10.2026): allgemeiner Urheberrechtsvorbehalt (Vervielfältigung nur mit Zustimmung), kein ausdrückliches Verbot des Auslesens oder Weiterverwendens, kein Data-Mining-Vorbehalt; robots.txt erlaubt den Pfad. Das Blatt gilt für die Haltedauer 20 Jahre; weitere Laufzeitblätter nicht geprüft.",
+    "pruefung": [
+      {
+        "annahmen": {
+          "fundTER": 0,
+          "gammaAnnualRate": 0.0029,
+          "kappaMonthly": 0
+        },
+        "beitrag": 1000,
+        "blatt": {
+          "kostenEuro": 2522.6,
+          "riy": 0.0117
+        },
+        "dokument": 0,
+        "einmal": false,
+        "hinweis": "Untergrenze der Spanne nach 20 Jahren (Kosten insgesamt 2.522,60 - 13.057,48 EUR, 1,17 - 4,58 % pro Jahr); Rendite vor Kosten Untergrenze -3,91 % (Spanne -3,91 bis 18,51 %); laufende Kosten 0,29 % des Werts (Untergrenze der Zeile 0,29 - 2,00 %) als gamma angesetzt, Fondskosten darin enthalten (fundTER 0), Transaktionskosten 0,00 % (Untergrenze), Fixkosten je Monat nicht ausgewiesen (kappa 0). Seite 3.",
+        "jahre": 20,
+        "rendite": -0.0391
+      }
+    ]
+  },
   "betaEinmalRate": 0.022,
-  "betaRate": 0,
+  "betaRate": 0.07,
+  "betaStaffel": [
+    {
+      "abJahr": 1,
+      "rate": 0.075
+    },
+    {
+      "abJahr": 11,
+      "rate": 0.065
+    }
+  ],
   "effectiveCostRIY": 0,
   "fundTER": 0.018,
   "gammaAnnualRate": 0.003,
@@ -11,7 +66,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.7917,
   "kategorie": "Klassische Versicherer",
-  "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+  "quelle": "Basisinformationsblatt SIGNAL IDUNA Pur Invest, Stand 30.09.2025 (Fußzeile 2304003 Jan26), Seite 3 (α, β-Staffel laufend); übrige Werte unbelegt und aus externer Quelle, 07.10.2026; Fundstellen im Feld beleg",
   "rentenfaktor": 0.002369,
   "tarifName": "SI Wachstum",
   "typischeBruttorendite": 0.055,

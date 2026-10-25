@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-25T20:57:37Z",
+  "updatedAt": "2026-10-25T21:08:11Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -847,7 +847,17 @@
       "alphaRate": 0.025,
       "anbieter": "Signal Iduna",
       "betaEinmalRate": 0.022,
-      "betaRate": 0,
+      "betaRate": 0.07,
+      "betaStaffel": [
+        {
+          "abJahr": 1,
+          "rate": 0.075
+        },
+        {
+          "abJahr": 11,
+          "rate": 0.065
+        }
+      ],
       "effectiveCostRIY": 0,
       "fundTER": 0.018,
       "gammaAnnualRate": 0.003,
@@ -856,12 +866,17 @@
       "jahrgang": "2026",
       "kappaMonthly": 0.7917,
       "kategorie": "Klassische Versicherer",
-      "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+      "quelle": "Basisinformationsblatt SIGNAL IDUNA Pur Invest, Stand 30.09.2025 (Fußzeile 2304003 Jan26), Seite 3 (α, β-Staffel laufend); übrige Werte unbelegt und aus externer Quelle, 07.10.2026; Fundstellen im Feld beleg",
       "rentenfaktor": 0.002369,
       "tarifName": "SI Wachstum",
       "typischeBruttorendite": 0.055,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 60
+      "zillmerdauerMonate": 60,
+      "belegteFelder": {
+        "alphaRate": "bib",
+        "betaStaffel": "bib"
+      },
+      "belegStand": "30.09.2025"
     },
     {
       "alphaRate": 0.025,
