@@ -5,7 +5,8 @@ Zaehlt in `data/app/tarife/*.json` die Tarife mit Feld `beleg` und stellt sie
 `tariffs.json` gegenueber (`belegteFelder` je Tarif, `updatedAt` als Stand).
 Exit 1, wenn
   - der Scan leer ist (nie "0/0 ist 100 %"),
-  - Quelle und Bundle verschieden viele Tarife fuehren,
+  - eine Tarif-Id in Quelle oder Bundle doppelt vorkommt,
+  - Quelle und Bundle verschieden viele Tarife oder verschiedene Ids fuehren,
   - Quelle (`beleg`) und Bundle (`belegteFelder`) verschiedene Tarife als
     belegt fuehren.
 
@@ -29,6 +30,13 @@ def _lade(pfad):
         return json.load(f)
 
 
+def _eindeutig(ids, wo):
+    doppelt = sorted({i for i in ids if ids.count(i) > 1})
+    if doppelt:
+        raise QuoteFehler(f"Id doppelt in {wo}: {doppelt}")
+    return set(ids)
+
+
 def berechne(tarife_ordner, bundle_pfad):
     dateien = sorted(glob.glob(os.path.join(tarife_ordner, "*.json")))
     if not dateien:
@@ -38,10 +46,17 @@ def berechne(tarife_ordner, bundle_pfad):
     b_tarife = bundle.get("tarife") or []
     if not b_tarife:
         raise QuoteFehler(f"Scan leer: keine Tarife in {bundle_pfad}")
+    q_ids = _eindeutig([t["id"] for t in quelle], f"Quelle {tarife_ordner}")
+    b_ids = _eindeutig([t["id"] for t in b_tarife], f"Bundle {bundle_pfad}")
     if len(b_tarife) != len(quelle):
         raise QuoteFehler(
             f"Anzahl weicht ab: {len(quelle)} Dateien in {tarife_ordner}, "
             f"{len(b_tarife)} Tarife im Bundle")
+    if q_ids != b_ids:
+        raise QuoteFehler(
+            "Tarif-Ids von Quelle und Bundle weichen ab: "
+            f"nur in der Quelle {sorted(q_ids - b_ids)}, "
+            f"nur im Bundle {sorted(b_ids - q_ids)}")
     q_belegt = {t["id"] for t in quelle if "beleg" in t}
     b_belegt = {t["id"] for t in b_tarife if "belegteFelder" in t}
     if q_belegt != b_belegt:

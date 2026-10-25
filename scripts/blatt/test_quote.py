@@ -33,8 +33,8 @@ class Umgebung:
         self.tmp = tempfile.TemporaryDirectory()
         self.ordner = os.path.join(self.tmp.name, "tarife")
         os.makedirs(self.ordner)
-        for t in quelle:
-            with open(os.path.join(self.ordner, t["id"] + ".json"), "w") as f:
+        for n, t in enumerate(quelle):
+            with open(os.path.join(self.ordner, f"{n}-{t['id']}.json"), "w") as f:
                 json.dump(t, f)
         self.bundle = os.path.join(self.tmp.name, "tariffs.json")
         with open(self.bundle, "w") as f:
@@ -70,6 +70,28 @@ class QuoteTests(unittest.TestCase):
         code, _, err = u.lauf()
         self.assertEqual(code, 1)
         self.assertIn("a", err)
+
+    def test_gleiche_anzahl_verschiedene_ids_exit_1(self):
+        u = Umgebung([tarif("a")], [bundle_eintrag("b")])
+        code, _, err = u.lauf()
+        self.assertEqual(code, 1)
+        self.assertIn("'a'", err)
+        self.assertIn("'b'", err)
+
+    def test_doppelte_id_in_quelle_exit_1(self):
+        u = Umgebung([tarif("a", belegt=True), tarif("a")],
+                     [bundle_eintrag("a", True), bundle_eintrag("b")])
+        code, out, err = u.lauf()
+        self.assertEqual(code, 1)
+        self.assertEqual(out, "")
+        self.assertIn("doppelt", err)
+
+    def test_doppelte_id_im_bundle_exit_1(self):
+        u = Umgebung([tarif("a"), tarif("b")],
+                     [bundle_eintrag("a"), bundle_eintrag("a")])
+        code, _, err = u.lauf()
+        self.assertEqual(code, 1)
+        self.assertIn("doppelt", err)
 
     def test_leerer_scan_exit_1_nie_hundert_prozent(self):
         u = Umgebung([], [])
