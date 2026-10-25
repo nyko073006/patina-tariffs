@@ -89,13 +89,27 @@ def entscheide(status, text, pfad):
     return 3
 
 
+class _KeineWeiterleitung(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *args, **kwargs):
+        return None
+
+
+_OPENER = urllib.request.build_opener(_KeineWeiterleitung)
+MAX_WEITERLEITUNGEN = 5
+
+
 def abruf_netz(url, akzept="*/*", timeout=60):
-    """(status | None, bytes, content_type, final_url). Wirft nie."""
+    """(status | None, bytes, content_type, final_url). Wirft nie.
+    Folgt keinen Weiterleitungen: bei 3xx kommt der absolute Location-Wert als
+    vierter Wert zurueck, das Ziel prueft der Aufrufer selbst gegen robots."""
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": akzept})
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
+        with _OPENER.open(req, timeout=timeout) as r:
             return r.status, r.read(), r.headers.get("Content-Type", ""), r.geturl()
     except urllib.error.HTTPError as e:
+        ziel = e.headers.get("Location") if e.headers else None
+        if 300 <= e.code < 400 and ziel:
+            return e.code, b"", "", urllib.parse.urljoin(url, ziel)
         return e.code, b"", "", url
     except Exception:
         return None, b"", "", url
@@ -245,8 +259,27 @@ def lauf(argv, abruf=abruf_netz, schlafen=time.sleep, ausgabe=sys.stdout):
         out["ergebnis"] = "nur robots geprueft, nichts geladen"
         return _meldung(out, 0, ausgabe)
 
-    pause.vor(u.netloc)
-    status, data, ctype, final = abruf(a.url, "application/pdf,*/*")
+    robots_text = body.decode("utf-8", "replace")
+    url, final = a.url, a.url
+    for _ in range(MAX_WEITERLEITUNGEN + 1):
+        pause.vor(u.netloc)
+        status, data, ctype, final = abruf(url, "application/pdf,*/*")
+        if status is None or not 300 <= status < 400:
+            break
+        ziel = urllib.parse.urlparse(urllib.parse.urljoin(url, final or ""))
+        if ziel.scheme not in ("http", "https") or ziel.netloc.lower() != u.netloc.lower():
+            out["ergebnis"] = ("Sperre: Weiterleitung auf anderen Host/Schema, "
+                               "robots dort ungeprueft: " + (final or ""))
+            return _meldung(out, 3, ausgabe)
+        zpfad = (ziel.path or "/") + (("?" + ziel.query) if ziel.query else "")
+        zcode = entscheide(200, robots_text, zpfad)
+        if zcode != 0:
+            out["ergebnis"] = "nicht abgerufen: Weiterleitungsziel verboten (RFC 9309): " + final
+            return _meldung(out, zcode, ausgabe)
+        url = ziel.geturl()
+    else:
+        out["ergebnis"] = "Sperre/Fehler: zu viele Weiterleitungen"
+        return _meldung(out, 3, ausgabe)
     if status is None:
         out["ergebnis"] = "Sperre/Fehler: Verbindungsfehler"
         return _meldung(out, 3, ausgabe)

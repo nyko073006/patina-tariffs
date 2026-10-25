@@ -160,5 +160,75 @@ class OrdnerUndModiTest(unittest.TestCase):
         self.assertTrue(zaehler[0].endswith("/robots.txt"))
 
 
+class WeiterleitungTest(unittest.TestCase):
+    """Befund 1: Weiterleitungen duerfen robots nicht umgehen."""
+
+    def abruf(self, karte, zaehler):
+        def f(url, akzept="*/*", timeout=60):
+            zaehler.append(url)
+            if url in karte:
+                return karte[url]
+            return 404, b"", "", url
+        return f
+
+    def lauf(self, karte):
+        zaehler = []
+        aus = os.path.join(tempfile.mkdtemp(), "neu")
+        self.addCleanup(shutil.rmtree, os.path.dirname(aus), True)
+        code, ausgabe = starte(["--aus", aus, "https://example.org/ok/b.pdf"],
+                               self.abruf(karte, zaehler))
+        return code, ausgabe, zaehler
+
+    def test_16_hostwechsel_exit_3_ziel_nie_geladen(self):
+        karte = {"https://example.org/robots.txt": (200, b"", "", ""),
+                 "https://example.org/ok/b.pdf": (301, b"", "", "https://fremd.example/x.pdf"),
+                 "https://fremd.example/x.pdf": (200, b"%PDF-1.4", "application/pdf", "")}
+        code, _, zaehler = self.lauf(karte)
+        self.assertEqual(code, 3)
+        self.assertNotIn("https://fremd.example/x.pdf", zaehler)
+
+    def test_17_gleicher_host_verbotener_pfad_exit_2(self):
+        karte = {"https://example.org/robots.txt": (200, b"User-agent: *\nDisallow: /geheim/\n", "", ""),
+                 "https://example.org/ok/b.pdf": (302, b"", "", "/geheim/b.pdf"),
+                 "https://example.org/geheim/b.pdf": (200, b"%PDF-1.4", "application/pdf", "")}
+        code, _, zaehler = self.lauf(karte)
+        self.assertEqual(code, 2)
+        self.assertNotIn("https://example.org/geheim/b.pdf", zaehler)
+
+    def test_18_gleicher_host_erlaubter_pfad_wird_geladen(self):
+        karte = {"https://example.org/robots.txt": (200, b"User-agent: *\nDisallow: /geheim/\n", "", ""),
+                 "https://example.org/ok/b.pdf": (301, b"", "", "/neu/b.pdf"),
+                 "https://example.org/neu/b.pdf": (200, b"<html>kein pdf</html>", "text/html", "https://example.org/neu/b.pdf")}
+        code, _, zaehler = self.lauf(karte)
+        self.assertEqual(code, 0)
+        self.assertIn("https://example.org/neu/b.pdf", zaehler)
+
+    def test_19_weiterleitungsschleife_exit_3(self):
+        karte = {"https://example.org/robots.txt": (200, b"", "", ""),
+                 "https://example.org/ok/b.pdf": (301, b"", "", "/ok/b.pdf")}
+        code, _, _ = self.lauf(karte)
+        self.assertEqual(code, 3)
+
+    def test_20_abruf_netz_folgt_nicht(self):
+        import http.server
+        import threading
+
+        class H(http.server.BaseHTTPRequestHandler):
+            def do_GET(self):
+                self.send_response(302)
+                self.send_header("Location", "/ziel")
+                self.end_headers()
+
+            def log_message(self, *a):
+                pass
+        srv = http.server.HTTPServer(("127.0.0.1", 0), H)
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        self.addCleanup(srv.server_close)
+        self.addCleanup(srv.shutdown)
+        status, _, _, ziel = holen.abruf_netz("http://127.0.0.1:%d/start" % srv.server_port)
+        self.assertEqual(status, 302)
+        self.assertEqual(ziel, "http://127.0.0.1:%d/ziel" % srv.server_port)
+
+
 if __name__ == "__main__":
     unittest.main()
