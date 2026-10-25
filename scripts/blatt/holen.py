@@ -127,13 +127,16 @@ class Pause:
         self.zuletzt[domain] = self.uhr()
 
 
-def _git_wurzel(ordner):
+def _git_gemeinsam(ordner):
+    """Gemeinsames .git-Verzeichnis des Arbeitsbaums, in dem `ordner` (oder sein
+    naechster vorhandener Elternordner) liegt; None ausserhalb jedes Git-Repos.
+    Alle Worktrees und der Hauptklon eines Repos teilen es."""
     p = ordner
     while not os.path.isdir(p):
         p = os.path.dirname(p)
-    r = subprocess.run(["git", "rev-parse", "--show-toplevel"], cwd=p,
-                       capture_output=True, text=True)
-    return os.path.realpath(r.stdout.strip()) if r.returncode == 0 else None
+    r = subprocess.run(["git", "rev-parse", "--path-format=absolute", "--git-common-dir"],
+                       cwd=p, capture_output=True, text=True)
+    return os.path.realpath(r.stdout.strip()) if r.returncode == 0 and r.stdout.strip() else None
 
 
 def _im_repo(pfad):
@@ -143,11 +146,11 @@ def _im_repo(pfad):
 
 def pruefe_ordner(aus):
     """None wenn der Ordner taugt (neu oder leer, ausserhalb des Repos), sonst Grund."""
-    if _im_repo(aus) or _git_wurzel(os.path.realpath(aus)) == REPO:
+    if _im_repo(aus) or _git_gemeinsam(os.path.realpath(aus)) == _git_gemeinsam(REPO):
         return "Zielordner liegt im Repo; Blaetter gehoeren nie ins Repo"
     if os.path.exists(aus):
         if not os.path.isdir(aus):
-            return "Zielordner ist keine Ordner"
+            return "Zielordner ist kein Ordner"
         if os.listdir(aus):
             return "Zielordner ist nicht leer"
     return None

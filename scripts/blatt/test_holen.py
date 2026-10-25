@@ -3,6 +3,7 @@ import hashlib
 import io
 import os
 import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -117,6 +118,32 @@ class OrdnerUndModiTest(unittest.TestCase):
         code, _ = starte(["--aus", aussen, "https://example.org/a.pdf"],
                          abruf_mit({"/robots.txt": (200, b""), "/a.pdf": (200, b"<html>x</html>")}))
         self.assertEqual(code, 0)
+
+    def test_10b_zielordner_in_zweitem_worktree_des_repos_abgelehnt(self):
+        wt = os.path.join(self.tmp(), "wt")
+        add = subprocess.run(["git", "worktree", "add", "--detach", wt, "HEAD"],
+                             cwd=REPO, capture_output=True, text=True)
+        self.assertEqual(add.returncode, 0, add.stderr)
+        self.addCleanup(subprocess.run, ["git", "worktree", "prune"],
+                        cwd=REPO, capture_output=True)  # tearDown hat den Ordner schon geloescht
+        zaehler = []
+        for aus in (os.path.join(wt, "blatt-x"), os.path.join(wt, "scripts", "blatt-y")):
+            with self.subTest(aus=aus):
+                code, ausgabe = starte(["--aus", aus, "https://example.org/a.pdf"],
+                                       abruf_mit({"/robots.txt": (200, b"")}, zaehler))
+                self.assertEqual(code, 4)
+                self.assertIn("Repo", ausgabe)
+        self.assertEqual(zaehler, [])
+        # Gegenrichtung: ein Ordner ausserhalb jedes Arbeitsbaums bleibt erlaubt.
+        code, _ = starte(["--aus", os.path.join(self.tmp(), "neu"), "https://example.org/a.pdf"],
+                         abruf_mit({"/robots.txt": (200, b""), "/a.pdf": (200, b"<html>x</html>")}))
+        self.assertEqual(code, 0)
+
+    def test_10c_ordner_ist_datei_meldet_kein_ordner(self):
+        datei = os.path.join(self.tmp(), "f")
+        with open(datei, "w") as f:
+            f.write("x")
+        self.assertIn("kein Ordner", holen.pruefe_ordner(datei))
 
     def test_11_nicht_leerer_ordner_abgelehnt(self):
         aus = self.tmp()

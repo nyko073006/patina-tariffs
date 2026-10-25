@@ -48,8 +48,13 @@ class Umgebung:
 
 
 class QuoteTests(unittest.TestCase):
+    def umg(self, *args, **kw):
+        u = Umgebung(*args, **kw)
+        self.addCleanup(u.tmp.cleanup)
+        return u
+
     def test_drei_tarife_einer_belegt_ergibt_ein_drittel(self):
-        u = Umgebung([tarif("a", belegt=True), tarif("b"), tarif("c")],
+        u = self.umg([tarif("a", belegt=True), tarif("b"), tarif("c")],
                      [bundle_eintrag("a", True), bundle_eintrag("b"), bundle_eintrag("c")])
         code, out, _ = u.lauf()
         self.assertEqual(code, 0)
@@ -57,7 +62,7 @@ class QuoteTests(unittest.TestCase):
         self.assertIn("2026-10-08", out)
 
     def test_quelle_und_bundle_laufen_auseinander_exit_1(self):
-        u = Umgebung([tarif("a", belegt=True), tarif("b", belegt=True)],
+        u = self.umg([tarif("a", belegt=True), tarif("b", belegt=True)],
                      [bundle_eintrag("a", True), bundle_eintrag("b")])
         code, out, err = u.lauf()
         self.assertEqual(code, 1)
@@ -65,21 +70,21 @@ class QuoteTests(unittest.TestCase):
         self.assertIn("belegteFelder", err)
 
     def test_bundle_belegt_quelle_nicht_exit_1(self):
-        u = Umgebung([tarif("a"), tarif("b")],
+        u = self.umg([tarif("a"), tarif("b")],
                      [bundle_eintrag("a", True), bundle_eintrag("b")])
         code, _, err = u.lauf()
         self.assertEqual(code, 1)
         self.assertIn("a", err)
 
     def test_gleiche_anzahl_verschiedene_ids_exit_1(self):
-        u = Umgebung([tarif("a")], [bundle_eintrag("b")])
+        u = self.umg([tarif("a")], [bundle_eintrag("b")])
         code, _, err = u.lauf()
         self.assertEqual(code, 1)
         self.assertIn("'a'", err)
         self.assertIn("'b'", err)
 
     def test_doppelte_id_in_quelle_exit_1(self):
-        u = Umgebung([tarif("a", belegt=True), tarif("a")],
+        u = self.umg([tarif("a", belegt=True), tarif("a")],
                      [bundle_eintrag("a", True), bundle_eintrag("b")])
         code, out, err = u.lauf()
         self.assertEqual(code, 1)
@@ -87,27 +92,27 @@ class QuoteTests(unittest.TestCase):
         self.assertIn("doppelt", err)
 
     def test_doppelte_id_im_bundle_exit_1(self):
-        u = Umgebung([tarif("a"), tarif("b")],
+        u = self.umg([tarif("a"), tarif("b")],
                      [bundle_eintrag("a"), bundle_eintrag("a")])
         code, _, err = u.lauf()
         self.assertEqual(code, 1)
         self.assertIn("doppelt", err)
 
     def test_leerer_scan_exit_1_nie_hundert_prozent(self):
-        u = Umgebung([], [])
+        u = self.umg([], [])
         code, out, err = u.lauf()
         self.assertEqual(code, 1)
         self.assertIn("Scan leer", err)
         self.assertNotIn("100", out)
 
     def test_gesamt_ungleich_bundle_anzahl_exit_1(self):
-        u = Umgebung([tarif("a"), tarif("b")], [bundle_eintrag("a")])
+        u = self.umg([tarif("a"), tarif("b")], [bundle_eintrag("a")])
         code, _, err = u.lauf()
         self.assertEqual(code, 1)
         self.assertIn("Anzahl", err)
 
     def test_kategorien_summieren_zur_gesamtzahl(self):
-        u = Umgebung(
+        u = self.umg(
             [tarif("a", "K1", True), tarif("b", "K1"), tarif("c", "K2", True), tarif("d", "K3")],
             [bundle_eintrag("a", True), bundle_eintrag("b"),
              bundle_eintrag("c", True), bundle_eintrag("d")])
@@ -120,6 +125,68 @@ class QuoteTests(unittest.TestCase):
         self.assertEqual(kat["K1"], {"belegt": 1, "gesamt": 2})
         self.assertEqual((erg["belegt"], erg["gesamt"]), (2, 4))
         self.assertEqual(erg["stand"], "2026-10-08T15:29:23Z")
+
+    def test_kategorie_null_ergibt_ohne_kategorie_statt_typeerror(self):
+        a, b = tarif("a", belegt=True), tarif("b")
+        a["kategorie"] = None
+        del b["kategorie"]
+        u = self.umg([a, b, tarif("c", "K1")],
+                     [bundle_eintrag("a", True), bundle_eintrag("b"), bundle_eintrag("c")])
+        code, out, _ = u.lauf("--json")
+        self.assertEqual(code, 0)
+        kat = json.loads(out)["kategorien"]
+        self.assertEqual(kat["(ohne Kategorie)"], {"belegt": 1, "gesamt": 2})
+        self.assertEqual(kat["K1"], {"belegt": 0, "gesamt": 1})
+
+    def test_kaputtes_json_nennt_den_dateipfad(self):
+        u = self.umg([tarif("a")], [bundle_eintrag("a")])
+        kaputt = os.path.join(u.ordner, "kaputt.json")
+        with open(kaputt, "w") as f:
+            f.write("{nicht json")
+        code, _, err = u.lauf()
+        self.assertEqual(code, 1)
+        self.assertIn(kaputt, err)
+
+    def test_fehlende_id_in_quelle_nennt_den_dateipfad(self):
+        u = self.umg([tarif("a")], [bundle_eintrag("a")])
+        ohne_id = os.path.join(u.ordner, "ohne-id.json")
+        with open(ohne_id, "w") as f:
+            json.dump({"anbieter": "A"}, f)
+        code, _, err = u.lauf()
+        self.assertEqual(code, 1)
+        self.assertIn(ohne_id, err)
+        self.assertIn("id", err)
+
+    def test_fehlende_id_im_bundle_nennt_den_bundlepfad(self):
+        u = self.umg([tarif("a")], [{"belegteFelder": {}}])
+        code, _, err = u.lauf()
+        self.assertEqual(code, 1)
+        self.assertIn(u.bundle, err)
+        self.assertIn("id", err)
+
+    def test_kaputtes_json_im_bundle_nennt_den_bundlepfad(self):
+        u = self.umg([tarif("a")], [bundle_eintrag("a")])
+        with open(u.bundle, "w") as f:
+            f.write("{nicht json")
+        code, _, err = u.lauf()
+        self.assertEqual(code, 1)
+        self.assertIn(u.bundle, err)
+
+    def test_bundle_ohne_tarife_exit_1(self):
+        u = self.umg([tarif("a")], [])
+        code, out, err = u.lauf()
+        self.assertEqual(code, 1)
+        self.assertEqual(out, "")
+        self.assertIn("keine Tarife", err)
+        self.assertIn(u.bundle, err)
+
+    def test_gesamt_quelle_kleiner_als_bundle_exit_1(self):
+        u = self.umg([tarif("a")], [bundle_eintrag("a"), bundle_eintrag("b")])
+        code, _, err = u.lauf()
+        self.assertEqual(code, 1)
+        self.assertIn("Anzahl", err)
+        self.assertIn("1 Dateien", err)
+        self.assertIn("2 Tarife", err)
 
     def test_echterStand_stimmtMitDerDateizaehlung(self):
         dateien = glob.glob(os.path.join(ROOT, "data", "app", "tarife", "*.json"))

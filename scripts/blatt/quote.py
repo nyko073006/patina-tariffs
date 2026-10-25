@@ -26,8 +26,21 @@ class QuoteFehler(Exception):
 
 
 def _lade(pfad):
-    with open(pfad, encoding="utf-8") as f:
-        return json.load(f)
+    try:
+        with open(pfad, encoding="utf-8") as f:
+            return json.load(f)
+    except ValueError as e:
+        raise QuoteFehler(f"{pfad}: kein gueltiges JSON ({e})") from e
+
+
+def _ids(tarife, herkunft):
+    """Ids in Dateireihenfolge; fehlt eine, nennt die Meldung die Datei."""
+    ids = []
+    for pfad, t in tarife:
+        if not isinstance(t, dict) or not t.get("id"):
+            raise QuoteFehler(f"{pfad}: Feld id fehlt ({herkunft})")
+        ids.append(t["id"])
+    return ids
 
 
 def _eindeutig(ids, wo):
@@ -42,12 +55,14 @@ def berechne(tarife_ordner, bundle_pfad):
     if not dateien:
         raise QuoteFehler(f"Scan leer: keine Tarifdateien in {tarife_ordner}")
     quelle = [_lade(p) for p in dateien]
+    q_liste = _ids(list(zip(dateien, quelle)), "Quelle")
     bundle = _lade(bundle_pfad)
     b_tarife = bundle.get("tarife") or []
     if not b_tarife:
         raise QuoteFehler(f"Scan leer: keine Tarife in {bundle_pfad}")
-    q_ids = _eindeutig([t["id"] for t in quelle], f"Quelle {tarife_ordner}")
-    b_ids = _eindeutig([t["id"] for t in b_tarife], f"Bundle {bundle_pfad}")
+    q_ids = _eindeutig(q_liste, f"Quelle {tarife_ordner}")
+    b_ids = _eindeutig(_ids([(bundle_pfad, t) for t in b_tarife], "Bundle"),
+                       f"Bundle {bundle_pfad}")
     if len(b_tarife) != len(quelle):
         raise QuoteFehler(
             f"Anzahl weicht ab: {len(quelle)} Dateien in {tarife_ordner}, "
@@ -67,7 +82,7 @@ def berechne(tarife_ordner, bundle_pfad):
             f"nur in der Quelle belegt {nur_q}, nur im Bundle belegt {nur_b}")
     kategorien = {}
     for t in quelle:
-        k = kategorien.setdefault(t.get("kategorie", "(ohne Kategorie)"),
+        k = kategorien.setdefault(t.get("kategorie") or "(ohne Kategorie)",
                                   {"belegt": 0, "gesamt": 0})
         k["gesamt"] += 1
         k["belegt"] += t["id"] in q_belegt

@@ -172,7 +172,7 @@ class Kommandozeile(unittest.TestCase):
             with contextlib.redirect_stdout(ausgabe):
                 code = nachrechnung.main(["--tarife", leer])
         self.assertEqual(code, 1)
-        self.assertIn("0 Musterfaelle", ausgabe.getvalue())
+        self.assertIn("✗ 0 Musterfaelle", ausgabe.getvalue())
 
     def test_exitcode_rot_bei_beleg_ohne_pruefung(self):
         import tempfile

@@ -13,6 +13,9 @@ import unittest
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")
 WORKFLOWS = os.path.join(ROOT, ".github", "workflows")
 SCHRITT = "scripts/blatt/nachrechnung.py"
+# Shell-Wege, den Schritt still optional zu machen: `|| true`, `|| :`, `|| exit 0`,
+# `set +e`, ein abschliessendes `exit 0`.
+STILL_OPTIONAL = re.compile(r"\|\|\s*(true\b|:(\s|$)|exit\s+0\b)|\bset\s+\+e\b|(^|;|&&|\n)\s*exit\s+0\b")
 
 
 def schritte(yaml_text):
@@ -90,7 +93,16 @@ def pruefe(yaml_text):
             return "optional"
         if s["bedingt"] or kopf["bedingt"]:
             return "bedingt"
+        if STILL_OPTIONAL.search(s["run"]):
+            return "optional"
     return "ok"
+
+
+def hat_discover_im_schritt(yaml_text):
+    """Wahr, wenn `unittest discover -s scripts/blatt` im run-Text desselben
+    Schritts steht wie die Nachrechnung."""
+    return any(SCHRITT in s["run"] and "unittest discover -s scripts/blatt" in s["run"]
+               for s in schritte(yaml_text)[1:])
 
 
 def lies(name):
@@ -116,6 +128,24 @@ jobs:
         run: python3 scripts/blatt/nachrechnung.py
 """
 
+OPTIONAL_OR_TRUE = """
+jobs:
+  validate:
+    steps:
+      - name: Selbstpruefung
+        run: python3 scripts/blatt/nachrechnung.py || true
+"""
+
+OHNE_DISCOVER_IM_SCHRITT = """
+jobs:
+  validate:
+    steps:
+      - name: Anderer Schritt
+        run: python3 -m unittest discover -s scripts/blatt
+      - name: Selbstpruefung
+        run: python3 scripts/blatt/nachrechnung.py
+"""
+
 
 class Workflows(unittest.TestCase):
     def test_validateYmlRuftDieNachrechnungAuf(self):
@@ -125,7 +155,8 @@ class Workflows(unittest.TestCase):
             "validate.yml hat keinen Schritt mit " + SCHRITT,
         )
         # Die Unittests des Werkzeugs gehoeren zum selben Pflicht-Schritt.
-        self.assertIn("unittest discover -s scripts/blatt", text)
+        self.assertTrue(hat_discover_im_schritt(text),
+                        "unittest discover -s scripts/blatt steht nicht im Nachrechnungs-Schritt")
 
     def test_nachrechnungIstNichtBedingtUndNichtOptional(self):
         for datei in ("validate.yml", "ios-bundle.yml"):
@@ -139,6 +170,26 @@ class Workflows(unittest.TestCase):
         self.assertEqual(pruefe(OPTIONAL), "optional")
         self.assertEqual(pruefe(OPTIONAL.replace("continue-on-error: true", "if: always()")), "bedingt")
         self.assertEqual(pruefe(OPTIONAL.replace("continue-on-error: true", "continue-on-error: false")), "ok")
+
+    def test_gegentest_orTrueMachtDenSchrittOptional(self):
+        self.assertEqual(pruefe(OPTIONAL_OR_TRUE), "optional")
+        for ersatz in ("|| :", "||true", "|| exit 0"):
+            with self.subTest(ersatz=ersatz):
+                self.assertEqual(pruefe(OPTIONAL_OR_TRUE.replace("|| true", ersatz)), "optional")
+
+    def test_gegentest_setPlusEUndExit0MachenDenSchrittOptional(self):
+        mit_set = OPTIONAL_OR_TRUE.replace(
+            "run: python3 scripts/blatt/nachrechnung.py || true",
+            "run: |\n          set +e\n          python3 scripts/blatt/nachrechnung.py")
+        self.assertEqual(pruefe(mit_set), "optional")
+        mit_exit = OPTIONAL_OR_TRUE.replace(
+            "run: python3 scripts/blatt/nachrechnung.py || true",
+            "run: |\n          python3 scripts/blatt/nachrechnung.py\n          exit 0")
+        self.assertEqual(pruefe(mit_exit), "optional")
+
+    def test_gegentest_discoverAnderswoZaehltNicht(self):
+        self.assertFalse(hat_discover_im_schritt(OHNE_DISCOVER_IM_SCHRITT))
+        self.assertTrue(hat_discover_im_schritt(lies("validate.yml")))
 
 
 if __name__ == "__main__":
