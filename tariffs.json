@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-25T15:13:39Z",
+  "updatedAt": "2026-10-25T20:48:35Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -233,7 +233,7 @@
       "alphaRate": 0.025,
       "anbieter": "Baloise",
       "betaEinmalRate": 0.025,
-      "betaRate": 0.078,
+      "betaRate": 0.064,
       "effectiveCostRIY": 0,
       "fundTER": 0.015,
       "gammaAnnualRate": 0.003,

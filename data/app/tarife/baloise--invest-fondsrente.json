@@ -20,7 +20,7 @@
       },
       "betaRate": {
         "dokument": 0,
-        "hinweis": "Das Blatt nennt eine Spanne je nach Beitragszahlungsdauer (6,4 % bis 7,8 %) und ordnet die Dauern nicht zu. Angesetzt 7,8 % für den 30-Jahres-Fall des Blatts; die Nachrechnung über 30 Jahre trägt 7,8 % (Kosten -4,0 %, RIY -0,02 Pp), 6,4 % läge bei -12,3 % und -0,11 Pp und wäre ebenfalls innerhalb der Toleranz, die Nachrechnung trennt die beiden Enden der Spanne also nicht scharf. Dasselbe Haus nennt im Muster-PIB der Basisrente für 30 Jahre ebenfalls 7,80 %. Die Zuordnung der Dauer zum Satz steht weder im Blatt noch im Prospekt BAL 1881, im Produktsteckbrief BAL 8813, im Highlightblatt BAL 1882 oder in den Bedingungen BAL 8812 (01.26, Ziffer 35 nennt nur die Abschlusskosten mit höchstens 2,5 Prozent und verweist für die übrigen Kosten auf die Gebühren-Tabelle der Versicherungsunterlagen); der Wert 7,8 % ist die Obergrenze der Spanne und bleibt bis zur Bestätigung durch Nyko vor dem Merge offen.",
+        "hinweis": "Untergrenze der Spanne 6,4–7,8 % laut Blatt, Laufzeit-Zuordnung fehlt (das Blatt ordnet die Beitragszahlungsdauern nicht zu); Regel Nyko 25.10.2026. Zuordnung der Dauer zum Satz steht auch nicht im Prospekt BAL 1881, im Produktsteckbrief BAL 8813, im Highlightblatt BAL 1882 oder in den Bedingungen BAL 8812 (01.26, Ziffer 35 nennt nur Abschlusskosten höchstens 2,5 Prozent und verweist für die übrigen Kosten auf die Gebühren-Tabelle der Versicherungsunterlagen). Nachrechnung über 30 Jahre mit 6,4 %: Kosten -12,3 %, RIY -0,11 Pp, innerhalb der Toleranz; sie trennt die Enden der Spanne nicht scharf.",
         "seite": 3,
         "wortlaut": "6,4 % bis 7,8 % des Beitrags, je nach vereinbarter Beitragszahlungsdauer."
       }
@@ -46,7 +46,7 @@
     ]
   },
   "betaEinmalRate": 0.025,
-  "betaRate": 0.078,
+  "betaRate": 0.064,
   "effectiveCostRIY": 0,
   "fundTER": 0.015,
   "gammaAnnualRate": 0.003,
