@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-25T21:08:11Z",
+  "updatedAt": "2026-10-25T21:17:34Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -811,7 +811,7 @@
       "alphaRate": 0.025,
       "anbieter": "Nürnberger",
       "betaEinmalRate": 0.0425,
-      "betaRate": 0,
+      "betaRate": 0.089,
       "effectiveCostRIY": 0,
       "fundTER": 0.014,
       "gammaAnnualRate": 0.001,
@@ -820,12 +820,18 @@
       "jahrgang": "2026",
       "kappaMonthly": 0.6792,
       "kategorie": "Klassische Versicherer",
-      "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+      "quelle": "Basisinformationsblatt Tarif NFX(P)3300 (NÜRNBERGER Lebensversicherung AG), Stand 01.01.2026, Seite 3 (α, β laufend, γ Untergrenze); übrige Werte unbelegt und aus externer Quelle, 07.10.2026; Fundstellen im Feld beleg",
       "rentenfaktor": 0.002705,
       "tarifName": "FondsRente",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 60
+      "zillmerdauerMonate": 60,
+      "belegteFelder": {
+        "alphaRate": "bib",
+        "betaRate": "bib",
+        "gammaAnnualRate": "bib"
+      },
+      "belegStand": "01.01.2026"
     },
     {
       "alphaRate": 0.025,

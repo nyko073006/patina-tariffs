@@ -1,8 +1,60 @@
 {
   "alphaRate": 0.025,
   "anbieter": "Nürnberger",
+  "beleg": {
+    "dokumente": [
+      {
+        "abrufdatum": "2026-10-25",
+        "art": "bib-laufend",
+        "sha256": "9752f2703f054b7d1081f26b03686ed4f6871e1d3a5421e4e87585485fa9b9a1",
+        "stand": "01.01.2026 (GN339702_202601)",
+        "titel": "Tarif NFX(P)3300 - fondsgebundene Rentenversicherung mit lebenslanger Rentenzahlung, Basisinformationsblatt, laufender Beitrag, 20 Jahre",
+        "url": "https://www.nuernberger.de/medien/4allportal/gn339702_p.pdf"
+      }
+    ],
+    "felder": {
+      "alphaRate": {
+        "dokument": 0,
+        "hinweis": "Zeile Einstiegskosten der Kostentabelle (Kosten im Zeitverlauf, Zusammensetzung der Kosten).",
+        "seite": 3,
+        "wortlaut": "2,5 % der kumulierten Anlage"
+      },
+      "betaRate": {
+        "dokument": 0,
+        "hinweis": "Zeile Verwaltungsgebühren und sonstige Verwaltungs- oder Betriebskosten. Lesart nach Blatt: 8,9 % der eingezahlten Anlage ist β der laufenden Beiträge (Anteil jedes Beitrags), nicht α. Das Blatt nennt eine Zeile ohne Staffel.",
+        "seite": 3,
+        "wortlaut": "8,9 % der eingezahlten Anlage"
+      },
+      "gammaAnnualRate": {
+        "dokument": 0,
+        "hinweis": "Untergrenze der Spanne 0,1–1,9 % des Werts je nach Anlageoption laut Blatt, Laufzeit-/Optionszuordnung fehlt; Regel Nyko 25.10.2026. Fondskosten sind in der Zeile enthalten; Transaktionskosten 0,0–0,7 %, Untergrenze 0,0 % (nicht als Feld).",
+        "seite": 3,
+        "wortlaut": "0,1 bis 1,9 % des Werts Ihrer Anlage pro Jahr"
+      }
+    },
+    "hinweis": "Blatttitel: Tarif NFX(P)3300 - fondsgebundene Rentenversicherung mit lebenslanger Rentenzahlung (NÜRNBERGER Lebensversicherung AG), Basisinformationsblatt Stand 01.01.2026, Kennung GN339702_202601, laufender Beitrag, Haltedauer 20 Jahre, Garantie 0 %. Zuordnungsgrund: Anbieter Nürnberger, Schicht 3 (fondsgebundene Rentenversicherung), regelmäßiger Beitrag, einziges Fondsprodukt des Anbieters in dieser Schicht; der App-Name FondsRente steht nicht im Blatt, das Kürzel NFX(P)3300 nicht in den App-Daten. Zuordnung bestätigt von Nyko am 25.10.2026. Lesart: 2,5 % der kumulierten Anlage = alphaRate; 8,9 % der eingezahlten Anlage = betaRate (laufender Beitrag), nach Wortlaut des Blatts; die nominale Nachrechnung erkennt eine Vertauschung von α und β nicht (gleiche Summe), deshalb steht der Wortlaut in den Feldern. Nicht belegt: betaEinmalRate (Einmal-Blatt gn339762_p nicht geladen), kappaMonthly (das Blatt nennt keine Fixkosten je Monat; die Nachrechnung rechnet ohne), fundTER (Fondsauswahl www.nuernberger.de/bib nicht geprüft), gammaBeitragsfrei, zillmerdauerMonate, rentenfaktor. Spannen ohne Laufzeit-Zuordnung (Regel Nyko 25.10.2026): Kosten insgesamt 2.841 - 6.602 EUR und Auswirkung 1,4 - 3,6 % pro Jahr nach 20 Jahren; Rendite vor Kosten 3,1 - 5,0 %; laufende Kosten 0,1 - 1,9 % des Werts; Musterfall nutzt die Untergrenze. gammaAnnualRate 0,001 ist die Untergrenze dieser Spanne und gilt als belegt. Das Blatt ist in sich nicht stimmig (Untergrenze 3,1 % vor Kosten minus 1,4 % Auswirkung ergibt 1,7 %, das Mittlere Szenario nennt 0,5 % nach Kosten); die Nachrechnung folgt den Blattzahlen wörtlich. Drei Garantiestufen: das Blatt gilt für 0 % Garantie (niedrigste Stufe), andere Stufen nicht geprüft. Nutzungstext nuernberger.de (Impressum, abgerufen 25.10.2026): Abschnitt Urheberrechte: Inhalte der Internetseite seien urheberrechtlich geschützt; \"Ohne vorherige schriftliche Zustimmung der NÜRNBERGER dürfen Inhalte, insbesondere Texte, Bilder, Grafiken etc., nicht genutzt oder verwendet werden. Dies gilt für jegliche Nutzungen, also ganz oder teilweise, privat oder kommerziell.\" Kein ausdrückliches Verbot des Auslesens und kein Data-Mining-Vorbehalt, aber strenger als ein bloßer Vervielfältigungsvorbehalt; robots.txt erlaubt den Pfad. Auslegung (Verbot der Weiterverwendung, dann nicht belegt) entscheidet Nyko vor dem Merge. MERGE-BLOCKER, Entscheidung Nyko offen: Das Live-Modell weicht von den Annahmen der Nachrechnung ab (kappaMonthly 0,6792 statt 0, fundTER 0,014 statt 0). Mit kappa als Annahme bleibt die Nachrechnung grün (Kosten 2.669 EUR, RIY 1,35 %), mit kappa und fundTER des Tarifs fällt sie durch (5.526 EUR, RIY 2,79 % gegen 2.841 EUR und 1,40 %); die Police der App rechnet allerdings mit der Fonds-TER des Depots statt der des Tarifs. Nyko entscheidet vor dem Merge über kappaMonthly und fundTER; bis dahin kein Merge.",
+    "pruefung": [
+      {
+        "annahmen": {
+          "fundTER": 0,
+          "gammaAnnualRate": 0.001,
+          "kappaMonthly": 0
+        },
+        "beitrag": 1000,
+        "blatt": {
+          "kostenEuro": 2841,
+          "riy": 0.014
+        },
+        "dokument": 0,
+        "einmal": false,
+        "hinweis": "Untergrenze der Spanne nach 20 Jahren (Kosten insgesamt 2.841 - 6.602 EUR, 1,4 - 3,6 % pro Jahr); Rendite vor Kosten Untergrenze 3,1 % (Spanne 3,1 - 5,0 %); laufende Kosten 0,1 % des Werts (Untergrenze der Zeile 0,1 - 1,9 %) als gamma angesetzt, Fondskosten darin enthalten (fundTER 0), Transaktionskosten 0,0 % (Untergrenze), Fixkosten je Monat nicht ausgewiesen (kappa 0). Seite 3.",
+        "jahre": 20,
+        "rendite": 0.031
+      }
+    ]
+  },
   "betaEinmalRate": 0.0425,
-  "betaRate": 0,
+  "betaRate": 0.089,
   "effectiveCostRIY": 0,
   "fundTER": 0.014,
   "gammaAnnualRate": 0.001,
@@ -11,7 +63,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.6792,
   "kategorie": "Klassische Versicherer",
-  "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+  "quelle": "Basisinformationsblatt Tarif NFX(P)3300 (NÜRNBERGER Lebensversicherung AG), Stand 01.01.2026, Seite 3 (α, β laufend, γ Untergrenze); übrige Werte unbelegt und aus externer Quelle, 07.10.2026; Fundstellen im Feld beleg",
   "rentenfaktor": 0.002705,
   "tarifName": "FondsRente",
   "typischeBruttorendite": 0.06,
