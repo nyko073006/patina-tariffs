@@ -46,8 +46,9 @@
 3. **Pflicht-Schritt in `validate.yml`, Schritt in `ios-bundle.yml` bleibt.**
 4. **Werkzeug ins Repo.** `holen.py` kommt als `scripts/blatt/holen.py` mit Tests ins Repo (Code, kein Blatt). Grund: Das Vault-Skript ist nicht versioniert, und die robots-Regel ist die Stelle, an der es schon schiefging.
 5. **Sperren gelten:** Tarife, deren Anbieter Data-Mining im Nutzungs- oder Impressumstext vorbehält (Allianz, Alte Leipziger, Swiss Life, AXA-Nutzungshinweis, laut Quellenliste vom 06.10.), und Pfade, die `robots.txt` sperrt (HDI-Brandportal, Swiss Life `/content/dam/de/documents/*`), lädt **kein Skript**. Ob Nyko das Blatt selbst im Browser laden und danach auslesen lassen darf, ist eine Rechtsfrage (§ 44b UrhG) und steht als **[Z]** offen (Offen Punkt 1). Bis dahin liegt der Tarif auf der Liste "wartet auf Nyko" und gilt als "nicht belegt".
-6. **Toleranz** bleibt 15 % Euro und 0,15 Pp RIY (Frage 2 des Blatt-Plans offen). Mit der Verteilung nach dem Erstlauf (H2-14) wird neu vorgeschlagen, nicht still geändert.
+6. **Toleranz** bleibt 15 % relative Abweichung bei "Kosten insgesamt" (`TOLERANZ_EURO = 0.15`, keine Euro-Schwelle) und 0,15 Pp RIY (`TOLERANZ_RIY = 0.0015`; Frage 2 des Blatt-Plans offen). Mit der Verteilung nach dem Erstlauf (H2-14) wird neu vorgeschlagen, nicht still geändert.
 7. **Kein Push, kein PR.** Commits lokal, ein Commit je Task.
+8. **Wert-ändernde Belege werden nicht mitgemergt, bevor Nyko entschieden hat.** Vor A8 vergleicht der Umsetzer die Modellwerte der Kopie mit `data/app/tarife/<slug>.json` (`git diff --no-index`). Ändert sich ein Modellwert (Liste im Abschnitt Priorisierung, Punkt b), steht der Tarif in der Abschlussliste als "ändert Werte: <Feld alt -> neu>", sein Commit bekommt den Zusatz "[ändert Werte]" und die Branch-Übergabe an Nyko nennt ihn getrennt (Cherry-Pick-Grenze); ein Merge ohne diesen Commit bleibt möglich. Erwartete Kandidaten: VHV (α 0 % statt 2,5 %), HDI (Blatt gegen AVB), Nürnberger (Lesart).
 
 ## Sperrliste bis zum Bescheid (vor jedem Task lesen, vor dem Abschluss abhaken)
 
@@ -71,7 +72,7 @@
 
 - Arbeitsverzeichnis ausschließlich `/Users/nyko/Developer/worktrees/tariffs-h2-erstlauf`, Branch `claude/h2-belege-erstlauf`. Jeder Shell-Befehl beginnt mit `cd /Users/nyko/Developer/worktrees/tariffs-h2-erstlauf`. Andere Tarif-Klone nicht anfassen (andere Sessions).
 - **Blätter nie im Repo.** Heruntergeladene PDFs liegen je Tarif in einem **eigenen leeren Ordner** im Scratchpad (`<scratch>/blatt/<slug>/`), Skripte in einem anderen Ordner. Python über heruntergeladene Dateien nur mit `python3 -I`, Pfade als Argument (Regel für unvertraute Downloads). Nach dem Commit des Tarifs den Ordner löschen (Plan Blatt-Auslese, Ablauf 2: Zwischenkopien werden gelöscht); die SHA-256 steht im Beleg.
-- **Neue Dateien in diesem Plan (genau diese):** `.github/workflows/validate.yml` ändert sich nur; neu sind `scripts/blatt/holen.py`, `scripts/blatt/test_holen.py`, `scripts/blatt/quote.py`, `scripts/blatt/test_quote.py`, `scripts/blatt/test_workflow.py`, `docs/plans/2026-10-25-h2-belege-erstlauf.md` (diese Datei). Python-Tests liegen in `scripts/blatt/` und werden von `unittest discover` gefunden; **kein `xcodegen`** in diesem Repo, aber dieselbe Falle gilt: Nach jeder neuen Testdatei die Testzahl gegen den Vorlauf vergleichen (Fehlerlog 28.09.: neue Tests, die nie liefen). `discover` findet nur `test*.py`.
+- **Neue Dateien in diesem Plan (genau diese):** `.github/workflows/validate.yml` ändert sich nur; neu sind `scripts/blatt/holen.py`, `scripts/blatt/test_holen.py`, `scripts/blatt/quote.py`, `scripts/blatt/test_quote.py`, `scripts/blatt/test_workflow.py`, `docs/plans/2026-10-25-h2-belege-erstlauf.md` (diese Datei). Geändert (nicht neu): `scripts/blatt/nachrechnung.py` (nur `main()`, Wächterzweig und Argument `--tarife`), `scripts/blatt/test_nachrechnung.py`, `README.md`. Python-Tests liegen in `scripts/blatt/` und werden von `unittest discover` gefunden; **kein `xcodegen`** in diesem Repo, aber dieselbe Falle gilt: Nach jeder neuen Testdatei die Testzahl gegen den Vorlauf vergleichen (Fehlerlog 28.09.: neue Tests, die nie liefen). `discover` findet nur `test*.py`.
 - Testbefehle (Vorlauf `N0_py=18`, `N0_node=25`):
 
   `cd /Users/nyko/Developer/worktrees/tariffs-h2-erstlauf && python3 -I -m unittest discover -s scripts/blatt 2>&1 | tail -4; echo EXIT=$?`
@@ -89,13 +90,14 @@
 
 ## Review Focus
 
-1. **robots-Prüfung in beide Richtungen** (H2-2): ein Pfad, den die längste Regel erlaubt, wird erlaubt; ein Pfad, den sie sperrt, wird gesperrt; ohne `robots.txt` (404) erlaubt, bei 403 oder Verbindungsfehler **gesperrt** (nicht "erlaubt"). Pythons `robotparser` ist nicht zulässig (kennt keine Wildcards).
+1. **robots-Prüfung in beide Richtungen** (H2-2): ein Pfad, den die längste Regel erlaubt, wird erlaubt; ein Pfad, den sie sperrt, wird gesperrt; ohne `robots.txt` (404, 410) erlaubt, bei 401/403, 5xx oder Verbindungsfehler **gesperrt** (nicht "erlaubt"; 401/403 ist eine bewusste Verschärfung gegenüber dem RFC, der 4xx als erlaubt liest). Pythons `robotparser` ist nicht zulässig (kennt keine Wildcards).
 2. **Kein Beleg ohne tragfähige Zuordnung** (Entscheidung 2): Prüfen, dass bei jedem neuen Beleg der Produktname im Blatt steht (Wortlaut in `felder` oder `hinweis`).
 3. **Wortlaut stimmt mit dem Blatt**: Jeder `wortlaut` ist im Blatttext auffindbar (Zitatprüfung, H2-2/Abschluss), Seitenzahl stimmt.
-4. **Nachrechnung nicht weichgespült**: Toleranz unverändert; kein Musterfall erfunden; `annahmen` nur, wo das Blatt mit anderen Werten rechnet, und im `hinweis` erklärt. Die nominale Prüfung erkennt vertauschte α und β nicht (gleiche Summe): Lesart "% der kumulierten Anlage" ist α, "% der eingezahlten Anlage" ist β (Blatt-Plan, Lesart) gegen den Blattwortlaut prüfen.
+4. **Nachrechnung nicht weichgespült**: Toleranz unverändert; kein Musterfall erfunden; `annahmen` nur, wo das Blatt mit anderen Werten rechnet, und im `hinweis` erklärt. Die nominale Prüfung erkennt vertauschte α und β nicht (gleiche Summe): Lesart "% der kumulierten Anlage" ist α, "% der eingezahlten Anlage" ist β (Lesart im Wortlaut bei A5, nicht auf `main` lesbar) gegen den Blattwortlaut prüfen.
 5. **Staffel**: Tarife mit gestaffelten Sätzen (Signal Iduna β ab Jahr 11, Helvetia, Gothaer) nur mit `betaStaffel` (höchstens 2 Stufen, Build prüft) oder mit `beleg.vereinfachungen`; nie stilles Mitteln.
 6. **Quote ist abgeleitet**, nicht eingetragen: `quote.py` zählt, `README` und Berichte nennen Zahl nur mit Stand und Befehl (H4 braucht sie).
 7. **Kein Schreiben in `tariffs.json` von Hand.** Nur `npm run build:ios`.
+8. **Live-Wirkung** (Entscheidung 8): Jeder Beleg mit Wertänderung ist als "ändert Werte" gekennzeichnet und im eigenen Commit; die grünen Tests (Bundle-Stand) beweisen dort nichts über die Live-App.
 
 ## Priorisierung: die 30 Tarife der Etappe 1 (in Reihenfolge)
 
@@ -108,34 +110,51 @@ Fundstellen zu (A), `origin/main` `833ba23` im iOS-Repo:
 - **Swiss Life Maximo**: Default bis 29.09.2026 (`TarifPreset.swift`, Kommentar am Default), Tests `EntnahmeDuellTests.swift:65`, `GuenstigerpruefungTests.swift:262`, `EigeneDatenTariffStoreTests.swift:95`.
 - **Allianz PrivatRente InvestFlex**: 6 Testverweise, größter Anbieter im Bestand.
 - Zählung der Verweise je Preset außerhalb von `TarifPreset.swift` (Skript über `git archive origin/main`, Muster `.name` oder UUID): HDI 3 Quell- und 24 Testverweise, Continentale 3/20, Helvetia Allcase 1/21, Swiss Life Maximo 1/10, Allianz InvestFlex 1/6, AXA JustInvest 1/6; ab Rang 7 höchstens 5 Testverweise. (Quell-Verweise sind überwiegend die Herkunftsmatrix; sie unterscheiden nichts.)
-- Auswirkung auf die App: **keine bis H13**. Die Tests laufen auf dem einkompilierten Stand (`docs/DEMO-FAELLE.md:88`: "Gemessen auf dem einkompilierten Tarifstand (Test-Host und Store-Pipeline)"; `Tests/DefaultTarifNeutralitaetTests.swift` setzt `tarifDatensatzAufBundleStand`). Ein neuer Beleg ändert `tariffs.json`, nicht das Bundle. H13 verschiebt dann die Golden-Werte von HDI (Default!), AXA, Swiss Life; das ist dort einzeln zu begründen.
+- Auswirkung auf die App: **zwei Wege, nur einer ist bis H13 still.** (a) Die iOS-Tests laufen auf dem einkompilierten Stand (`docs/DEMO-FAELLE.md:88`: "Gemessen auf dem einkompilierten Tarifstand (Test-Host und Store-Pipeline)"; `Tests/DefaultTarifNeutralitaetTests.swift` setzt `tarifDatensatzAufBundleStand`); sie bleiben von einem neuen Beleg unberührt und zeigen **keine** Live-Wirkung. (b) Die **Live-App** liest `https://raw.githubusercontent.com/nyko073006/patina-tariffs/main/tariffs.json` (`Services/TariffEndpoint.swift:21`, `origin/main` `833ba23`), und `docs/DEMO-FAELLE.md:88` sagt: "seit N3 (14.10.2026) rechnen Demo-Fälle und Neue Beratung in der App mit dem Tarif-Datensatz". Ein Beleg, der **Modellwerte ändert** (alphaRate, betaRate, betaEinmalRate, gammaAnnualRate, kappaMonthly, fundTER, Staffeln), ändert nach dem Merge auf `main` und dem Lauf von `ios-bundle.yml` sofort Default, Demo-Fälle und Rangfolge der Live-App. Ein Beleg, der nur `beleg`/`belegteFelder`/`belegStand` ergänzt und alle Werte bestätigt, ändert die Rechnung nicht. Daraus Lead-Entscheidung 8 und Review Focus 8. H13 verschiebt die Golden-Werte des **einkompilierten** Stands erst später, einzeln zu begründen.
 
 **Bereits belegt (10), zählen zu den 30:** 1 Continentale EasyRente Invest RI (A, Demo Depot-Sparer), 2 Helvetia CleVesto Allcase (Staffel, mit vereinfachungen), 3 Barmenia/Gothaer FondsRente, 4 WWK Premium FondsRente 2.0 FV25, 5 Württembergische Genius FlexRente, 6 Volkswohl Bund FITTERY, 7 Baloise BasisRente Invest, 8 Nürnberger BasisRente Invest, 9 Universa BasisRente Invest, 10 WWK BasisRente FondsRente.
 
+**Tarif-Kennung: Dateiname, nicht ID-Ende.** Die letzten vier Ziffern der ID sind über die Präfixe `1111…`, `2222…`, `3333…` mehrfach vergeben (geprüft in `tariffs.json`: `…0002` ist Allianz Basisrente InvestFlex, Allianz PrivatRente InvestFlex und HanseMerkur 2025S; `…0012` Nürnberger BasisRente Invest und Volkswohl Vorsorge Plan FRV; `…0015` Swiss Life BasisRente Maximo und Nürnberger FondsRente). Ein Umsetzer bestimmt den Tarif deshalb über die Datei unter `data/app/tarife/` und prüft vor dem Schreiben `anbieter` und `tarifName` darin. Rang 11 bis 20 (vollständige ID: Präfix `11111111-0000-0000-0000-0000000000NN`):
+
+| Rang | Datei | volle ID |
+| --- | --- | --- |
+| 11 | `hdi--cleverinvest.json` | `11111111-0000-0000-0000-000000000005` |
+| 12 | `axa--justinvest-performance-alvf7.json` | `11111111-0000-0000-0000-000000000003` |
+| 13 | `swiss-life--maximo-710-714.json` | `11111111-0000-0000-0000-000000000006` |
+| 14 | `allianz--privatrente-investflex.json` | `11111111-0000-0000-0000-000000000002` |
+| 15 | `baloise--invest-fondsrente.json` | `11111111-0000-0000-0000-000000000032` |
+| 16 | `volkswohl-bund--vorsorge-plan-frv.json` | `11111111-0000-0000-0000-000000000012` |
+| 17 | `signal-iduna--si-wachstum.json` | `11111111-0000-0000-0000-000000000017` |
+| 18 | `n-rnberger--fondsrente.json` | `11111111-0000-0000-0000-000000000015` |
+| 19 | `universa--uni-fondsrente.json` | `11111111-0000-0000-0000-000000000036` |
+| 20 | `vhv--privatrente-best.json` | `11111111-0000-0000-0000-000000000020` |
+
+Rang 21 bis 30: Datei erst beim Anlegen des Folgeplans über `ls data/app/tarife` und `anbieter`/`tarifName` bestimmen.
+
 **Neu (20), Rang 11 bis 30. Rang 11 bis 20 sind der Erstlauf.** Spalte "Zugriff" = Befund der BIB-Auslese vom 07.10.2026 (Vault `Research/2026-10-07 BIB-Auslese`), Spalte "heute" = Prüfung 25.10.2026 (robots.txt nach RFC 9309 und HEAD auf die Blatt-URL, ohne Download).
 
-| Rang | Tarif (ID-Ende) | Anbieter | Gruppe | Zugriff 07.10. | Zuordnung 07.10. |
+| Rang | Tarif | Anbieter | Gruppe | Zugriff 07.10. | Zuordnung 07.10. |
 | --- | --- | --- | --- | --- | --- |
-| 11 | CleverInvest (…1…0005) | HDI | A Default, Demo, Store | manuell | wahrscheinlich |
-| 12 | JustInvest Performance ALVF7 (…0003) | AXA | A Golden | manuell | unsicher |
-| 13 | Maximo 710/714 (…0006) | Swiss Life | A früherer Default | manuell | wahrscheinlich |
-| 14 | PrivatRente InvestFlex (…0002) | Allianz | A | manuell | wahrscheinlich |
-| 15 | Invest FondsRente (…0032) | Baloise | B | geladen | unsicher |
-| 16 | Vorsorge Plan FRV (…0012) | Volkswohl Bund | B | geladen | unsicher |
-| 17 | SI Wachstum (…0017) | Signal Iduna | B | geladen | unsicher |
-| 18 | FondsRente (…0015) | Nürnberger | B | geladen | wahrscheinlich |
-| 19 | uni-FondsRente (…0036) | Universa | B | geladen | unsicher |
-| 20 | Privatrente Best (…0020) | VHV | B | geladen | unsicher |
-| 21 | performance+ FlexRente 73oG (…0004) | Stuttgarter | B | manuell | wahrscheinlich |
-| 22 | AR25 Standard (…0009) | Alte Leipziger | B | manuell | wahrscheinlich |
-| 23 | Rente Garantie (…0013) | ERGO | B | manuell | unsicher |
-| 24 | Privatrente Comfort (…0019) | Generali | B | manuell | unsicher |
-| 25 | BavariaDIREKT (…0011) | die Bayerische | B | teilweise | unsicher |
-| 26 | FR10 Netto (…0008) | Alte Leipziger | C Netto | manuell | unsicher |
-| 27 | Privat-Rente Online (…0024) | Cosmos Direkt | C Netto | geladen | unsicher |
-| 28 | IndexInvest Premium (…0022) | R+V | C Index | geladen | unsicher |
-| 29 | MeinPlan Nettotarif (…0031) | LV 1871 | C Netto | manuell | wahrscheinlich |
-| 30 | IndexSelect Plus (…0021) | Allianz | C Index | manuell | wahrscheinlich |
+| 11 | CleverInvest | HDI | A Default, Demo, Store | manuell | wahrscheinlich |
+| 12 | JustInvest Performance ALVF7 | AXA | A Golden | manuell | unsicher |
+| 13 | Maximo 710/714 | Swiss Life | A früherer Default | manuell | wahrscheinlich |
+| 14 | PrivatRente InvestFlex | Allianz | A | manuell | wahrscheinlich |
+| 15 | Invest FondsRente | Baloise | B | geladen | unsicher |
+| 16 | Vorsorge Plan FRV | Volkswohl Bund | B | geladen | unsicher |
+| 17 | SI Wachstum | Signal Iduna | B | geladen | unsicher |
+| 18 | FondsRente | Nürnberger | B | geladen | wahrscheinlich |
+| 19 | uni-FondsRente | Universa | B | geladen | unsicher |
+| 20 | Privatrente Best | VHV | B | geladen | unsicher |
+| 21 | performance+ FlexRente 73oG | Stuttgarter | B | manuell | wahrscheinlich |
+| 22 | AR25 Standard | Alte Leipziger | B | manuell | wahrscheinlich |
+| 23 | Rente Garantie | ERGO | B | manuell | unsicher |
+| 24 | Privatrente Comfort | Generali | B | manuell | unsicher |
+| 25 | BavariaDIREKT | die Bayerische | B | teilweise | unsicher |
+| 26 | FR10 Netto | Alte Leipziger | C Netto | manuell | unsicher |
+| 27 | Privat-Rente Online | Cosmos Direkt | C Netto | geladen | unsicher |
+| 28 | IndexInvest Premium | R+V | C Index | geladen | unsicher |
+| 29 | MeinPlan Nettotarif | LV 1871 | C Netto | manuell | wahrscheinlich |
+| 30 | IndexSelect Plus | Allianz | C Index | manuell | wahrscheinlich |
 
 Etappe 2 (31 Tarife, nicht in diesem Plan): alle Basisrenten ohne Beleg (Muster-PIB, Euro-Beträge; Blatt-Plan offene Frage 3), HanseMerkur (3), Condor (2), Stuttgarter alpha+ und Basisrenten, Standard Life Freelaxx (kein öffentliches Blatt, Anbieterauskunft nötig, wäre Erstkontakt: **gesperrt**), Continentale Fondsrente (Tarifname offen), Helvetia Sondertarif P, Bayerische Nettotarif und zuletzt die sechs Sektor-Fonds. Die Zählung "30 neue plus 10" wird nach dem Erstlauf an der Abschlussliste gemessen.
 
@@ -167,16 +186,17 @@ Jede Aufgabe, `<slug>` = Dateiname unter `data/app/tarife/` ohne `.json`, `<scra
 
   `cd /Users/nyko/Developer/worktrees/tariffs-h2-erstlauf && mkdir -p <scratch>/blatt/<slug> && python3 -I scripts/blatt/holen.py --aus <scratch>/blatt/<slug> --name bib-laufend-20 "<url>"; echo EXIT=$?`
 
-  Exit 0 geladen; 2 robots oder Vorbehalt verbietet; 3 Sperre (403, Challenge, Login); 4 sonstiger Fehler. **Bei 2, 3, 4: Tarif bleibt "nicht belegt"**, Grund und Befehl in die Abschlussliste, nächster Tarif (Abbruchregel). Keine Umgehung.
+  Exit 0 geladen; 2 `robots.txt` verbietet den Pfad; 3 `robots.txt` nicht entscheidbar oder Sperre (401/403, 5xx, Verbindungsfehler, Challenge, Login); 4 sonstiger Fehler (siehe H2-2). **Bei 2, 3, 4: Tarif bleibt "nicht belegt"**, Grund und Befehl in die Abschlussliste, nächster Tarif (Abbruchregel). Keine Umgehung.
 - [ ] **A3 Prüfsumme und Text:** `shasum -a 256 <datei>`; `pdftotext -layout <datei> <txt>`. Weniger als 800 Zeichen = Bild-PDF: `markitdown <datei> -o <md>`, und sagen; nie als "steht nicht drin" werten.
 - [ ] **A4 Zuordnung** (Entscheidung 2): Produktname, Tarifkürzel oder Tarifnummer aus der App im Blatt wörtlich finden. Gefunden: Zeile und Seite notieren. Nicht gefunden: **Abbruch für diesen Tarif**, nichts schreiben, Grund in die Abschlussliste.
-- [ ] **A5 Lesen:** Kostentabelle mit Seite und Wortlaut. Lesart: "% der kumulierten Anlage" ist α, "% der eingezahlten Anlage" ist β, β Einmal ist Einstiegskosten plus Verwaltung auf den Einmalbeitrag (siehe `docs/PLAN-blatt-auslese.md`, Lesart). Nicht Gefundenes bleibt weg, kein Standardwert. Musterfall: Beitrag, Haltedauer, Rendite, "Kosten insgesamt" und RIY der **Unterkante** des Blatts (günstigste Anlageoption), `annahmen.fundTER` entsprechend.
+- [ ] **A5 Lesen:** Kostentabelle mit Seite und Wortlaut. Lesart: "% der kumulierten Anlage" ist α, "% der eingezahlten Anlage" ist β, β Einmal ist Einstiegskosten plus Verwaltung auf den Einmalbeitrag (Lesart aus `docs/PLAN-blatt-auslese.md`, Abschnitt "Lesart der Kostentabelle"; diese Datei fehlt auf `main`, sie liegt nur im Klon `/Users/nyko/Documents/Claude-Projekte/patina-tariffs-plan-auslese` als unversionierte Änderung und auf `origin/claude/plan-blatt-auslese` ohne den Abschnitt. Die Lesart steht deshalb hier vollständig: α = "% der kumulierten Anlage" (Anteil der Beitragssumme), β = "% der eingezahlten Anlage" (Anteil jedes Beitrags); bei WWK FV25 war das vertauscht, bei der Nürnberger vermutlich auch; β Einmal = Einstiegskosten plus Verwaltung auf den Einmalbeitrag; α wirkt nur auf laufende Beiträge). Nicht Gefundenes bleibt weg, kein Standardwert. Musterfall: Beitrag, Haltedauer, Rendite, "Kosten insgesamt" und RIY der **Unterkante** des Blatts (günstigste Anlageoption), `annahmen.fundTER` entsprechend.
 - [ ] **A6 Nachrechnen vor dem Schreiben** (Werte zunächst in eine Kopie unter `<scratch>/neu/<slug>.json`, nicht ins Repo):
 
   `cd /Users/nyko/Developer/worktrees/tariffs-h2-erstlauf && python3 -I scripts/blatt/nachrechnung.py <scratch>/neu/<slug>.json; echo EXIT=$?`
 
   Nicht grün: ein Posten ist falsch gelesen oder fehlt; Zitate neu lesen, nicht die Toleranz anheben. Bleibt es rot: Tarif bleibt "nicht belegt", Abweichung (Prozent und Pp) in die Abschlussliste.
 - [ ] **A7 Gegentest je Tarif (beide Richtungen):** (a) denselben Musterfall mit einem absichtlich um Faktor 2 falschen β in der Kopie: muss rot werden (EXIT=1). (b) ein Posten des Blatts weggelassen (etwa Restbeitragssatz oder κ): muss rot werden, soweit der Posten im Musterfall wirkt; wirkt er nicht, im Bericht sagen. Beide Proben nur auf der Kopie.
+- [ ] **A7b Wertvergleich (Entscheidung 8):** `git diff --no-index --stat data/app/tarife/<slug>.json <scratch>/neu/<slug>.json` und die Modellfelder einzeln vergleichen; Änderung eines Modellwerts in die Abschlussliste und in den Commit-Titel ("[ändert Werte]").
 - [ ] **A8 Schreiben:** Kopie nach `data/app/tarife/<slug>.json`. Das Feld `quelle` nennt Blatt, Stand und Fundstellen, nicht den Namen von Wettbewerber W. Bestehende Werte, die das Blatt nicht trägt (etwa `rentenfaktor`, `typischeBruttorendite`), bleiben unverändert und **nicht** in `felder`. `betaRate` bei Staffel: Mittelwert innerhalb der Stufen (Build prüft).
 - [ ] **A9 Build und Prüfung:** `cd /Users/nyko/Developer/worktrees/tariffs-h2-erstlauf && npm run build:ios; echo EXIT=$?` danach `git diff --stat`. Erwartet: `data/app/tarife/<slug>.json` und `tariffs.json` geändert; in `tariffs.json` für diesen Tarif genau `belegteFelder` und `belegStand` neu, Werte wie in `data/app`; `beleg` nicht in `tariffs.json`.
 - [ ] **A10 Zählung:** `python3 -I scripts/blatt/quote.py` meldet einen Beleg mehr als vor dem Task (Befehl nach H2-3).
@@ -190,11 +210,14 @@ Jede Aufgabe, `<slug>` = Dateiname unter `data/app/tarife/` ohne `.json`, `<scra
 - Modify: `.github/workflows/validate.yml`
 - Modify: `README.md` (Abschnitt "Beleg je Tarif", Satz "Die CI führt es bei jeder Änderung unter `data/app/` aus")
 - Create: `scripts/blatt/test_workflow.py`
+- Modify: `scripts/blatt/nachrechnung.py` (nur `main()`: Wächterzweig; `pruefe()` und die Rechnung bleiben unverändert)
+- Modify: `scripts/blatt/test_nachrechnung.py` (Klasse `Kommandozeile`: +2 Tests)
 
-**Ziel:** `validate.yml` ruft nach "Schema validation" `python3 -m unittest discover -s scripts/blatt` und `python3 scripts/blatt/nachrechnung.py` auf; der Workflow läuft bei jedem PR, daher fällt der Schritt nie aus. Ein Wächter-Test liest beide Workflow-Dateien und scheitert, wenn der Schritt fehlt, in `continue-on-error` steht oder hinter einem `if:` hängt.
+**Ziel:** `validate.yml` ruft nach "Schema validation" `python3 -m unittest discover -s scripts/blatt` und `python3 scripts/blatt/nachrechnung.py` auf; der Workflow läuft bei jedem PR, daher fällt der Schritt nie aus. Ein Wächter-Test liest beide Workflow-Dateien und scheitert, wenn der Schritt fehlt, in `continue-on-error` steht oder hinter einem `if:` hängt. **Zusätzlich fällt `nachrechnung.py` selbst, wenn es nichts prüfen kann** (Skeptiker B1, ausgeführt: heute ergibt ein Tarif mit `{"beleg":{"pruefung":[]}}` "0 Musterfaelle, 0 durchgefallen", EXIT=0, und ein leerer Tarifordner ebenfalls; der Schritt wäre bei leerem Glob oder umbenanntem Feld `beleg` grün, `nachrechnung.py:143` und `:159-160`).
 
 - [ ] **Step 1: Stub.** Datei `scripts/blatt/test_workflow.py` mit der Hilfsfunktion `schritte(yaml_text)` (reiner Textscan, keine YAML-Bibliothek; Standardbibliothek genügt), die eine Liste `{name, run, bedingt, fehler_ignoriert}` liefert, aber noch `NotImplementedError` wirft.
 - [ ] **Step 2: Tests (RED mit Assertion-Fehlern).** Vier Tests: (1) `test_validateYmlRuftDieNachrechnungAuf`: in `validate.yml` gibt es einen Schritt, dessen `run` `scripts/blatt/nachrechnung.py` enthält. (2) `test_nachrechnungIstNichtBedingtUndNichtOptional`: dieser Schritt hat weder `if:` noch `continue-on-error`. (3) `test_gegentest_ohneSchrittFaelltDerWaechter`: dieselbe Prüffunktion auf einem Fixture-Text ohne den Schritt meldet "fehlt" (beweist, dass (1) fallen kann); (4) `test_gegentest_mitContinueOnErrorFaelltDerWaechter`: Fixture mit `continue-on-error: true` meldet "optional". Fixture-Texte stehen im Test.
+- [ ] **Step 2b: Wächter "Vergleichsbasis fehlt" (RED zuerst).** In `test_nachrechnung.py`, Klasse `Kommandozeile`, zwei Tests: (5) `test_exitcode_rot_bei_null_musterfaellen`: `nachrechnung.main([])` auf einem temporären Tarifordner ohne jeden Tarif mit `beleg` (Ordner über ein neues, einstellbares Argument `--tarife <ordner>` mit der Vorgabe `data/app/tarife`) liefert 1 und die Meldung "0 Musterfaelle". (6) `test_exitcode_rot_bei_beleg_ohne_pruefung`: ein Tarif mit `beleg` aber leerem oder fehlendem `pruefung`, **ohne** explizite Datei aufgerufen, liefert 1 (heute greift der Fehlerzweig nur bei `a.dateien`). Gegentest in die andere Richtung: der echte Stand (`main([])`) bleibt 0; das ist der bestehende Test `test_exitcode_gruen_fuer_continentale` plus Lauf in Step 4. RED-Ausgabe zeigen (Assertion, kein Importfehler), dann GREEN: `main()` zählt Tarife mit `beleg`; `geprueft == 0` oder ein Tarif mit `beleg` ohne `pruefung` ergibt Exit 1.
 - [ ] **Step 3: GREEN.** `schritte` umsetzen, `validate.yml` ändern:
 
   ```yaml
@@ -205,8 +228,8 @@ Jede Aufgabe, `<slug>` = Dateiname unter `data/app/tarife/` ohne `.json`, `<scra
   ```
   README-Satz: "Die CI führt es in `validate.yml` bei jedem Pull Request aus und in `ios-bundle.yml` vor dem Commit von `tariffs.json`."
 - [ ] **Step 4: Läuft das lokal wie in der CI?** `cd /Users/nyko/Developer/worktrees/tariffs-h2-erstlauf && python3 -m unittest discover -s scripts/blatt > <scratch>/h2-1.log 2>&1; echo EXIT=$?` und `python3 scripts/blatt/nachrechnung.py > <scratch>/h2-1b.log 2>&1; echo EXIT=$?` (ohne `-I`, wie die CI). Erwartet 0 und 0.
-- [ ] **Step 5: Zählung.** Vorher 18, nachher **22** (Unittests: +4). Node unverändert 25.
-- [ ] **Step 6: Mutationsprobe M1** (nach Commit): in `validate.yml` den Befehl `nachrechnung.py` auf `nachrechnung_x.py` ändern; `test_validateYmlRuftDieNachrechnungAuf` muss rot werden; Rückbau per Edit, `git diff --exit-code -- .github/workflows/validate.yml`. **M2:** `continue-on-error: true` einfügen; Test 2 rot; Rückbau.
+- [ ] **Step 5: Zählung.** Vorher 18, nachher **24** (Unittests: +4 in `test_workflow.py`, +2 in `test_nachrechnung.py`). Node unverändert 25. Probelauf `python3 -I scripts/blatt/nachrechnung.py` weiterhin 18 Musterfälle, EXIT=0.
+- [ ] **Step 6: Mutationsprobe M1** (nach Commit): in `validate.yml` den Befehl `nachrechnung.py` auf `nachrechnung_x.py` ändern; `test_validateYmlRuftDieNachrechnungAuf` muss rot werden; Rückbau per Edit, `git diff --exit-code -- .github/workflows/validate.yml`. **M2:** `continue-on-error: true` einfügen; Test 2 rot; Rückbau. **M6:** in `main()` den Wächterzweig "0 Musterfälle" entfernen; Test 5 rot; Rückbau per Edit, `git diff --exit-code -- scripts/blatt/nachrechnung.py`.
 - [ ] **Step 7: Commit** (Namens-Check, siehe A11).
 
 ### Task H2-2: `holen.py` ins Repo, robots nach RFC 9309
@@ -215,14 +238,14 @@ Jede Aufgabe, `<slug>` = Dateiname unter `data/app/tarife/` ohne `.json`, `<scra
 - Create: `scripts/blatt/holen.py`
 - Create: `scripts/blatt/test_holen.py`
 
-**Ziel:** Ein Aufruf holt **ein** Dokument, nachdem `robots.txt` der Domain nach RFC 9309 den Pfad erlaubt hat; höfliche Pause je Domain (Vorgabe 5 Sekunden, Flag `--pause`); schreibt PDF, Text und JSON (URL, Abrufdatum, SHA-256, Seitenzahl, Textzeichen) **nur** in den mit `--aus` genannten Ordner; der Ordner muss leer sein und außerhalb des Repos liegen (Prüfung `git rev-parse --show-toplevel` des Ordners darf nicht das Repo sein). Exit-Codes wie im Vault-Skript (0, 2, 3, 4). Basis: Vault-Fassung `Research/2026-10-07 BIB-Auslese/assets/skripte/holen.py` (Kopf: 93 Zeilen, `rfc9309_erlaubt`). Anders als dort: Funktionen statt Skript-Code auf Modulebene (testbar), keine festen Pfade, `--aus` Pflicht.
+**Ziel:** Ein Aufruf holt **ein** Dokument, nachdem `robots.txt` der Domain nach RFC 9309 den Pfad erlaubt hat; höfliche Pause je Domain (Vorgabe 5 Sekunden, Flag `--pause`); schreibt PDF, Text und JSON (URL, Abrufdatum, SHA-256, Seitenzahl, Textzeichen) **nur** in den mit `--aus` genannten Ordner; der Ordner muss leer sein und außerhalb des Repos liegen (Prüfung `git rev-parse --show-toplevel` des Ordners darf nicht das Repo sein). Exit-Codes wie im Vault-Skript (0, 2, 3, 4): 0 geladen/erlaubt; 2 `robots.txt` lesbar und verbietet den Pfad; 3 `robots.txt` nicht entscheidbar oder Sperre am Blatt (401/403, 5xx, Verbindungsfehler, Challenge); 4 sonstiger Fehler (auch Ordnerprüfung). Modi: Standard (robots prüfen, dann laden), `--nur-robots` (nur die Entscheidung, **kein** Download des Blatts), `--lokal <datei>` (kein Netz: SHA-256, Text, JSON aus einer von Nyko gelieferten Datei; die Datei darf nicht im Repo liegen). **Bewusste Abweichung vom RFC 9309:** Der RFC behandelt 4xx der `robots.txt` als "unavailable" (erlaubt); `holen.py` erlaubt nur 404 und 410 und sperrt 401, 403 und übrige 4xx, weil 403 hier eine Cloudflare-Challenge oder ein Zugriffsverbot ist (Allianz). 5xx und Verbindungsfehler gelten wie im RFC ("unreachable") als gesperrt. Die Abweichung steht im Modulkopf und in Test (6). Basis: Vault-Fassung `Research/2026-10-07 BIB-Auslese/assets/skripte/holen.py` (Kopf: 93 Zeilen, `rfc9309_erlaubt`). Anders als dort: Funktionen statt Skript-Code auf Modulebene (testbar), keine festen Pfade, `--aus` Pflicht.
 
 - [ ] **Step 1: Stub** (`rfc9309_erlaubt(text, pfad)` gibt immer `True`; `entscheide(status, text, pfad)` ebenso).
-- [ ] **Step 2: Tests (RED).** Mindestens 8: (1) längste passende Regel gewinnt (`Disallow: /a/`, `Allow: /a/b/` erlaubt `/a/b/x`). (2) Wildcard `Disallow: /*.pdf$` sperrt `/x/y.pdf`, erlaubt `/x/y.pdf?v=1` nicht fälschlich (Gegentest zu Pythons `robotparser`: dieselbe Eingabe, `urllib.robotparser` sagt "erlaubt" und hätte den Fehler vom 07.10. wiederholt; der Test hält die erwartete Antwort der eigenen Funktion fest). (3) Gleichstand: Allow gewinnt. (4) Gruppe `User-agent: *` zählt, andere Gruppen nicht. (5) `entscheide`: Status 404 = erlaubt (keine robots.txt). (6) **Status 403, 5xx, Verbindungsfehler = gesperrt** (Fall "Vergleichsbasis fehlt" als eigener roter Test; Allianz liefert 403). (7) leere robots.txt (Status 200, Text leer) = erlaubt. (8) Zielordner innerhalb des Repos wird abgelehnt (Exit 4), nicht leerer Ordner abgelehnt. Netzwerk wird nicht benutzt: `entscheide` und die Ordnerprüfung sind reine Funktionen.
+- [ ] **Step 2: Tests (RED), 15, jeder ein eigener Fall.** (1) längste passende Regel gewinnt (`Disallow: /a/`, `Allow: /a/b/` erlaubt `/a/b/x`). (2) Wildcard `Disallow: /*.pdf$` sperrt `/x/y.pdf`, erlaubt `/x/y.pdf?v=1` nicht fälschlich (Gegentest zu Pythons `robotparser`, der solche Zeilen nicht kennt und am 07.10. fünf PDFs trotz Sperre laden ließ; der Test hält die erwartete Antwort der eigenen Funktion fest). (3) Gleichstand: Allow gewinnt. (4) Gruppe `User-agent: *` zählt, andere Gruppen nicht. (5) `entscheide`: Status 404 und 410 = erlaubt (keine `robots.txt`). (6) **Status 401 und 403 = gesperrt, Exit 3** (bewusste Abweichung vom RFC, Fall "Vergleichsbasis fehlt" als eigener roter Test; Allianz liefert 403). (7) **Status 500 und 503 = gesperrt, Exit 3**. (8) **Verbindungsfehler (kein Status) = gesperrt, Exit 3** (AXA am 25.10.). (9) leere `robots.txt` (Status 200, Text leer) = erlaubt. (10) Zielordner innerhalb des Repos wird abgelehnt (Exit 4). (11) nicht leerer Zielordner wird abgelehnt (Exit 4). (12) `--lokal` mit einer Datei **im** Repo: Exit 4 (Gegentest: dieselbe Datei außerhalb: Exit 0). (13) `--lokal` berechnet die SHA-256 einer Fixture-Datei (bekannter Wert aus `hashlib` im Test) und macht keinen Netzaufruf (injizierte Abruffunktion zählt 0 Aufrufe). (14) `--nur-robots` ruft die Abruffunktion für das Blatt **nicht** auf, nur für `robots.txt` (Zähler: 1 Aufruf, URL endet auf `/robots.txt`). (15) Exit-Zuordnung: Regel verbietet = 2, `robots.txt` 403 = 3 (zwei Fälle, unterschiedliche Codes). Netzwerk wird nicht benutzt: `entscheide`, die Ordnerprüfung und die Modi laufen mit injizierter Abruffunktion.
 - [ ] **Step 3: GREEN.**
 - [ ] **Step 4: Trockenlauf gegen echte `robots.txt` ohne Download:** `python3 -I scripts/blatt/holen.py --nur-robots "https://www.swisslife.de/content/dam/de/documents/5e/17222.pdf"` meldet Exit 2 (gesperrt); `--nur-robots "https://www.nuernberger.de/medien/4allportal/gn339702_p.pdf"` meldet Exit 0 (erlaubt). Beide Ausgaben im Bericht. (Befund 25.10. mit dem Skriptstand aus dieser Inventur: Swiss Life gesperrt, Nürnberger erlaubt.)
-- [ ] **Step 5: Zählung.** Vorher 22, nachher **30** (Unittests: +8). Node 25.
-- [ ] **Step 6: Mutationsprobe M3:** in `rfc9309_erlaubt` den Vergleich "längste Regel" auf "erste Regel" ändern; Test (1) rot. **M4:** `entscheide` mit 403 auf "erlaubt" ändern; Test (6) rot. Rückbau per Edit.
+- [ ] **Step 5: Zählung.** Vorher 24, nachher **39** (Unittests: +15). Node 25.
+- [ ] **Step 6: Mutationsprobe M3:** in `rfc9309_erlaubt` den Vergleich "längste Regel" auf "erste Regel" ändern; Test (1) rot. **M4:** `entscheide` mit 403 auf "erlaubt" ändern; Test (6) rot. **M7:** `--lokal` ohne Repo-Prüfung; Test (12) rot. Rückbau per Edit.
 - [ ] **Step 7: Commit.**
 
 ### Task H2-3: Belegquote als Kennzahl
@@ -236,7 +259,7 @@ Jede Aufgabe, `<slug>` = Dateiname unter `data/app/tarife/` ohne `.json`, `<scra
 
 - [ ] **Step 1: Stub.** **Step 2: Tests (RED), mindestens 5:** (1) Fixture-Ordner mit 3 Tarifen, 1 mit `beleg` ergibt 1/3. (2) Quelle sagt 2 belegt, Bundle 1: Exit 1 (Abweichung benannt). (3) Fixture ohne Tarife: Exit 1 "Scan leer" (nie "0/0 ist 100 %"). (4) Aufschlüsselung nach Kategorie summiert zur Gesamtzahl. (5) **Gegen den echten Stand:** `test_echterStand_stimmtMitDerDateizaehlung` zählt `data/app/tarife/*.json` per `glob` und vergleicht mit `gesamt` aus `quote.py`; die Zahl 61 darf im Test **nicht** stehen. (Wächter-Gegentest: ein Test, der `61` fest eintrüge, wäre selbst die hartkodierte Zahl, die H4 verbietet.)
 - [ ] **Step 3: GREEN.** **Step 4:** Lauf auf dem echten Stand, Ausgabe zeigen; erwartet `10/61` (Stand 25.10.2026, vor dem Erstlauf).
-- [ ] **Step 5: Zählung.** Vorher 30, nachher **35** (+5). Node 25.
+- [ ] **Step 5: Zählung.** Vorher 39, nachher **44** (+5). Node 25.
 - [ ] **Step 6: Mutationsprobe M5:** `quote.py` zählt `belegteFelder` statt `beleg` ohne Abgleich: Test (2) rot. Rückbau.
 - [ ] **Step 7: Commit.**
 
@@ -246,7 +269,7 @@ Ablauf wie "Tarif-Ablauf", **aber A2 entfällt**: Das Blatt ist per Skript nicht
 
 - [ ] **Step 1: Handlieferung anfordern** (Nyko, außerhalb dieses Plans): Nyko lädt im Browser aus `https://www.hdi.de/service/basisinformationsblaetter/` die Basisinformationsblätter "CleverInvest Privatrente", 20 und 30 Jahre, laufender Beitrag und Einmalbeitrag, und legt sie in einen **eigenen leeren Ordner** außerhalb des Repos. Die Rechtsfrage (Offen Punkt 1) ist vorher beantwortet, sonst endet der Task hier mit "wartet".
 - [ ] **Step 2: A3 bis A11** auf die gelieferten Dateien (`--lokal`-Modus von `holen.py`: berechnet SHA-256 und Text ohne Netzzugriff; Adresse trägt Nyko ein, `abrufdatum` ist das Lieferdatum).
-- [ ] **Step 3: Vorab-Befund zum Preset:** `data/app/tarife/hdi--cleverinvest.json` hat heute `quelle` "AVB HARF26 Stand 09/2026 § 16 Abs. 2" und α 10 %, Zillmerdauer 120 Monate (iOS `MarketingStoreBildTests.swift:1405,1426`); diese Werte stammen aus Bedingungen, nicht aus dem Blatt. Weichen die Blattwerte ab, **nicht** still überschreiben: Abweichung in den Bericht (Wirkung auf Default, Demo-Fälle und Store-Bilder; H13 betrifft sie erst später).
+- [ ] **Step 3: Vorab-Befund zum Preset:** `data/app/tarife/hdi--cleverinvest.json` hat heute `quelle` "AVB HARF26 Stand 09/2026 § 16 Abs. 2" und α 10 %, Zillmerdauer 120 Monate (iOS `MarketingStoreBildTests.swift:1405,1426`); diese Werte stammen aus Bedingungen, nicht aus dem Blatt. Weichen die Blattwerte ab, **nicht** still überschreiben: Abweichung in den Bericht und als "ändert Werte" (Entscheidung 8). HDI ist der Default der Live-App; eine Wertänderung wirkt dort nach dem Merge sofort (Wirkung auf Demo-Fälle und Store-Bilder des einkompilierten Stands erst mit H13).
 - [ ] **Step 4: Gegentest** wie A7. **Step 5: Commit** (falls Beleg) oder Eintrag in die Abschlussliste (falls nicht).
 
 ### Task H2-5: AXA JustInvest Performance ALVF7 (Rang 12)
@@ -287,7 +310,7 @@ Ablauf wie "Tarif-Ablauf". Sammel-PDF mit 8 Blättern (laufend 20 J. = Seiten 17
 
 ### Task H2-13: VHV Privatrente Best (Rang 20)
 
-Ablauf wie "Tarif-Ablauf". Anbieter im Blatt: Hannoversche Lebensversicherung AG (VHV Gruppe), Produkt "FondsRente (Tarif FR3)"; Blattstand 01.01.2025, also 22 Monate alt: `stand` im Beleg exakt so, `belegStand` setzt der Build; Hinweis im Bericht, dass die Aktualität zu prüfen ist (neuere Fassung auf `hannoversche.de`?). α 0 % (VHV hat keine Einstiegsgebühr, App 2,5 %): ein Wert, der **ändert**, nicht bestätigt. Er bleibt, wenn die Nachrechnung grün ist; die Änderung der Rangfolge in der App ist erst mit H13 sichtbar.
+Ablauf wie "Tarif-Ablauf". Anbieter im Blatt: Hannoversche Lebensversicherung AG (VHV Gruppe), Produkt "FondsRente (Tarif FR3)"; Blattstand 01.01.2025, also 22 Monate alt: `stand` im Beleg exakt so, `belegStand` setzt der Build; Hinweis im Bericht, dass die Aktualität zu prüfen ist (neuere Fassung auf `hannoversche.de`?). α 0 % (VHV hat keine Einstiegsgebühr, App 2,5 %): ein Wert, der **ändert**, nicht bestätigt. Er bleibt, wenn die Nachrechnung grün ist, wird aber als "ändert Werte" im eigenen Commit geführt (Entscheidung 8): Nach dem Merge und dem Lauf von `ios-bundle.yml` liest die Live-App ihn über `TariffEndpoint`; die Rangfolge in der Live-App ändert sich dann sofort, nicht erst mit H13.
 
 ### Task H2-14: Abschluss, Quote, Liste, Review
 
@@ -299,7 +322,7 @@ Ablauf wie "Tarif-Ablauf". Anbieter im Blatt: Hannoversche Lebensversicherung AG
   `cd /Users/nyko/Developer/worktrees/tariffs-h2-erstlauf && node --test "scripts/*.test.mjs" > <scratch>/node.log 2>&1; echo EXIT=$?`
   `cd /Users/nyko/Developer/worktrees/tariffs-h2-erstlauf && python3 -I scripts/blatt/nachrechnung.py; echo EXIT=$?`
 
-  Erwartet: alle EXIT=0; Python **35** Tests (18 + 4 + 8 + 5, aus `git diff` der Testmethoden **neu zu zählen**, nicht aus diesem Plan zu übernehmen: Fehlerlog 25.10. H3-7), Node 25 (unverändert), Musterfälle: 18 plus 2 je neuem Beleg.
+  Erwartet: alle EXIT=0; Python **44** Tests (18 + 6 + 15 + 5, aus `git diff` der Testmethoden **neu zu zählen**, nicht aus diesem Plan zu übernehmen: Fehlerlog 25.10. H3-7), Node 25 (unverändert), Musterfälle: 18 plus 2 je neuem Beleg.
 - [ ] **Step 2: Zahl.** `python3 -I scripts/blatt/quote.py` und die Liste der neu belegten Tarife; Ziel des Erstlaufs: `10 + k` von 61 mit `k` aus Abschnitt "Abrufbarkeit" (erwartet 1 bis 4, bei Handlieferung bis 8).
 - [ ] **Step 3: Abschlussliste** als Tabelle im Bericht (nicht im Repo): je Rang 11 bis 20 Ergebnis (belegt / nicht belegt), Grund, Befehl, Abweichung aus der Nachrechnung. Daraus die Verteilung der Abweichungen für die Toleranz-Entscheidung (Frage 2 des Blatt-Plans).
 - [ ] **Step 4: iOS-Bundle prüfen, nicht ändern.** `git -C /Users/nyko/Documents/Claude-Projekte/patina-charts-ios fetch -q origin && git -C ... show origin/main:Models/TarifPreset.swift | grep -c "static let .* = TarifPreset("` meldet 56; im Bericht: **H13 ist nicht Teil**; die Golden-Tests (`GoldenNumbersTests`, `DemoFallTests`, `DefaultTarifNeutralitaetTests`) laufen auf dem Bundle und bleiben unberührt. Es wird **kein** Simulator gestartet (kein iOS-Eingriff).
@@ -310,18 +333,18 @@ Ablauf wie "Tarif-Ablauf". Anbieter im Blatt: Hannoversche Lebensversicherung AG
   `cd /Users/nyko/Developer/worktrees/tariffs-h2-erstlauf && git status --short && git log --oneline origin/main..HEAD && python3 /Users/nyko/Developer/worktrees/e6-spec-avdepot/scripts/check_wettbewerber_name.py --staged; echo EXIT=$?`
 
   Erwartet: sauberer Baum, ein Commit je Task, **kein** Blatt-PDF und keine Textdatei eines Blatts im Diff (`git diff --stat origin/main..HEAD | grep -i -E "pdf|\.txt"` ohne Treffer), Zwischenordner gelöscht, kein Push, keine PR. Sperrliste abhaken.
-- [ ] **Step 8: Bericht** mit: Vorlaufzahlen, Endzahlen, RED-Ausgaben, Mutationsproben M1 bis M5 samt Rückbau-Beleg, Quote vorher und nachher mit Befehl, Abschlussliste, Kurz-SHAs.
+- [ ] **Step 8: Bericht** mit: Vorlaufzahlen, Endzahlen, RED-Ausgaben, Mutationsproben M1 bis M7 samt Rückbau-Beleg, Quote vorher und nachher mit Befehl, Abschlussliste, Kurz-SHAs.
 
 ## Erwartete Testzahl-Zuwächse (aus diesem Plan gezählt, im Abschluss neu zu zählen)
 
 | Task | Python | Node |
 | --- | --- | --- |
 | Vorlauf | 18 | 25 |
-| H2-1 | +4 | 0 |
-| H2-2 | +8 | 0 |
+| H2-1 | +6 (4 Workflow-Wächter, 2 Wächter "0 Musterfälle") | 0 |
+| H2-2 | +15 | 0 |
 | H2-3 | +5 | 0 |
 | H2-4 bis H2-13 | 0 (Daten; geprüft durch `nachrechnung.py`, +2 Musterfälle je Beleg, das sind keine Unittests) | 0 |
-| **Summe** | **35** | **25** |
+| **Summe** | **44** | **25** |
 
 ## Offen für den Lead
 
@@ -336,6 +359,19 @@ Ablauf wie "Tarif-Ablauf". Anbieter im Blatt: Hannoversche Lebensversicherung AG
 9. **Pflicht-Schritt doppelt** (`validate.yml` und `ios-bundle.yml`): akzeptabel, oder aus `ios-bundle.yml` entfernen?
 10. **`TarifHerkunftsMatrix.luecken` im iOS-Repo** (Continentale, Helvetia, Barmenia) bildet den Bundle-Stand ab, nicht den Live-Stand; gehört zu H13, nicht hierher.
 11. **Fehlerlog-Eintrag** nach dem Erstlauf, falls etwas auftritt, was dieser Plan nicht vorhersah (Muster: Sperre trotz robots, Lesart-Vertauschung, Blatt veraltet).
+
+12. **Wert-ändernde Belege (Entscheidung 8).** Soll ein Beleg, der Modellwerte ändert (erwartet VHV, möglicherweise HDI und Nürnberger), nach dem Merge sofort in die Live-App (`TariffEndpoint` liest `main/tariffs.json`), oder will Nyko solche Commits erst nach Ansicht der Wirkung auf Default und Demo-Fälle? Der Plan trennt sie im Commit; das Merge-Gate ist Nykos.
+
+## Prüfprotokoll (Skeptiker-Befunde, am Code nachgeprüft, 25.10.2026)
+
+- B1 übernommen: `nachrechnung.py:143` und `:159-160` bestätigt (leere `pruefung` wird ohne Dateiargument übersprungen, `return 1 if durchgefallen else 0`); H2-1 Step 2b, M6, +2 Tests.
+- B2 übernommen: `Services/TariffEndpoint.swift:21` und `docs/DEMO-FAELLE.md:88` auf `origin/main` gelesen; Zeile "Auswirkung auf die App" umgeschrieben, Entscheidung 8, A7b, Review Focus 8, Offen 12.
+- B3 übernommen: `--lokal` und `--nur-robots` hatten keinen Test; Tests (12) bis (14) neu, Test (8) alt in (10) und (11) geteilt.
+- B4 übernommen: RFC 9309 liest 4xx als erlaubt, der Plan sperrt 401/403; als bewusste Abweichung benannt, Exit 2 gegen 3 in Test (15) festgelegt, 5xx und Netzfehler eigene Tests.
+- B5 übernommen: `…0002`, `…0012`, `…0015` mehrdeutig (in `tariffs.json` nachgezählt); ID-Endungen entfernt, Dateiname und volle ID für Rang 11 bis 20.
+- B6 übernommen: `docs/PLAN-blatt-auslese.md` fehlt auf `main` und enthält den Abschnitt "Lesart" nur als unversionierte Änderung im Klon `patina-tariffs-plan-auslese`; Lesart steht jetzt wörtlich bei A5.
+- B7 übernommen: `nachrechnung.py:37-38` ist eine relative Abweichung (0.15) bzw. 0,0015 absolut; Wortlaut korrigiert.
+- Abgelehnt: keiner. (Die Zählungen, die der Skeptiker bestätigt hat, blieben unverändert.)
 
 ## Anhang: Entscheidungsliste (wörtlich)
 
