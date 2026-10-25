@@ -335,6 +335,28 @@ Ablauf wie "Tarif-Ablauf". Anbieter im Blatt: Hannoversche Lebensversicherung AG
   Erwartet: sauberer Baum, ein Commit je Task, **kein** Blatt-PDF und keine Textdatei eines Blatts im Diff (`git diff --stat origin/main..HEAD | grep -i -E "pdf|\.txt"` ohne Treffer), Zwischenordner gelöscht, kein Push, keine PR. Sperrliste abhaken.
 - [ ] **Step 8: Bericht** mit: Vorlaufzahlen, Endzahlen, RED-Ausgaben, Mutationsproben M1 bis M7 samt Rückbau-Beleg, Quote vorher und nachher mit Befehl, Abschlussliste, Kurz-SHAs.
 
+### Abschlussliste Nachlauf (H2-F2, Stand 25.10.2026, HEAD 96d3799)
+
+Grundlage: `entscheidungen.md` (Nachtrag 1 Zuordnung über Anbieter/Schicht/Beitragsart, Nachtrag 2 Untergrenze der Spanne, Nachtrag 3 Nachrechnung nur grün durch Annahme 0 zählt nicht grün). Sie gehen dem Tasktext H2-14 vor. Belegquote nach dem Nachlauf: **13 von 61** (`python3 -I scripts/blatt/quote.py`; vorher 10 von 61). Klassische Versicherer 11/43, Strukturvertrieb 2/4, übrige 0.
+
+| Rang | Tarif | Ergebnis | Grund | Wertändernd |
+| --- | --- | --- | --- | --- |
+| 11 | HDI CleverInvest (H2-4) | nicht belegt | Entscheidung Nyko 25.10.: robots/Data-Mining gesperrt, wartet auf Klärung § 44b UrhG | nein |
+| 12 | AXA JustInvest Performance (H2-5) | nicht belegt | wie Rang 11 | nein |
+| 13 | Swiss Life Maximo (H2-6) | nicht belegt | wie Rang 11 | nein |
+| 14 | Allianz PrivatRente InvestFlex (H2-7) | nicht belegt | wie Rang 11 | nein |
+| 15 | Baloise Invest FondsRente (H2-8b) | **belegt** (alphaRate, betaRate) | Blatt "Baloise Best Invest (regelmäßiger Beitrag)", Stand 24.08.2026; Zuordnung von Nyko bestätigt; Spanne 6,4 bis 7,8 % ohne Laufzeit-Zuordnung, Untergrenze nach Nachtrag 2 | **ja**: betaRate 0 -> 0,064 |
+| 16 | Volkswohl Bund Vorsorge Plan FRV (H2-9b) | **belegt** (alphaRate, betaRate) | Blatt "Fondsgebundene Rentenversicherung" (FONDS PUR), Stand 25.03.2026; Zuordnung bestätigt | **ja**: betaRate 0 -> 0,069 |
+| 17 | Signal Iduna SI Wachstum (H2-10b) | **belegt** (alphaRate, betaStaffel) | Blatt "SIGNAL IDUNA Pur Invest", Stand 30.09.2025; Zuordnung bestätigt | **ja**: betaStaffel neu, betaRate 0 -> 0,07 (Fallback) |
+| 18 | Nürnberger FondsRente (H2-11b) | nicht belegt | Beleg 4dc77c8 per Revert 96d3799 zurückgenommen (Nachtrag 3): Nachrechnung nur grün mit kappaMonthly und fundTER auf 0 als Annahme, mit Live-Werten durchgefallen; Nutzungstext untersagt jede Nutzung ohne Zustimmung | nein (Endstand wertgleich zu vorher) |
+| 19 | Universa uni-FondsRente (H2-12b) | nicht belegt | Nachrechnung rot auch mit Untergrenzen als Annahmen (laufend RIY +0,20 Pp; Einmal Kosten +23,6 %); Nutzungstext erlaubt Downloads ausdrücklich, ist also nicht der Grund | nein |
+| 20 | VHV Privatrente Best (H2-13b) | nicht belegt | Nachrechnung rot: Untergrenze 710 EUR mit beta 2,55 % und kappa 1,30 EUR/Monat nicht erreichbar (+56 %); grün nur mit kappa 0 gegen das Blatt (Nachtrag 3); Blattstand 01.01.2025 | nein |
+
+Offen vor dem Merge (Entscheidung Nyko, im Beleg-Hinweis der Tarife als MERGE-BLOCKER vermerkt):
+
+- Volkswohl und Signal Iduna: kappaMonthly (Live 0,575 bzw. 0,7917) neben dem belegten beta, möglicher Doppelzähler; die Nachrechnung dieser Belege nutzt kappaMonthly 0 und fundTER 0 als Annahme (Baloise: fundTER 0). Nach der allgemeinen Regel aus Nachtrag 3 ist das Grenzfall; Nyko entscheidet bei der Freigabe.
+- Die wertändernden Belege liegen in getrennten Commit-Gruppen (Baloise 5a9b3da, bc6549c, 0bff4cf, 718c3c2; Volkswohl ff75255, 75fe74c; Signal Iduna 31fdd7a, e400c9f) und sind einzeln cherry-pickbar; gemergt wird erst nach Nykos Freigabe.
+
 ## Erwartete Testzahl-Zuwächse (aus diesem Plan gezählt, im Abschluss neu zu zählen)
 
 | Task | Python | Node |
