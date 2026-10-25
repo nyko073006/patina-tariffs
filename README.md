@@ -145,8 +145,17 @@ in einer Quelldatei unter `data/app/` sind sie verboten:
   zählen nicht, die Fondsübersicht auch nicht. Findet sich keins, warnt der
   Build und `belegStand` entfällt.
 
+**Belegquote.** `python3 -I scripts/blatt/quote.py` zählt aus den Daten, wie
+viele Tarife unter `data/app/tarife/` ein `beleg` tragen, und druckt
+`belegt/gesamt` mit Stand (`updatedAt` aus `tariffs.json`) und der
+Aufschlüsselung nach `kategorie`; `--json` gibt dasselbe maschinenlesbar aus.
+Das Skript bricht mit Exit 1 ab, wenn der Scan leer ist, Quelle und Bundle
+verschieden viele Tarife führen oder `beleg` (Quelle) und `belegteFelder`
+(Bundle) verschiedene Tarife als belegt ausweisen. Die Zahl steht nirgends im
+Text: wer sie nennt, nennt Stand und Befehl dazu.
+
 Tests: `node --test "scripts/*.test.mjs"` (Bundle-Skript) und
-`python3 -I -m unittest discover -s scripts/blatt` (Nachrechnung).
+`python3 -I -m unittest discover -s scripts/blatt` (Nachrechnung, Belegquote).
 
 ### Quartals-Update einer Fondsrendite
 
