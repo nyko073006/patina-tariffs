@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-08T15:29:23Z",
+  "updatedAt": "2026-10-25T15:13:39Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -233,7 +233,7 @@
       "alphaRate": 0.025,
       "anbieter": "Baloise",
       "betaEinmalRate": 0.025,
-      "betaRate": 0,
+      "betaRate": 0.078,
       "effectiveCostRIY": 0,
       "fundTER": 0.015,
       "gammaAnnualRate": 0.003,
@@ -242,12 +242,17 @@
       "jahrgang": "2026",
       "kappaMonthly": 0.7917,
       "kategorie": "Klassische Versicherer",
-      "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+      "quelle": "Basisinformationsblatt Baloise Best Invest (regelmäßiger Beitrag), Stand 24.08.2026 (α, β laufend); übrige Werte unbelegt und aus externer Quelle, 07.10.2026; Fundstellen im Feld beleg",
       "rentenfaktor": 0.00275,
       "tarifName": "Invest FondsRente",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 60
+      "zillmerdauerMonate": 60,
+      "belegteFelder": {
+        "alphaRate": "bib",
+        "betaRate": "bib"
+      },
+      "belegStand": "24.08.2026"
     },
     {
       "alphaRate": 0.025,
