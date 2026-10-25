@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-25T20:48:35Z",
+  "updatedAt": "2026-10-25T20:57:37Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -1120,7 +1120,7 @@
       "alphaRate": 0.04,
       "anbieter": "Volkswohl Bund",
       "betaEinmalRate": 0.02,
-      "betaRate": 0,
+      "betaRate": 0.069,
       "effectiveCostRIY": 0,
       "fundTER": 0.016,
       "gammaAnnualRate": 0.0028,
@@ -1129,12 +1129,17 @@
       "jahrgang": "2026",
       "kappaMonthly": 0.575,
       "kategorie": "Klassische Versicherer",
-      "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+      "quelle": "Basisinformationsblatt Fondsgebundene Rentenversicherung (FONDS PUR), Stand 25.03.2026 (α, β laufend); übrige Werte unbelegt und aus externer Quelle, 07.10.2026; Fundstellen im Feld beleg",
       "rentenfaktor": 0.002556,
       "tarifName": "Vorsorge Plan FRV",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 96
+      "zillmerdauerMonate": 96,
+      "belegteFelder": {
+        "alphaRate": "bib",
+        "betaRate": "bib"
+      },
+      "belegStand": "25.03.2026"
     },
     {
       "alphaRate": 0.025,

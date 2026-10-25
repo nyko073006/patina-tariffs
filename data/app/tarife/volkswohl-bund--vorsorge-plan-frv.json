@@ -1,8 +1,53 @@
 {
   "alphaRate": 0.04,
   "anbieter": "Volkswohl Bund",
+  "beleg": {
+    "dokumente": [
+      {
+        "abrufdatum": "2026-10-25",
+        "art": "bib-laufend",
+        "sha256": "9abb96a86e52b3603c2a7575e0733d9ac246dbd9b9c73ce5123811e16e28675a",
+        "stand": "25.03.2026 (fr_lfd_20, Stand 03.2026)",
+        "titel": "Fondsgebundene Rentenversicherung (FONDS PUR), Basisinformationsblatt, laufender Beitrag, 20 Jahre",
+        "url": "https://druckstuecke.volkswohl-bund.de/api/products/2642/documents/Basisinformationsblatt_Fondspolice_Pur_laufend_20_Jahre.pdf"
+      }
+    ],
+    "felder": {
+      "alphaRate": {
+        "dokument": 0,
+        "seite": 2,
+        "wortlaut": "Einstiegskosten 4,00 % der kumulierten Anlage."
+      },
+      "betaRate": {
+        "dokument": 0,
+        "hinweis": "Lesart nach Blatt: 6,90 % der eingezahlten Anlage ist β der laufenden Beiträge. Das Blatt nennt eine Zeile ohne Staffel. Nachrechnung 20 Jahre grün (Kosten -0,8 %, RIY -0,03 Pp).",
+        "seite": 2,
+        "wortlaut": "Verwaltungsgebühren und sonstige Verwaltungs- oder Betriebskosten 6,90 % der eingezahlten Anlage"
+      }
+    },
+    "hinweis": "Blatttitel: Fondsgebundene Rentenversicherung (VOLKSWOHL BUND Lebensversicherung a.G.), Basisinformationsblatt Stand 25.03.2026, Kennung fr_lfd_20; Anbieterprodukt FONDS PUR. Zuordnungsgrund: Anbieter Volkswohl Bund, Schicht 3 (fondsgebundene Rentenversicherung), regelmäßiger Beitrag, einziges Fondsprodukt des Anbieters in dieser Schicht; der App-Name Vorsorge Plan FRV steht nicht im Blatt (Dateiname: Fondspolice Pur). Zuordnung bestätigt von Nyko am 25.10.2026. Nicht belegt: betaEinmalRate (Einmal-Blatt nicht geladen), kappaMonthly (das Blatt nennt keine Fixkosten je Monat; die Nachrechnung rechnet ohne), gammaAnnualRate, fundTER (Fondsübersicht FD.allg.0626 nicht geprüft, der ETF-Nachweis fehlt), zillmerdauerMonate, rentenfaktor. Nutzungstext volkswohl-bund.de (Impressum, Urheberrecht): allgemeiner Vorbehalt ohne ausdrückliches Verbot des Auslesens; robots.txt erlaubt den Pfad.",
+    "pruefung": [
+      {
+        "annahmen": {
+          "fundTER": 0,
+          "gammaAnnualRate": 0.0046,
+          "kappaMonthly": 0
+        },
+        "beitrag": 1000,
+        "blatt": {
+          "kostenEuro": 3154,
+          "riy": 0.0161
+        },
+        "dokument": 0,
+        "einmal": false,
+        "hinweis": "Unterkante des Blatts nach 20 Jahren (günstigste Anlageoption): 3.154 EUR, 1,61 % pro Jahr, Rendite vor Kosten 2,07 %; laufende Kosten 0,46 % des Werts (Unterkante der Zeile 0,46 - 2,18 %) als gamma angesetzt, Fondskosten darin enthalten (fundTER 0), Transaktionskosten 0,00 % (Unterkante), Fixkosten je Monat nicht ausgewiesen (kappa 0). Seite 2.",
+        "jahre": 20,
+        "rendite": 0.0207
+      }
+    ]
+  },
   "betaEinmalRate": 0.02,
-  "betaRate": 0,
+  "betaRate": 0.069,
   "effectiveCostRIY": 0,
   "fundTER": 0.016,
   "gammaAnnualRate": 0.0028,
@@ -11,7 +56,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.575,
   "kategorie": "Klassische Versicherer",
-  "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+  "quelle": "Basisinformationsblatt Fondsgebundene Rentenversicherung (FONDS PUR), Stand 25.03.2026 (α, β laufend); übrige Werte unbelegt und aus externer Quelle, 07.10.2026; Fundstellen im Feld beleg",
   "rentenfaktor": 0.002556,
   "tarifName": "Vorsorge Plan FRV",
   "typischeBruttorendite": 0.06,
