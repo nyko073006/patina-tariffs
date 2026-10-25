@@ -110,8 +110,9 @@ Basisrenten) stammen, tragen ein Feld `beleg`:
 
 `python3 scripts/blatt/nachrechnung.py` rechnet jeden Musterfall mit den
 Tarifwerten nach und bricht ab, wenn das Ergebnis über die Toleranz vom Blatt
-abweicht (Euro 15 %, RIY 0,15 Prozentpunkte). Die CI führt es bei jeder
-Änderung unter `data/app/` aus. `build-ios.mjs` prüft die Form des Felds und
+abweicht (Euro 15 %, RIY 0,15 Prozentpunkte). Die CI führt es in `validate.yml`
+bei jedem Pull Request aus und in `ios-bundle.yml` vor dem Commit von
+`tariffs.json`. `build-ios.mjs` prüft die Form des Felds und
 lässt es aus `tariffs.json` heraus; die App liest stattdessen `belegteFelder`
 und `belegStand` (unten). Ein Wert kommt nur mit bestandener Nachrechnung in
 den Tarif.

@@ -137,17 +137,19 @@ def pruefe(fall, tarif, toleranz_euro=TOLERANZ_EURO, toleranz_riy=TOLERANZ_RIY):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     p.add_argument("dateien", nargs="*")
+    p.add_argument("--tarife", default=os.path.join(ROOT, "data", "app", "tarife"),
+                   help="Ordner mit den Tarifdateien (Vorgabe data/app/tarife)")
     p.add_argument("--toleranz-euro", type=float, default=TOLERANZ_EURO)
     p.add_argument("--toleranz-riy", type=float, default=TOLERANZ_RIY)
     a = p.parse_args(argv)
-    dateien = a.dateien or sorted(glob.glob(os.path.join(ROOT, "data", "app", "tarife", "*.json")))
+    dateien = a.dateien or sorted(glob.glob(os.path.join(a.tarife, "*.json")))
     geprueft = durchgefallen = 0
     for pfad in dateien:
         with open(pfad, encoding="utf-8") as f:
             tarif = json.load(f)
         faelle = (tarif.get("beleg") or {}).get("pruefung") or []
         name = f"{tarif.get('anbieter')} {tarif.get('tarifName')}"
-        if a.dateien and not faelle:
+        if not faelle and (a.dateien or "beleg" in tarif):
             print(f"✗ {name}: kein beleg.pruefung")
             durchgefallen += 1
         for i, fall in enumerate(faelle):
@@ -167,6 +169,10 @@ def main(argv=None):
                 durchgefallen += 1
                 print(f"✗ {kopf}: " + "; ".join(erg["fehler"]))
     print(f"\n{geprueft} Musterfaelle, {durchgefallen} durchgefallen")
+    if geprueft == 0:
+        # Nichts geprueft heisst nicht bestanden: leerer Ordner, umbenanntes Feld.
+        print("✗ 0 Musterfaelle: nichts zu pruefen, die Selbstpruefung ist wirkungslos")
+        return 1
     return 1 if durchgefallen else 0
 
 
