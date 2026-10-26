@@ -352,7 +352,14 @@ Grundlage: `entscheidungen.md` (Nachtrag 1 Zuordnung über Anbieter/Schicht/Beit
 | 19 | Universa uni-FondsRente (H2-12b) | nicht belegt | Nachrechnung rot auch mit Untergrenzen als Annahmen (laufend RIY +0,20 Pp; Einmal Kosten +23,6 %); Nutzungstext erlaubt Downloads ausdrücklich, ist also nicht der Grund | nein |
 | 20 | VHV Privatrente Best (H2-13b) | nicht belegt | Nachrechnung rot: Untergrenze 710 EUR mit beta 2,55 % und kappa 1,30 EUR/Monat nicht erreichbar (+56 %); grün nur mit kappa 0 gegen das Blatt (Nachtrag 3); Blattstand 01.01.2025 | nein |
 
-Offen vor dem Merge (Entscheidung Nyko, im Beleg-Hinweis der Tarife als MERGE-BLOCKER vermerkt):
+Entschieden von Nyko am 26.10.2026 (vor dem Merge):
+
+- Alle drei Belege (Baloise, Volkswohl, Signal Iduna) gehen nach main. Bei Volkswohl und Signal Iduna ist kappaMonthly auf 0 gesetzt, weil das Blatt keine Fixkosten neben β nennt (Volkswohl: 6,90 EUR war ein Lesefehler für 6,90 %). Die Nachrechnung ist damit ohne Annahme gegen das Blatt grün; fundTER und gammaAnnualRate bleiben unbelegt und unverändert. Die Belegquote bleibt 13 von 61.
+- Baloise: Der allgemeine Copyright-Vorbehalt von helvetia.de ist kein Verbot; der Beleg bleibt.
+- Nürnberger bleibt zurückgenommen (Nutzungstext untersagt jede Nutzung ohne Zustimmung). Commit 4dc77c8 und Revert 96d3799 liegen in der Historie und heben sich auf.
+- Abweichungen der Nachrechnung je belegtem Tarif: Baloise Kosten -12,3 %, Volkswohl -0,8 %, Signal Iduna -8,6 %.
+
+Vorher offen (Stand 25.10.2026, im Beleg-Hinweis als MERGE-BLOCKER vermerkt, inzwischen entschieden):
 
 - Volkswohl und Signal Iduna: kappaMonthly (Live 0,575 bzw. 0,7917) neben dem belegten beta, möglicher Doppelzähler; die Nachrechnung dieser Belege nutzt kappaMonthly 0 und fundTER 0 als Annahme (Baloise: fundTER 0). Nach der allgemeinen Regel aus Nachtrag 3 ist das Grenzfall; Nyko entscheidet bei der Freigabe.
 - Die wertändernden Belege liegen in getrennten Commit-Gruppen (Baloise 5a9b3da, bc6549c, 0bff4cf, 718c3c2; Volkswohl ff75255, 75fe74c; Signal Iduna 31fdd7a, e400c9f) und sind einzeln cherry-pickbar; gemergt wird erst nach Nykos Freigabe.

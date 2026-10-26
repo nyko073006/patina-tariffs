@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-25T21:08:11Z",
+  "updatedAt": "2026-10-26T05:20:05Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -864,7 +864,7 @@
       "gammaBeitragsfrei": 0.003,
       "id": "11111111-0000-0000-0000-000000000017",
       "jahrgang": "2026",
-      "kappaMonthly": 0.7917,
+      "kappaMonthly": 0,
       "kategorie": "Klassische Versicherer",
       "quelle": "Basisinformationsblatt SIGNAL IDUNA Pur Invest, Stand 30.09.2025 (Fußzeile 2304003 Jan26), Seite 3 (α, β-Staffel laufend); übrige Werte unbelegt und aus externer Quelle, 07.10.2026; Fundstellen im Feld beleg",
       "rentenfaktor": 0.002369,
@@ -1142,7 +1142,7 @@
       "gammaBeitragsfrei": 0.0038,
       "id": "11111111-0000-0000-0000-000000000012",
       "jahrgang": "2026",
-      "kappaMonthly": 0.575,
+      "kappaMonthly": 0,
       "kategorie": "Klassische Versicherer",
       "quelle": "Basisinformationsblatt Fondsgebundene Rentenversicherung (FONDS PUR), Stand 25.03.2026 (α, β laufend); übrige Werte unbelegt und aus externer Quelle, 07.10.2026; Fundstellen im Feld beleg",
       "rentenfaktor": 0.002556,

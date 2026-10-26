@@ -25,7 +25,7 @@
         "wortlaut": "6,4 % bis 7,8 % des Beitrags, je nach vereinbarter Beitragszahlungsdauer."
       }
     },
-    "hinweis": "Blatttitel: Baloise Best Invest (regelmäßiger Beitrag), Basisinformationsblatt Stand 24.08.2026. Zuordnungsgrund: Anbieter Baloise, Schicht 3 (fondsgebundene Rentenversicherung), regelmäßiger Beitrag, einziges Fondsprodukt des Anbieters in dieser Schicht; der App-Name Invest FondsRente steht nicht im Blatt (Dateiname des Blatts: Invest-Vario-FRN). Zuordnung bestätigt von Nyko am 25.10.2026. Nicht belegt: betaEinmalRate (Einmal-Blatt nicht geladen), kappaMonthly (die Zeilen 0,04 % der Beitragssumme und 6 EUR sind nicht eindeutig zuzuordnen), gammaAnnualRate, fundTER, zillmerdauerMonate, rentenfaktor.",
+    "hinweis": "Blatttitel: Baloise Best Invest (regelmäßiger Beitrag), Basisinformationsblatt Stand 24.08.2026. Zuordnungsgrund: Anbieter Baloise, Schicht 3 (fondsgebundene Rentenversicherung), regelmäßiger Beitrag, einziges Fondsprodukt des Anbieters in dieser Schicht; der App-Name Invest FondsRente steht nicht im Blatt (Dateiname des Blatts: Invest-Vario-FRN). Zuordnung bestätigt von Nyko am 25.10.2026. Nicht belegt: betaEinmalRate (Einmal-Blatt nicht geladen), kappaMonthly (die Zeilen 0,04 % der Beitragssumme und 6 EUR sind nicht eindeutig zuzuordnen), gammaAnnualRate, fundTER, zillmerdauerMonate, rentenfaktor. Nutzungstext helvetia.de: allgemeiner Copyright-Vorbehalt, kein ausdrückliches Verbot des Auslesens; Beleg nach Entscheidung Nyko 26.10.2026 behalten, das Repo zitiert nur je Feld eine Kostenzeile.",
     "pruefung": [
       {
         "annahmen": {
