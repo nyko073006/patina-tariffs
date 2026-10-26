@@ -163,6 +163,33 @@ class Kommandozeile(unittest.TestCase):
     def test_exitcode_gruen_fuer_continentale(self):
         self.assertEqual(nachrechnung.main([TARIF]), 0)
 
+    def test_exitcode_rot_bei_null_musterfaellen(self):
+        import contextlib
+        import io
+        import tempfile
+        with tempfile.TemporaryDirectory() as leer:
+            ausgabe = io.StringIO()
+            with contextlib.redirect_stdout(ausgabe):
+                code = nachrechnung.main(["--tarife", leer])
+        self.assertEqual(code, 1)
+        self.assertIn("✗ 0 Musterfaelle", ausgabe.getvalue())
+
+    def test_exitcode_rot_bei_beleg_ohne_pruefung(self):
+        import tempfile
+        tarif = continentale()
+        for pruefung in ([], None):
+            with self.subTest(pruefung=pruefung), tempfile.TemporaryDirectory() as ordner:
+                # Ein gueltiger Tarif daneben sorgt dafuer, dass Musterfaelle > 0 bleiben.
+                for name, t in (("a.json", tarif), ("b.json", copy.deepcopy(tarif))):
+                    if name == "b.json":
+                        if pruefung is None:
+                            del t["beleg"]["pruefung"]
+                        else:
+                            t["beleg"]["pruefung"] = pruefung
+                    with open(os.path.join(ordner, name), "w", encoding="utf-8") as f:
+                        json.dump(t, f)
+                self.assertEqual(nachrechnung.main(["--tarife", ordner]), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

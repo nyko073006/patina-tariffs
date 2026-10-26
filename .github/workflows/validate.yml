@@ -19,3 +19,7 @@ jobs:
         run: npm run validate
       - name: Build data bundle (smoke test)
         run: npm run build:data
+      - name: Selbstpruefung belegter Tarife
+        run: |
+          python3 -m unittest discover -s scripts/blatt
+          python3 scripts/blatt/nachrechnung.py
