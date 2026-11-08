@@ -234,6 +234,39 @@ class AnnahmeGrund(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("fundTER 0 ohne annahmenGrund", ausgabe.getvalue())
 
+    def test_annahmenGrund_kein_objekt_wird_gemeldet(self):
+        p = {"annahmen": {"fundTER": 0}, "annahmenGrund": "x"}
+        self.assertEqual(nachrechnung.fehlende_annahme_gruende(p), ["fundTER"])
+
+    def test_fundTER_null_float_ohne_grund_wird_gemeldet(self):
+        self.assertEqual(nachrechnung.fehlende_annahme_gruende({"annahmen": {"fundTER": 0.0}}), ["fundTER"])
+
+    def test_main_mix_zaehlt_einmal(self):
+        import contextlib
+        import io
+        import tempfile
+        quelle = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..",
+                              "data", "app", "tarife", "n-rnberger--basisrente-invest.json")
+        with open(quelle, encoding="utf-8") as f:
+            tarif = json.load(f)
+        mit = tarif["beleg"]["pruefung"][0]
+        ohne = copy.deepcopy(mit)
+        del ohne["annahmenGrund"]
+        tarif["beleg"]["pruefung"] = [mit, ohne]
+        with tempfile.TemporaryDirectory() as ordner:
+            pfad = os.path.join(ordner, "t.json")
+            with open(pfad, "w", encoding="utf-8") as f:
+                json.dump(tarif, f)
+            ausgabe = io.StringIO()
+            with contextlib.redirect_stdout(ausgabe):
+                code = nachrechnung.main([pfad])
+        zeilen = ausgabe.getvalue().splitlines()
+        self.assertEqual(code, 1)
+        self.assertEqual(sum("ohne annahmenGrund" in z for z in zeilen), 1)
+        self.assertEqual(sum(z.startswith("✓") for z in zeilen), 1)
+        self.assertFalse([z for z in zeilen if z.startswith("✓") and "[1]" in z])
+        self.assertIn("2 Musterfaelle, 1 durchgefallen", ausgabe.getvalue())
+
 
 if __name__ == "__main__":
     unittest.main()
