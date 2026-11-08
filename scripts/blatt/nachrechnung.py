@@ -40,6 +40,22 @@ TOLERANZ_EURO = 0.15     # relative Abweichung "Kosten insgesamt"
 TOLERANZ_RIY = 0.0015    # 0,15 Prozentpunkte
 
 
+def fehlende_annahme_gruende(pruefung):
+    """Namen der Annahmen, die 0 sind und einen Grund brauchen (heute nur fundTER)."""
+    annahmen = pruefung.get("annahmen")
+    gruende = pruefung.get("annahmenGrund")
+    if not isinstance(annahmen, dict):
+        return []
+    if not isinstance(gruende, dict):
+        gruende = {}
+    fehlt = []
+    if annahmen.get("fundTER") == 0:
+        grund = gruende.get("fundTER")
+        if not (isinstance(grund, str) and grund.strip()):
+            fehlt.append("fundTER")
+    return fehlt
+
+
 def kostensaetze(tarif, annahmen):
     """Kostenparameter des Musterfalls: Tarifwerte, ueberschrieben durch annahmen."""
     w = dict(tarif)
@@ -154,6 +170,13 @@ def main(argv=None):
             durchgefallen += 1
         for i, fall in enumerate(faelle):
             geprueft += 1
+            fehlt = fehlende_annahme_gruende(fall)
+            if fehlt:
+                # Ein Fall zählt genau einmal als durchgefallen, ohne ✓-Zeile.
+                for annahme in fehlt:
+                    print(f"✗ {name} [{i}]: {annahme} 0 ohne annahmenGrund")
+                durchgefallen += 1
+                continue
             erg = pruefe(fall, tarif, a.toleranz_euro, a.toleranz_riy)
             art = "einmal" if fall["einmal"] else "laufend"
             kopf = f"{name} [{i}] {art} {fall['jahre']} J."

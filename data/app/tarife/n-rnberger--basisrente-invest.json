@@ -35,6 +35,9 @@
           "fundTER": 0,
           "gammaAnnualRate": 0.011
         },
+        "annahmenGrund": {
+          "fundTER": "S. 2: „Prozentsatz des gebildeten Kapitals, jährlich max. 3,80 % … aktuelle Kapitalkostenbelastung 1,10 %“ und im Abschnitt „Zusätzliche Hinweise“: „Dieser Prozentsatz beinhaltet auf den gesamten Vertragswert bezogene tarifliche Kosten. … Er beinhaltet aber auch Kosten für Ihre Investmentanlage, welche direkt von den Fondsgesellschaften erhoben werden.“ Die Fondskosten stecken damit in der Kapitalkostenbelastung (gamma 1,10 %); fundTER 0 vermeidet den Doppelansatz."
+        },
         "beitrag": 1200,
         "blatt": {
           "riy": 0.0216

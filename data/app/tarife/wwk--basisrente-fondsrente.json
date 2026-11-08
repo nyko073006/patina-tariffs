@@ -26,6 +26,9 @@
           "fundTER": 0,
           "gammaAnnualRate": 0.0252
         },
+        "annahmenGrund": {
+          "fundTER": "S. 2: „Prozentsatz des gebildeten Kapitals, jährlich max.*** 3,55 % (Ursache sind schwankende Kosten der Fondsanbieter)“ und Fußnote „*** Aktuelle Kostenbelastung aufgrund gewählter Fonds, jährlich 2,52 %“. Das Blatt weist die Kosten der Fondsanbieter damit in diesem Posten aus (gamma 2,52 %); fundTER 0 vermeidet den Doppelansatz."
+        },
         "beitrag": 24000,
         "blatt": {
           "riy": 0.0287
