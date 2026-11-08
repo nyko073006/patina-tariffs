@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-08T17:30:27Z",
+  "updatedAt": "2026-11-08T17:36:37Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -215,7 +215,7 @@
       "jahrgang": "2026",
       "kappaMonthly": 1,
       "kategorie": "Klassische Versicherer",
-      "quelle": "Muster-Produktinformationsblatt Baloise Best Invest Basis (Basisrente), Stand 29.01.2026 (α, Zillmerdauer, β, κ); β Einmal und übrige Werte unbelegt; Fundstellen im Feld beleg",
+      "quelle": "Muster-Produktinformationsblatt Baloise Best Invest Basis (Basisrente), Stand 29.01.2026; übrige Werte unbelegt. Beleg am 08.11.2026 zurückgenommen: Nachrechnung nur mit fundTER 0 grün, das Blatt nennt die Fondskosten nicht.",
       "rentenfaktor": 0.00287,
       "tarifName": "BasisRente Invest",
       "typischeBruttorendite": 0.06,
@@ -235,7 +235,7 @@
       "jahrgang": "2026",
       "kappaMonthly": 0.7917,
       "kategorie": "Klassische Versicherer",
-      "quelle": "Basisinformationsblatt Baloise Best Invest (regelmäßiger Beitrag), Stand 24.08.2026 (α, β laufend); übrige Werte unbelegt und aus externer Quelle, 07.10.2026; Fundstellen im Feld beleg",
+      "quelle": "Basisinformationsblatt Baloise Best Invest (regelmäßiger Beitrag), Stand 24.08.2026; übrige Werte aus externer Quelle, 07.10.2026. Beleg am 08.11.2026 zurückgenommen: Nachrechnung nur mit fundTER 0 grün, das Blatt nennt die Fondskosten nicht.",
       "rentenfaktor": 0.00275,
       "tarifName": "Invest FondsRente",
       "typischeBruttorendite": 0.06,
@@ -1106,7 +1106,7 @@
       "jahrgang": "2026",
       "kappaMonthly": 0.7917,
       "kategorie": "Klassische Versicherer",
-      "quelle": "Basisinformationsblätter VOLKSWOHL BUND Fondsgebundene Rentenversicherung mit gemanagten Portfolios, Stand 25.03.2026 (α, β, β Einmal); übrige Werte externe Quelle bzw. Schätzwert (Kategorie-Median); Fundstellen im Feld beleg",
+      "quelle": "Basisinformationsblätter VOLKSWOHL BUND Fondsgebundene Rentenversicherung mit gemanagten Portfolios, Stand 25.03.2026; übrige Werte externe Quelle bzw. Schätzwert (Kategorie-Median). Beleg am 08.11.2026 zurückgenommen: Nachrechnung nur mit fundTER 0 grün, das Blatt nennt die Fondskosten nicht.",
       "rentenfaktor": 0.0027,
       "tarifName": "FITTERY",
       "typischeBruttorendite": 0.06,
@@ -1126,7 +1126,7 @@
       "jahrgang": "2026",
       "kappaMonthly": 0,
       "kategorie": "Klassische Versicherer",
-      "quelle": "Basisinformationsblatt Fondsgebundene Rentenversicherung (FONDS PUR), Stand 25.03.2026 (α, β laufend); übrige Werte unbelegt und aus externer Quelle, 07.10.2026; Fundstellen im Feld beleg",
+      "quelle": "Basisinformationsblatt Fondsgebundene Rentenversicherung (FONDS PUR), Stand 25.03.2026; übrige Werte aus externer Quelle, 07.10.2026. Beleg am 08.11.2026 zurückgenommen: Nachrechnung nur mit fundTER 0 grün, das Blatt nennt die Fondskosten nicht.",
       "rentenfaktor": 0.002556,
       "tarifName": "Vorsorge Plan FRV",
       "typischeBruttorendite": 0.06,
