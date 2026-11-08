@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-08T17:43:59Z",
+  "updatedAt": "2026-11-08T17:45:54Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -854,17 +854,12 @@
       "jahrgang": "2026",
       "kappaMonthly": 0,
       "kategorie": "Klassische Versicherer",
-      "quelle": "Basisinformationsblatt SIGNAL IDUNA Pur Invest, Stand 30.09.2025 (Fußzeile 2304003 Jan26), Seite 3 (α, β-Staffel laufend); übrige Werte unbelegt und aus externer Quelle, 07.10.2026; Fundstellen im Feld beleg",
+      "quelle": "Basisinformationsblatt SIGNAL IDUNA Pur Invest, Stand 30.09.2025 (Fußzeile 2304003 Jan26), Seite 3; übrige Werte aus externer Quelle, 07.10.2026. Beleg am 08.11.2026 zurückgenommen: Nachrechnung nur mit fundTER 0 grün, das Blatt nennt die Fondskosten nicht.",
       "rentenfaktor": 0.002369,
       "tarifName": "SI Wachstum",
       "typischeBruttorendite": 0.055,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 60,
-      "belegteFelder": {
-        "alphaRate": "bib",
-        "betaStaffel": "bib"
-      },
-      "belegStand": "30.09.2025"
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
