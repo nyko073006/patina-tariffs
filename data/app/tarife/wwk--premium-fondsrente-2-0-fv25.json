@@ -45,6 +45,9 @@
           "fundTER": 0,
           "gammaAnnualRate": 0.0028
         },
+        "annahmenGrund": {
+          "fundTER": "Das Blatt nennt Verwaltung und Fondskosten nur zusammen (0,28 %); sie stecken in gamma, fundTER 0 vermeidet den Doppelansatz (Wortlaut wie im hinweis dieses Prüfeintrags)."
+        },
         "beitrag": 1000,
         "blatt": {
           "kostenEuro": 3059,
@@ -60,6 +63,9 @@
         "annahmen": {
           "fundTER": 0,
           "gammaAnnualRate": 0.0048
+        },
+        "annahmenGrund": {
+          "fundTER": "Wie Prüfeintrag 0 desselben Tarifs übertragen: Verwaltung und Fondskosten nur zusammen, hier 0,48 % in gamma; fundTER 0 vermeidet den Doppelansatz. Der hinweis dieses Eintrags zitiert die Zeile nicht, im Einmal-BIB nicht separat nachgelesen: in Z6 gegen das Blatt prüfen."
         },
         "beitrag": 10000,
         "blatt": {
