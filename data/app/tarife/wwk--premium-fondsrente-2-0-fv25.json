@@ -1,53 +1,6 @@
 {
   "alphaRate": 0.025,
   "anbieter": "WWK",
-  "beleg": {
-    "dokumente": [
-      {
-        "abrufdatum": "2026-10-07",
-        "art": "bib-laufend",
-        "sha256": "7ac17d212b5aede04d2a16f4333d15d8397b2e7d0b9c2e1fa93dba3ddb170a72",
-        "stand": "Stand Basisinformationsblatt: 17.08.2026 (BIB_FV25_LB_20_V20260817)",
-        "titel": "WWK Premium FondsRente 2.0 (FV25)",
-        "url": "https://www.wwk.de/medien/dokumente/bib_priip/bib_ab_17.08.2026/wwk-premium-fondsrente-2.0-laufender-beitrag-20-jahre.pdf"
-      }
-    ],
-    "felder": {
-      "alphaRate": {
-        "dokument": 0,
-        "seite": 3,
-        "wortlaut": "Einstiegskosten 2,50 % der kumulierten Anlage"
-      },
-      "betaRate": {
-        "dokument": 0,
-        "hinweis": "Zeile unter Verwaltungsgebühren; „der eingezahlten Anlage“ = Anteil jedes Beitrags",
-        "seite": 3,
-        "wortlaut": "8,50 % der eingezahlten Anlage"
-      }
-    },
-    "hinweis": "Einmalbeitrags-BIB (Stand 17.08.2026) nicht mehr belegt: Das Blatt nennt Verwaltungsgebühren „0,48 - 2,31 % des Werts Ihrer Investmentfonds pro Jahr“ und weist die Kosten der Anlageoption gesondert aus („diese Informationen nur die Kosten der Anlageoption beinhalten, die Verringerung der Rendite durch die zusätzlichen Kosten des Versicherungsvertrags ist oben gesondert dargestellt“, S. 3); dass Fondskosten im Posten stecken, steht dort nicht. fundTER 0 im Einmal-Musterfall wäre unbegründet. Der laufende Beleg bleibt, Modellwerte unverändert.",
-    "pruefung": [
-      {
-        "annahmen": {
-          "fundTER": 0,
-          "gammaAnnualRate": 0.0028
-        },
-        "annahmenGrund": {
-          "fundTER": "Das Blatt nennt Verwaltung und Fondskosten nur zusammen (0,28 %); sie stecken in gamma, fundTER 0 vermeidet den Doppelansatz (Wortlaut wie im hinweis dieses Prüfeintrags)."
-        },
-        "beitrag": 1000,
-        "blatt": {
-          "kostenEuro": 3059,
-          "riy": 0.015
-        },
-        "dokument": 0,
-        "einmal": false,
-        "hinweis": "Unterkante; Blatt nennt Verwaltung und Fondskosten nur zusammen (0,28 %)",
-        "jahre": 20,
-        "rendite": 0.045
-      }
-    ]
-  },
   "betaEinmalRate": 0.05,
   "betaRate": 0.085,
   "effectiveCostRIY": 0,
@@ -58,7 +11,7 @@
   "jahrgang": "2026",
   "kappaMonthly": 0.8333,
   "kategorie": "Strukturvertrieb",
-  "quelle": "Basisinformationsblätter WWK Premium FondsRente 2.0 (FV25) laufend und Einmalbeitrag, Stand 17.08.2026 (α, β, β Einmal); übrige Werte externe Quelle; Fundstellen im Feld beleg",
+  "quelle": "Basisinformationsblätter WWK Premium FondsRente 2.0 (FV25) laufend und Einmalbeitrag, Stand 17.08.2026; übrige Werte externe Quelle. Beleg am 08.11.2026 zurückgenommen: Nachrechnung nur mit fundTER 0 grün, das Blatt nennt die Fondskosten nicht.",
   "rentenfaktor": 0.002548,
   "tarifName": "Premium FondsRente 2.0 FV25",
   "typischeBruttorendite": 0.055,
