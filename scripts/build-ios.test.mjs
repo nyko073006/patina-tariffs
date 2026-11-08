@@ -14,6 +14,7 @@ import { mkdtempSync, mkdirSync, copyFileSync, writeFileSync, readFileSync, rmSy
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isinPruefzifferOk } from "./build-ios.mjs";
 
 const SKRIPT = join(dirname(fileURLToPath(import.meta.url)), "build-ios.mjs");
 
@@ -297,4 +298,46 @@ test("Ausgabe-Schluessel ausserhalb der Altliste sind nur betaStaffel, belegteFe
 test("Pflichtfelder behalten ihren Typ: betaRate als String bricht den Build ab", () => {
   const r = lauf((t) => { t.betaRate = "0.128"; });
   assert.equal(r.code, 1, r.stdout + r.stderr);
+});
+
+// ───── ISIN-Pruefziffer ─────
+
+/** Wie `lauf`, nur mit anderer ISIN im Fixture-Fonds (Dateiname = ISIN). */
+function laufMitFondsIsin(isin) {
+  const wurzel = mkdtempSync(join(tmpdir(), "build-ios-isin-"));
+  try {
+    mkdirSync(join(wurzel, "scripts"));
+    mkdirSync(join(wurzel, "data", "app", "funds"), { recursive: true });
+    mkdirSync(join(wurzel, "data", "app", "tarife"), { recursive: true });
+    copyFileSync(SKRIPT, join(wurzel, "scripts", "build-ios.mjs"));
+    writeFileSync(join(wurzel, "data", "app", "funds", `${isin}.json`), JSON.stringify({ ...FONDS, isin }));
+    writeFileSync(join(wurzel, "data", "app", "tarife", "test.json"), JSON.stringify(basisTarif()));
+    const r = spawnSync(process.execPath, [join(wurzel, "scripts", "build-ios.mjs")], { encoding: "utf8" });
+    return { code: r.status, stderr: r.stderr, stdout: r.stdout };
+  } finally {
+    rmSync(wurzel, { recursive: true, force: true });
+  }
+}
+
+test("ISIN mit falscher Pruefziffer bricht den Build ab", () => {
+  const r = laufMitFondsIsin("IE00BMW42891");
+  assert.notEqual(r.code, 0, r.stdout + r.stderr);
+  assert.match(r.stderr, /ISIN Pruefziffer ungueltig/);
+});
+
+test("gueltige ISIN besteht die Pruefziffer", () => {
+  const r = laufMitFondsIsin("IE00B4L5Y983");
+  assert.equal(r.code, 0, r.stdout + r.stderr);
+});
+
+test("isinPruefzifferOk: gueltige ISINs (Pruefziffer 5, 3, 7, 0)", () => {
+  for (const isin of ["US0378331005", "IE00B4L5Y983", "DE000BAY0017", "LU0159052710"]) {
+    assert.equal(isinPruefzifferOk(isin), true, isin);
+  }
+});
+
+test("isinPruefzifferOk: ungueltige Eingaben", () => {
+  for (const isin of ["US0378331006", "IE00B4L5Y993", "ie00b4l5y983", "", null, 123, ["IE00B4L5Y983"]]) {
+    assert.equal(isinPruefzifferOk(isin), false, String(isin));
+  }
 });

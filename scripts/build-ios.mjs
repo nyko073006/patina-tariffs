@@ -17,9 +17,9 @@
  *
  * Aufruf:  npm run build:ios [-- --force]
  */
-import { readFileSync, readdirSync, existsSync, writeFileSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync, writeFileSync, realpathSync } from "node:fs";
 import { join, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "tariffs.json");
@@ -80,6 +80,28 @@ const AUSGABE_SCHLUESSEL = new Set(["belegteFelder", "belegStand"]);
 const UUID_RE =/^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$/;
 const ISIN_RE = /^[A-Z]{2}[A-Z0-9]{9}[0-9]$/;
 
+/**
+ * Pruefziffer nach ISO 6166: Buchstaben A=10 … Z=35 ergeben eine Ziffernfolge
+ * aus den ersten 11 Zeichen; Luhn darueber muss das 12. Zeichen liefern.
+ */
+export function isinPruefzifferOk(isin) {
+  if (typeof isin !== "string" || !ISIN_RE.test(isin)) return false;
+  const ziffern = [...isin.slice(0, 11)]
+    .map((c) => (c >= "A" ? String(c.charCodeAt(0) - 55) : c))
+    .join("");
+  let summe = 0;
+  // Von rechts: die letzte Stelle der Folge wird verdoppelt.
+  for (let i = 0; i < ziffern.length; i++) {
+    let d = Number(ziffern[ziffern.length - 1 - i]);
+    if (i % 2 === 0) { d *= 2; if (d > 9) d -= 9; }
+    summe += d;
+  }
+  return (10 - (summe % 10)) % 10 === Number(isin[11]);
+}
+
+// Der Build laeuft nur, wenn das Skript direkt gestartet wird; ein Import
+// (Test von `isinPruefzifferOk`) fuehrt ihn nicht aus.
+function baueBundle() {
 const fehler = [];
 const warnungen = [];
 
@@ -147,6 +169,7 @@ for (const f of fonds) {
   if (!ok) continue;
 
   if (!ISIN_RE.test(f.isin)) fehler.push(`${quelle}: ISIN formal ungueltig`);
+  else if (!isinPruefzifferOk(f.isin)) fehler.push(`${quelle}: ISIN Pruefziffer ungueltig`);
   if (gesehenISIN.has(f.isin)) fehler.push(`${quelle}: ISIN doppelt vergeben`);
   gesehenISIN.add(f.isin);
 
@@ -454,3 +477,6 @@ writeFileSync(OUT, JSON.stringify(neu, null, 2) + "\n");
 console.log(`✓ tariffs.json geschrieben — tarife=${sortierteTarife.length} fonds=${sortierteFonds.length}`);
 console.log(`  updatedAt=${neu.updatedAt}`);
 if (warnungen.length) console.log(`  ${warnungen.length} Warnung(en) oben beachten`);
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) baueBundle();
