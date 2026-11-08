@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-26T05:20:05Z",
+  "updatedAt": "2026-11-08T17:30:27Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -220,14 +220,7 @@
       "tarifName": "BasisRente Invest",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 1 — Rürup",
-      "zillmerdauerMonate": 60,
-      "belegteFelder": {
-        "alphaRate": "muster-pib",
-        "betaRate": "muster-pib",
-        "kappaMonthly": "muster-pib",
-        "zillmerdauerMonate": "muster-pib"
-      },
-      "belegStand": "29.01.2026"
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -247,12 +240,7 @@
       "tarifName": "Invest FondsRente",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 60,
-      "belegteFelder": {
-        "alphaRate": "bib",
-        "betaRate": "bib"
-      },
-      "belegStand": "24.08.2026"
+      "zillmerdauerMonate": 60
     },
     {
       "alphaRate": 0.025,
@@ -1123,13 +1111,7 @@
       "tarifName": "FITTERY",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 96,
-      "belegteFelder": {
-        "alphaRate": "bib",
-        "betaEinmalRate": "bib",
-        "betaRate": "bib"
-      },
-      "belegStand": "25.03.2026"
+      "zillmerdauerMonate": 96
     },
     {
       "alphaRate": 0.04,
@@ -1149,12 +1131,7 @@
       "tarifName": "Vorsorge Plan FRV",
       "typischeBruttorendite": 0.06,
       "vehikelTyp": "Schicht 3 — Privatrente",
-      "zillmerdauerMonate": 96,
-      "belegteFelder": {
-        "alphaRate": "bib",
-        "betaRate": "bib"
-      },
-      "belegStand": "25.03.2026"
+      "zillmerdauerMonate": 96
     },
     {
       "alphaRate": 0.025,
