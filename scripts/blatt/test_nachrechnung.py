@@ -191,5 +191,49 @@ class Kommandozeile(unittest.TestCase):
                 self.assertEqual(nachrechnung.main(["--tarife", ordner]), 1)
 
 
+class AnnahmeGrund(unittest.TestCase):
+    def test_fundTER_null_ohne_grund_wird_gemeldet(self):
+        self.assertEqual(nachrechnung.fehlende_annahme_gruende({"annahmen": {"fundTER": 0}}), ["fundTER"])
+
+    def test_fundTER_null_mit_grund_frei(self):
+        p = {"annahmen": {"fundTER": 0},
+             "annahmenGrund": {"fundTER": "S. 2: ‚Kosten der Fonds sind in den laufenden Kosten enthalten‘"}}
+        self.assertEqual(nachrechnung.fehlende_annahme_gruende(p), [])
+
+    def test_fundTER_null_leerer_grund_wird_gemeldet(self):
+        p = {"annahmen": {"fundTER": 0}, "annahmenGrund": {"fundTER": "  "}}
+        self.assertEqual(nachrechnung.fehlende_annahme_gruende(p), ["fundTER"])
+
+    def test_fundTER_positiv_ohne_grund_frei(self):
+        self.assertEqual(nachrechnung.fehlende_annahme_gruende({"annahmen": {"fundTER": 0.0007}}), [])
+
+    def test_gamma_null_ohne_grund_frei(self):
+        self.assertEqual(nachrechnung.fehlende_annahme_gruende({"annahmen": {"gammaAnnualRate": 0}}), [])
+
+    def test_main_rot_bei_fundTER_null_ohne_grund(self):
+        import contextlib
+        import io
+        import tempfile
+        quelle = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..",
+                              "data", "app", "tarife", "n-rnberger--basisrente-invest.json")
+        with open(quelle, encoding="utf-8") as f:
+            tarif = json.load(f)
+        # Ausgangslage grün, sonst beweist der Test nichts.
+        with tempfile.TemporaryDirectory() as ordner:
+            pfad = os.path.join(ordner, "t.json")
+            with open(pfad, "w", encoding="utf-8") as f:
+                json.dump(tarif, f)
+            self.assertEqual(nachrechnung.main([pfad]), 0)
+            for fall in tarif["beleg"]["pruefung"]:
+                fall.pop("annahmenGrund", None)
+            with open(pfad, "w", encoding="utf-8") as f:
+                json.dump(tarif, f)
+            ausgabe = io.StringIO()
+            with contextlib.redirect_stdout(ausgabe):
+                code = nachrechnung.main([pfad])
+        self.assertEqual(code, 1)
+        self.assertIn("fundTER 0 ohne annahmenGrund", ausgabe.getvalue())
+
+
 if __name__ == "__main__":
     unittest.main()
