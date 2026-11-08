@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-08T17:36:37Z",
+  "updatedAt": "2026-11-08T17:43:59Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -1217,7 +1217,6 @@
       "zillmerdauerMonate": 60,
       "belegteFelder": {
         "alphaRate": "bib",
-        "betaEinmalRate": "bib",
         "betaRate": "bib"
       },
       "belegStand": "17.08.2026"
