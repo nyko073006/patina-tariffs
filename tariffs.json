@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-09T17:58:34Z",
+  "updatedAt": "2026-11-09T18:12:05Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -428,7 +428,7 @@
       "jahrgang": "2026",
       "kappaMonthly": 2.75,
       "kategorie": "Klassische Versicherer",
-      "quelle": "Basisinformationsblätter Fondspolice mit Rentengarantiezeit FRVGZB2601 (30 Jahre laufend FRVGZB2601_lfd_30_N, Einmal FRVGZB2601_EB_30_N; Produktname Hallo Zukunft laut Zuordnung Nyko 08.11.2026), Stand 13.03.2026, abgerufen 09.11.2026, S. 3: β \"9,0% der eingezahlten Anlage\" (Verwaltungsgebühren), κ \"33 EUR pro Jahr\" (sonstige Verwaltungs- oder Betriebskosten, 33/12 = 2,75 EUR pro Monat; gleichlautend im Einmal-Blatt), α 2,5 % Einstieg, βEinmal 5,5 % (2,5 % Einstieg + \"3,0% der eingezahlten Anlage\" Verwaltung, Einmal-Blatt); γ 0, weil die Blatt-Spanne 0,2 bis 1,9 % die Fondskosten enthält (Entscheidung Nyko 09.11.2026, Variante B); übrige Werte externe Quelle, 07.10.2026; kein Beleg (günstigster Fonds der Bayerischen nicht belegt)",
+      "quelle": "Basisinformationsblätter Fondspolice FRVGZB2601 (30 Jahre laufend FRVGZB2601_lfd_30_N, Einmal FRVGZB2601_EB_30_N; Produktname Hallo Zukunft laut Zuordnung Nyko 08.11.2026), Stand 13.03.2026, abgerufen 09.11.2026, S. 3: β \"9,0% der eingezahlten Anlage\" (Verwaltungsgebühren), κ \"33 EUR pro Jahr\" (sonstige Verwaltungs- oder Betriebskosten, 33/12 = 2,75 EUR pro Monat; gleichlautend im Einmal-Blatt), α 2,5 % Einstieg, βEinmal 5,5 % (2,5 % Einstieg + \"3,0% der eingezahlten Anlage\" Verwaltung, Einmal-Blatt); γ 0, weil die Blatt-Spanne 0,2 bis 1,9 % die Fondskosten enthält (Entscheidung Nyko 09.11.2026, Variante B); übrige Werte externe Quelle, 07.10.2026; kein Beleg (günstigster Fonds der Bayerischen nicht belegt)",
       "rentenfaktor": 0.0032,
       "tarifName": "BavariaDIREKT",
       "typischeBruttorendite": 0.065,
