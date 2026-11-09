@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-09T00:13:02Z",
+  "updatedAt": "2026-11-09T00:19:50Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -1739,7 +1739,7 @@
       "kategorie": "Sektor-Fonds (aktiv)",
       "name": "JPM US Technology A (acc) – EUR",
       "renditeQuelle": "Schätzwert",
-      "ter": 0.019,
+      "ter": 0.0168,
       "wkn": "A0HG3G"
     },
     {
@@ -1979,7 +1979,7 @@
       "kategorie": "Sektor-Fonds (aktiv)",
       "name": "JPM Global Healthcare A (acc) – EUR",
       "renditeQuelle": "Schätzwert",
-      "ter": 0.019,
+      "ter": 0.017,
       "wkn": "A1CWHW"
     },
     {
