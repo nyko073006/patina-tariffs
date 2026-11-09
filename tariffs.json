@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-08T21:35:27Z",
+  "updatedAt": "2026-11-09T00:13:02Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -818,7 +818,7 @@
     {
       "alphaRate": 0.025,
       "anbieter": "R+V",
-      "betaRate": 0.04,
+      "betaRate": 0.049,
       "effectiveCostRIY": 0.0145,
       "fundTER": 0.01,
       "gammaAnnualRate": 0.003,
@@ -826,6 +826,7 @@
       "jahrgang": "2026",
       "kappaMonthly": 2,
       "kategorie": "Index-Police",
+      "quelle": "Basisinformationsblatt R+V-PrivatRente IndexInvest (Tarif IV, laufende Beiträge), Stand 01.09.2026, abgerufen 07.10.2026, S. 3: β \"4,9 % von jedem Ihrer Beiträge\"; übrige Werte externe Quelle, kein Beleg (Index-Police passt nicht ins Kostenmodell)",
       "rentenfaktor": 0.003,
       "tarifName": "IndexInvest Premium",
       "typischeBruttorendite": 0.04,
