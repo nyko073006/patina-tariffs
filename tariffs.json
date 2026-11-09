@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-09T00:19:50Z",
+  "updatedAt": "2026-11-09T00:20:51Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -419,16 +419,16 @@
       "alphaRate": 0.02871,
       "anbieter": "die Bayerische",
       "betaEinmalRate": 0.02,
-      "betaRate": 0,
+      "betaRate": 0.09,
       "effectiveCostRIY": 0,
       "fundTER": 0.004,
       "gammaAnnualRate": 0.0024,
       "gammaBeitragsfrei": 0.0024,
       "id": "11111111-0000-0000-0000-000000000011",
       "jahrgang": "2026",
-      "kappaMonthly": 0.7958,
+      "kappaMonthly": 2.75,
       "kategorie": "Klassische Versicherer",
-      "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+      "quelle": "Basisinformationsblatt Fondspolice mit Rentengarantiezeit FRVGZB2601 (Fonds-Police Hallo Zukunft, 30 Jahre laufend), Stand 13.03.2026, abgerufen 09.11.2026, S. 3: β \"9,0% der eingezahlten Anlage\" (Verwaltungsgebühren), κ \"33 EUR pro Jahr\" (sonstige Verwaltungs- oder Betriebskosten, 33/12 = 2,75 EUR pro Monat; gleichlautend im Einmal-Blatt FRVGZB2601_EB_30_N); übrige Werte externe Quelle, 07.10.2026; kein Beleg (günstigster Fonds der Bayerischen nicht belegt)",
       "rentenfaktor": 0.0032,
       "tarifName": "BavariaDIREKT",
       "typischeBruttorendite": 0.065,
