@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-08T21:35:27Z",
+  "updatedAt": "2026-11-09T18:12:05Z",
   "tarife": [
     {
       "alphaRate": 0.025,
@@ -416,19 +416,19 @@
       "vehikelTyp": "Schicht 3 — Privatrente"
     },
     {
-      "alphaRate": 0.02871,
+      "alphaRate": 0.025,
       "anbieter": "die Bayerische",
-      "betaEinmalRate": 0.02,
-      "betaRate": 0,
+      "betaEinmalRate": 0.055,
+      "betaRate": 0.09,
       "effectiveCostRIY": 0,
       "fundTER": 0.004,
-      "gammaAnnualRate": 0.0024,
-      "gammaBeitragsfrei": 0.0024,
+      "gammaAnnualRate": 0,
+      "gammaBeitragsfrei": 0,
       "id": "11111111-0000-0000-0000-000000000011",
       "jahrgang": "2026",
-      "kappaMonthly": 0.7958,
+      "kappaMonthly": 2.75,
       "kategorie": "Klassische Versicherer",
-      "quelle": "externe Quelle; β getrennt nach Beitragsart, 07.10.2026",
+      "quelle": "Basisinformationsblätter Fondspolice FRVGZB2601 (30 Jahre laufend FRVGZB2601_lfd_30_N, Einmal FRVGZB2601_EB_30_N; Produktname Hallo Zukunft laut Zuordnung Nyko 08.11.2026), Stand 13.03.2026, abgerufen 09.11.2026, S. 3: β \"9,0% der eingezahlten Anlage\" (Verwaltungsgebühren), κ \"33 EUR pro Jahr\" (sonstige Verwaltungs- oder Betriebskosten, 33/12 = 2,75 EUR pro Monat; gleichlautend im Einmal-Blatt), α 2,5 % Einstieg, βEinmal 5,5 % (2,5 % Einstieg + \"3,0% der eingezahlten Anlage\" Verwaltung, Einmal-Blatt); γ 0, weil die Blatt-Spanne 0,2 bis 1,9 % die Fondskosten enthält (Entscheidung Nyko 09.11.2026, Variante B); übrige Werte externe Quelle, 07.10.2026; kein Beleg (günstigster Fonds der Bayerischen nicht belegt)",
       "rentenfaktor": 0.0032,
       "tarifName": "BavariaDIREKT",
       "typischeBruttorendite": 0.065,
@@ -438,16 +438,16 @@
     {
       "alphaRate": 0.025,
       "anbieter": "die Bayerische",
-      "betaEinmalRate": 0.02,
-      "betaRate": 0,
+      "betaEinmalRate": 0.055,
+      "betaRate": 0.09,
       "effectiveCostRIY": 0,
-      "fundTER": 0.018,
-      "gammaAnnualRate": 0.003,
+      "fundTER": 0.017,
+      "gammaAnnualRate": 0,
       "id": "11111111-0000-0000-0000-000000000027",
       "jahrgang": "2026",
-      "kappaMonthly": 0.7958,
+      "kappaMonthly": 2.75,
       "kategorie": "Sektor- & Top-Fonds",
-      "quelle": "β getrennt nach Beitragsart, 07.10.2026",
+      "quelle": "Mantel wie BavariaDIREKT (Basisinformationsblätter FRVGZB2601, Stand 13.03.2026, abgerufen 09.11.2026, S. 3; Werte und Herleitung siehe dort, Variante B, Entscheidung Nyko 09.11.2026); fundTER 1,70 % laut KID JPM Global Healthcare A (acc) EUR (LU0880062913), abgerufen 09.11.2026; kein Beleg",
       "rentenfaktor": 0.0032,
       "tarifName": "BavariaDIREKT + JPM Healthcare",
       "typischeBruttorendite": 0.095,
@@ -818,7 +818,7 @@
     {
       "alphaRate": 0.025,
       "anbieter": "R+V",
-      "betaRate": 0.04,
+      "betaRate": 0.049,
       "effectiveCostRIY": 0.0145,
       "fundTER": 0.01,
       "gammaAnnualRate": 0.003,
@@ -826,6 +826,7 @@
       "jahrgang": "2026",
       "kappaMonthly": 2,
       "kategorie": "Index-Police",
+      "quelle": "Basisinformationsblatt R+V-PrivatRente IndexInvest (Tarif IV, laufende Beiträge), Stand 01.09.2026, abgerufen 07.10.2026, S. 3: β \"4,9 % von jedem Ihrer Beiträge\"; übrige Werte externe Quelle, kein Beleg (Index-Police passt nicht ins Kostenmodell)",
       "rentenfaktor": 0.003,
       "tarifName": "IndexInvest Premium",
       "typischeBruttorendite": 0.04,
@@ -1738,7 +1739,7 @@
       "kategorie": "Sektor-Fonds (aktiv)",
       "name": "JPM US Technology A (acc) – EUR",
       "renditeQuelle": "Schätzwert",
-      "ter": 0.019,
+      "ter": 0.0168,
       "wkn": "A0HG3G"
     },
     {
@@ -1978,7 +1979,7 @@
       "kategorie": "Sektor-Fonds (aktiv)",
       "name": "JPM Global Healthcare A (acc) – EUR",
       "renditeQuelle": "Schätzwert",
-      "ter": 0.019,
+      "ter": 0.017,
       "wkn": "A1CWHW"
     },
     {
